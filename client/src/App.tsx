@@ -6,11 +6,10 @@ import TechStack from "./Components/TechStack";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import About from "./Components/About";
-import "./index.css";
 
 export default function App() {
   return (
-    <div className="bg-black text-[#00FF41] min-h-screen font-inter">
+    <div className="flex min-h-screen flex-col items-center justify-start gap-5 bg-black text-[#00FF41]">
       <MatrixBackground />
       <Navbar />
       <Hero />

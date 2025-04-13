@@ -16,9 +16,22 @@ html {
   min-height: 100vh;
 }
 
+header,
+footer {
+  padding: 1em;
+}
+button {
+  padding: 1em;
+  cursor: pointer;
+}
+
 body {
   width: 100%;
   background-image: url("/matrix.svg");
   background-size: contain;
   font-family: "jet-brains-mono", monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

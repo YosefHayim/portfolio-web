@@ -13,4 +13,6 @@ html {
 
 body {
   width: 100%;
+  background-image: url("../public/matrix.svg");
+  background-size: contain;
 }

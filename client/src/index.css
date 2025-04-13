@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "jet-brains-mono";
+  src: url("/fonts/jet-brains-mono/JetBrainsMono-Italic-VariableFont_wght.ttf") format("truetype");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +18,7 @@ html {
 
 body {
   width: 100%;
-  background-image: url("../public/matrix.svg");
+  background-image: url("/matrix.svg");
   background-size: contain;
+  font-family: "jet-brains-mono", monospace;
 }

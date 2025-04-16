@@ -1,10 +1,10 @@
 import { Route } from "react-router";
-import Homepage from "./Components/Homepage/Homepage";
-import About from "./Components/About/About";
-import Certifications from "./Components/Certifications/Certifications";
-import TechStack from "./Components/TechStack/TechStack";
-import Projects from "./Components/Projects/Projects";
-import NotFound404 from "./Components/NotFound404/NotFound404";
+import Homepage from "./Pages/Homepage/Homepage";
+import About from "./Pages/About/About";
+import Certifications from "./Pages/Certifications/Certifications";
+import TechStack from "./Pages/TechStack/TechStack";
+import Projects from "./Pages/Projects/Projects";
+import NotFound404 from "./Pages/NotFound404/NotFound404";
 
 const App = () => {
   return (

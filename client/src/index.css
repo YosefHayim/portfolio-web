@@ -14,7 +14,6 @@ html {
 body {
   width: 100%;
   background-size: contain;
-  font-family: "jet-brains-mono", monospace;
   display: flex;
   flex-direction: column;
   justify-content: center;

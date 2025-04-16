@@ -6,10 +6,11 @@ import TechStack from "./Pages/TechStack/TechStack";
 import Projects from "./Pages/Projects/Projects";
 import NotFound404 from "./Pages/NotFound404/NotFound404";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 
 const App = () => {
   return (
-    <div className="w-full">
+    <div className="w-full p-2">
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/certifications" element={<Certifications />} />
         <Route path="/404" element={<NotFound404 />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

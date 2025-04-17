@@ -50,13 +50,15 @@ const About = () => {
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-5">
         <h2 className="text-2xl">My journey</h2>
-        <CardJourney
-          icon={<IoMdTrophy size={20} />}
-          years={`2024 - 2025`}
-          title={`Fullstack Bootcamp - IITC College`}
-          text={`Completed an intensive 796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React,
-  Node.js, Express, and databases such as MongoDB and NoSQL`}
-        />
+        <div>
+          <CardJourney
+            icon={<IoMdTrophy size={20} />}
+            years={`2024 - 2025`}
+            title={`Fullstack Bootcamp - IITC College`}
+            text={`Completed an intensive 796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React,
+            Node.js, Express, and databases such as MongoDB and NoSQL`}
+          />
+        </div>
       </div>
     </div>
   );

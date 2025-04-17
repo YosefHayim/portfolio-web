@@ -5,6 +5,7 @@ import Logo from "../Logo/Logo";
 import NavigationButton from "../Navbar/NavigationButton/NavigationButton";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <footer className="relative flex w-full flex-col items-start justify-start gap-4">
       <section className="flex w-full flex-col items-start justify-start">
@@ -29,6 +30,9 @@ const Footer = () => {
           <DiscordSocialButton />
           <LinkedinSocialButton />
         </nav>
+      </section>
+      <section className="flex w-full items-center justify-center border-t border-gray-800 p-3">
+        <p className="text-gray-400">© {year} - Yosef Portfolio. All rights reserved</p>
       </section>
     </footer>
   );

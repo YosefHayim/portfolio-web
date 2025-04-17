@@ -11,17 +11,19 @@ import "./index.css";
 
 const App = () => {
   return (
-    <div className="p-4">
+    <div className="w-full">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/techStack" element={<TechStack />} />
-        <Route path="/certifications" element={<Certifications />} />
-        <Route path="/404" element={<NotFound404 />} />
-      </Routes>
-      <Footer />
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/techStack" element={<TechStack />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/404" element={<NotFound404 />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 };

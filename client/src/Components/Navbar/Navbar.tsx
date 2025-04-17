@@ -4,7 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   return (
-    <header className="z-10 flex items-center justify-between gap-2 border-b border-gray-800">
+    <header className="fixed z-10 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-2 backdrop-blur-xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
         <button className="rounded-sm p-1 hover:bg-gray-800">

@@ -7,22 +7,22 @@ const Hero = () => {
   return (
     <div className="w-min-max flex flex-col items-center justify-between gap-5">
       <div className="flex flex-col items-start justify-center gap-5">
-        <h2 className="text-4xl">Crafting Digital Experiences through code</h2>
-        <p>
+        <h2 className="w-2/3 text-5xl">Crafting Digital Experiences through code</h2>
+        <p className="text-gray-400">
           Full-stack developer specialized in building exceptional digital experiences that combine creativity with
           technical excellence.
         </p>
         <div className="flex gap-2">
-          <Button className="bg-white text-black hover:bg-gray-100">View Projects</Button>
+          <Button className="bg-white p-3 text-black hover:bg-gray-100">View Projects</Button>
           <Button className="border border-[#374151] bg-transparent hover:bg-[#1f2937]">Contact Me</Button>
         </div>
       </div>
       <img src={profilePic} alt="Yosef hayim sabag" className="rounded-xl" />
       <div className="flex w-full flex-col items-start justify-start rounded-xl bg-gray-800">
         <div className="flex items-center justify-start p-1">
-          <GoDotFill size={28} className="text-gray-400" />
-          <GoDotFill size={28} className="text-gray-400" />
-          <GoDotFill size={28} className="text-gray-400" />
+          <GoDotFill size={28} className="text-red-400" />
+          <GoDotFill size={28} className="text-yellow-400" />
+          <GoDotFill size={28} className="text-green-400" />
         </div>
         <ul>
           <div className="flex w-full items-center">

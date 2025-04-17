@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <div className="p-4">
+      <div className="flex flex-col items-center justify-center gap-10 p-5">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<About />} />

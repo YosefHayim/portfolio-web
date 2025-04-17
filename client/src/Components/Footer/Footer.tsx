@@ -7,12 +7,12 @@ import NavigationButton from "../Navbar/NavigationButton/NavigationButton";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative flex w-full flex-col items-start justify-start gap-4">
+    <footer className="relative flex w-full flex-col items-start justify-start gap-8 p-5">
       <section className="flex w-full flex-col items-start justify-start">
         <Logo />
         <p className="text-gray-400">Trying to get better everyday.</p>
       </section>
-      <section className="flex w-full flex-col items-start justify-start gap-4">
+      <section className="flex w-full flex-col items-start justify-start gap-2">
         <h2>Navigation</h2>
         <nav className="flex w-full flex-col items-center gap-2">
           <NavigationButton to="/" pageName="Home" />

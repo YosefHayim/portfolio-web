@@ -1,5 +1,5 @@
 import { Button } from "@/Components/ui/button";
-import profilePic from "/homepage-hero-image/linkedin-profile.png";
+import ImageOfMyself from "@/Components/ImageOfMyself/ImageOfMyself";
 
 const Hero = () => {
   return (
@@ -15,7 +15,7 @@ const Hero = () => {
           <Button className="border border-[#374151] bg-transparent hover:bg-[#1f2937]">Contact Me</Button>
         </div>
       </div>
-      <img src={profilePic} alt="Yosef hayim sabag" className="rounded-xl" />
+      <ImageOfMyself />
     </div>
   );
 };

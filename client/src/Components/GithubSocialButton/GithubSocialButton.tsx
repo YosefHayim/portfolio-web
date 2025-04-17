@@ -1,10 +1,11 @@
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router";
 
 const GithubSocialButton = () => {
   return (
-    <link href="">
+    <Link rel="GitHub" to="https://github.com/YosefHayim">
       <FaGithub className="bg-transparent text-gray-400 hover:text-white" size={25} />
-    </link>
+    </Link>
   );
 };
 

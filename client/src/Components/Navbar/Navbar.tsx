@@ -1,11 +1,17 @@
 import NavigationButton from "./NavigationButton/NavigationButton";
 import Logo from "../Logo/Logo";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   return (
-    <header className="flex items-center justify-between gap-2">
-      <Logo />
-      <nav className="flex w-full items-center gap-2">
+    <header className="z-10 flex items-center justify-between gap-2 border-b border-gray-800">
+      <div className="flex w-full items-center justify-between gap-2">
+        <Logo />
+        <button className="rounded-sm p-1 hover:bg-gray-800">
+          <RxHamburgerMenu size={30} />
+        </button>
+      </div>
+      <nav className="hidden w-full items-center gap-2 md:flex">
         <NavigationButton to="/" pageName="Home" />
         <NavigationButton to="/about" pageName="About" />
         <NavigationButton to="/techStack" pageName="Tech Stack" />

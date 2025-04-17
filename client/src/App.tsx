@@ -7,10 +7,11 @@ import Projects from "./Pages/Projects/Projects";
 import NotFound404 from "./Pages/NotFound404/NotFound404";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
+import "./index.css";
 
 const App = () => {
   return (
-    <div className="w-full p-2">
+    <div className="p-4">
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />

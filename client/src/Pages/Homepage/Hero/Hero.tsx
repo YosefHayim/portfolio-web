@@ -1,17 +1,21 @@
+import profilePic from "/homepage-hero-image/linkedin-profile.png";
+
 const Hero = () => {
   return (
-    <div>
+    <div className="w-min-max flex flex-col items-center justify-between gap-3">
       <div>
-        <h2>Crafting Digital Experiences through code</h2>
+        <h2 className="text-4xl">Crafting Digital Experiences through code</h2>
         <p>
           Full-stack developer specialized in building exceptional digital experiences that combine creativity with
           technical excellence.
         </p>
-        <button>View Projects</button>
-        <button>Contact Me</button>
+        <div className="flex gap-2">
+          <button>View Projects</button>
+          <button>Contact Me</button>
+        </div>
       </div>
       <div>
-        <img src="" alt="" />
+        <img src={profilePic} alt="Yosef hayim sabag" />
       </div>
     </div>
   );

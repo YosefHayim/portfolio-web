@@ -2,7 +2,7 @@ const WhoAmI = () => {
   return (
     <div>
       <div>
-        <p>s</p>
+        <p></p>
       </div>
     </div>
   );

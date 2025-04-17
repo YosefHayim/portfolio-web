@@ -3,11 +3,12 @@ import NavigationButton from "../Navbar/NavigationButton/NavigationButton";
 
 const Footer = () => {
   return (
-    <footer className="absolute bottom-0 flex w-full items-center justify-around">
+    <footer className="relative flex w-full flex-col items-start justify-start gap-5">
       <section className="flex flex-col items-center justify-center">
         <Logo />
+        <p className="text-gray-400">Trying to get better everyday.</p>
       </section>
-      <section>
+      <section className="flex flex-col items-start justify-start gap-4">
         <h2>Navigation</h2>
         <nav className="flex w-full flex-col items-center gap-2">
           <NavigationButton to="/" pageName="Home" />

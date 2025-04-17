@@ -1,8 +1,14 @@
 import ImageOfMyself from "@/Components/ImageOfMyself/ImageOfMyself";
+import LoaderAnimation from "@/Components/LoaderAnimation/LoaderAnimation";
 import { Button } from "@/Components/ui/button";
+import { useState } from "react";
 import { FaDownload, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router";
 
 const About = () => {
+  const [loadingCV, setLoadingCV] = useState(false);
+  const [loadingWhatsApp, setLoadingWhatsApp] = useState(false);
+
   return (
     <div className="flex flex-col gap-10 p-5 pt-[10%]">
       <ImageOfMyself />
@@ -14,16 +20,30 @@ const About = () => {
           care about clean structure, thoughtful design, and learning from every project.
         </p>
         <div className="flex w-full items-center justify-start gap-2">
-          <a href="/resume/yosef-hayim-full-stack-resume.pdf" download>
-            <Button className="bg-white text-black hover:bg-gray-100">
-              <FaDownload />
-              Download CV
-            </Button>
+          <a href="/resume/yosef-hayim-full-stack-resume.pdf" download onClick={() => setLoadingCV((prev) => !prev)}>
+            {loadingCV ? (
+              <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
+                <LoaderAnimation state={loadingCV} setState={setLoadingCV} />
+              </Button>
+            ) : (
+              <Button className="bg-white text-black hover:bg-gray-100">
+                <FaDownload />
+                Download CV
+              </Button>
+            )}
           </a>
-          <Button className="border border-[#374151] bg-transparent p-2 hover:bg-[#1f2937]">
-            <FaWhatsapp />
-            Get In Touch
-          </Button>
+          <Link to="https://wa.me/546187549" onClick={() => setLoadingWhatsApp((prev) => !prev)}>
+            {loadingWhatsApp ? (
+              <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
+                <LoaderAnimation state={loadingWhatsApp} setState={setLoadingWhatsApp} />
+              </Button>
+            ) : (
+              <Button className="border border-[#374151] bg-transparent p-2 hover:bg-[#1f2937]">
+                <FaWhatsapp />
+                Get In Touch
+              </Button>
+            )}
+          </Link>
         </div>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-5">

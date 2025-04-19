@@ -13,7 +13,7 @@ const About = () => {
   return (
     <div className="flex flex-col gap-10 p-5 pt-[10%]">
       <ImageOfMyself />
-      <div className="items-star flex flex-col justify-center gap-4">
+      <div className="flex flex-col items-start justify-center gap-4">
         <h1 className="text-3xl">About Me</h1>
         <p className="w-full">
           Hi there — the logo gives away my name. I’m a curious, developer who sees code as a form of art. This

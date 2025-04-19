@@ -6,18 +6,25 @@ const CardJourney: React.FC<{
   icon: ReactNode;
   years: string;
   colorIconHover: string;
-}> = ({ title, text, icon, years, colorIconHover }) => {
+  children?: ReactNode;
+}> = ({ title, text, icon, years, colorIconHover, children }) => {
   return (
-    <section className="relative z-10 w-full flex-col items-center justify-start gap-2 rounded-xl bg-gray-800 p-3">
-      <h3 className="w-full text-xl">{title}</h3>
-      <div
-        className={`absolute top-[-10%] left-[-5%] rounded-full bg-gray-700 p-2 delay-150 duration-300 ease-in-out group-hover:-translate-y-2 group-hover:text-[${colorIconHover}] group-hover:transition hover:scale-110`}
-      >
-        {icon}
-      </div>
-      <p className="w-full text-gray-400">{years}</p>
-      <p className="text-gray-400">{text}</p>
-    </section>
+    <div className="group relative w-full">
+      <section className="relative z-10 w-full rounded-xl bg-gray-800">
+        <div className="w-full flex-col items-center justify-start gap-2 p-5">
+          <h3 className="w-full text-xl">{title}</h3>
+          <div
+            className={`absolute top-[-5%] left-[-4.5%] rounded-full bg-gray-700 p-2 delay-150 duration-300 ease-in-out group-hover:-translate-y-2 group-hover:text-[${colorIconHover}] group-hover:transition hover:scale-110`}
+          >
+            {icon}
+            {children}
+          </div>
+          <p className="w-full text-transparent duration-300 ease-in-out group-hover:text-gray-400">{years}</p>
+          <p className="text-gray-400">{text}</p>
+        </div>
+      </section>
+      <div className="h-0.5 w-2/3 translate-x-[-120px] rotate-90 bg-gray-600"></div>
+    </div>
   );
 };
 

@@ -50,9 +50,10 @@ const About = () => {
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-5">
         <h2 className="text-2xl">My journey</h2>
-        <div>
+        <div className="group relative">
           <CardJourney
             icon={<IoMdTrophy size={20} />}
+            colorIconHover={`#fdc700`}
             years={`2024 - 2025`}
             title={`Fullstack Bootcamp - IITC College`}
             text={`Completed an intensive 796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React,

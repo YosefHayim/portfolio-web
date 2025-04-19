@@ -24,8 +24,9 @@ const MyJourney = () => {
         icon={<IoMdTrophy size={20} />}
         colorIconHover={`group-hover:text-[#fdc700]`}
         years={`2018 - 2021`}
+        showLine={false}
         title={`Infantry Commander - IDF - 931st Battalion - Negevist`}
-        text={`I served in the IDF as a combat soldier (Negevist) in the Nahal Brigade. I completed my training as one of the top soldiers and was awarded excellence twice – once during basic training and again in the Commanders’ Course. I led soldiers in the field and gained strong leadership and problem-solving skills through real-life challenges.`}
+        text={`I served in the IDF as a combat soldier (Negevist) in the Nahal Brigade. I completed my training as one of the top soldiers and was awarded excellence twice – once during basic training and again in the Commanders’ Course.`}
       >
         <p className={`#fdc700 absolute top-3 left-7 hidden group-hover:block`}>2x</p>
       </CardJourney>

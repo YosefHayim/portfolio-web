@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 
 const CardJourney: React.FC<{
   title: string;
-  text: string;
+  textChildren: ReactNode;
   icon: ReactNode;
   years: string;
   colorIconHover: string;
   showLine?: boolean;
   children?: ReactNode;
-}> = ({ title, text, icon, years, colorIconHover, showLine = true, children }) => {
+}> = ({ title, icon, years, colorIconHover, showLine = true, children, textChildren }) => {
   return (
     <div className="group relative w-full">
       <section className="relative z-10 w-full rounded-xl bg-gray-800">
@@ -21,7 +21,7 @@ const CardJourney: React.FC<{
             {children}
           </div>
           <p className="w-full text-transparent duration-300 ease-in-out group-hover:text-gray-400">{years}</p>
-          <p className="text-gray-400">{text}</p>
+          {textChildren}
         </div>
       </section>
       {showLine && <div className="h-0.5 w-2/3 translate-x-[-120px] rotate-90 bg-gray-600"></div>}

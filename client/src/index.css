@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@font-face {
-  font-family: "code";
-  src: url("../public/fonts/code_font.ttf") format("truetype");
-}
-
 * {
   box-sizing: border-box;
   margin: 0;

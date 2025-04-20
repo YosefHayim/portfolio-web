@@ -7,7 +7,7 @@ import Projects from "./Pages/Projects/Projects";
 import NotFound404 from "./Pages/NotFound404/NotFound404";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import "./index.css";
+import "@/index.css";
 
 const App = () => {
   return (

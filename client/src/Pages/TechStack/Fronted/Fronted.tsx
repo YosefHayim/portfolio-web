@@ -19,7 +19,7 @@ const TechStack = [
 const Fronted = () => {
   return (
     <div className="w-full">
-      <h2 className="pb-2 text-center">Frontend</h2>
+      <h2 className="pb-2">Frontend</h2>
       <div className="flex flex-wrap items-center justify-start gap-2 rounded-sm bg-gray-800 p-4">
         {TechStack.map((tech, index) => (
           <TechRow key={index} techName={tech.name}>

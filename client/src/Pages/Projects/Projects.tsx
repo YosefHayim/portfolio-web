@@ -1,12 +1,16 @@
 import ProjectCard from "./ProjectCard/ProjectCard";
-import { SiUdemy } from "react-icons/si";
+import { SiAlwaysdata, SiBinance, SiUdemy } from "react-icons/si";
 import udemyScreenshot from "/screenshots/udemy.png";
 import momToolScreenshot from "/screenshots/MomTool.png";
-import stockMarketScreenShot from "/screenshots/past-projects-with-chatgpt.png";
+import amazonScreenshot from "/screenshots/amazon.png";
+import ebayScreenshot from "/screenshots/ebay.png";
+import interactiveBrokersScreenshot from "/screenshots/interactive-brokers.png";
+import binanceScreenshot from "/screenshots/binance.png";
+import harABituahScreenshot from "/screenshots/har-a-bituah.png";
 import Collaborators from "./ProjectCard/Collaborators/Collaborators";
-
 import ProjectsHeader from "./ProjectsHeader/ProjectsHeader";
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
+import { FaAmazon, FaEbay } from "react-icons/fa";
 import { RiStockLine } from "react-icons/ri";
 
 const Projects = () => {
@@ -69,21 +73,77 @@ const Projects = () => {
         </div>
       </ProjectCard>
       <ProjectCard
-        projectImg={stockMarketScreenShot}
-        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt"
+        projectImg={amazonScreenshot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/09.08.2024%20-%20Amazon%20ASIN%20Collector%20%2B%20normal%20captcha"
         deployedUrl="https://github.com/YosefHayim"
-        projectName="Past Projects With GPT"
-        techStackForProject={["None"]}
+        projectName="Amazon ASIN Scraper Solve CAPTCHA"
+        techStackForProject={["Selenium", "2Captcha API"]}
+        childrenProjectIcon={<FaAmazon size={30} className="rounded-sm bg-white p-1 text-black" />}
+      >
+        <div className="group relative flex flex-col items-start justify-start gap-2">
+          <p className="w-full text-gray-400">
+            Python bot using Selenium to grab ASINs from Amazon, bypass CAPTCHAs with 2Captcha, switch ZIP codes, and
+            export to CSV.
+          </p>
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        projectImg={ebayScreenshot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/11.08.2024%20-%20eBay%20Titles%20Collector"
+        deployedUrl="https://github.com/YosefHayim"
+        projectName="eBay Sellers Title Scraper"
+        techStackForProject={["Selenium"]}
+        childrenProjectIcon={<FaEbay size={30} className="rounded-sm bg-white p-1 text-black" />}
+      >
+        <div className="group relative flex flex-col items-start justify-start gap-2">
+          <p className="w-full text-gray-400">
+            Python bot that scrapes product titles across pages and saves them to CSV.
+          </p>
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        projectImg={harABituahScreenshot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.02.2024%20-%20HarABituh-data%20read%20and%20extraction%20with%20manual%20captcha%20automation"
+        deployedUrl="https://github.com/YosefHayim"
+        projectName="HarABituah Government Scraper"
+        techStackForProject={["Selenium"]}
+        childrenProjectIcon={<SiAlwaysdata size={30} className="rounded-sm bg-white p-1 text-black" />}
+      >
+        <div className="group relative flex flex-col items-start justify-start gap-2">
+          <p className="w-full text-gray-400">
+            At an insurance company in Holon, I spotted a manual process slowing things down. With zero coding
+            background, I used ChatGPT to guide me in building a Python automation that extracted and processed customer
+            files—saving time and cutting costs for the business.{" "}
+          </p>
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        projectImg={interactiveBrokersScreenshot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.11.2023%20-%20Interactive%20broker%20API%20trading%20bots"
+        deployedUrl="https://github.com/YosefHayim"
+        projectName="Stocks Trading Bots"
+        techStackForProject={["Selenium", "Interactive Brokers API", "Telegram API"]}
         childrenProjectIcon={<RiStockLine size={30} className="rounded-sm bg-white p-1 text-black" />}
       >
         <div className="group relative flex flex-col items-start justify-start gap-2">
           <p className="w-full text-gray-400">
-            Started by using ChatGPT prompts to build Telegram bots and automate day trading with finance APIs—no coding
-            background.
+            Started with zero coding—used ChatGPT to build modular Python bots running MACD, RSI, SMA, and Wyckoff
+            strategies. Fully automated for live trading via Interactive Brokers API.
           </p>
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        projectImg={binanceScreenshot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/10.28.2023%20-%20Binance%20API%20trading%20bots"
+        deployedUrl="https://github.com/YosefHayim"
+        projectName="Crypto Trading Bots"
+        techStackForProject={["Selenium", "Binance API", "Telegram API"]}
+        childrenProjectIcon={<SiBinance size={30} className="rounded-sm bg-white p-1 text-black" />}
+      >
+        <div className="group relative flex flex-col items-start justify-start gap-2">
           <p className="w-full text-gray-400">
-            just pure <span className="group-hover:text-white">curiosity.</span> That hacked learning approach sparked
-            my full-stack dev journey.
+            With no coding background, I built Python bots using ChatGPT to automate trading on Binance. Strategies
+            included RSI, MACD, and SMA—fully hands-off and data-driven.
           </p>
         </div>
       </ProjectCard>

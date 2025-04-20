@@ -10,40 +10,52 @@ const WhoAmI = () => {
         <GoDotFill size={28} className="text-green-400" />
       </div>
       <ul>
-        <div className="flex w-full items-center">
-          <IoIosArrowForward />
-          <h3>WhoiAm?</h3>
+        <div className="flex w-full flex-col items-start">
+          <li className="group relative w-full items-center justify-start gap-1 p-2">
+            <div className="flex items-center">
+              <IoIosArrowForward />
+              <h3>WhoiAm?</h3>
+            </div>
+            <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              Full-stack developer blending clean code with creative problem-solving.
+            </p>
+          </li>
         </div>
-        <li className="w-full items-center justify-start gap-1 p-2">
-          <p className="text-gray-400">Full-stack developer blending clean code with creative problem-solving.</p>
-        </li>
-        <li className="w-full items-center justify-start gap-1 p-2">
+        <li className="group relative w-full items-center justify-start gap-1 p-2">
           <div className="flex w-full items-center">
             <IoIosArrowForward />
             <h3>Stack</h3>
           </div>
-          <p className="text-gray-400">React, Node.js, TypeScript, PostgreSQL, Playwright, Kafka.</p>
+          <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            React, Node.js, TypeScript, PostgreSQL, Playwright, Kafka.
+          </p>
         </li>
-        <li className="w-full items-center justify-start gap-1 p-2">
+        <li className="group relative w-full items-center justify-start gap-1 p-2">
           <div className="flex w-full items-center">
             <IoIosArrowForward />
             <h3>Focus</h3>
           </div>
-          <p className="text-gray-400">Building real-time apps, scalable APIs, and testable systems.</p>
+          <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Building real-time apps, scalable APIs, and testable systems.
+          </p>
         </li>
-        <li className="w-full items-center justify-start gap-1 p-2">
+        <li className="group relative w-full items-center justify-start gap-1 p-2">
           <div className="flex w-full items-center">
             <IoIosArrowForward />
             <h3>Passion</h3>
           </div>
-          <p className="text-gray-400">Automating workflows, shipping fast, and learning endlessly.</p>
+          <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Automating workflows, shipping fast, and learning endlessly.
+          </p>
         </li>
-        <li className="w-full items-center justify-start gap-1 p-2">
+        <li className="group relative w-full items-center justify-start gap-1 p-2">
           <div className="flex w-full items-center">
             <IoIosArrowForward />
             <h3>Motto</h3>
           </div>
-          <p className="text-gray-400">Trying to get better everyday.</p>
+          <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Trying to get better <span className="font-bold underline hover:text-green-400">everyday.</span>
+          </p>
         </li>
       </ul>
     </div>

@@ -1,12 +1,17 @@
+import { ReactNode } from "react";
 import CustomProjectLogo from "../CustomProjectLogo/CustomProjectLogo";
 import ProjectImg from "../ProjectImg/ProjectImg";
 import TechOfProject from "./TechOfProject/TechOfProject";
 import udemySvg from "/svgs/udemy.svg";
 
-const ProjectCard: React.FC<{ techStackForProject: string[] }> = ({ techStackForProject }) => {
+const ProjectCard: React.FC<{ techStackForProject: string[]; children: ReactNode; projectImg: string }> = ({
+  techStackForProject,
+  projectImg,
+  children,
+}) => {
   return (
     <section className="rounded-lg bg-gray-800">
-      <ProjectImg />
+      <ProjectImg path={projectImg} />
       <div className="flex flex-col items-start justify-start gap-4 rounded-b-lg bg-gray-700 p-5">
         <div className="flex w-full items-center justify-start gap-2">
           <CustomProjectLogo>
@@ -14,9 +19,7 @@ const ProjectCard: React.FC<{ techStackForProject: string[] }> = ({ techStackFor
           </CustomProjectLogo>
           <h2 className="text-2xl">Udemy platform clone</h2>
         </div>
-        <p className="text-gray-400">
-          lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.
-        </p>
+        {children}
 
         <TechOfProject techStackForProject={techStackForProject} />
       </div>

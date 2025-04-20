@@ -20,7 +20,12 @@ const Projects = () => {
           "Tailwind CSS",
           "Redux Toolkit",
         ]}
-      />
+      >
+        <p className="text-gray-400">
+          This project is a full-featured Udemy clone, built as the final capstone for our course at IITC to showcase
+          everything we’ve learned.
+        </p>
+      </ProjectCard>
     </div>
   );
 };

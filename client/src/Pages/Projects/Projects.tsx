@@ -76,7 +76,7 @@ const Projects = () => {
         projectImg={amazonScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/09.08.2024%20-%20Amazon%20ASIN%20Collector%20%2B%20normal%20captcha"
         deployedUrl="https://github.com/YosefHayim"
-        projectName="Amazon ASIN Scraper Solve CAPTCHA"
+        projectName="Amazon ASIN Scraper W/CAPTCHA"
         techStackForProject={["Selenium", "2Captcha API"]}
         childrenProjectIcon={<FaAmazon size={30} className="rounded-sm bg-white p-1 text-black" />}
       >

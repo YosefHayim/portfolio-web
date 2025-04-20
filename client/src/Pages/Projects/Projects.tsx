@@ -1,8 +1,6 @@
 import ProjectCard from "./ProjectCard/ProjectCard";
 import { SiUdemy } from "react-icons/si";
 import udemyScreenshot from "/screenshots/udemy.png";
-import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router";
 import GithubSocialButton from "@/Components/GithubSocialButton/GithubSocialButton";
 
 const Projects = () => {
@@ -26,8 +24,8 @@ const Projects = () => {
             This project is a full-featured Udemy clone, built as the final capstone for our course at IITC to showcase
             everything we’ve learned.
           </p>
-          <div className="w-full">
-            <b>Collaborators:</b>
+          <div className="flex w-full flex-col items-start justify-start gap-2">
+            <b>Collaborators</b>
             <ul className="list-dist flex flex-col items-start justify-start gap-2 text-gray-400">
               <li className="justify-stat flex items-start gap-4">
                 <GithubSocialButton to="https://github.com/ron959" />

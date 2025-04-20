@@ -20,8 +20,10 @@ const ProjectCard: React.FC<{
           <h2 className="text-2xl">{projectName}</h2>
         </div>
         {children}
-
-        <TechOfProject techStackForProject={techStackForProject} />
+        <div className="flex flex-col items-start justify-start gap-2">
+          <b>Tech Stack</b>
+          <TechOfProject techStackForProject={techStackForProject} />
+        </div>
       </div>
     </section>
   );

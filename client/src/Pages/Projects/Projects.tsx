@@ -5,6 +5,7 @@ import momToolScreenshot from "/screenshots/MomTool.png";
 import amazonScreenshot from "/screenshots/amazon.png";
 import ebayScreenshot from "/screenshots/ebay.png";
 import interactiveBrokersScreenshot from "/screenshots/interactive-brokers.png";
+import timScreenshot from "/screenshots/tim-trailer.png";
 import binanceScreenshot from "/screenshots/binance.png";
 import harABituahScreenshot from "/screenshots/har-a-bituah.png";
 import Collaborators from "./ProjectCard/Collaborators/Collaborators";
@@ -12,6 +13,7 @@ import ProjectsHeader from "./ProjectsHeader/ProjectsHeader";
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import { FaAmazon, FaEbay } from "react-icons/fa";
 import { RiStockLine } from "react-icons/ri";
+import { GiPopcorn } from "react-icons/gi";
 
 const Projects = () => {
   return (
@@ -36,6 +38,21 @@ const Projects = () => {
               { name: "Ben Klinski", githubProfileLink: "https://github.com/Ben-Kilinski" },
             ]}
           />
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        visitRepoUrl="https://github.com/YosefHayim/iitc-b/tree/main/full-stack-2024/october-2024/14-10-2024/sukot-assigment"
+        deployedUrl="https://iitc-b-frontend-vanilla-tim-trailers.onrender.com/"
+        projectName="Tim Trailers"
+        projectImg={timScreenshot}
+        techStackForProject={["JavaScript, TMDB API"]}
+        childrenProjectIcon={<GiPopcorn size={30} className="rounded-sm bg-white p-1 text-red-700" />}
+      >
+        <div className="flex w-full flex-col items-center justify-start gap-2">
+          <p className="w-full text-gray-400">
+            Tim Trailers is a quirky, vanilla HTML/CSS movie trailer site where you join Tim—a popcorn prophet with a
+            love for laughs—on a cinematic ride through curated picks, cozy vibes, and festival flair.
+          </p>
         </div>
       </ProjectCard>
       <ProjectCard

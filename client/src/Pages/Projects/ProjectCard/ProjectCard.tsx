@@ -9,10 +9,11 @@ const ProjectCard: React.FC<{
   projectImg: string;
   projectName: string;
   childrenProjectIcon: ReactNode;
-}> = ({ techStackForProject, projectImg, children, childrenProjectIcon, projectName }) => {
+  deployedUrl: string;
+}> = ({ techStackForProject, projectImg, children, childrenProjectIcon, projectName, deployedUrl }) => {
   return (
     <section className="rounded-lg bg-gray-800">
-      <ProjectImg path={projectImg} />
+      <ProjectImg path={projectImg} to={deployedUrl} />
       <div className="flex flex-col items-start justify-start gap-4 rounded-b-lg bg-gray-700 p-5">
         <div className="flex w-full items-center justify-start gap-2">
           <CustomProjectLogo>{childrenProjectIcon}</CustomProjectLogo>

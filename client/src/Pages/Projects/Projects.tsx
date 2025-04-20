@@ -15,9 +15,10 @@ const Projects = () => {
         </p>
       </div>
       <ProjectCard
+        deployedUrl="https://udemy-clone-ron-and-ben-front.onrender.com/"
         projectName="Udemy Clone"
         projectImg={udemyScreenshot}
-        techStackForProject={["Node.js", "TypeScript", "Express", "MongoDB", "React", "Tailwind", "Redux"]}
+        techStackForProject={["React", "Node.js", "TypeScript", "Express", "MongoDB", "Tailwind", "Redux"]}
         childrenProjectIcon={<SiUdemy size={30} className="rounded-sm bg-white p-1 text-purple-500" />}
       >
         <div className="flex w-full flex-col items-center justify-start gap-2">

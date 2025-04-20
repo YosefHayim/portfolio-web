@@ -2,15 +2,19 @@ import ProjectCard from "./ProjectCard/ProjectCard";
 import { SiUdemy } from "react-icons/si";
 import udemyScreenshot from "/screenshots/udemy.png";
 import momToolScreenshot from "/screenshots/MomTool.png";
+import stockMarketScreenShot from "/screenshots/past-projects-with-chatgpt.png";
 import Collaborators from "./ProjectCard/Collaborators/Collaborators";
+
 import ProjectsHeader from "./ProjectsHeader/ProjectsHeader";
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
+import { RiStockLine } from "react-icons/ri";
 
 const Projects = () => {
   return (
     <div className="flex w-full flex-col gap-10 p-5 pt-[10%]">
       <ProjectsHeader />
       <ProjectCard
+        visitRepoUrl="https://github.com/YosefHayim/Udemy-Clone-Ron-Ben-IITC-2025"
         deployedUrl="https://udemy-clone-ron-and-ben-front.onrender.com/"
         projectName="Udemy Clone"
         projectImg={udemyScreenshot}
@@ -31,12 +35,13 @@ const Projects = () => {
         </div>
       </ProjectCard>
       <ProjectCard
+        visitRepoUrl="https://github.com/YosefHayim/OCR-Parse-AI"
         techStackForProject={[
           "React",
           "Tailwind",
           "Axios",
           "TanStack Query",
-          "Socket.IO",
+          "Socket.io",
           "Playwright",
           "Husky",
           "Node.js",
@@ -61,6 +66,25 @@ const Projects = () => {
             <li>Ran OCR with Tesseract.js</li>
             <li>Parsed invoice data via OpenAI</li>
           </ol>
+        </div>
+      </ProjectCard>
+      <ProjectCard
+        projectImg={stockMarketScreenShot}
+        visitRepoUrl="https://github.com/YosefHayim/p-w-gpt"
+        deployedUrl="https://github.com/YosefHayim"
+        projectName="Past Projects With GPT"
+        techStackForProject={["None"]}
+        childrenProjectIcon={<RiStockLine size={30} className="rounded-sm bg-white p-1 text-black" />}
+      >
+        <div className="group relative flex flex-col items-start justify-start gap-2">
+          <p className="w-full text-gray-400">
+            Started by using ChatGPT prompts to build Telegram bots and automate day trading with finance APIs—no coding
+            background.
+          </p>
+          <p className="w-full text-gray-400">
+            just pure <span className="group-hover:text-white">curiosity.</span> That hacked learning approach sparked
+            my full-stack dev journey.
+          </p>
         </div>
       </ProjectCard>
     </div>

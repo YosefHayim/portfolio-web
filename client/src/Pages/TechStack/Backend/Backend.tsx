@@ -13,12 +13,15 @@ const backendTech = [
 
 const Backend = () => {
   return (
-    <div className="flex flex-wrap items-center justify-start gap-2 rounded-sm bg-gray-800 p-4">
-      {backendTech.map((tech) => (
-        <TechRow techName={tech.name} key={tech.name}>
-          {tech.icon}
-        </TechRow>
-      ))}
+    <div>
+      <h2 className="pb-2 text-center">Backend</h2>
+      <div className="flex flex-wrap items-center justify-start gap-2 rounded-sm bg-gray-800 p-4">
+        {backendTech.map((tech) => (
+          <TechRow techName={tech.name} key={tech.name}>
+            {tech.icon}
+          </TechRow>
+        ))}
+      </div>
     </div>
   );
 };

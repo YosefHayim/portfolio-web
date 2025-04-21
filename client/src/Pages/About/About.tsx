@@ -1,7 +1,7 @@
 import ImageOfMyself from "@/Components/ImageOfMyself/ImageOfMyself";
 import LoaderAnimation from "@/Components/LoaderAnimation/LoaderAnimation";
 import { Button } from "@/Components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaDownload, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router";
 import MyJourney from "./MyJourney/MyJourney";
@@ -9,6 +9,10 @@ import MyJourney from "./MyJourney/MyJourney";
 const About = () => {
   const [loadingCV, setLoadingCV] = useState(false);
   const [loadingWhatsApp, setLoadingWhatsApp] = useState(false);
+
+  useEffect(() => {
+    document.title = "About";
+  }, []);
 
   return (
     <div className="flex flex-col gap-10 p-5 pt-[10%]">

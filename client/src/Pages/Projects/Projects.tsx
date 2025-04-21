@@ -14,8 +14,12 @@ import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import { FaAmazon, FaEbay } from "react-icons/fa";
 import { RiStockLine } from "react-icons/ri";
 import { GiPopcorn } from "react-icons/gi";
+import { useEffect } from "react";
 
 const Projects = () => {
+  useEffect(() => {
+    document.title = "Projects";
+  });
   return (
     <div className="flex w-full flex-col gap-10 p-5 pt-[10%]">
       <ProjectsHeader />

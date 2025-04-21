@@ -9,7 +9,7 @@ const CertificationCard: React.FC<{
   children?: ReactNode;
 }> = ({ icon, yearEarnedCertificate, certificateTitle, certificateLink, children }) => {
   return (
-    <div className="flex w-full flex-col items-start justify-start rounded-sm bg-gray-800 p-2 text-sm">
+    <section className="flex w-full flex-col items-start justify-start rounded-sm bg-gray-800 p-2 text-sm hover:bg-gray-700">
       <Link to={certificateLink} className="flex items-center">
         <div className="flex w-full justify-center gap-2">
           <p>{icon}</p>
@@ -18,7 +18,7 @@ const CertificationCard: React.FC<{
         </div>
         {children}
       </Link>
-    </div>
+    </section>
   );
 };
 

@@ -31,7 +31,7 @@ const About = () => {
                 <LoaderAnimation state={loadingCV} setState={setLoadingCV} />
               </Button>
             ) : (
-              <Button className="bg-white text-black transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-gray-100">
+              <Button className="bg-white text-black transition delay-150 duration-300 ease-in-out hover:scale-110 hover:bg-gray-100">
                 <FaDownload />
                 Download CV
               </Button>
@@ -46,7 +46,7 @@ const About = () => {
                 <LoaderAnimation state={loadingWhatsApp} setState={setLoadingWhatsApp} />
               </Button>
             ) : (
-              <Button className="border border-[#374151] bg-transparent p-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-[#1f2937]">
+              <Button className="border border-[#374151] bg-transparent p-2 transition delay-150 duration-300 ease-in-out hover:scale-110 hover:bg-[#1f2937]">
                 <FaWhatsapp color="#05df72" />
                 Get In Touch
               </Button>

@@ -86,11 +86,12 @@ const Projects = () => {
           <p className="w-full text-gray-400">
             Built an AI-powered OCR tool to help my mom extract structured data from messy PDF invoices.
           </p>
-          <ol className="list-decimal text-gray-400">
+          <ul className="text-gray-400">
+            <h3 className="pb-1 font-bold">Flow of the project is:</h3>
             <li>Converted PDFs to images using Sharp</li>
             <li>Ran OCR with Tesseract.js</li>
             <li>Parsed invoice data via OpenAI</li>
-          </ol>
+          </ul>
         </div>
       </ProjectCard>
       <ProjectCard

@@ -20,7 +20,6 @@ const Footer = () => {
           <NavigationButton to="/techStack" pageName="Tech Stack" />
           <NavigationButton to="/projects" pageName="Projects" />
           <NavigationButton to="/certifications" pageName="Certifications" />
-          <NavigationButton to="/contact" pageName="Contact" />
         </nav>
       </section>
       <section className="flex w-full flex-col items-start justify-start gap-4">
@@ -32,7 +31,7 @@ const Footer = () => {
         </nav>
       </section>
       <section className="flex w-full items-center justify-center border-t border-gray-800 p-3">
-        <p className="text-gray-400">© {year} - Yosef Portfolio. All rights reserved</p>
+        <p className="text-center text-sm text-gray-400">© {year} - Yosef Portfolio. All rights reserved</p>
       </section>
     </footer>
   );

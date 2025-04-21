@@ -8,18 +8,18 @@ const CertificationCards = () => {
         icon={<FaPython size={30} />}
         certificateTitle={"100 Days of Code: The Complete Python Pro Bootcamp"}
         yearEarnedCertificate={"Oct 2024"}
-        cretificateLink={"Nov 2024"}
+        cretificateLink={"Oct 2024"}
       ></CertificationCard>
       <CertificationCard
         icon={<FaNodeJs size={30} />}
         certificateTitle={"Node.js, Express, MongoDB & More: The Complete Bootcamp"}
         yearEarnedCertificate={"Feb 2025"}
-        cretificateLink={""}
+        cretificateLink={"Feb 2025"}
       ></CertificationCard>
       <CertificationCard
         icon={<FaPython size={30} />}
         certificateTitle={"The Complete Full-Stack Web Development Bootcamp"}
-        yearEarnedCertificate={""}
+        yearEarnedCertificate={"Nov 2024"}
         cretificateLink={""}
       ></CertificationCard>
     </div>

@@ -6,16 +6,17 @@ const CertificationCard: React.FC<{
   certificateTitle: string;
   yearEarnedCertificate: string;
   certificateLink: string;
-}> = ({ icon, yearEarnedCertificate, certificateTitle, certificateLink }) => {
+  children?: ReactNode;
+}> = ({ icon, yearEarnedCertificate, certificateTitle, certificateLink, children }) => {
   return (
     <div className="flex w-full flex-col items-start justify-start rounded-sm bg-gray-800 p-2 text-sm">
-      <div className="flex w-full items-start justify-center">
-        <p>{icon}</p>
-        <p>{certificateTitle}</p>
-        <p>{yearEarnedCertificate}</p>
-      </div>
       <Link to={certificateLink} className="flex items-center">
-        View Certificate
+        <div className="flex w-full justify-center gap-2">
+          <p>{icon}</p>
+          <p className="text-center">{certificateTitle}</p>
+          <p>{yearEarnedCertificate}</p>
+        </div>
+        {children}
       </Link>
     </div>
   );

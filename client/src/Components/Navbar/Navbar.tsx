@@ -8,8 +8,6 @@ const Navbar = () => {
     <header className="fixed left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-2 backdrop-blur-xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
-        {/* <Button className="rounded-sm bg-transparent p-1 hover:bg-gray-800" type="button">
-          <RxHamburgerMenu size={30} /> */}
         <AppSidebar />
         <SidebarTrigger />
 

@@ -1,42 +1,45 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { HiOutlineHome } from "react-icons/hi2";
+import { GrTechnology } from "react-icons/gr";
+import { PiCertificateThin } from "react-icons/pi";
+import { CiSquareInfo } from "react-icons/ci";
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/Components/ui/sidebar";
+import { Link } from "react-router";
+import { FaProjectDiagram } from "react-icons/fa";
 
-// Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
-    icon: Home,
+    url: "/",
+    icon: <HiOutlineHome />,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "About",
+    url: "/about",
+    icon: <CiSquareInfo />,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Tech Stack",
+    url: "/techStack",
+    icon: <GrTechnology />,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Projects",
+    url: "/projects",
+    icon: <FaProjectDiagram />,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Certifications",
+    url: "/certifications",
+    icon: <PiCertificateThin />,
   },
 ];
 
@@ -45,16 +48,18 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
+                  <SidebarMenuButton
+                    asChild
+                    className="text-white transition delay-150 duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+                  >
+                    <Link to={item.url}>
+                      {item.icon}
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

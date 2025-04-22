@@ -52,7 +52,7 @@ const WhoAmI = () => {
                 <IoIosArrowForward />
                 <h3>WhoiAm?</h3>
               </div>
-              <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
                 Full-stack developer blending clean code with creative problem-solving.
               </p>
             </li>
@@ -62,7 +62,7 @@ const WhoAmI = () => {
               <IoIosArrowForward />
               <h3>Stack</h3>
             </div>
-            <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               React, Node.js, TypeScript, PostgreSQL, Playwright, Kafka.
             </p>
           </li>
@@ -71,7 +71,7 @@ const WhoAmI = () => {
               <IoIosArrowForward />
               <h3>Focus</h3>
             </div>
-            <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               Building real-time apps, scalable APIs, and testable systems.
             </p>
           </li>
@@ -80,7 +80,7 @@ const WhoAmI = () => {
               <IoIosArrowForward />
               <h3>Passion</h3>
             </div>
-            <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               Automating workflows, shipping fast, and learning endlessly.
             </p>
           </li>
@@ -89,7 +89,7 @@ const WhoAmI = () => {
               <IoIosArrowForward />
               <h3>Motto</h3>
             </div>
-            <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               Trying to get better <span className="font-bold group-hover:text-green-400">everyday.</span>
             </p>
           </li>

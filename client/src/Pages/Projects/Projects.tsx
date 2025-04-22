@@ -98,7 +98,7 @@ const Projects = () => {
       <ProjectCard
         projectImg={amazonScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/09.08.2024%20-%20Amazon%20ASIN%20Collector%20%2B%20normal%20captcha"
-        deployedUrl="https://github.com/YosefHayim"
+        deployedUrl="not-deployed"
         projectName="Amazon ASIN Scraper W/CAPTCHA"
         techStackForProject={["Selenium", "2Captcha API"]}
         childrenProjectIcon={<FaAmazon size={30} className="rounded-sm bg-white p-1 text-black" />}
@@ -113,7 +113,7 @@ const Projects = () => {
       <ProjectCard
         projectImg={ebayScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/11.08.2024%20-%20eBay%20Titles%20Collector"
-        deployedUrl="https://github.com/YosefHayim"
+        deployedUrl="not-deployed"
         projectName="eBay Sellers Title Scraper"
         techStackForProject={["Selenium"]}
         childrenProjectIcon={<FaEbay size={30} className="rounded-sm bg-white p-1 text-black" />}
@@ -127,7 +127,7 @@ const Projects = () => {
       <ProjectCard
         projectImg={harABituahScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.02.2024%20-%20HarABituh-data%20read%20and%20extraction%20with%20manual%20captcha%20automation"
-        deployedUrl="https://github.com/YosefHayim"
+        deployedUrl="not-deployed"
         projectName="HarABituah Government Scraper"
         techStackForProject={["Selenium"]}
         childrenProjectIcon={<SiAlwaysdata size={30} className="rounded-sm bg-white p-1 text-black" />}
@@ -143,7 +143,7 @@ const Projects = () => {
       <ProjectCard
         projectImg={interactiveBrokersScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.11.2023%20-%20Interactive%20broker%20API%20trading%20bots"
-        deployedUrl="https://github.com/YosefHayim"
+        deployedUrl="not-deployed"
         projectName="Stocks Trading Bots"
         techStackForProject={["Selenium", "Interactive Brokers API", "Telegram API"]}
         childrenProjectIcon={<RiStockLine size={30} className="rounded-sm bg-white p-1 text-black" />}
@@ -158,7 +158,7 @@ const Projects = () => {
       <ProjectCard
         projectImg={binanceScreenshot}
         visitRepoUrl="https://github.com/YosefHayim/p-w-gpt/tree/main/Python/10.28.2023%20-%20Binance%20API%20trading%20bots"
-        deployedUrl="https://github.com/YosefHayim"
+        deployedUrl="not-deployed"
         projectName="Crypto Trading Bots"
         techStackForProject={["Selenium", "Binance API", "Telegram API"]}
         childrenProjectIcon={<SiBinance size={30} className="rounded-sm bg-white p-1 text-black" />}

@@ -12,7 +12,7 @@ const Footer = () => {
         <section className="flex w-full flex-col items-start justify-center">
           <Logo />
           <p className="w-full text-sm text-gray-400">
-            Trying to get better <span className="font-bold">everyday.</span>
+            Trying to get better <span className="font-bold text-green-400">everyday.</span>
           </p>
         </section>
         <section className="flex w-full flex-col items-center justify-center gap-2">

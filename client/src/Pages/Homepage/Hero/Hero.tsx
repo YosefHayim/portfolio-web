@@ -11,10 +11,10 @@ const Hero = () => {
   return (
     <div className="flex w-full flex-col items-center justify-between gap-5">
       <div className="flex flex-col items-start justify-center gap-4">
-        <h2 className="w-full text-center text-2xl">Crafting Digital Experiences through code</h2>
+        <h2 className="w-full text-center text-2xl">From Curiosity to Code — Building What Matters</h2>
         <p className="text-center text-gray-400">
-          Full-stack developer specialized in building exceptional digital experiences that combine creativity with
-          technical excellence.
+          I’m a full-stack developer who codes with intent — building digital tools that empower users, streamline work,
+          and move ideas forward. Tech should feel like magic, but work like muscle.
         </p>
         <div className="flex w-full items-center justify-center gap-4">
           <Link to={"/projects"}>

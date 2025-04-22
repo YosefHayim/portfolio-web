@@ -1,3 +1,4 @@
+import { Button } from "@/Components/ui/button";
 import UserAlert from "@/Components/UserAlert/UserAlert";
 import { useEffect, useState } from "react";
 import { FaSort } from "react-icons/fa";
@@ -5,6 +6,7 @@ import { FiMinus } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const WhoAmI = () => {
   const [alert, setAlert] = useState(false);
@@ -50,7 +52,7 @@ const WhoAmI = () => {
             <li className="group relative w-full items-center justify-start gap-1 p-2">
               <div className="flex items-center">
                 <IoIosArrowForward />
-                <h3>WhoiAm?</h3>
+                <h3>WHO_AM_I?</h3>
               </div>
               <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
                 Full-stack developer blending clean code with creative problem-solving.
@@ -58,39 +60,44 @@ const WhoAmI = () => {
             </li>
           </div>
           <li className="group relative w-full items-center justify-start gap-1 p-2">
-            <div className="flex w-full items-center">
+            <div className="group-relative flex w-full items-center">
               <IoIosArrowForward />
-              <h3>Stack</h3>
+              <h3>STACK</h3>_
+              <Link to="/techStack" className="0 text-green-400 hover:text-yellow-400">
+                VIEW
+              </Link>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
-              React, Node.js, TypeScript, PostgreSQL, Playwright, Kafka.
+              MERN - (MongoDB, Express, React, Node.js) and much more!
             </p>
           </li>
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>Focus</h3>
+              <h3>FOCUS</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
-              Building real-time apps, scalable APIs, and testable systems.
+              Focused on solving real-world problems — not just shipping features, but building tools that actually help
+              people work smarter.
             </p>
           </li>
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>Passion</h3>
+              <h3>PASSION</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
-              Automating workflows, shipping fast, and learning endlessly.
+              I’m automating the boring stuff, writing cleaner code, and leveling up with every project.
             </p>
           </li>
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>Motto</h3>
+              <h3>MOTTO</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
-              Trying to get better <span className="font-bold group-hover:text-green-400">everyday.</span>
+              Trying to get better{" "}
+              <span className="font-bold text-green-400 group-hover:text-green-400">everyday.</span>
             </p>
           </li>
         </ul>

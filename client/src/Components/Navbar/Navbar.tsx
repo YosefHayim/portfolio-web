@@ -1,16 +1,19 @@
 import NavigationButton from "./NavigationButton/NavigationButton";
 import Logo from "../Logo/Logo";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { Button } from "../ui/button";
+import { AppSidebar } from "../Sidebar/App-sidebar";
+import { SidebarTrigger } from "../ui/sidebar";
 
 const Navbar = () => {
   return (
     <header className="fixed left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-2 backdrop-blur-xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
-        <Button className="rounded-sm bg-transparent p-1 hover:bg-gray-800" type="button">
-          <RxHamburgerMenu size={30} />
-        </Button>
+        {/* <Button className="rounded-sm bg-transparent p-1 hover:bg-gray-800" type="button">
+          <RxHamburgerMenu size={30} /> */}
+        <AppSidebar />
+        <SidebarTrigger />
+
+        {/* </Button> */}
       </div>
       <nav className="hidden w-full items-center gap-2 md:flex">
         <NavigationButton to="/" pageName="Home" />

@@ -11,7 +11,7 @@ const CardJourney: React.FC<{
 }> = ({ title, icon, years, colorIconHover, showLine = true, children, textChildren }) => {
   return (
     <div className="group relative w-full">
-      <p className="w-full p-1 text-end text-transparent duration-300 ease-in-out group-hover:text-gray-400">{years}</p>
+      <p className="w-full p-1 text-center text-transparent duration-300 ease-in-out group-hover:text-white">{years}</p>
       <section className="relative z-10 w-full rounded-xl bg-gray-800">
         <div className="w-full flex-col items-center justify-start gap-2 p-5">
           <h3 className="w-full text-sm">{title}</h3>

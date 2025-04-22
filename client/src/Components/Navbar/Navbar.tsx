@@ -1,6 +1,6 @@
 import NavigationButton from "./NavigationButton/NavigationButton";
 import Logo from "../Logo/Logo";
-import { AppSidebar } from "../Sidebar/App-sidebar";
+import { AppSidebar } from "../Sidebar/Sidebar";
 import { SidebarTrigger } from "../ui/sidebar";
 
 const Navbar = () => {
@@ -10,8 +10,6 @@ const Navbar = () => {
         <Logo />
         <AppSidebar />
         <SidebarTrigger />
-
-        {/* </Button> */}
       </div>
       <nav className="hidden w-full items-center gap-2 md:flex">
         <NavigationButton to="/" pageName="Home" />

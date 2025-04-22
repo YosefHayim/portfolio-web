@@ -10,13 +10,13 @@ const Hero = () => {
 
   return (
     <div className="w-min-max flex flex-col items-center justify-between gap-5">
-      <div className="flex flex-col items-start justify-center gap-5">
-        <h2 className="w-full text-center text-3xl">Crafting Digital Experiences through code</h2>
-        <p className="text-gray-400">
+      <div className="flex flex-col items-start justify-center gap-4">
+        <h2 className="w-full text-center text-2xl">Crafting Digital Experiences through code</h2>
+        <p className="text-center text-gray-400">
           Full-stack developer specialized in building exceptional digital experiences that combine creativity with
           technical excellence.
         </p>
-        <div className="flex gap-4">
+        <div className="flex w-full items-center justify-center gap-4">
           <Link to={"/projects"}>
             <Button className="border-[#374151] bg-white text-black transition delay-150 duration-300 ease-in-out hover:border hover:bg-transparent hover:text-white">
               View Projects

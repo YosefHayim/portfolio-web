@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/Components/ui/sidebar";
 import { Link } from "react-router";
 import { FaProjectDiagram } from "react-icons/fa";
@@ -46,6 +47,8 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { toggleSidebar } = useSidebar();
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -55,6 +58,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
+                    onClick={toggleSidebar}
                     asChild
                     className="text-white transition delay-150 duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
                   >

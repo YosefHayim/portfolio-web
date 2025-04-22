@@ -9,7 +9,7 @@ const Hero = () => {
   const [loadingWhatsApp, setLoadingWhatsApp] = useState(false);
 
   return (
-    <div className="w-min-max flex flex-col items-center justify-between gap-5">
+    <div className="flex w-full flex-col items-center justify-between gap-5">
       <div className="flex flex-col items-start justify-center gap-4">
         <h2 className="w-full text-center text-2xl">Crafting Digital Experiences through code</h2>
         <p className="text-center text-gray-400">

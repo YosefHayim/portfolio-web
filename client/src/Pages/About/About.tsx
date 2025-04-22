@@ -24,7 +24,7 @@ const About = () => {
           Hi there — the logo gives away my name. I’m a curious, developer who sees code as a form of art. This
           portfolio is my canvas — feel free to explore and get a sense of who I am and what I build.
         </p>
-        <p className="font-light italic">I’m just trying to get better every day.</p>
+        <p className="w-full text-center font-light italic">I’m just trying to get better every day.</p>
         <div className="flex w-full items-center justify-center gap-4">
           <a href="/resume/yosef-hayim-full-stack-resume.pdf" download onClick={() => setLoadingCV((prev) => !prev)}>
             {loadingCV ? (

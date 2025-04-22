@@ -46,16 +46,23 @@ const MyJourney = () => {
               <p className="text-gray-400">I served in the IDF as a combat soldier (Negevist) in the Nahal Brigade.</p>
               <p className="text-gray-400">
                 I completed my training as one of the top{" "}
-                <span className="group-hover:font-bold group-hover:text-[#fdc700]">ten</span> soldiers and was awarded{" "}
+                <span className="delay-150 duration-300 ease-in-out group-hover:font-bold group-hover:text-[#fdc700]">
+                  ten
+                </span>{" "}
+                combat soldiers and was awarded{" "}
                 <span className="font-bold delay-150 duration-300 ease-in-out group-hover:text-[#fdc700]">
                   excellence twice
                 </span>{" "}
-                – once during basic training and again in the Commanders’ Course.
+                once during basic training and again in the Commanders’ Course.
               </p>
             </div>
           }
         >
-          <p className={`#fdc700 absolute top-3 left-7 hidden text-sm font-bold group-hover:block`}>2x</p>
+          <p
+            className={`#fdc700 absolute top-3 left-7 hidden text-sm font-bold delay-150 duration-300 ease-in-out group-hover:block`}
+          >
+            2x
+          </p>
         </CardJourney>
       </div>
     </div>

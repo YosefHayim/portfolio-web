@@ -20,7 +20,7 @@ const WhoAmI = () => {
   }, [alert]);
 
   return (
-    <div>
+    <div className="w-full">
       {alert && (
         <div className="pb-3">
           <UserAlert

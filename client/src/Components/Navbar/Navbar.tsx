@@ -8,9 +8,7 @@ const Navbar = () => {
     <header className="fixed left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-3 backdrop-blur-3xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
-        <div>
-          <AppSidebar />
-        </div>
+        <AppSidebar />
         <SidebarTrigger className="bg-transparent hover:bg-gray-700 md:hidden" />
       </div>
       <nav className="hidden w-full items-center gap-2 md:flex">

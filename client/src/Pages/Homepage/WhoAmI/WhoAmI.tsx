@@ -8,7 +8,7 @@ const WhoAmI = () => {
   return (
     <div className="group relative flex w-full flex-col items-start justify-start rounded-xl bg-gray-800">
       <div className="flex items-center justify-start p-1">
-        <div className="relative">
+        <div className="relative cursor-pointer">
           <GoDotFill size={28} className="text-red-400" />
           <IoCloseOutline className="translate-x-[5.5px] translate-y-[-22px] text-black" />
         </div>
@@ -67,7 +67,7 @@ const WhoAmI = () => {
             <h3>Motto</h3>
           </div>
           <p className="text-gray-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Trying to get better <span className="font-bold underline hover:text-green-400">everyday.</span>
+            Trying to get better <span className="font-bold group-hover:text-green-400">everyday.</span>
           </p>
         </li>
       </ul>

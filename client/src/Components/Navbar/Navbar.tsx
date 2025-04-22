@@ -11,7 +11,7 @@ const Navbar = () => {
         <AppSidebar />
         <SidebarTrigger className="bg-transparent hover:bg-gray-700 md:hidden" />
       </div>
-      <nav className="hidden w-full items-center gap-2 md:flex">
+      <nav className="hidden w-full items-center md:flex">
         <NavigationButton to="/" pageName="Home" />
         <NavigationButton to="/about" pageName="About" />
         <NavigationButton to="/techStack" pageName="Tech Stack" />

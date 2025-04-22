@@ -2,7 +2,6 @@ import { HiOutlineHome } from "react-icons/hi2";
 import { GrTechnology } from "react-icons/gr";
 import { PiCertificateThin } from "react-icons/pi";
 import { CiSquareInfo } from "react-icons/ci";
-
 import {
   Sidebar,
   SidebarContent,

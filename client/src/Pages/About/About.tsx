@@ -38,10 +38,7 @@ const About = () => {
               </Button>
             )}
           </a>
-          <Link
-            to={`https://wa.me/${import.meta.env.VITE_MY_NUMBER}`}
-            onClick={() => setLoadingWhatsApp((prev) => !prev)}
-          >
+          <Link to={`https://wa.me/546187549`} onClick={() => setLoadingWhatsApp((prev) => !prev)}>
             {loadingWhatsApp ? (
               <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
                 <LoaderAnimation state={loadingWhatsApp} setState={setLoadingWhatsApp} />

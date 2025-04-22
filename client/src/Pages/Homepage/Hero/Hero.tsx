@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <div className="w-min-max flex flex-col items-center justify-between gap-5">
       <div className="flex flex-col items-start justify-center gap-5">
-        <h2 className="w-full pt-[10%] text-center text-3xl">Crafting Digital Experiences through code</h2>
+        <h2 className="w-full text-center text-3xl">Crafting Digital Experiences through code</h2>
         <p className="text-gray-400">
           Full-stack developer specialized in building exceptional digital experiences that combine creativity with
           technical excellence.

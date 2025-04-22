@@ -7,19 +7,20 @@ const NotFound404 = () => {
   useEffect(() => {
     document.title = "404";
 
-    const timeout = setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    // const timeout = setTimeout(() => {
+    //   navigate("/");
+    // }, 2000);
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    // return () => {
+    //   clearTimeout(timeout);
+    // };
   }, []);
 
   return (
-    <div className="p-2">
+    <div className="flex w-full flex-col items-start justify-start gap-2 rounded-sm bg-gray-700 p-1">
       <GoDotFill size={28} className="text-red-400" />
-      <p>This is 404 error page.</p>
+      <p>404 Error, the page was not found.</p>
+      <p>Redirecting you to homepage.</p>
     </div>
   );
 };

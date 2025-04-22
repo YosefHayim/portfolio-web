@@ -10,7 +10,7 @@ const TechStack = () => {
     document.title = "Technology Stack";
   });
   return (
-    <div className="flex w-full flex-col gap-10 p-5 pt-[10%]">
+    <div className="flex w-full flex-col gap-10 p-5">
       <h1 className="font-code text-2xl">Technical Experience</h1>
       <Languages />
       <Fronted />

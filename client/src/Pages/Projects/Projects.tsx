@@ -21,7 +21,7 @@ const Projects = () => {
     document.title = "Projects";
   });
   return (
-    <div className="flex w-full flex-col gap-10 p-5 pt-[10%]">
+    <div className="flex w-full flex-col gap-10 p-5">
       <ProjectsHeader />
       <ProjectCard
         visitRepoUrl="https://github.com/YosefHayim/Udemy-Clone-Ron-Ben-IITC-2025"

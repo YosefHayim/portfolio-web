@@ -5,7 +5,7 @@ import { SidebarTrigger } from "../ui/sidebar";
 
 const Navbar = () => {
   return (
-    <header className="fixed left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-2 backdrop-blur-xl">
+    <header className="fixed relative left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-2 backdrop-blur-xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
         <AppSidebar />

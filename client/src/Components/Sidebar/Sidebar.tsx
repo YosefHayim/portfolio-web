@@ -72,9 +72,9 @@ export function AppSidebar() {
               <hr className="border-gray-700 py-1" />
               <section className="flex w-full flex-col items-start justify-start gap-2 text-white">
                 <nav className="flex w-full items-start justify-start gap-4 pl-[0.5em]">
+                  <LinkedinSocialButton />
                   <GithubSocialButton />
                   <DiscordSocialButton />
-                  <LinkedinSocialButton />
                 </nav>
               </section>
             </SidebarMenu>

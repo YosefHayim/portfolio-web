@@ -9,15 +9,15 @@ const Footer = () => {
   return (
     <div className="w-full">
       <footer className="relative flex w-full flex-col items-start justify-start gap-8 p-5 md:flex-row">
-        <section className="flex w-full flex-col items-start justify-start">
+        <section className="flex w-full flex-col items-start justify-center">
           <Logo />
-          <p className="text-gray-400">
+          <p className="w-full text-sm text-gray-400">
             Trying to get better <span className="font-bold">everyday.</span>
           </p>
         </section>
-        <section className="flex w-full flex-col items-start justify-start gap-2">
-          <h2>Navigation menu</h2>
-          <nav className="flex w-full flex-col items-start gap-2">
+        <section className="flex w-full flex-col items-center justify-center gap-2">
+          <h2 className="w-full sm:text-start md:text-center">Navigation menu</h2>
+          <nav className="flex w-full flex-col items-center justify-center gap-2">
             <NavigationButton to="/" pageName="Home" />
             <NavigationButton to="/about" pageName="About" />
             <NavigationButton to="/techStack" pageName="Tech Stack" />
@@ -25,9 +25,9 @@ const Footer = () => {
             <NavigationButton to="/certifications" pageName="Certifications" />
           </nav>
         </section>
-        <section className="flex w-full flex-col items-start justify-start gap-4">
-          <h2>Get in touch</h2>
-          <nav className="flex w-full items-start justify-start gap-4">
+        <section className="flex w-full flex-col gap-4">
+          <h2 className="w-full md:text-center">Get in touch</h2>
+          <nav className="flex w-full items-center gap-4 sm:justify-start md:justify-center">
             <GithubSocialButton />
             <DiscordSocialButton />
             <LinkedinSocialButton />

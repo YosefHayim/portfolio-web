@@ -19,12 +19,17 @@ const About = () => {
     <div className="flex w-full flex-col gap-10 p-5 pt-[15%]">
       <ImageOfMyself />
       <div className="flex flex-col items-start justify-center gap-4">
-        <h1 className="text-3xl">About Me</h1>
+        <p>Hi there!</p>
         <p className="w-full">
-          Hi there — the logo gives away my name. I’m a curious, developer who sees code as a form of art. This
-          portfolio is my canvas — feel free to explore and get a sense of who I am and what I build.
+          As you might have guessed from the logo above, my name is Joseph. I’m a passionate developer who sees coding
+          as a blend of creativity and a form of art.
         </p>
-        <p className="w-full text-center font-light italic">I’m just trying to get better every day.</p>
+        <p>
+          This portfolio is a reflection of my journey. Feel free to explore and learn more about me and the projects
+          I’ve built along the way.
+        </p>
+        <p>In a nutshell:</p>
+        <p className="w-full font-light italic"> I just trying to get better every single day.</p>
         <div className="flex w-full items-center justify-center gap-4">
           <a href="/resume/yosef-hayim-full-stack-resume.pdf" download onClick={() => setLoadingCV((prev) => !prev)}>
             {loadingCV ? (

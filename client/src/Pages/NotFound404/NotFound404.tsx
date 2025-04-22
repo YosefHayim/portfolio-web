@@ -8,13 +8,13 @@ const NotFound404 = () => {
     document.title = "404";
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // const timeout = setTimeout(() => {
-    //   navigate("/");
-    // }, 2000);
+    const timeout = setTimeout(() => {
+      navigate("/");
+    }, 2000);
 
-    // return () => {
-    //   clearTimeout(timeout);
-    // };
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (

@@ -9,10 +9,10 @@ const ProjectCard: React.FC<{
   projectImg: string;
   projectName: string;
   visitRepoUrl: string;
-  techStackForProject?: string[];
-  childrenProjectIcon?: ReactNode;
+  deployedUrl: string;
+  techStackForProject: string[];
+  childrenProjectIcon: ReactNode;
   children?: ReactNode;
-  deployedUrl?: string;
 }> = ({ techStackForProject, projectImg, children, childrenProjectIcon, projectName, deployedUrl, visitRepoUrl }) => {
   return (
     <section className="rounded-lg bg-gray-800">

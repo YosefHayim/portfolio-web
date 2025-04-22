@@ -39,7 +39,6 @@ const MyJourney = () => {
           icon={<IoMdTrophy size={20} />}
           colorIconHover={`group-hover:text-[#fdc700]`}
           years={`2018 Nov - 2021 July`}
-          showLine={false}
           title={`Veteran Commander - IDF - 931st Battalion - Negevist`}
           textChildren={
             <div>

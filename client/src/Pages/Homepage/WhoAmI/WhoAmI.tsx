@@ -1,13 +1,26 @@
+import { FaSort } from "react-icons/fa";
+import { FiMinus } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoCloseOutline } from "react-icons/io5";
 
 const WhoAmI = () => {
   return (
-    <div className="flex w-full flex-col items-start justify-start rounded-xl bg-gray-800">
+    <div className="group relative flex w-full flex-col items-start justify-start rounded-xl bg-gray-800">
       <div className="flex items-center justify-start p-1">
-        <GoDotFill size={28} className="text-red-400" />
-        <GoDotFill size={28} className="text-yellow-400" />
-        <GoDotFill size={28} className="text-green-400" />
+        <div className="relative">
+          <GoDotFill size={28} className="text-red-400" />
+          <IoCloseOutline className="translate-x-[5.5px] translate-y-[-22px] text-black" />
+        </div>
+        <div className="relative">
+          <GoDotFill size={28} className="text-yellow-400" />
+          <FiMinus className="translate-x-[5.5px] translate-y-[-22px] text-black" />
+        </div>
+
+        <div className="relative">
+          <GoDotFill size={28} className="text-green-400" />
+          <FaSort className="translate-x-[5.5px] translate-y-[-22px] rotate-120 text-black" />
+        </div>
       </div>
       <ul>
         <div className="flex w-full flex-col items-start">

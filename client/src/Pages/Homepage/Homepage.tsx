@@ -5,9 +5,10 @@ import WhoAmI from "./WhoAmI/WhoAmI";
 const Homepage = () => {
   useEffect(() => {
     document.title = "Homepage";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
   return (
-    <div className="flex flex-col gap-10 p-5">
+    <div className="flex w-full flex-col gap-10 p-5 pt-[15%]">
       <Hero />
       <WhoAmI />
     </div>

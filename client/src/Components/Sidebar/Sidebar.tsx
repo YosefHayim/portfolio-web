@@ -14,6 +14,9 @@ import {
 } from "@/Components/ui/sidebar";
 import { Link } from "react-router";
 import { FaProjectDiagram } from "react-icons/fa";
+import GithubSocialButton from "../GithubSocialButton/GithubSocialButton";
+import DiscordSocialButton from "../Discord/DiscordSocialButton";
+import LinkedinSocialButton from "../LinkedinSocialButton/LinkedinSocialButton";
 
 const items = [
   {
@@ -63,6 +66,14 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <hr className="border-gray-700 py-1" />
+              <section className="flex w-full flex-col items-start justify-start gap-2 text-white">
+                <nav className="flex w-full items-start justify-start gap-4 pl-[0.5em]">
+                  <GithubSocialButton />
+                  <DiscordSocialButton />
+                  <LinkedinSocialButton />
+                </nav>
+              </section>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

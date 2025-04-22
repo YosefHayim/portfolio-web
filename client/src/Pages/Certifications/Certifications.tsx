@@ -5,9 +5,10 @@ import CertificationCards from "./CertificationsCards/CertificationCards";
 const Certifications = () => {
   useEffect(() => {
     document.title = "Certifications";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
   return (
-    <div className="flex flex-col gap-10 p-5">
+    <div className="flex w-full flex-col gap-10 p-5 pt-[15%]">
       <CertificationHeader />
       <CertificationCards />
     </div>

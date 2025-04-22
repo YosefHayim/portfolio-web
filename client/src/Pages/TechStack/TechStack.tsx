@@ -8,9 +8,10 @@ import Languages from "./Languages/Languages";
 const TechStack = () => {
   useEffect(() => {
     document.title = "Technology Stack";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
   return (
-    <div className="flex w-full flex-col gap-10 p-5">
+    <div className="flex w-full flex-col gap-10 p-5 pt-[15%]">
       <h1 className="font-code text-2xl">Technical Experience</h1>
       <Languages />
       <Fronted />

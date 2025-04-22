@@ -11,7 +11,9 @@ const Footer = () => {
       <footer className="relative flex w-full flex-col items-start justify-start gap-8 p-5 md:flex-row">
         <section className="flex w-full flex-col items-start justify-start">
           <Logo />
-          <p className="text-gray-400">Trying to get better everyday.</p>
+          <p className="text-gray-400">
+            Trying to get better <span className="font-bold">everyday.</span>
+          </p>
         </section>
         <section className="flex w-full flex-col items-start justify-start gap-2">
           <h2>Navigation menu</h2>

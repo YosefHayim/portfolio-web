@@ -6,6 +6,7 @@ const NotFound404 = () => {
   const navigate = useNavigate();
   useEffect(() => {
     document.title = "404";
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     // const timeout = setTimeout(() => {
     //   navigate("/");

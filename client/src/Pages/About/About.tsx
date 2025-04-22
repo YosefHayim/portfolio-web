@@ -12,10 +12,11 @@ const About = () => {
 
   useEffect(() => {
     document.title = "About";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <div className="flex flex-col gap-10 p-5">
+    <div className="flex w-full flex-col gap-10 p-5 pt-[15%]">
       <ImageOfMyself />
       <div className="flex flex-col items-start justify-center gap-4">
         <h1 className="text-3xl">About Me</h1>
@@ -24,7 +25,7 @@ const About = () => {
           portfolio is my canvas — feel free to explore and get a sense of who I am and what I build.
         </p>
         <p className="font-light italic">I’m just trying to get better every day.</p>
-        <div className="flex w-full items-center justify-start gap-4">
+        <div className="flex w-full items-center justify-center gap-4">
           <a href="/resume/yosef-hayim-full-stack-resume.pdf" download onClick={() => setLoadingCV((prev) => !prev)}>
             {loadingCV ? (
               <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
@@ -48,7 +49,7 @@ const About = () => {
             ) : (
               <Button className="border border-[#374151] bg-transparent p-2 transition delay-150 duration-300 ease-in-out hover:scale-110 hover:bg-[#1f2937]">
                 <FaWhatsapp color="#05df72" />
-                Get In Touch
+                Let's Chat
               </Button>
             )}
           </Link>

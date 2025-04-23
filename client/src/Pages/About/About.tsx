@@ -30,7 +30,7 @@ const About = () => {
         </p>
         <p>In a nutshell:</p>
         <p className="w-full font-light italic"> I just trying to get better every single day.</p>
-        <div className="flex w-full items-center justify-center gap-4">
+        <div className="flex w-full items-center justify-start gap-4">
           <a href="/resume/yosef-hayim-full-stack-resume.pdf" download onClick={() => setLoadingCV((prev) => !prev)}>
             {loadingCV ? (
               <Button className="w-35 border border-none bg-transparent hover:bg-transparent">

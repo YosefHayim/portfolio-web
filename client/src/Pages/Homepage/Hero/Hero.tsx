@@ -18,25 +18,25 @@ const Hero = () => {
           I’m a full-stack developer who codes with intent — building digital tools that empower users, streamline work,
           and move ideas forward. Tech should feel like magic, but work like muscle.
         </p>
-        <div className="flex w-full items-center justify-center gap-4">
-          <Link to={"/projects"}>
-            <Button className="border-[#374151] bg-white text-black transition delay-150 duration-300 ease-in-out hover:border hover:bg-transparent hover:text-white">
-              View Projects
+      </div>
+      <div className="flex w-full items-center justify-center gap-4">
+        <Link to={"/projects"}>
+          <Button className="border-[#374151] bg-white text-black transition delay-150 duration-300 ease-in-out hover:border hover:bg-transparent hover:text-white">
+            View Projects
+          </Button>
+        </Link>
+        <Link to={`https://wa.me/546187549`} onClick={() => setLoadingWhatsApp((prev) => !prev)}>
+          {loadingWhatsApp ? (
+            <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
+              <LoaderAnimation state={loadingWhatsApp} setState={setLoadingWhatsApp} />
             </Button>
-          </Link>
-          <Link to={`https://wa.me/546187549`} onClick={() => setLoadingWhatsApp((prev) => !prev)}>
-            {loadingWhatsApp ? (
-              <Button className="w-35 border border-none bg-transparent hover:bg-transparent">
-                <LoaderAnimation state={loadingWhatsApp} setState={setLoadingWhatsApp} />
-              </Button>
-            ) : (
-              <Button className="border border-[#374151] bg-transparent p-2 transition delay-150 duration-300 ease-in-out hover:bg-[#1f2937]">
-                <FaWhatsapp color="#05df72" />
-                Let׳s Chat
-              </Button>
-            )}
-          </Link>{" "}
-        </div>
+          ) : (
+            <Button className="border border-[#374151] bg-transparent p-2 transition delay-150 duration-300 ease-in-out hover:bg-[#1f2937]">
+              <FaWhatsapp color="#05df72" />
+              Let׳s Chat
+            </Button>
+          )}
+        </Link>{" "}
       </div>
       <ImageOfMyself />
     </div>

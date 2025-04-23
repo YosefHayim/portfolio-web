@@ -1,7 +1,9 @@
 import { FaReact, FaJs } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { SiTypescript, SiAxios, SiShadcnui, SiReactrouter, SiReactquery, SiRedux, SiMui } from "react-icons/si";
+import playwrightSvgIcon from "/svgs/playwright-icon.svg";
 import TechRow from "../TechRow/TechRow";
+import SvgTemplate from "@/Components/SvgTemplate/SvgTemplate";
 
 const TechStack = [
   { name: "React", icon: <FaReact size={20} /> },
@@ -14,6 +16,7 @@ const TechStack = [
   { name: "React Query", icon: <SiReactquery size={20} /> },
   { name: "Redux", icon: <SiRedux size={20} /> },
   { name: "Mui", icon: <SiMui size={20} /> },
+  { name: "Playwright", icon: <SvgTemplate children={<img alt="Playwright Icon" src={playwrightSvgIcon}></img>} /> },
 ];
 
 const Fronted = () => {

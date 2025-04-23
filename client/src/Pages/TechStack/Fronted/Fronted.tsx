@@ -1,4 +1,4 @@
-import { FaReact, FaJs } from "react-icons/fa";
+import { FaReact, FaJs, FaTheaterMasks } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import {
   SiTypescript,
@@ -11,9 +11,7 @@ import {
   SiStorybook,
   SiHtml5,
 } from "react-icons/si";
-import playwrightSvgIcon from "/svgs/playwright-icon.svg";
 import TechRow from "../TechRow/TechRow";
-import SvgTemplate from "@/Components/SvgTemplate/SvgTemplate";
 import { IoLogoCss3 } from "react-icons/io5";
 import { GiBearFace } from "react-icons/gi";
 
@@ -32,7 +30,7 @@ const TechStack = [
   { name: "Redux", icon: <SiRedux size={20} /> },
   { name: "Mui", icon: <SiMui size={20} /> },
   { name: "Storybook", icon: <SiStorybook size={20} /> },
-  { name: "Playwright", icon: <SvgTemplate children={<img alt="Playwright Icon" src={playwrightSvgIcon}></img>} /> },
+  { name: "Playwright", icon: <FaTheaterMasks size={20} /> },
 ];
 
 const Fronted = () => {

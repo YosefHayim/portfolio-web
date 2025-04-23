@@ -1,5 +1,5 @@
 import { FaGoogle, FaNodeJs } from "react-icons/fa";
-import { SiExpress, SiJsonwebtokens, SiLetsencrypt, SiMongoose } from "react-icons/si";
+import { SiExpress, SiJsonwebtokens, SiLetsencrypt, SiMongoose, SiSharp } from "react-icons/si";
 import TechRow from "../TechRow/TechRow";
 import { ImPaypal } from "react-icons/im";
 import SvgTemplate from "@/Components/SvgTemplate/SvgTemplate";
@@ -11,6 +11,7 @@ const backendTech = [
   { name: "JWT", icon: <SiJsonwebtokens size={20} /> },
   { name: "Bcrypt", icon: <SiLetsencrypt size={20} /> },
   { name: "Mongoose", icon: <SiMongoose size={20} /> },
+  { name: "Sharp", icon: <SiSharp size={20} /> },
   { name: "Paypal API", icon: <ImPaypal size={20} /> },
   { name: "Google Authentication", icon: <FaGoogle size={20} /> },
   { name: "Ejs", icon: <SvgTemplate children={<img alt="Ejs Icon" src={ejsSvg} className="h-[1.5rem]"></img>} /> },

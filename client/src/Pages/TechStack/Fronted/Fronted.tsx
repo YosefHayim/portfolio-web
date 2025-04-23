@@ -15,6 +15,7 @@ import playwrightSvgIcon from "/svgs/playwright-icon.svg";
 import TechRow from "../TechRow/TechRow";
 import SvgTemplate from "@/Components/SvgTemplate/SvgTemplate";
 import { IoLogoCss3 } from "react-icons/io5";
+import { GiBearFace } from "react-icons/gi";
 
 const TechStack = [
   { name: "React", icon: <FaReact size={20} /> },
@@ -26,6 +27,7 @@ const TechStack = [
   { name: "Axios", icon: <SiAxios size={20} /> },
   { name: "Shadcn UI", icon: <SiShadcnui size={20} /> },
   { name: "React Router", icon: <SiReactrouter size={20} /> },
+  { name: "Zustand", icon: <GiBearFace size={20} /> },
   { name: "React Query", icon: <SiReactquery size={20} /> },
   { name: "Redux", icon: <SiRedux size={20} /> },
   { name: "Mui", icon: <SiMui size={20} /> },

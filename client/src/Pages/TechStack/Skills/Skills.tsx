@@ -1,6 +1,6 @@
 import { FaGitAlt } from "react-icons/fa";
 import { SiJira, SiPostman } from "react-icons/si";
-import TechRow from "../TechRow/TechRow";
+import TechRow from "../TechRow/TechRow"; 
 import { GrDocker } from "react-icons/gr";
 
 const langaugesStack = [

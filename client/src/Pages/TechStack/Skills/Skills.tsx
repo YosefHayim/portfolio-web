@@ -1,11 +1,13 @@
 import { FaGitAlt } from "react-icons/fa";
 import { SiJira, SiPostman } from "react-icons/si";
 import TechRow from "../TechRow/TechRow";
+import { GrDocker } from "react-icons/gr";
 
 const langaugesStack = [
   { name: "Jira", icon: <SiJira size={20} /> },
   { name: "Git", icon: <FaGitAlt size={20} /> },
   { name: "Postman", icon: <SiPostman size={20} /> },
+  { name: "Docker", icon: <GrDocker size={20} /> },
 ];
 
 const Skills = () => {

@@ -4,6 +4,7 @@ import Databases from "./Databases/Databases";
 import Devops from "./Devops/Devops";
 import Fronted from "./Fronted/Fronted";
 import Languages from "./Languages/Languages";
+import Skills from "./Skills/Skills";
 
 const TechStack = () => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const TechStack = () => {
       <Backend />
       <Databases />
       <Devops />
+      <Skills />
     </div>
   );
 };

@@ -1,12 +1,25 @@
 import { FaReact, FaJs } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { SiTypescript, SiAxios, SiShadcnui, SiReactrouter, SiReactquery, SiRedux, SiMui } from "react-icons/si";
+import {
+  SiTypescript,
+  SiAxios,
+  SiShadcnui,
+  SiReactrouter,
+  SiReactquery,
+  SiRedux,
+  SiMui,
+  SiStorybook,
+  SiHtml5,
+} from "react-icons/si";
 import playwrightSvgIcon from "/svgs/playwright-icon.svg";
 import TechRow from "../TechRow/TechRow";
 import SvgTemplate from "@/Components/SvgTemplate/SvgTemplate";
+import { IoLogoCss3 } from "react-icons/io5";
 
 const TechStack = [
   { name: "React", icon: <FaReact size={20} /> },
+  { name: "HTML", icon: <SiHtml5 size={20} /> },
+  { name: "CSS", icon: <IoLogoCss3 size={20} /> },
   { name: "TypeScript", icon: <SiTypescript size={20} /> },
   { name: "Tailwind", icon: <RiTailwindCssFill size={20} /> },
   { name: "JavaScript", icon: <FaJs size={20} /> },
@@ -16,6 +29,7 @@ const TechStack = [
   { name: "React Query", icon: <SiReactquery size={20} /> },
   { name: "Redux", icon: <SiRedux size={20} /> },
   { name: "Mui", icon: <SiMui size={20} /> },
+  { name: "Storybook", icon: <SiStorybook size={20} /> },
   { name: "Playwright", icon: <SvgTemplate children={<img alt="Playwright Icon" src={playwrightSvgIcon}></img>} /> },
 ];
 

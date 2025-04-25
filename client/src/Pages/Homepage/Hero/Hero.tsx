@@ -38,7 +38,7 @@ const Hero = () => {
           )}
         </Link>{" "}
       </div>
-      <ImageOfMyself />
+      <ImageOfMyself profilePic="/images-of-me/whatsapp-profile.png" />
     </div>
   );
 };

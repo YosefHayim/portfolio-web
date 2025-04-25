@@ -17,7 +17,7 @@ const About = () => {
 
   return (
     <div className="flex w-full flex-col gap-10 p-5 pt-[15%] md:pt-[5%]">
-      <ImageOfMyself />
+      <ImageOfMyself profilePic="/images-of-me/monday-toilet.png" />
       <div className="flex flex-col items-start justify-center gap-4">
         <p>Hi there!</p>
         <p className="w-full">

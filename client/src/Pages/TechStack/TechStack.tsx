@@ -12,8 +12,8 @@ const TechStack = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
   return (
-    <div className="flex w-full flex-col gap-10 p-5 pt-[15%] md:pt-[5%]">
-      <h1 className="font-code text-2xl">Technical Experience</h1>
+    <div className="flex w-full flex-col gap-10 p-5 pt-[15%] font-(family-name:--code-font) md:pt-[5%]">
+      <h1 className="text-2xl">Technical Experience</h1>
       <Languages />
       <Fronted />
       <Backend />

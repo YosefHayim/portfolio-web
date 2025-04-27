@@ -51,7 +51,7 @@ const WhoAmI = () => {
             <li className="group relative w-full items-center justify-start gap-1 p-2">
               <div className="flex items-center">
                 <IoIosArrowForward />
-                <h3>WHO_AM_I?</h3>
+                <h3 className="font-(family-name:--code-font)">WHO_AM_I?</h3>
               </div>
               <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
                 Full-stack developer blending clean code with creative problem-solving.
@@ -61,7 +61,7 @@ const WhoAmI = () => {
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="group-relative flex w-full items-center">
               <IoIosArrowForward />
-              <h3>STACK</h3>_
+              <h3 className="font-(family-name:--code-font)">STACK</h3>_
               <Link to="/techStack" className="0 text-green-400 hover:text-yellow-400">
                 VIEW
               </Link>
@@ -73,7 +73,7 @@ const WhoAmI = () => {
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>FOCUS</h3>
+              <h3 className="font-(family-name:--code-font)">FOCUS</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               Focused on solving real-world problems — not just shipping features, but building tools that actually help
@@ -83,7 +83,7 @@ const WhoAmI = () => {
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>PASSION</h3>
+              <h3 className="font-(family-name:--code-font)">PASSION</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               I’m automating the boring stuff, writing cleaner code, and leveling up with every project.
@@ -92,7 +92,7 @@ const WhoAmI = () => {
           <li className="group relative w-full items-center justify-start gap-1 p-2">
             <div className="flex w-full items-center">
               <IoIosArrowForward />
-              <h3>MOTTO</h3>
+              <h3 className="font-(family-name:--code-font)">MOTTO</h3>
             </div>
             <p className="text-gray-400 transition-opacity duration-300 group-hover:opacity-100 md:opacity-0">
               Trying to get better{" "}

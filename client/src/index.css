@@ -3,10 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "jetbrains-mono";
+  src: url("../public/jet-brains-mono/JetBrainsMono-VariableFont_wght.ttf") format("truetype");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Inter", sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -78,6 +82,7 @@ body {
 }
 
 :root {
+  --code-font: "jetbrains-mono", monospace;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

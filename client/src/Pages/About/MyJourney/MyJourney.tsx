@@ -14,9 +14,8 @@ const MyJourney = () => {
           title={`Wotch Health Startup - Internship`}
           textChildren={
             <p className="text-gray-400">
-              Built a real-time debugging tool, improved E2E tests with Playwright, and integrated external data using
-              EJS. Worked full stack in a fast-paced healthcare startup with hands-on SQL, cloud, and production
-              experience.
+              Built a real-time debugger, expanded E2E tests, and integrated external data in a fast-paced healthcare
+              startup.
             </p>
           }
         ></CardJourney>
@@ -30,8 +29,8 @@ const MyJourney = () => {
               <span className="font-bold text-[#fdc700] delay-150 duration-300 ease-in-out group-hover:text-[#fdc700]">
                 Graduated with excellence
               </span>{" "}
-              796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React,Node.js, Express,
-              and databases such as MongoDB and NoSQL
+              796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React, Node.js, Express,
+              MongoDB and SQL.
             </p>
           }
         ></CardJourney>
@@ -42,9 +41,9 @@ const MyJourney = () => {
           title={`Veteran Commander - IDF - 931st Battalion - Negevist`}
           textChildren={
             <div>
-              <p className="text-gray-400">I served in the IDF as a combat soldier (Negevist) in the Nahal Brigade.</p>
+              <p className="text-gray-400">Served in the IDF as a combat soldier (Negevist) in the Nahal Brigade.</p>
               <p className="text-gray-400">
-                I completed my training as one of the top{" "}
+                Completed my training as one of the top{" "}
                 <span className="font-bold text-[#fdc700] delay-150 duration-300 ease-in-out group-hover:font-bold group-hover:text-[#fdc700]">
                   ten
                 </span>{" "}

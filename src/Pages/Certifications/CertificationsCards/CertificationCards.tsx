@@ -1,9 +1,17 @@
 import { FaNodeJs, FaPython } from "react-icons/fa";
 import CertificationCard from "../CertificationCard/CertificationCard";
+import { IoLogoJavascript } from "react-icons/io5";
+import { SiSocketdotio } from "react-icons/si";
 
 const CertificationCards = () => {
   return (
     <div className="flex w-full flex-col items-start justify-start gap-2">
+      <CertificationCard
+        icon={<SiSocketdotio size={30} />}
+        certificateTitle={"SocketIO v4, with websockets - the details."}
+        yearEarnedCertificate={"May 2025"}
+        certificateLink={"https://www.udemy.com/certificate/UC-830343b5-2bb6-44ae-baf3-af70748ea84c/"}
+      ></CertificationCard>
       <CertificationCard
         icon={<FaNodeJs size={30} />}
         certificateTitle={"Node.js, Express, MongoDB & More: The Complete Bootcamp"}
@@ -19,7 +27,7 @@ const CertificationCards = () => {
         }
       ></CertificationCard>
       <CertificationCard
-        icon={<FaPython size={30} />}
+        icon={<IoLogoJavascript size={30} />}
         certificateTitle={"The Complete Full-Stack Web Development Bootcamp"}
         yearEarnedCertificate={"Nov 2024"}
         certificateLink={
@@ -29,5 +37,4 @@ const CertificationCards = () => {
     </div>
   );
 };
-
 export default CertificationCards;

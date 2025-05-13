@@ -10,7 +10,7 @@ const CertificationCards = () => {
         icon={<SiSocketdotio size={30} />}
         certificateTitle={"SocketIO v4, with websockets - the details."}
         yearEarnedCertificate={"May 2025"}
-        certificateLink={"https://www.udemy.com/certificate/UC-830343b5-2bb6-44ae-baf3-af70748ea84c/"}
+        certificateLink={"https://www.udemy.com/certificate/UC-af93b5ef-9560-4c05-83ee-fa66c34ef2f0/"}
       ></CertificationCard>
       <CertificationCard
         icon={<FaNodeJs size={30} />}

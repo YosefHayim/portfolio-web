@@ -17,6 +17,7 @@ import { GiBearFace } from "react-icons/gi";
 
 const TechStack = [
   { name: "React", icon: <FaReact size={20} /> },
+  { name: "React Native", icon: <FaReact size={20} /> },
   { name: "HTML", icon: <SiHtml5 size={20} /> },
   { name: "CSS", icon: <IoLogoCss3 size={20} /> },
   { name: "TypeScript", icon: <SiTypescript size={20} /> },

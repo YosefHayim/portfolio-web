@@ -23,7 +23,7 @@ const ProjectCard: React.FC<{
   visitRepoUrl,
 }) => {
   return (
-    <div className="flex h-[650px] flex-col overflow-auto rounded-lg bg-gray-800">
+    <div className="flex h-[620px] flex-col overflow-auto rounded-lg bg-gray-800">
       <ProjectImg path={projectImg} to={deployedUrl} />
       <div className="flex flex-col items-start justify-start gap-4 rounded-b-lg bg-gray-700 p-5">
         <div className="flex w-full items-center justify-between gap-2">

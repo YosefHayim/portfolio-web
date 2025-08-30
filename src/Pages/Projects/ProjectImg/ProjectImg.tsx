@@ -15,10 +15,13 @@ const ProjectImg: React.FC<{ path: string; to: string }> = ({
   return (
     <Link className="group relative w-full" onClick={handleClick} to={to}>
       <div className="relative w-full opacity-50 duration-300 ease-in-out hover:opacity-100">
+        {/** biome-ignore lint/performance/noImgElement: <explanation> */}
         <img
           alt="Screenshot of the project created"
-          className="h-1/2 w-1/2 w-full rounded-t-lg"
+          className="w-full rounded-t-lg"
+          height={100}
           src={path}
+          width={100}
         />
       </div>
     </Link>

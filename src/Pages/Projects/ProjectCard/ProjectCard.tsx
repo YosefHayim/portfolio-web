@@ -13,7 +13,15 @@ const ProjectCard: React.FC<{
   techStackForProject: string[];
   childrenProjectIcon: ReactNode;
   children?: ReactNode;
-}> = ({ techStackForProject, projectImg, children, childrenProjectIcon, projectName, deployedUrl, visitRepoUrl }) => {
+}> = ({
+  techStackForProject,
+  projectImg,
+  children,
+  childrenProjectIcon,
+  projectName,
+  deployedUrl,
+  visitRepoUrl,
+}) => {
   return (
     <section className="rounded-lg bg-gray-800">
       <ProjectImg path={projectImg} to={deployedUrl} />
@@ -23,7 +31,11 @@ const ProjectCard: React.FC<{
             <CustomProjectLogo>{childrenProjectIcon}</CustomProjectLogo>
             <h2 className="text-2xl">{projectName}</h2>
           </div>
-          <Link className="w text-gray-400 hover:text-white" target="_blank" to={visitRepoUrl}>
+          <Link
+            className="w text-gray-400 hover:text-white"
+            target="_blank"
+            to={visitRepoUrl}
+          >
             <FiExternalLink size={25} />
           </Link>
         </div>

@@ -1,7 +1,9 @@
-import { VscGithubAction } from "react-icons/vsc";
-import TechRow from "../TechRow/TechRow";
+import { VscGithubAction } from 'react-icons/vsc';
+import TechRow from '../TechRow/TechRow';
 
-const devopsTech = [{ name: "GitHub Actions", icon: <VscGithubAction size={20} /> }];
+const devopsTech = [
+  { name: 'GitHub Actions', icon: <VscGithubAction size={20} /> },
+];
 
 const Devops = () => {
   return (

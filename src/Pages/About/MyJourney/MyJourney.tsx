@@ -1,6 +1,6 @@
-import { IoMdTrophy } from "react-icons/io";
-import CardJourney from "../CardJourney/CardJourney";
-import { FaUserTie } from "react-icons/fa";
+import { IoMdTrophy } from 'react-icons/io';
+import CardJourney from '../CardJourney/CardJourney';
+import { FaUserTie } from 'react-icons/fa';
 
 const MyJourney = () => {
   return (
@@ -14,8 +14,8 @@ const MyJourney = () => {
           title={`Wotch Health Startup - Internship`}
           textChildren={
             <p className="text-gray-400">
-              Built a real-time debugger, expanded E2E tests, and integrated external data in a fast-paced healthcare
-              startup.
+              Built a real-time debugger, expanded E2E tests, and integrated
+              external data in a fast-paced healthcare startup.
             </p>
           }
         ></CardJourney>
@@ -28,9 +28,9 @@ const MyJourney = () => {
             <p className="text-gray-400">
               <span className="font-bold text-[#fdc700] delay-150 duration-300 ease-in-out group-hover:text-[#fdc700]">
                 Graduated with excellence
-              </span>{" "}
-              796-hour bootcamp program Full-Stack web development with HTML, CSS, JavaScript, React, Node.js, Express,
-              MongoDB and SQL.
+              </span>{' '}
+              796-hour bootcamp program Full-Stack web development with HTML,
+              CSS, JavaScript, React, Node.js, Express, MongoDB and SQL.
             </p>
           }
         ></CardJourney>
@@ -41,16 +41,19 @@ const MyJourney = () => {
           title={`Veteran Commander - IDF - 931st Battalion - Negevist`}
           textChildren={
             <div>
-              <p className="text-gray-400">Served in the IDF as a combat soldier (Negevist) in the Nahal Brigade.</p>
               <p className="text-gray-400">
-                Completed my training as one of the top{" "}
+                Served in the IDF as a combat soldier (Negevist) in the Nahal
+                Brigade.
+              </p>
+              <p className="text-gray-400">
+                Completed my training as one of the top{' '}
                 <span className="font-bold text-[#fdc700] delay-150 duration-300 ease-in-out group-hover:font-bold group-hover:text-[#fdc700]">
                   ten
-                </span>{" "}
-                combat soldiers and was awarded{" "}
+                </span>{' '}
+                combat soldiers and was awarded{' '}
                 <span className="font-bold text-[#fdc700] delay-150 duration-300 ease-in-out group-hover:text-[#fdc700] hover:text-[#fdc700]">
                   excellence twice
-                </span>{" "}
+                </span>{' '}
                 once during basic training and again in the Commanders’ Course.
               </p>
             </div>

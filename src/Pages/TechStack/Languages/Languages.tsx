@@ -1,10 +1,10 @@
-import { FaJs } from "react-icons/fa";
-import { SiPython } from "react-icons/si";
-import TechRow from "../TechRow/TechRow";
+import { FaJs } from 'react-icons/fa';
+import { SiPython } from 'react-icons/si';
+import TechRow from '../TechRow/TechRow';
 
 const langaugesStack = [
-  { name: "JavaScript", icon: <FaJs size={20} /> },
-  { name: "Python", icon: <SiPython size={20} /> },
+  { name: 'JavaScript', icon: <FaJs size={20} /> },
+  { name: 'Python', icon: <SiPython size={20} /> },
 ];
 
 const Languages = () => {

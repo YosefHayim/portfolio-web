@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "npx ultracite lint",
     "preview": "vite preview",
-    "format": "npx ultracite format --unsafe",
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,md,html,css}\" --write && biome format --write .",
+    "lint": "biome check .",
     "prepare": "husky"
   },
   "dependencies": {
@@ -46,13 +46,13 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
     "postcss": "^8.5.3",
-    "prettier": "3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.1.3",
     "tw-animate-css": "^1.2.5",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.29.1",
-    "ultracite": "^5.2.11",
+    "ultracite": "5.2.14",
     "vite": "^6.2.0"
   }
 }

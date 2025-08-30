@@ -1,7 +1,9 @@
-import { FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router";
+import { FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router';
 
-const LinkedinSocialButton: React.FC<{ to?: string }> = ({ to = "https://www.linkedin.com/in/yosef-hayim-sabag/" }) => {
+const LinkedinSocialButton: React.FC<{ to?: string }> = ({
+  to = 'https://www.linkedin.com/in/yosef-hayim-sabag/',
+}) => {
   return (
     <Link rel="Linkedin" to={to}>
       <FaLinkedin

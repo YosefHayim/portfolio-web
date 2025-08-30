@@ -1,6 +1,9 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
-const NavigationButton: React.FC<{ pageName: string; to: string }> = ({ pageName, to }) => {
+const NavigationButton: React.FC<{ pageName: string; to: string }> = ({
+  pageName,
+  to,
+}) => {
   return (
     <div className="flex w-full items-start justify-start gap-2">
       <Link

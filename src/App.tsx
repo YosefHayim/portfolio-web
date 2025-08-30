@@ -1,13 +1,13 @@
-import { Route, Routes } from "react-router";
-import Homepage from "./Pages/Homepage/Homepage";
-import About from "./Pages/About/About";
-import Certifications from "./Pages/Certifications/Certifications";
-import TechStack from "./Pages/TechStack/TechStack";
-import Projects from "./Pages/Projects/Projects";
-import NotFound404 from "./Pages/NotFound404/NotFound404";
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
-import "@/index.css";
+import { Route, Routes } from 'react-router';
+import Homepage from './Pages/Homepage/Homepage';
+import About from './Pages/About/About';
+import Certifications from './Pages/Certifications/Certifications';
+import TechStack from './Pages/TechStack/TechStack';
+import Projects from './Pages/Projects/Projects';
+import NotFound404 from './Pages/NotFound404/NotFound404';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
+import '@/index.css';
 
 const App = () => {
   return (

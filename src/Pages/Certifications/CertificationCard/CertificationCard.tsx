@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Link } from "react-router";
+import { ReactNode } from 'react';
+import { Link } from 'react-router';
 
 const CertificationCard: React.FC<{
   icon: ReactNode;
@@ -7,7 +7,13 @@ const CertificationCard: React.FC<{
   yearEarnedCertificate: string;
   certificateLink: string;
   children?: ReactNode;
-}> = ({ icon, yearEarnedCertificate, certificateTitle, certificateLink, children }) => {
+}> = ({
+  icon,
+  yearEarnedCertificate,
+  certificateTitle,
+  certificateLink,
+  children,
+}) => {
   return (
     <section className="flex w-full flex-col items-start justify-start rounded-sm bg-gray-800 p-2 text-sm hover:bg-gray-700">
       <Link to={certificateLink} className="flex items-center">

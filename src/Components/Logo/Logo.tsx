@@ -1,6 +1,6 @@
-import { GoDash } from "react-icons/go";
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router";
+import { GoDash } from 'react-icons/go';
+import { IoIosArrowForward } from 'react-icons/io';
+import { Link } from 'react-router';
 
 const Logo = () => {
   return (

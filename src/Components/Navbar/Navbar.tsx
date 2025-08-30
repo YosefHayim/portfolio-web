@@ -1,7 +1,7 @@
-import NavigationButton from "./NavigationButton/NavigationButton";
-import Logo from "../Logo/Logo";
-import { AppSidebar } from "../Sidebar/Sidebar";
-import { SidebarTrigger } from "../ui/sidebar";
+import NavigationButton from './NavigationButton/NavigationButton';
+import Logo from '../Logo/Logo';
+import { AppSidebar } from '../Sidebar/Sidebar';
+import { SidebarTrigger } from '../ui/sidebar';
 
 const Navbar = () => {
   return (

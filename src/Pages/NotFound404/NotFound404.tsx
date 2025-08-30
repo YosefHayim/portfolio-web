@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { GoDotFill } from "react-icons/go";
-import { useNavigate } from "react-router";
+import { useEffect } from 'react';
+import { GoDotFill } from 'react-icons/go';
+import { useNavigate } from 'react-router';
 
 const NotFound404 = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    document.title = "404";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.title = '404';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const timeout = setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 2000);
 
     return () => {

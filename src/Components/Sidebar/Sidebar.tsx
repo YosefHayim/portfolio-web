@@ -1,7 +1,7 @@
-import { HiOutlineHome } from "react-icons/hi2";
-import { GrTechnology } from "react-icons/gr";
-import { PiCertificateThin } from "react-icons/pi";
-import { CiSquareInfo } from "react-icons/ci";
+import { HiOutlineHome } from 'react-icons/hi2';
+import { GrTechnology } from 'react-icons/gr';
+import { PiCertificateThin } from 'react-icons/pi';
+import { CiSquareInfo } from 'react-icons/ci';
 import {
   Sidebar,
   SidebarContent,
@@ -11,37 +11,37 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/Components/ui/sidebar";
-import { Link } from "react-router";
-import { FaProjectDiagram } from "react-icons/fa";
-import GithubSocialButton from "../GithubSocialButton/GithubSocialButton";
-import DiscordSocialButton from "../Discord/DiscordSocialButton";
-import LinkedinSocialButton from "../LinkedinSocialButton/LinkedinSocialButton";
+} from '@/Components/ui/sidebar';
+import { Link } from 'react-router';
+import { FaProjectDiagram } from 'react-icons/fa';
+import GithubSocialButton from '../GithubSocialButton/GithubSocialButton';
+import DiscordSocialButton from '../Discord/DiscordSocialButton';
+import LinkedinSocialButton from '../LinkedinSocialButton/LinkedinSocialButton';
 
 const items = [
   {
-    title: "Home",
-    url: "/",
+    title: 'Home',
+    url: '/',
     icon: <HiOutlineHome />,
   },
   {
-    title: "About",
-    url: "/about",
+    title: 'About',
+    url: '/about',
     icon: <CiSquareInfo />,
   },
   {
-    title: "Tech Stack",
-    url: "/techStack",
+    title: 'Tech Stack',
+    url: '/techStack',
     icon: <GrTechnology />,
   },
   {
-    title: "Projects",
-    url: "/projects",
+    title: 'Projects',
+    url: '/projects',
     icon: <FaProjectDiagram />,
   },
   {
-    title: "Certifications",
-    url: "/certifications",
+    title: 'Certifications',
+    url: '/certifications',
     icon: <PiCertificateThin />,
   },
 ];

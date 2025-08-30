@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
-import CustomProjectLogo from "../CustomProjectLogo/CustomProjectLogo";
-import ProjectImg from "../ProjectImg/ProjectImg";
-import TechOfProject from "./TechOfProject/TechOfProject";
-import { Link } from "react-router";
-import { FiExternalLink } from "react-icons/fi";
+import type { ReactNode } from 'react';
+import { FiExternalLink } from 'react-icons/fi';
+import { Link } from 'react-router';
+import CustomProjectLogo from '../CustomProjectLogo/CustomProjectLogo';
+import ProjectImg from '../ProjectImg/ProjectImg';
+import TechOfProject from './TechOfProject/TechOfProject';
 
 const ProjectCard: React.FC<{
   projectImg: string;
@@ -23,7 +23,7 @@ const ProjectCard: React.FC<{
             <CustomProjectLogo>{childrenProjectIcon}</CustomProjectLogo>
             <h2 className="text-2xl">{projectName}</h2>
           </div>
-          <Link to={visitRepoUrl} className="w text-gray-400 hover:text-white" target="_blank">
+          <Link className="w text-gray-400 hover:text-white" target="_blank" to={visitRepoUrl}>
             <FiExternalLink size={25} />
           </Link>
         </div>

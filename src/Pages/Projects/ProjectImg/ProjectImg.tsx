@@ -17,7 +17,7 @@ const ProjectImg: React.FC<{ path: string; to: string }> = ({
       <div className="relative w-full opacity-50 duration-300 ease-in-out hover:opacity-100">
         <img
           alt="Screenshot of the project created"
-          className="w-full rounded-t-lg"
+          className="h-1/2 w-1/2 w-full rounded-t-lg"
           src={path}
         />
       </div>

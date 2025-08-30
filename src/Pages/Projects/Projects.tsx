@@ -10,6 +10,7 @@ import ebayScreenshot from '/screenshots/ebay.png';
 import harABituahScreenshot from '/screenshots/har-a-bituah.png';
 import interactiveBrokersScreenshot from '/screenshots/interactive-brokers.png';
 import momToolScreenshot from '/screenshots/MomTool.png';
+import quizAiOnBoardingScreenshot from '/screenshots/quiz-ai-on-boarding.png';
 import telegramScreenshot from '/screenshots/telegram.png';
 import timScreenshot from '/screenshots/tim-trailer.png';
 import udemyScreenshot from '/screenshots/udemy.png';
@@ -26,6 +27,23 @@ const Projects = () => {
     <div className="flex w-full flex-col gap-10 p-5 pt-[15%] md:pt-[5%]">
       <ProjectsHeader />
       <ProjectCard
+        projectImg={quizAiOnBoardingScreenshot}
+        projectName="Quiz AI React Native (Coming Soon)"
+        techStackForProject={[
+          'React Native',
+          'Native Tailwind',
+          'Supabase',
+          'Pdf Parse',
+          'Axios',
+          'Open AI Agents',
+          'Open AI API',
+          'Zod',
+          'Express',
+          'Expo',
+          'TanStack',
+        ]}
+      />
+      <ProjectCard
         childrenProjectIcon={
           <SiOpenai
             className={'rounded-sm bg-white p-1 text-black'}
@@ -33,7 +51,7 @@ const Projects = () => {
           />
         }
         projectImg={telegramScreenshot}
-        projectName="Telegram AI Calendar Assistant"
+        projectName="Telegram AI Calendar Assistant (Coming Soon)"
         techStackForProject={[
           'Node.js',
           'TypeScript',

@@ -2,7 +2,7 @@ import { IoMdTrophy } from 'react-icons/io';
 import CardJourney from '../CardJourney/CardJourney';
 import { FaUserTie } from 'react-icons/fa';
 import LastTimeUpdatedBy from '@/Components/LastTimeUpdatedBy/LastTimeUpdatedBy';
-import { FaComputer, FaSchoolCircleCheck } from "react-icons/fa6";
+import { FaSchoolCircleCheck } from "react-icons/fa6";
 import { IoSchoolOutline } from 'react-icons/io5';
 
 const MyJourney = () => {
@@ -88,7 +88,6 @@ const MyJourney = () => {
           icon={<IoMdTrophy size={20} className="text-[#fdc700]" />}
           colorIconHover={`group-hover:text-[#fdc700]`}
           years={`2024 July - 2025 Feb`}
-          years={`2018 Nov - 2021 July`}
           title={`Veteran Commander - IDF - 931st Battalion - Negevist`}
           textChildren={
             <div>

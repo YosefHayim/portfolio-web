@@ -25,8 +25,24 @@ const ProjectCard: React.FC<{
     const projectCardRef = useRef<HTMLDivElement>(null);
 
     const handleMouseEnter = () => {
-      if (projectCardRef.current) {
-        projectCardRef.current.scrollTo({ top: projectCardRef.current.scrollHeight, behavior: 'smooth' });
+      if (projectCardRef.current && projectCardRef.current.scrollTop === 0) {
+        // Only execute animation if not already scrolled
+        const scrollElement = projectCardRef.current;
+        const start = scrollElement.scrollTop;
+        const end = scrollElement.scrollHeight - scrollElement.clientHeight; // Scroll to the bottom
+        const duration = 6000; // milliseconds
+        let startTime: number | null = null;
+
+        const animateScroll = (currentTime: number) => {
+          if (!startTime) startTime = currentTime;
+          const progress = (currentTime - startTime) / duration;
+          const easeInOutQuad = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2; // Easing function
+          if (scrollElement) {
+            scrollElement.scrollTop = start + (end - start) * easeInOutQuad;
+          }
+          if (progress < 1) requestAnimationFrame(animateScroll);
+        };
+        requestAnimationFrame(animateScroll);
       }
     };
 

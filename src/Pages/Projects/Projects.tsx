@@ -44,14 +44,14 @@ const Projects = () => {
             'OAuth',
             'eBay API',
             'Amazon SP-API',
-            'USPTO Trademarks API',
-            'WIPO Patents API',
-            'Stripe',
-            'PayPal',
+            'USA USPTO Trademarks API',
+            'International WIPO Patents API',
+            'Stripe API',
+            'PayPal API',
             'Postman',
           ]}
           visitRepoUrl='https://github.com/orgs/AutoBay/repositories'
-          projectName='AutoBay DropShipping Saas Platform'
+          projectName='AutoBay DropShipping Saas Platform (Under development)'
           deployedUrl='projects'
           projectImg={autoBaySaasScreenshot}
         >
@@ -71,7 +71,7 @@ const Projects = () => {
           }
           deployedUrl="projects"
           projectImg={quizAiOnBoardingScreenshot}
-          projectName="Quiz AI React Native (Coming Soon)"
+          projectName="Quiz AI React Native (Under development)"
           techStackForProject={[
             'React Native',
             'Native Tailwind',

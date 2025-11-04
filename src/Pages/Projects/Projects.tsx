@@ -18,6 +18,7 @@ import udemyScreenshot from '/screenshots/udemy.png';
 import Collaborators from './ProjectCard/Collaborators/Collaborators';
 import ProjectCard from './ProjectCard/ProjectCard';
 import ProjectsHeader from './ProjectsHeader/ProjectsHeader';
+import autoBaySaasScreenshot from '/screenshots/auto-bay-saas.png';
 
 const Projects = () => {
   useEffect(() => {
@@ -28,6 +29,39 @@ const Projects = () => {
     <div>
       <ProjectsHeader />
       <div className="grid w-full grid-cols-1 gap-10 p-5 pt-[15%] md:grid-cols-3 md:pt-[5%]">
+        <ProjectCard
+          childrenProjectIcon={<></>}
+          techStackForProject={[
+            'Next.js',
+            'TypeScript',
+            'Zod',
+            'Playwright',
+            'AWS',
+            'GitHub Actions',
+            'Jest',
+            'Firebase',
+            'Nodemailer',
+            'OAuth',
+            'eBay API',
+            'Amazon SP-API',
+            'USPTO Trademarks API',
+            'WIPO Patents API',
+            'Stripe',
+            'PayPal',
+            'Postman',
+          ]}
+          visitRepoUrl='https://github.com/orgs/AutoBay/repositories'
+          projectName='AutoBay DropShipping Saas Platform'
+          deployedUrl='projects'
+          projectImg={autoBaySaasScreenshot}
+        >
+          <p>
+            Leveraging my prior experience as an eBay seller, I am developing an Amazon to eBay dropshipping SaaS platform.
+            This platform is engineered to mitigate common pain points encountered by sellers,
+            integrating advanced optimizations and novel features to enhance the dropshipping workflow
+            and maximize profit margins.
+          </p>
+        </ProjectCard>
         <ProjectCard
           childrenProjectIcon={
             <TbBrandReactNative

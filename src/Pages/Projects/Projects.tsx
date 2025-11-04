@@ -35,7 +35,7 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={quizAiOnBoardingScreenshot}
           projectName="Quiz AI React Native (Coming Soon)"
           techStackForProject={[
@@ -70,9 +70,9 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={telegramScreenshot}
-          projectName="Telegram AI Calendar Assistant (Coming Soon)"
+          projectName="Telegram AI Calendar Assistant (Under development)"
           techStackForProject={[
             'Node.js',
             'TypeScript',
@@ -208,7 +208,7 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={amazonScreenshot}
           projectName="Amazon ASIN Scraper W/CAPTCHA"
           techStackForProject={['Selenium', '2Captcha API']}
@@ -225,7 +225,7 @@ const Projects = () => {
           childrenProjectIcon={
             <FaEbay className="rounded-sm bg-white p-1 text-black" size={30} />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={ebayScreenshot}
           projectName="eBay Sellers Title Scraper"
           techStackForProject={['Selenium']}
@@ -245,7 +245,7 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={harABituahScreenshot}
           projectName="HarABituah Government Scraper"
           techStackForProject={['Selenium']}
@@ -268,7 +268,7 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={interactiveBrokersScreenshot}
           projectName="Stocks Trading Bots"
           techStackForProject={[
@@ -293,7 +293,7 @@ const Projects = () => {
               size={30}
             />
           }
-          deployedUrl="not-deployed"
+          deployedUrl="projects"
           projectImg={binanceScreenshot}
           projectName="Crypto Trading Bots"
           techStackForProject={['Selenium', 'Binance API', 'Telegram API']}

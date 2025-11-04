@@ -10,6 +10,7 @@ import {
   SiMui,
   SiStorybook,
   SiHtml5,
+  SiZod,
 } from 'react-icons/si';
 import TechRow from '../TechRow/TechRow';
 import { IoLogoCss3 } from 'react-icons/io5';
@@ -32,6 +33,9 @@ const TechStack = [
   { name: 'Mui', icon: <SiMui size={20} /> },
   { name: 'Storybook', icon: <SiStorybook size={20} /> },
   { name: 'Playwright', icon: <FaTheaterMasks size={20} /> },
+  {
+    name: 'Zod', icon: <SiZod size={20} />
+  }
 ];
 
 const Fronted = () => {

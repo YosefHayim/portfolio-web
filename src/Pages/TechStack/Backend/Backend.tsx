@@ -1,4 +1,4 @@
-import { FaGoogle, FaNodeJs } from 'react-icons/fa';
+import { FaEbay, FaGoogle, FaNodeJs } from 'react-icons/fa';
 import {
   SiExpress,
   SiJsonwebtokens,
@@ -10,6 +10,7 @@ import TechRow from '../TechRow/TechRow';
 import { ImPaypal } from 'react-icons/im';
 import SvgTemplate from '@/Components/SvgTemplate/SvgTemplate';
 import ejsSvg from '/svgs/ejs.svg';
+import { LiaTelegramPlane } from "react-icons/lia";
 
 const backendTech = [
   { name: 'Node.js', icon: <FaNodeJs size={20} /> },
@@ -20,6 +21,10 @@ const backendTech = [
   { name: 'Sharp', icon: <SiSharp size={20} /> },
   { name: 'Paypal API', icon: <ImPaypal size={20} /> },
   { name: 'Google Authentication', icon: <FaGoogle size={20} /> },
+  { name: 'Ebay', icon: <FaEbay size={20} /> },
+  {
+    name: 'Grammy JS', icon: <LiaTelegramPlane size={20} />
+  },
   {
     name: 'Ejs',
     icon: (

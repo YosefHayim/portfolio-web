@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThreeCanvas } from '@/three/ThreeCanvas';
 import { SceneSetup } from '@/three/components/SceneSetup';
 import { HeroScene } from '@/three/scenes/HeroScene';
+import { PostProcessing } from '@/three/effects/PostProcessing';
+import { useDeviceDetection } from '@/three/hooks/useDeviceDetection';
 
 /**
  * 3D Hero component that wraps the Three.js hero scene
  * This component bridges 2D React with 3D Three.js
  */
 export const HeroThreeD = () => {
-  const [quality, setQuality] = useState<'low' | 'medium' | 'high'>('high');
+  const deviceInfo = useDeviceDetection();
+  const [quality, setQuality] = useState<'low' | 'medium' | 'high'>(deviceInfo.quality);
+
+  // Update quality when device info changes (resize, orientation change)
+  useEffect(() => {
+    setQuality(deviceInfo.quality);
+  }, [deviceInfo.quality]);
 
   const handleQualityChange = (newQuality: 'low' | 'medium' | 'high') => {
     console.log(`Performance adjusted to: ${newQuality}`);
@@ -18,6 +26,7 @@ export const HeroThreeD = () => {
   return (
     <div className="fixed inset-0 -z-10">
       <ThreeCanvas
+        quality={quality}
         onPerformanceChange={handleQualityChange}
         fallback={
           <div className="flex h-screen w-screen items-center justify-center bg-[#0a0e1a]">
@@ -32,6 +41,7 @@ export const HeroThreeD = () => {
       >
         <SceneSetup />
         <HeroScene quality={quality} />
+        <PostProcessing quality={quality} enabled={true} />
       </ThreeCanvas>
     </div>
   );

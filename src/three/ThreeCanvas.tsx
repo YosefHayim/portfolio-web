@@ -7,6 +7,7 @@ interface ThreeCanvasProps {
   children: ReactNode;
   fallback?: ReactNode;
   onPerformanceChange?: (quality: 'low' | 'medium' | 'high') => void;
+  quality?: 'low' | 'medium' | 'high';
 }
 
 /**
@@ -20,7 +21,11 @@ export const ThreeCanvas = ({
   children,
   fallback = null,
   onPerformanceChange,
+  quality = 'high',
 }: ThreeCanvasProps) => {
+  // Adaptive DPR based on quality
+  const dpr = quality === 'low' ? [1, 1] : quality === 'medium' ? [1, 1.5] : [1, 2];
+
   return (
     <Canvas
       camera={{
@@ -29,12 +34,12 @@ export const ThreeCanvas = ({
         near: 0.1,
         far: 1000,
       }}
-      dpr={[1, 2]} // Adaptive pixel ratio: min 1, max 2
-      frameloop="demand" // On-demand rendering for performance
+      dpr={dpr} // Adaptive pixel ratio based on quality
+      frameloop="always" // Always render for animations and post-processing
       gl={{
-        antialias: true,
+        antialias: quality !== 'low', // Disable antialiasing on low quality
         alpha: true,
-        powerPreference: 'high-performance',
+        powerPreference: quality === 'low' ? 'default' : 'high-performance',
       }}
       style={{
         position: 'fixed',

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { Text, Float, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { CodeMatrix } from '../components/CodeMatrix';
@@ -15,7 +15,6 @@ interface HeroSceneProps {
  * Landing experience with code matrix background and 3D elements
  */
 export const HeroScene = ({ quality = 'high' }: HeroSceneProps) => {
-  const { viewport } = useThree();
   const [nameVisible, setNameVisible] = useState(false);
 
   // Show name after brief delay

@@ -55,7 +55,7 @@ export const CodeMatrix = ({
   }, [adjustedCount, spread, codeChars]);
 
   // Animate falling code
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!meshRef.current) return;
 
     const dummy = new THREE.Object3D();
@@ -115,7 +115,7 @@ export const CodeMatrixText = ({ count = 50 }: { count?: number }) => {
   ], []);
 
   const textElements = useMemo(() => {
-    return Array.from({ length: count }).map((_, i) => ({
+    return Array.from({ length: count }).map(() => ({
       text: codeLines[Math.floor(Math.random() * codeLines.length)],
       position: new THREE.Vector3(
         (Math.random() - 0.5) * 15,
@@ -151,8 +151,7 @@ export const CodeMatrixText = ({ count = 50 }: { count?: number }) => {
           color="#0f0"
           anchorX="center"
           anchorY="middle"
-          transparent
-          opacity={0.4}
+          fillOpacity={0.4}
         >
           {item.text}
         </Text>

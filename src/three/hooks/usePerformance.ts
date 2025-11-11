@@ -45,41 +45,41 @@ export const usePerformance = (options: UsePerformanceOptions = {}) => {
           (performance as any).memory?.usedJSHeapSize /
           (1024 * 1024); // MB
 
-        setMetrics((prev) => ({
-          ...prev,
-          fps,
-          memoryUsage: memory,
-        }));
+        setMetrics((prev) => {
+          let newQuality: 'low' | 'medium' | 'high' = prev.quality;
 
-        // Auto-adjust quality based on FPS
-        if (autoAdjust) {
-          qualityCheckInterval.current++;
+          // Auto-adjust quality based on FPS
+          if (autoAdjust) {
+            qualityCheckInterval.current++;
 
-          // Only adjust every 3 seconds to avoid flickering
-          if (qualityCheckInterval.current >= 3) {
-            qualityCheckInterval.current = 0;
+            // Only adjust every 3 seconds to avoid flickering
+            if (qualityCheckInterval.current >= 3) {
+              qualityCheckInterval.current = 0;
 
-            let newQuality: 'low' | 'medium' | 'high' = prev.quality;
+              if (fps < targetFps * 0.6 && prev.quality !== 'low') {
+                newQuality = 'low';
+              } else if (
+                fps < targetFps * 0.8 &&
+                prev.quality === 'high'
+              ) {
+                newQuality = 'medium';
+              } else if (fps > targetFps * 0.95 && prev.quality !== 'high') {
+                newQuality = 'high';
+              }
 
-            if (fps < targetFps * 0.6 && prev.quality !== 'low') {
-              newQuality = 'low';
-            } else if (
-              fps < targetFps * 0.8 &&
-              prev.quality === 'high'
-            ) {
-              newQuality = 'medium';
-            } else if (fps > targetFps * 0.95 && prev.quality !== 'high') {
-              newQuality = 'high';
-            }
-
-            if (newQuality !== prev.quality) {
-              onQualityChange?.(newQuality);
-              return { ...prev, fps, quality: newQuality, memoryUsage: memory };
+              if (newQuality !== prev.quality) {
+                onQualityChange?.(newQuality);
+              }
             }
           }
-        }
 
-        return prev;
+          return {
+            ...prev,
+            fps,
+            quality: newQuality,
+            memoryUsage: memory,
+          };
+        });
       }
 
       requestAnimationFrame(measurePerformance);

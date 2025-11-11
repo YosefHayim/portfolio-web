@@ -35,9 +35,10 @@ export const createRoundedBoxGeometry = (
   width = 1,
   height = 1,
   depth = 1,
-  radius = 0.1,
-  smoothness = 4
+  _radius = 0.1,
+  _smoothness = 4
 ) => {
+  // TODO: Implement proper rounded corners using RoundedBoxGeometry from drei
   return new THREE.BoxGeometry(width, height, depth).toNonIndexed();
 };
 

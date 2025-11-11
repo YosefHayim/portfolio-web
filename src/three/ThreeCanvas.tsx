@@ -57,7 +57,6 @@ export const ThreeCanvas = ({
           onDecline={() => onPerformanceChange?.('medium')}
           onFallback={() => onPerformanceChange?.('low')}
           flipflops={3}
-          bounds={(fps) => (fps < 30 ? 'low' : fps < 50 ? 'medium' : 'high')}
         >
           {children}
         </PerformanceMonitor>

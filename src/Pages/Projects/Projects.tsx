@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { BsFileEarmarkPdfFill } from 'react-icons/bs';
-import { FaAmazon, FaEbay } from 'react-icons/fa';
+import { FaAmazon, FaEbay, FaNpm } from 'react-icons/fa';
 import { GiPopcorn } from 'react-icons/gi';
 import { RiStockLine } from 'react-icons/ri';
 import { SiAlwaysdata, SiBinance, SiOpenai, SiUdemy } from 'react-icons/si';
 import { TbBrandReactNative } from 'react-icons/tb';
 import amazonScreenshot from '/screenshots/amazon.png';
+import autoBaySaasScreenshot from '/screenshots/auto-bay-saas.png';
 import binanceScreenshot from '/screenshots/binance.png';
 import ebayScreenshot from '/screenshots/ebay.png';
+import ebayMcpScreenshot from '/screenshots/ebay-mcp.png';
 import harABituahScreenshot from '/screenshots/har-a-bituah.png';
 import interactiveBrokersScreenshot from '/screenshots/interactive-brokers.png';
 import momToolScreenshot from '/screenshots/MomTool.png';
@@ -18,7 +20,6 @@ import udemyScreenshot from '/screenshots/udemy.png';
 import Collaborators from './ProjectCard/Collaborators/Collaborators';
 import ProjectCard from './ProjectCard/ProjectCard';
 import ProjectsHeader from './ProjectsHeader/ProjectsHeader';
-import autoBaySaasScreenshot from '/screenshots/auto-bay-saas.png';
 
 const Projects = () => {
   useEffect(() => {
@@ -31,6 +32,9 @@ const Projects = () => {
       <div className="grid w-full grid-cols-1 gap-10 p-5 pt-[15%] md:grid-cols-3 md:pt-[5%]">
         <ProjectCard
           childrenProjectIcon={<></>}
+          deployedUrl="projects"
+          projectImg={autoBaySaasScreenshot}
+          projectName="AutoBay DropShipping Saas Platform (Under development)"
           techStackForProject={[
             'Next.js',
             'TypeScript',
@@ -50,16 +54,14 @@ const Projects = () => {
             'PayPal API',
             'Postman',
           ]}
-          visitRepoUrl='https://github.com/orgs/AutoBay/repositories'
-          projectName='AutoBay DropShipping Saas Platform (Under development)'
-          deployedUrl='projects'
-          projectImg={autoBaySaasScreenshot}
+          visitRepoUrl="https://github.com/orgs/AutoBay/repositories"
         >
           <p>
-            Leveraging my prior experience as an eBay seller, I am developing an Amazon to eBay dropshipping SaaS platform.
-            This platform is engineered to mitigate common pain points encountered by sellers,
-            integrating advanced optimizations and novel features to enhance the dropshipping workflow
-            and maximize profit margins.
+            Leveraging my prior experience as an eBay seller, I am developing an
+            Amazon to eBay dropshipping SaaS platform. This platform is
+            engineered to mitigate common pain points encountered by sellers,
+            integrating advanced optimizations and novel features to enhance the
+            dropshipping workflow and maximize profit margins.
           </p>
         </ProjectCard>
         <ProjectCard
@@ -128,6 +130,41 @@ const Projects = () => {
               A Telegram-based AI assistant that integrates with Google Calendar
               to manage schedules, create events, send reminders, and provide
               personal productivity support directly through chat.{' '}
+            </p>
+          </div>
+        </ProjectCard>
+        <ProjectCard
+          childrenProjectIcon={
+            <FaNpm
+              className={'rounded-sm bg-white p-1 text-red-600'}
+              size={30}
+            />
+          }
+          deployedUrl="https://www.npmjs.com/package/ebay-api-mcp-server"
+          projectImg={ebayMcpScreenshot}
+          projectName="eBay MCP API Server"
+          techStackForProject={[
+            'TypeScript',
+            'Node.js',
+            'MCP',
+            'eBay API',
+            'OpenAPI-TypeScript',
+            'Axios',
+            'Zod',
+            'JWT',
+            'Express',
+            'Vitest',
+            'OAuth 2.1',
+          ]}
+          visitRepoUrl="https://github.com/YosefHayim/ebay-api-mcp-server"
+        >
+          <div className="flex w-full flex-col items-center justify-start gap-2">
+            <p className="w-full text-gray-400">
+              An open-source Model Context Protocol (MCP) server that provides LLMs
+              with enhanced schema readability and implementation for eBay API.
+              Integrates with Claude Desktop and Gemini CLI, featuring OAuth 2.1
+              authentication and automated schema conversion from OpenAPI specs to
+              TypeScript types. Published on npm for easy integration.
             </p>
           </div>
         </ProjectCard>

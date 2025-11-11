@@ -158,15 +158,6 @@ export const TechStackThreeD = () => {
         </div>
       )}
 
-      {/* Back to 2D button */}
-      <div className="absolute right-8 bottom-8">
-        <a
-          href="/techStack"
-          className="rounded-lg border-2 border-[#888888] bg-[rgba(10,14,26,0.9)] px-4 py-2 font-['JetBrains_Mono'] text-sm text-[#888888] transition-all hover:border-[#05df72] hover:text-[#05df72] hover:shadow-[0_0_20px_#05df72]"
-        >
-          ← Back to 2D View
-        </a>
-      </div>
     </div>
   );
 };

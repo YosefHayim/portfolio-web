@@ -1,23 +1,26 @@
 import { useEffect } from 'react';
-import Hero from './Hero/Hero';
-import WhoAmI from './WhoAmI/WhoAmI';
 import HeroThreeD from './HeroThreeD';
 
+/**
+ * Homepage - FULL 3D IMMERSIVE EXPERIENCE
+ *
+ * All content is now rendered in 3D through HeroScene.
+ * No 2D overlays - everything is interactive 3D elements.
+ *
+ * Converted components:
+ * - Hero section → FloatingText3D + HolographicPortrait + NavButton3D
+ * - WhoAmI section → Interactive3DTerminal
+ */
 const Homepage = () => {
   useEffect(() => {
-    document.title = 'Homepage';
+    document.title = 'Joseph Sabag - Full-Stack Developer';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
   return (
     <>
-      {/* 3D Hero Background */}
+      {/* Full 3D Hero Scene - everything is 3D now */}
       <HeroThreeD />
-
-      {/* Original 2D content with adjusted z-index for layering */}
-      <div className="relative z-10 flex w-full flex-col gap-10 p-5 pt-[15%] md:pt-[5%]">
-        <Hero />
-        <WhoAmI />
-      </div>
     </>
   );
 };

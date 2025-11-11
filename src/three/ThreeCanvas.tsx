@@ -8,6 +8,8 @@ interface ThreeCanvasProps {
   fallback?: ReactNode;
   onPerformanceChange?: (quality: 'low' | 'medium' | 'high') => void;
   quality?: 'low' | 'medium' | 'high';
+  cameraPosition?: [number, number, number];
+  cameraFov?: number;
 }
 
 /**
@@ -22,6 +24,8 @@ export const ThreeCanvas = ({
   fallback = null,
   onPerformanceChange,
   quality = 'high',
+  cameraPosition = [0, 0, 12],
+  cameraFov = 60,
 }: ThreeCanvasProps) => {
   // Adaptive DPR based on quality
   const dpr = quality === 'low' ? [1, 1] : quality === 'medium' ? [1, 1.5] : [1, 2];
@@ -29,8 +33,8 @@ export const ThreeCanvas = ({
   return (
     <Canvas
       camera={{
-        position: [0, 0, 5],
-        fov: 75,
+        position: cameraPosition,
+        fov: cameraFov,
         near: 0.1,
         far: 1000,
       }}

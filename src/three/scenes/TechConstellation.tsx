@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
-import { technologies, connections, categories } from '../data/techStackData';
+import { techStackData, connections, categories } from '../data/techStackData';
 import { SkillNode } from '../components/SkillNode';
 import { ConnectionLines } from '../components/ConnectionLines';
 import type { Technology } from '../data/techStackData';
@@ -38,8 +38,8 @@ export const TechConstellation = ({
 
   // Filter technologies by hovered category
   const visibleTechnologies = hoveredCategory
-    ? technologies.filter((tech) => tech.category === hoveredCategory)
-    : technologies;
+    ? techStackData.filter((tech) => tech.category === hoveredCategory)
+    : techStackData;
 
   return (
     <group ref={groupRef}>

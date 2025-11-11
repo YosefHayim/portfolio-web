@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import * as THREE from 'three';
-import { technologies, categories } from '../data/techStackData';
+import { techStackData, categories } from '../data/techStackData';
 import type { TechnologyCategory } from '../data/techStackData';
 
 interface TechDataVizProps {
@@ -48,10 +48,10 @@ const CategoryBarChart = ({
     }
   });
 
-  // Count technologies per category
+  // Count techStackData per category
   const categoryCounts = Object.keys(categories).map((categoryId) => ({
     category: categoryId as TechnologyCategory,
-    count: technologies.filter((tech) => tech.category === categoryId).length,
+    count: techStackData.filter((tech) => tech.category === categoryId).length,
     color: categories[categoryId as TechnologyCategory].color,
   }));
 
@@ -180,12 +180,12 @@ const ProficiencyPieChart = ({
 
   const proficiencyCounts = proficiencyGroups.map((group) => ({
     ...group,
-    count: technologies.filter(
+    count: techStackData.filter(
       (tech) => tech.proficiencyLevel >= group.min && tech.proficiencyLevel <= group.max
     ).length,
   }));
 
-  const totalCount = technologies.length;
+  const totalCount = techStackData.length;
   const radius = 4;
   const thickness = 1;
 
@@ -325,7 +325,7 @@ const ExperienceTimeline = ({
   const groupRef = useRef<THREE.Group>(null);
 
   // Get unique experience years
-  const experienceYears = Array.from(new Set(technologies.map((tech) => tech.yearsExperience))).sort(
+  const experienceYears = Array.from(new Set(techStackData.map((tech) => tech.yearsExperience))).sort(
     (a, b) => b - a
   );
 
@@ -349,7 +349,7 @@ const ExperienceTimeline = ({
 
       {/* Bars for each year */}
       {experienceYears.map((years, index) => {
-        const count = technologies.filter((tech) => tech.yearsExperience === years).length;
+        const count = techStackData.filter((tech) => tech.yearsExperience === years).length;
         const height = count * 0.5;
         const x = (index - experienceYears.length / 2) * barSpacing;
 

@@ -28,16 +28,6 @@ export const HeroThreeD = () => {
       <ThreeCanvas
         quality={quality}
         onPerformanceChange={handleQualityChange}
-        fallback={
-          <div className="flex h-screen w-screen items-center justify-center bg-[#0a0e1a]">
-            <div className="text-center">
-              <div className="mb-4 text-6xl">⚡</div>
-              <p className="font-mono text-lg text-[#05df72]">
-                Loading 3D Experience...
-              </p>
-            </div>
-          </div>
-        }
       >
         <SceneSetup />
         <HeroScene quality={quality} />

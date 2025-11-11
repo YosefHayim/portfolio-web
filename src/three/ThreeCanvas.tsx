@@ -56,7 +56,7 @@ export const ThreeCanvas = ({
       {/* Ambient fog for depth */}
       <fog attach="fog" args={['#0a0e1a', 10, 50]} />
 
-      <Suspense fallback={fallback}>
+      <Suspense fallback={null}>
         <PerformanceMonitor
           onIncline={() => onPerformanceChange?.('high')}
           onDecline={() => onPerformanceChange?.('medium')}

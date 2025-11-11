@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { RoundedBox, Text, Html } from '@react-three/drei';
+import { RoundedBox, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { createGlassMaterial } from '../utils/materials';
 
@@ -156,30 +156,47 @@ const TrafficLights = ({ position }: { position: [number, number, number] }) => 
         />
       </mesh>
 
-      {/* Easter egg alert */}
+      {/* Easter egg alert - 3D text notification */}
       {showAlert && (
-        <Html position={[0.5, 0.5, 0]} center>
-          <div
-            style={{
-              background: 'rgba(30, 30, 30, 0.95)',
-              padding: '15px 20px',
-              borderRadius: '10px',
-              border: '2px solid #ff6467',
-              color: '#e0e0e0',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '14px',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 0 20px rgba(255, 100, 103, 0.3)',
-            }}
+        <group position={[0.5, 0.8, 0.2]}>
+          <mesh position={[0, 0, -0.05]}>
+            <planeGeometry args={[2.5, 0.8]} />
+            <meshBasicMaterial
+              color="#1e1e1e"
+              transparent
+              opacity={0.95}
+            />
+          </mesh>
+          <mesh position={[0, 0, -0.04]}>
+            <planeGeometry args={[2.48, 0.78]} />
+            <meshBasicMaterial
+              color="#ff6467"
+              transparent
+              opacity={0.3}
+            />
+          </mesh>
+          <Text
+            position={[0, 0.15, 0]}
+            fontSize={0.12}
+            color="#ff6467"
+            anchorX="center"
+            anchorY="middle"
+            maxWidth={2.3}
           >
-            <div style={{ marginBottom: '8px' }}>⚠️ Cannot close this window!</div>
-            <div style={{ fontSize: '12px', opacity: 0.8 }}>
-              Nice try though 😄
-              <br />
-              (Still love Apple tho!)
-            </div>
-          </div>
-        </Html>
+            ⚠️ Cannot close this window!
+          </Text>
+          <Text
+            position={[0, -0.15, 0]}
+            fontSize={0.08}
+            color="#e0e0e0"
+            anchorX="center"
+            anchorY="middle"
+            maxWidth={2.3}
+            fillOpacity={0.8}
+          >
+            Nice try though 😄{'\n'}(Still love Apple tho!)
+          </Text>
+        </group>
       )}
     </group>
   );

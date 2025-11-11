@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, Float, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -18,9 +18,10 @@ export const HeroScene = ({ quality = 'high' }: HeroSceneProps) => {
   const [nameVisible, setNameVisible] = useState(false);
 
   // Show name after brief delay
-  useState(() => {
-    setTimeout(() => setNameVisible(true), 500);
-  });
+  useEffect(() => {
+    const timer = setTimeout(() => setNameVisible(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <group>

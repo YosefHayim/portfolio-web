@@ -31,6 +31,41 @@ const Projects = () => {
       <ProjectsHeader />
       <div className="grid w-full grid-cols-1 gap-10 p-5 pt-[15%] md:grid-cols-3 md:pt-[5%]">
         <ProjectCard
+          childrenProjectIcon={
+            <FaNpm
+              className={'rounded-sm bg-white p-1 text-red-600'}
+              size={30}
+            />
+          }
+          deployedUrl="https://www.npmjs.com/package/ebay-api-mcp-server"
+          projectImg={ebayMcpScreenshot}
+          projectName="eBay MCP API Server"
+          techStackForProject={[
+            'modelcontextprotocol',
+            'axios',
+            'cors',
+            'dotenv',
+            'express',
+            'jose',
+            'jsonwebtoken',
+            'TypeScript',
+            'Node.js',
+            'Vitest',
+            'OAuth 2.1',
+          ]}
+          visitRepoUrl="https://github.com/YosefHayim/ebay-api-mcp-server"
+        >
+          <div className="flex w-full flex-col items-center justify-start gap-2">
+            <p className="w-full text-gray-400">
+              An open-source Model Context Protocol (MCP) server that provides LLMs
+              with enhanced schema readability and implementation for eBay API.
+              Integrates with Claude Desktop and Gemini CLI, featuring OAuth 2.1
+              authentication and automated schema conversion from OpenAPI specs to
+              TypeScript types. Published on npm for easy integration.
+            </p>
+          </div>
+        </ProjectCard>
+        <ProjectCard
           childrenProjectIcon={<></>}
           deployedUrl="projects"
           projectImg={autoBaySaasScreenshot}
@@ -133,41 +168,7 @@ const Projects = () => {
             </p>
           </div>
         </ProjectCard>
-        <ProjectCard
-          childrenProjectIcon={
-            <FaNpm
-              className={'rounded-sm bg-white p-1 text-red-600'}
-              size={30}
-            />
-          }
-          deployedUrl="https://www.npmjs.com/package/ebay-api-mcp-server"
-          projectImg={ebayMcpScreenshot}
-          projectName="eBay MCP API Server"
-          techStackForProject={[
-            'TypeScript',
-            'Node.js',
-            'MCP',
-            'eBay API',
-            'OpenAPI-TypeScript',
-            'Axios',
-            'Zod',
-            'JWT',
-            'Express',
-            'Vitest',
-            'OAuth 2.1',
-          ]}
-          visitRepoUrl="https://github.com/YosefHayim/ebay-api-mcp-server"
-        >
-          <div className="flex w-full flex-col items-center justify-start gap-2">
-            <p className="w-full text-gray-400">
-              An open-source Model Context Protocol (MCP) server that provides LLMs
-              with enhanced schema readability and implementation for eBay API.
-              Integrates with Claude Desktop and Gemini CLI, featuring OAuth 2.1
-              authentication and automated schema conversion from OpenAPI specs to
-              TypeScript types. Published on npm for easy integration.
-            </p>
-          </div>
-        </ProjectCard>
+
         <ProjectCard
           childrenProjectIcon={
             <SiUdemy

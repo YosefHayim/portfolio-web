@@ -4,6 +4,7 @@ import { Text, Float, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { CodeMatrix } from '../components/CodeMatrix';
 import { TerminalWindow } from '../components/TerminalWindow';
+import { Interactive3DButtons } from '../components/Interactive3DButtons';
 import { createNeonMaterial } from '../utils/materials';
 
 interface HeroSceneProps {
@@ -82,6 +83,9 @@ export const HeroScene = ({ quality = 'high' }: HeroSceneProps) => {
 
       {/* Scroll indicator */}
       <ScrollIndicator position={[0, -3, 0]} />
+
+      {/* Interactive 3D buttons */}
+      <Interactive3DButtons position={[0, -2, 0]} quality={quality} />
     </group>
   );
 };

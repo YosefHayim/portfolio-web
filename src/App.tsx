@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Homepage from './Pages/Homepage/Homepage';
 import About from './Pages/About/About';
+import { AboutThreeD } from './Pages/About/AboutThreeD';
 import Certifications from './Pages/Certifications/Certifications';
 import TechStack from './Pages/TechStack/TechStack';
 import { TechStackThreeD } from './Pages/TechStack/TechStackThreeD';
@@ -19,6 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/about/3d" element={<AboutThreeD />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/3d" element={<ProjectsThreeD />} />
           <Route path="/techStack" element={<TechStack />} />

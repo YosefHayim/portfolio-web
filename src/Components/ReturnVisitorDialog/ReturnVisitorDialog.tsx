@@ -1,8 +1,9 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, X } from 'lucide-react';
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, X } from "lucide-react";
 
-import { FaWhatsapp } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Button } from "../ui/button";
+import { FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router";
 
 type ReturnVisitorDialogProps = {
   isOpen: boolean;
@@ -29,7 +30,7 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed right-4 bottom-4 left-4 z-50 sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-full sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2"
           >
             <div className="overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)]">
@@ -56,20 +57,20 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                         You're back
                       </p>
                       <h2 className="text-xl leading-tight font-semibold tracking-tight text-[var(--text-primary)] sm:text-2xl">
-                        I don't wait for opportunities.{' '}
+                        I don't wait for opportunities.{" "}
                         <span className="text-[var(--text-muted)]">
                           I create them.
                         </span>
                       </h2>
                     </div>
-                    <button
-                      type="button"
+                    <Button
+                      variant="ghost"
+                      size="icon"
                       onClick={onClose}
-                      className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] transition-colors hover:border-[var(--text-muted)] hover:text-[var(--text-primary)]"
                       aria-label="Close dialog"
                     >
                       <X size={14} />
-                    </button>
+                    </Button>
                   </motion.div>
 
                   <motion.p
@@ -79,7 +80,7 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                     className="mb-6 text-sm leading-relaxed text-[var(--text-secondary)]"
                   >
                     That t-shirt you see? I wore it to a job fair — no resume,
-                    no pitch. Just a QR code linking to my work.{' '}
+                    no pitch. Just a QR code linking to my work.{" "}
                     <span className="text-[var(--text-primary)]">
                       Left with three offers.
                     </span>

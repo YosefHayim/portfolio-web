@@ -115,9 +115,9 @@ const Hero = () => {
           <div className="h-8 w-px bg-[var(--border-subtle)]" />
           <div className="flex flex-col items-center">
             <span className="text-2xl font-semibold text-[var(--text-primary)]">
-              IDF
+              3x
             </span>
-            <span className="text-sm">Veteran</span>
+            <span className="text-sm">IDF Excellence</span>
           </div>
         </motion.div>
       </div>

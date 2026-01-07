@@ -1,4 +1,4 @@
-import { Home, User, Layers, FolderKanban, Award } from 'lucide-react';
+import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -8,36 +8,37 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@/Components/ui/sidebar';
-import { Link } from 'react-router';
-import { SocialIcons } from '../ui/social-icons';
+} from "@/Components/ui/sidebar";
+
+import { Link } from "react-router";
+import { SocialIcons } from "../ui/social-icons";
 
 const ICON_SIZE = 18;
 
 const items = [
   {
-    title: 'Home',
-    url: '/',
+    title: "Home",
+    url: "/",
     icon: <Home size={ICON_SIZE} />,
   },
   {
-    title: 'About',
-    url: '/about',
+    title: "About",
+    url: "/about",
     icon: <User size={ICON_SIZE} />,
   },
   {
-    title: 'Tech Stack',
-    url: '/techStack',
+    title: "Tech Stack",
+    url: "/techStack",
     icon: <Layers size={ICON_SIZE} />,
   },
   {
-    title: 'Projects',
-    url: '/projects',
+    title: "Projects",
+    url: "/projects",
     icon: <FolderKanban size={ICON_SIZE} />,
   },
   {
-    title: 'Certifications',
-    url: '/certifications',
+    title: "Certifications",
+    url: "/certifications",
     icon: <Award size={ICON_SIZE} />,
   },
 ];
@@ -48,7 +49,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-none bg-transparent">
       <SidebarContent className="bg-[var(--bg-card)] p-3">
-        <SidebarGroup className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
+        <SidebarGroup className="rounded-2xl bg-[var(--bg-card)] p-2">
           <SidebarGroupContent>
             <SidebarMenu className="gap-1">
               {items.map((item) => (
@@ -69,9 +70,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <div className="mt-3 flex justify-center rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-          <SocialIcons />
-        </div>
+        <SocialIcons />
       </SidebarContent>
     </Sidebar>
   );

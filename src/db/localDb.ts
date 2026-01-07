@@ -7,11 +7,13 @@ const STORAGE_KEYS = {
   CACHE_EXPIRY: 'portfolio_cache_expiry',
 } as const;
 
+const HOURS_PER_DAY = 24;
 const MINUTES_PER_HOUR = 60;
 const SECONDS_PER_MINUTE = 60;
 const MS_PER_SECOND = 1000;
-const ONE_HOUR_MS = MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MS_PER_SECOND;
-const CACHE_DURATION_MS = ONE_HOUR_MS;
+const ONE_DAY_MS =
+  HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MS_PER_SECOND;
+const CACHE_DURATION_MS = ONE_DAY_MS;
 
 const getItem = <T>(key: string): T | null => {
   try {

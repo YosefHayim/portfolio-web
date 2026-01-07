@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
+import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
 import Hero from './Hero/Hero';
+import PassionSection from './PassionSection/PassionSection';
 import WhoAmI from './WhoAmI/WhoAmI';
 
 const Homepage = () => {
   useEffect(() => {
-    document.title = 'Homepage';
+    document.title = 'Joseph Sabag | Full-Stack Developer';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  }, []);
+
   return (
-    <div className="flex w-full flex-col gap-10 p-5 pt-[15%] md:pt-[5%]">
+    <AnimatedPage className="flex w-full flex-col items-center gap-20 px-4 pb-20">
       <Hero />
+      <PassionSection />
       <WhoAmI />
-    </div>
+    </AnimatedPage>
   );
 };
 

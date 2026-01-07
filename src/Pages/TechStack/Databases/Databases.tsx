@@ -11,7 +11,8 @@ const datbasesTech = [
   { name: 'PostgreSQL', icon: <BiLogoPostgresql size={20} /> },
   { name: 'Firebase', icon: <IoLogoFirebase size={20} /> },
   {
-    name: 'Supabase', icon: <RiFlashlightFill size={20} />
+    name: 'Supabase',
+    icon: <RiFlashlightFill size={20} />,
   },
 ];
 

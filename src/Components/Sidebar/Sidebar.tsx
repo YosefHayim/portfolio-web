@@ -1,7 +1,4 @@
-import { HiOutlineHome } from 'react-icons/hi2';
-import { GrTechnology } from 'react-icons/gr';
-import { PiCertificateThin } from 'react-icons/pi';
-import { CiSquareInfo } from 'react-icons/ci';
+import { Home, User, Layers, FolderKanban, Award } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -13,36 +10,35 @@ import {
   useSidebar,
 } from '@/Components/ui/sidebar';
 import { Link } from 'react-router';
-import { FaProjectDiagram } from 'react-icons/fa';
-import GithubSocialButton from '../GithubSocialButton/GithubSocialButton';
-import DiscordSocialButton from '../Discord/DiscordSocialButton';
-import LinkedinSocialButton from '../LinkedinSocialButton/LinkedinSocialButton';
+import { SocialIcons } from '../ui/social-icons';
+
+const ICON_SIZE = 18;
 
 const items = [
   {
     title: 'Home',
     url: '/',
-    icon: <HiOutlineHome />,
+    icon: <Home size={ICON_SIZE} />,
   },
   {
     title: 'About',
     url: '/about',
-    icon: <CiSquareInfo />,
+    icon: <User size={ICON_SIZE} />,
   },
   {
     title: 'Tech Stack',
     url: '/techStack',
-    icon: <GrTechnology />,
+    icon: <Layers size={ICON_SIZE} />,
   },
   {
     title: 'Projects',
     url: '/projects',
-    icon: <FaProjectDiagram />,
+    icon: <FolderKanban size={ICON_SIZE} />,
   },
   {
     title: 'Certifications',
     url: '/certifications',
-    icon: <PiCertificateThin />,
+    icon: <Award size={ICON_SIZE} />,
   },
 ];
 
@@ -60,7 +56,7 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     onClick={toggleSidebar}
                     asChild
-                    className="text-white transition delay-150 duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+                    className="text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--bg-elevated)] hover:text-[#05df72]"
                   >
                     <Link to={item.url}>
                       {item.icon}
@@ -69,13 +65,9 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <hr className="border-gray-700 py-1" />
-              <section className="flex w-full flex-col items-start justify-start gap-2 text-white">
-                <nav className="flex w-full items-start justify-start gap-4 pl-[0.5em]">
-                  <LinkedinSocialButton />
-                  <GithubSocialButton />
-                  <DiscordSocialButton />
-                </nav>
+              <hr className="my-3 border-[var(--border-subtle)]" />
+              <section className="flex justify-center px-2 py-2">
+                <SocialIcons />
               </section>
             </SidebarMenu>
           </SidebarGroupContent>

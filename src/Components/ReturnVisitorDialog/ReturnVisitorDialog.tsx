@@ -1,5 +1,6 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, Sparkles } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, X } from 'lucide-react';
+
 import { FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router';
 
@@ -21,122 +22,93 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed right-0 bottom-0 left-0 z-50 sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:w-[90%] sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2"
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="fixed right-4 bottom-4 left-4 z-50 sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-full sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2"
           >
-            <div className="group relative overflow-hidden rounded-t-3xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-2xl sm:rounded-2xl">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#05df72]/5 via-transparent to-[#00d9ff]/5" />
-
-              <motion.button
-                type="button"
-                onClick={onClose}
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-surface)] text-[var(--text-muted)] transition-all hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
-                aria-label="Close dialog"
-              >
-                <X size={16} />
-              </motion.button>
-
-              <div className="flex flex-col lg:flex-row">
-                <div className="relative hidden h-64 overflow-hidden lg:block lg:h-auto lg:w-48">
+            <div className="overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)]">
+              <div className="flex flex-col sm:flex-row">
+                <div className="hidden shrink-0 sm:block sm:w-44">
                   <img
                     src="/images-of-me/hero-image.svg"
                     alt="Joseph Sabag"
-                    className="h-full w-full object-cover object-center"
-                    width={192}
-                    height={256}
+                    width={176}
+                    height={280}
+                    className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)]" />
                 </div>
 
-                <div className="relative flex-1 space-y-5 p-6 sm:p-8">
-                  <div className="flex items-center justify-center lg:hidden">
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.2, type: 'spring' }}
-                      className="w-24"
-                    >
-                      <img
-                        src="/images-of-me/hero-image.svg"
-                        alt="Joseph Sabag"
-                        className="h-auto w-full"
-                        width={96}
-                        height={96}
-                      />
-                    </motion.div>
-                  </div>
-
+                <div className="flex-1 p-6 sm:p-8">
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="space-y-2 text-center"
+                    transition={{ delay: 0.1 }}
+                    className="mb-5 flex items-start justify-between gap-4"
                   >
-                    <div className="flex items-center justify-center gap-2">
-                      <Sparkles size={14} className="text-[#05df72]" />
-                      <p className="text-xs font-bold tracking-widest text-[#05df72] uppercase">
-                        Welcome Back
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium tracking-wider text-[#05df72] uppercase">
+                        You're back
                       </p>
-                      <Sparkles size={14} className="text-[#05df72]" />
+                      <h2 className="text-xl leading-tight font-semibold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+                        I don't wait for opportunities.{' '}
+                        <span className="text-[var(--text-muted)]">
+                          I create them.
+                        </span>
+                      </h2>
                     </div>
-                    <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
-                      Let's Build Something
-                    </h2>
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] transition-colors hover:border-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                      aria-label="Close dialog"
+                    >
+                      <X size={14} />
+                    </button>
                   </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-6 text-sm leading-relaxed text-[var(--text-secondary)]"
+                  >
+                    That t-shirt you see? I wore it to a job fair — no resume,
+                    no pitch. Just a QR code linking to my work.{' '}
+                    <span className="text-[var(--text-primary)]">
+                      Left with three offers.
+                    </span>
+                  </motion.p>
 
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 p-4"
-                  >
-                    <p className="text-center text-sm leading-relaxed text-[var(--text-muted)]">
-                      From{' '}
-                      <span className="font-medium text-[#00d9ff]">
-                        AI-powered tools
-                      </span>{' '}
-                      to{' '}
-                      <span className="font-medium text-[#05df72]">
-                        automation systems
-                      </span>{' '}
-                      — if it can be built, I can build it.
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
                     className="space-y-3"
                   >
                     <Link
                       to="https://wa.me/546187549"
                       target="_blank"
                       onClick={onClose}
-                      className="group/btn flex w-full items-center justify-center gap-2 rounded-xl bg-[#05df72] px-6 py-3.5 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_30px_rgba(5,223,114,0.4)]"
+                      className="group flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#05df72] px-5 py-3 font-medium text-black transition-all hover:bg-[#04c566]"
                     >
-                      <FaWhatsapp size={20} />
-                      <span>Start a Conversation</span>
+                      <FaWhatsapp size={18} />
+                      <span>Let's talk</span>
                       <ArrowRight
                         size={16}
-                        className="transition-transform group-hover/btn:translate-x-1"
+                        className="transition-transform group-hover:translate-x-0.5"
                       />
                     </Link>
 
                     <button
                       type="button"
                       onClick={onClose}
-                      className="w-full rounded-xl border border-[var(--border-subtle)] bg-transparent px-6 py-3 text-sm text-[var(--text-muted)] transition-all hover:border-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                      className="w-full rounded-xl py-2.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-secondary)]"
                     >
                       Maybe later
                     </button>
@@ -145,10 +117,10 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-center text-[10px] text-[var(--text-dim)]"
+                    transition={{ delay: 0.5 }}
+                    className="mt-5 text-center text-[10px] text-[var(--text-dim)]"
                   >
-                    This message won't appear again for 7 days
+                    Won't bug you again for 7 days
                   </motion.p>
                 </div>
               </div>

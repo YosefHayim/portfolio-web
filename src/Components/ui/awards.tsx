@@ -317,57 +317,35 @@ export function Awards({
           className
         )}
       >
-        <div className="m-1.5 rounded-lg border border-dashed border-[var(--border-subtle)] p-4 transition-colors group-hover:border-[#05df72]/30">
-          <div className="-mt-1 mb-3 flex justify-center">
-            <svg
-              className="h-10 w-6 fill-[#05df72]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
-            </svg>
+        <div className="flex items-center gap-4 p-4 sm:flex-col sm:p-5">
+          <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[var(--bg-surface)] transition-all duration-300 group-hover:bg-[#05df72]/10 sm:size-14">
+            {customIcon || <Award size={24} className="text-[#05df72]" />}
           </div>
 
-          <div className="mb-3 text-center">
-            <h2 className="text-xs font-bold tracking-[0.15em] text-[var(--text-muted)] uppercase">
-              Certificate
-            </h2>
-            <p className="text-[10px] text-[var(--text-dim)]">of Completion</p>
-          </div>
+          <div className="min-w-0 flex-1 sm:text-center">
+            <h3 className="text-sm leading-tight font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[#05df72] sm:text-base">
+              {title}
+            </h3>
 
-          <div className="mx-auto mb-3 h-px w-12 bg-gradient-to-r from-transparent via-[#05df72]/50 to-transparent" />
-
-          <div className="mb-3 flex justify-center">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--bg-surface)] transition-all duration-300 group-hover:bg-[#05df72]/10">
-              {customIcon || <Award size={18} className="text-[#05df72]" />}
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs sm:justify-center">
+              {platform && (
+                <span className="text-[var(--text-muted)]">{platform}</span>
+              )}
+              {platform && date && (
+                <span className="hidden text-[var(--text-dim)] sm:inline">
+                  •
+                </span>
+              )}
+              <span className="text-[#00d9ff]">{date}</span>
             </div>
-          </div>
 
-          <h3 className="mb-2 text-center text-sm leading-tight font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[#05df72]">
-            {title}
-          </h3>
-
-          <div className="flex items-center justify-center gap-2 text-xs">
-            {platform && (
-              <span className="text-[var(--text-muted)]">{platform}</span>
+            {link && (
+              <div className="mt-2 flex items-center gap-1 text-[11px] text-[var(--text-muted)] transition-colors group-hover:text-[#05df72] sm:justify-center">
+                <span>View Certificate</span>
+                <ExternalLink size={10} />
+              </div>
             )}
-            {platform && date && (
-              <span className="text-[var(--text-dim)]">•</span>
-            )}
-            <span className="text-[#00d9ff]">{date}</span>
           </div>
-
-          <div className="mt-3 flex justify-center">
-            <Award strokeWidth={1} className="h-3 w-3 text-[var(--text-dim)]" />
-          </div>
-
-          {link && (
-            <div className="mt-2 flex items-center justify-center gap-1 text-[10px] text-[var(--text-muted)] opacity-0 transition-opacity group-hover:opacity-100">
-              <span>View</span>
-              <ExternalLink size={10} />
-            </div>
-          )}
         </div>
       </div>
     );

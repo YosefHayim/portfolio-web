@@ -145,7 +145,7 @@ const Projects = () => {
         <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
           Projects
         </h1>
-        <p className="mx-auto mb-8 max-w-md text-lg text-[var(--text-secondary)]">
+        <p className="mx-auto py-4 text-lg text-[var(--text-secondary)]">
           A collection of things I've built, from automation tools to full-stack
           applications
         </p>
@@ -221,7 +221,7 @@ const Projects = () => {
                 className={`rounded-full px-2 py-0.5 text-xs ${
                   filter === option.value
                     ? "bg-black/20 text-black"
-                    : "bg-[var(--bg-elevated)] text-[var(--text-muted)]"
+                    : "grid grid-cols-2 gap-2 bg-[var(--bg-elevated)] py-2 text-[var(--text-muted)]"
                 }`}
               >
                 {getFilterCount(option.value)}

@@ -145,7 +145,7 @@ const MyJourney = () => {
               </div>
 
               <div
-                className="absolute top-6 left-0 -ml-1 h-2 w-2 rounded-full md:left-1/2 md:-ml-1"
+                className="absolute top-6 left-0 -ml-1 size-2 rounded-full md:left-1/2 md:ml-0 md:-translate-x-1/2"
                 style={{ backgroundColor: item.color }}
               />
             </motion.div>

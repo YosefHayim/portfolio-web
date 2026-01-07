@@ -73,9 +73,9 @@ const About = () => {
           </p>
 
           <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
-            From leading soldiers as an IDF combat commander to graduating with
-            excellence from a 796-hour bootcamp — all while serving — I've
-            learned that the best way to grow is to{' '}
+            From earning 2 excellence awards as an IDF combat commander to
+            graduating with excellence from my bootcamp, I've learned that the
+            best way to grow is to{' '}
             <span className="font-medium text-[#05df72]">
               build things that matter
             </span>

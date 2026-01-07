@@ -39,6 +39,19 @@ const Hero = () => {
       animate="visible"
       className="flex min-h-[80vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-20 lg:flex-row lg:gap-12"
     >
+      <motion.div
+        variants={itemVariants}
+        className="order-first mb-8 w-full max-w-xs lg:order-last lg:mb-0 lg:max-w-md lg:flex-1"
+      >
+        <img
+          src="/images-of-me/hero-image.svg"
+          alt="Joseph Sabag illustration"
+          className="h-auto w-full"
+          width={400}
+          height={400}
+        />
+      </motion.div>
+
       <div className="flex flex-1 flex-col items-center lg:items-start">
         <motion.h1
           variants={itemVariants}
@@ -101,7 +114,7 @@ const Hero = () => {
         >
           <div className="flex flex-col items-center">
             <span className="text-2xl font-semibold text-[var(--text-primary)]">
-              12+
+              10+
             </span>
             <span className="text-sm">Projects</span>
           </div>
@@ -117,23 +130,10 @@ const Hero = () => {
             <span className="text-2xl font-semibold text-[var(--text-primary)]">
               3x
             </span>
-            <span className="text-sm">IDF Excellence</span>
+            <span className="text-sm">Excellence</span>
           </div>
         </motion.div>
       </div>
-
-      <motion.div
-        variants={itemVariants}
-        className="mt-12 w-full max-w-md lg:mt-0 lg:flex-1"
-      >
-        <img
-          src="/images-of-me/hero-image.svg"
-          alt="Joseph Sabag illustration"
-          className="h-auto w-full"
-          width={400}
-          height={400}
-        />
-      </motion.div>
     </motion.section>
   );
 };

@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
 import { FaWhatsapp } from 'react-icons/fa';
-import { HiOutlineSparkles } from 'react-icons/hi2';
 import { Link } from 'react-router';
 
 type ReturnVisitorDialogProps = {
@@ -47,12 +46,18 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
 
               <div className="relative flex flex-col items-center text-center">
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.2, type: 'spring' }}
-                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#05df72]/10"
+                  className="mb-4 w-full max-w-[200px]"
                 >
-                  <HiOutlineSparkles className="text-3xl text-[#05df72]" />
+                  <img
+                    src="/images-of-me/hero-image.svg"
+                    alt="Joseph Sabag"
+                    className="h-auto w-full"
+                    width={200}
+                    height={200}
+                  />
                 </motion.div>
 
                 <motion.h2

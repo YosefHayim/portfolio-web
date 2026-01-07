@@ -1,9 +1,10 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router';
-import { FaWhatsapp, FaArrowRight } from 'react-icons/fa';
-import { HiOutlineSparkles } from 'react-icons/hi2';
-import ImageOfMyself from '@/Components/ImageOfMyself/ImageOfMyself';
-import { StackedCarousel } from '@/Components/ui/stacked-carousel';
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+
+import { HiOutlineSparkles } from "react-icons/hi2";
+import ImageOfMyself from "@/Components/ImageOfMyself/ImageOfMyself";
+import { Link } from "react-router";
+import { StackedCarousel } from "@/Components/ui/stacked-carousel";
+import { motion } from "framer-motion";
 
 const STAGGER_DELAY = 0.1;
 const ANIMATION_DURATION = 0.8;
@@ -28,7 +29,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: ANIMATION_DURATION,
-      ease: 'easeOut' as const,
+      ease: "easeOut" as const,
     },
   },
 };
@@ -41,30 +42,20 @@ const Hero = () => {
       animate="visible"
       className="flex min-h-[80vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-20"
     >
-      <motion.div
-        variants={itemVariants}
-        className="mb-8 flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4 py-2"
-      >
-        <HiOutlineSparkles className="text-[#05df72]" />
-        <span className="text-sm text-[var(--text-secondary)]">
-          Open to opportunities
-        </span>
-      </motion.div>
-
       <motion.h1
         variants={itemVariants}
         className="mb-6 text-center text-4xl leading-[1.1] font-medium tracking-tight text-[var(--text-primary)] md:text-6xl lg:text-7xl"
       >
         Building digital tools
         <br />
-        <span className="text-[var(--text-muted)]">that actually</span>{' '}
+        <span className="text-[var(--text-muted)]">that actually</span>{" "}
         <span className="relative">
           <span className="relative z-10 text-[#05df72]">matter</span>
           <motion.span
-            className="absolute -inset-x-2 -inset-y-1 -z-0 rounded-lg bg-[#05df72]/10"
+            className="absolute -inset-x-2 -z-0 rounded-lg bg-[#05df72]/10"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
+            transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
             style={{ originX: 0 }}
           />
         </span>
@@ -80,13 +71,13 @@ const Hero = () => {
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col items-center gap-4 sm:flex-row"
+        className="flex flex-col items-center gap-4 py-6 sm:flex-row"
       >
         <Link to="/projects">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group flex items-center gap-3 rounded-full bg-[var(--text-primary)] px-6 py-3 font-medium text-[var(--bg-void)] transition-all"
+            className="group flex items-center gap-3 rounded-full bg-[var(--text-primary)] px-6 py-2 font-medium text-[var(--bg-void)] transition-all"
           >
             View my work
             <FaArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -129,21 +120,6 @@ const Hero = () => {
           </span>
           <span className="text-sm">Veteran</span>
         </div>
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="mt-16">
-        <ImageOfMyself profilePic="/images-of-me/whatsapp-profile.png" />
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="mt-16 w-full max-w-md">
-        <StackedCarousel
-          images={[
-            'https://placehold.co/400x320/1f2937/05df72?text=Project+1',
-            'https://placehold.co/400x320/1f2937/00d9ff?text=Project+2',
-            'https://placehold.co/400x320/1f2937/fdc700?text=Project+3',
-            'https://placehold.co/400x320/1f2937/ff6467?text=Project+4',
-          ]}
-        />
       </motion.div>
     </motion.section>
   );

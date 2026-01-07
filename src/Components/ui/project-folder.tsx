@@ -500,15 +500,15 @@ const ImageLightbox = ({
                     </div>
                   )}
 
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 py-1">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2 py-1 md:gap-2.5 md:px-2.5">
                     {projects.map((_, idx) => (
                       <button
                         type="button"
                         key={`dot-${projects[idx].id}`}
                         onClick={() => handleDotClick(idx)}
                         className={cn(
-                          'h-1.5 w-1.5 rounded-full transition-all duration-500',
+                          'size-1 rounded-full transition-all duration-500 md:size-1.5',
                           idx === internalIndex
                             ? 'scale-150 bg-[#05df72]'
                             : 'bg-[var(--text-muted)]/30 hover:bg-[var(--text-muted)]/60'
@@ -516,7 +516,7 @@ const ImageLightbox = ({
                       />
                     ))}
                   </div>
-                  <p className="text-xs font-bold tracking-widest text-[var(--text-muted)]/60 uppercase">
+                  <p className="text-[10px] font-bold tracking-widest text-[var(--text-muted)]/60 uppercase md:text-xs">
                     {internalIndex + 1} / {totalProjects}
                   </p>
                 </div>
@@ -555,6 +555,7 @@ interface AnimatedFolderProps {
   projects: FolderProject[];
   className?: string;
   gradient?: string;
+  forceHover?: boolean;
 }
 
 export const AnimatedFolder = ({
@@ -562,9 +563,11 @@ export const AnimatedFolder = ({
   projects,
   className,
   gradient,
+  forceHover = false,
 }: AnimatedFolderProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const showHoverEffect = isHovered || forceHover;
   const [sourceRect, setSourceRect] = useState<DOMRect | null>(null);
   const [hiddenCardId, setHiddenCardId] = useState<string | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -609,7 +612,7 @@ export const AnimatedFolder = ({
         )}
         style={{
           perspective: '1200px',
-          transform: isHovered
+          transform: showHoverEffect
             ? 'scale(1.04) rotate(-1.5deg)'
             : 'scale(1) rotate(0deg)',
         }}
@@ -622,7 +625,7 @@ export const AnimatedFolder = ({
             background: gradient
               ? `radial-gradient(circle at 50% 70%, ${gradient.match(/#[a-fA-F0-9]{3,6}/)?.[0] || '#05df72'} 0%, transparent 70%)`
               : 'radial-gradient(circle at 50% 70%, #05df72 0%, transparent 70%)',
-            opacity: isHovered ? 0.12 : 0,
+            opacity: showHoverEffect ? 0.12 : 0,
           }}
         />
 
@@ -636,7 +639,7 @@ export const AnimatedFolder = ({
               background: backBg,
               filter: gradient ? 'brightness(0.9)' : 'none',
               transformOrigin: 'bottom center',
-              transform: isHovered
+              transform: showHoverEffect
                 ? 'rotateX(-20deg) scaleY(1.05)'
                 : 'rotateX(0deg) scaleY(1)',
               transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -652,7 +655,7 @@ export const AnimatedFolder = ({
               top: 'calc(50% - 48px - 12px)',
               left: 'calc(50% - 64px + 16px)',
               transformOrigin: 'bottom center',
-              transform: isHovered
+              transform: showHoverEffect
                 ? 'rotateX(-30deg) translateY(-3px)'
                 : 'rotateX(0deg) translateY(0)',
               transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -679,7 +682,7 @@ export const AnimatedFolder = ({
                 title={project.title}
                 techStack={project.techStack}
                 delay={index * CARD_DELAY_INCREMENT}
-                isVisible={isHovered}
+                isVisible={showHoverEffect}
                 index={index}
                 totalCount={previewProjects.length}
                 onClick={() => handleProjectClick(project, index)}
@@ -694,7 +697,7 @@ export const AnimatedFolder = ({
               background: frontBg,
               top: 'calc(50% - 48px + 4px)',
               transformOrigin: 'bottom center',
-              transform: isHovered
+              transform: showHoverEffect
                 ? 'rotateX(35deg) translateY(12px)'
                 : 'rotateX(0deg) translateY(0)',
               transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -709,7 +712,7 @@ export const AnimatedFolder = ({
               background:
                 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%)',
               transformOrigin: 'bottom center',
-              transform: isHovered
+              transform: showHoverEffect
                 ? 'rotateX(35deg) translateY(12px)'
                 : 'rotateX(0deg) translateY(0)',
               transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -722,15 +725,15 @@ export const AnimatedFolder = ({
           <h3
             className="mt-4 text-lg font-bold text-[var(--text-primary)] transition-all duration-500"
             style={{
-              transform: isHovered ? 'translateY(2px)' : 'translateY(0)',
-              letterSpacing: isHovered ? '-0.01em' : '0',
+              transform: showHoverEffect ? 'translateY(2px)' : 'translateY(0)',
+              letterSpacing: showHoverEffect ? '-0.01em' : '0',
             }}
           >
             {title}
           </h3>
           <p
             className="text-sm font-medium text-[var(--text-muted)] transition-all duration-500"
-            style={{ opacity: isHovered ? 0.8 : 1 }}
+            style={{ opacity: showHoverEffect ? 0.8 : 1 }}
           >
             {projects.length} {projects.length === 1 ? 'project' : 'projects'}
           </p>
@@ -739,8 +742,8 @@ export const AnimatedFolder = ({
         <div
           className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1.5 text-xs font-semibold tracking-widest text-[var(--text-muted)]/50 uppercase transition-all duration-500"
           style={{
-            opacity: isHovered ? 0 : 1,
-            transform: isHovered ? 'translateY(10px)' : 'translateY(0)',
+            opacity: showHoverEffect ? 0 : 1,
+            transform: showHoverEffect ? 'translateY(10px)' : 'translateY(0)',
           }}
         >
           <span>Hover</span>

@@ -11,7 +11,7 @@ const CURSOR_BLINK_DURATION = 0.8;
 
 const lines = [
   { label: 'name', value: 'Joseph Sabag' },
-  { label: 'role', value: 'Full-Stack Developer' },
+  { label: 'role', value: 'AI Software Engineer' },
   { label: 'focus', value: 'Building tools that solve real problems' },
   {
     label: 'stack',

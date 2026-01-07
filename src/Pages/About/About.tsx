@@ -51,13 +51,23 @@ const About = () => {
           </p>
         </motion.div>
 
+        <motion.div variants={itemVariants} className="w-full">
+          <motion.img
+            src="/images-of-me/desktop-view.svg"
+            alt="Desktop workspace view"
+            className="w-full rounded-lg"
+            width={800}
+            height={600}
+          />
+        </motion.div>
+
         <motion.div
           variants={itemVariants}
           className="flex flex-col gap-6 text-center"
         >
           <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
-            I'm <span className="text-[var(--text-primary)]">Joseph</span>, a
-            full-stack developer who sees coding as a blend of creativity and
+            I'm <span className="text-[var(--text-primary)]">Joseph</span>, a AI
+            software engineer who sees coding as a blend of creativity and
             problem-solving. I started with zero experience and built my way up
             through curiosity, persistence, and a lot of late nights.
           </p>

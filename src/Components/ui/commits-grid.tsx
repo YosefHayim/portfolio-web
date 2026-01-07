@@ -142,7 +142,7 @@ export const CommitsGrid = ({ text }: { text: string }) => {
 
   return (
     <section
-      className="grid w-full max-w-xl gap-0.5 rounded-[10px] border bg-[var(--bg-card)] p-1.5 sm:gap-1 sm:rounded-[15px] sm:p-3"
+      className="grid w-full max-w-[280px] gap-0.5 rounded-[10px] border bg-[var(--bg-card)] p-1.5 sm:max-w-md sm:gap-1 sm:rounded-[15px] sm:p-3 md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
       style={{
         gridTemplateColumns: `repeat(${gridWidth}, minmax(0, 1fr))`,
         gridTemplateRows: `repeat(${gridHeight}, minmax(0, 1fr))`,

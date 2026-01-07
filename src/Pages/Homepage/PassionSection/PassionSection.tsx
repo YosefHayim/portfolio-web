@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GitCommitHorizontal, FolderGit2, Star } from 'lucide-react';
 import { CommitsGrid } from '@/Components/ui/commits-grid';
 import { useGitHubStats } from '@/hooks/useGitHubStats';
 
@@ -70,7 +71,8 @@ const PassionSection = () => {
         className="flex flex-wrap items-center justify-center gap-6 text-center"
       >
         <div className="flex flex-col items-center">
-          <span className="text-2xl font-bold text-[#05df72]">
+          <span className="flex items-center gap-1 text-2xl font-bold text-[#05df72]">
+            <GitCommitHorizontal className="size-5" />
             {isLoading ? '...' : formatNumber(stats?.totalCommits || 0)}
           </span>
           <span className="text-xs text-[var(--text-muted)]">
@@ -81,7 +83,8 @@ const PassionSection = () => {
         <div className="h-8 w-px bg-[var(--border-subtle)]" />
 
         <div className="flex flex-col items-center">
-          <span className="text-2xl font-bold text-[#00d9ff]">
+          <span className="flex items-center gap-1 text-2xl font-bold text-[#00d9ff]">
+            <FolderGit2 className="size-5" />
             {isLoading ? '...' : stats?.totalRepos || 0}
           </span>
           <span className="text-xs text-[var(--text-muted)]">Repositories</span>
@@ -90,7 +93,8 @@ const PassionSection = () => {
         <div className="h-8 w-px bg-[var(--border-subtle)]" />
 
         <div className="flex flex-col items-center">
-          <span className="text-2xl font-bold text-[#fdc700]">
+          <span className="flex items-center gap-1 text-2xl font-bold text-[#fdc700]">
+            <Star className="size-5" />
             {isLoading ? '...' : stats?.totalStars || 0}
           </span>
           <span className="text-xs text-[var(--text-muted)]">GitHub Stars</span>

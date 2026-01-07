@@ -1,24 +1,24 @@
-import { useEffect, useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Grid3X3, FolderOpen } from "lucide-react";
-import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
-import ProjectCard from "./ProjectCard/ProjectCard";
-import { projects as projectsData } from "@/data/projects";
-import { staggerContainer, staggerItem } from "@/animations/variants";
-import { useDebounce } from "@/hooks/useDebounce";
+import { useEffect, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, X, Grid3X3, FolderOpen } from 'lucide-react';
+import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
+import ProjectCard from './ProjectCard/ProjectCard';
+import { projects as projectsData } from '@/data/projects';
+import { staggerContainer, staggerItem } from '@/animations/variants';
+import { useDebounce } from '@/hooks/useDebounce';
 import {
   AnimatedFolder,
   type FolderProject,
-} from "@/Components/ui/project-folder";
+} from '@/Components/ui/project-folder';
 
-type FilterStatus = "all" | "live" | "development" | "completed";
-type ViewMode = "grid" | "folders";
+type FilterStatus = 'all' | 'live' | 'development' | 'completed';
+type ViewMode = 'grid' | 'folders';
 
 const filterOptions: { value: FilterStatus; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "live", label: "Live" },
-  { value: "development", label: "In Progress" },
-  { value: "completed", label: "Completed" },
+  { value: 'all', label: 'All' },
+  { value: 'live', label: 'Live' },
+  { value: 'development', label: 'In Progress' },
+  { value: 'completed', label: 'Completed' },
 ];
 
 const DEBOUNCE_DELAY_MS = 300;
@@ -29,37 +29,37 @@ const folderConfig: {
   gradient: string;
 }[] = [
   {
-    status: "live",
-    title: "Live Projects",
-    gradient: "linear-gradient(135deg, #05df72 0%, #04a859 100%)",
+    status: 'live',
+    title: 'Live Projects',
+    gradient: 'linear-gradient(135deg, #05df72 0%, #04a859 100%)',
   },
   {
-    status: "development",
-    title: "In Development",
-    gradient: "linear-gradient(135deg, #fdc700 0%, #f59e0b 100%)",
+    status: 'development',
+    title: 'In Development',
+    gradient: 'linear-gradient(135deg, #fdc700 0%, #f59e0b 100%)',
   },
   {
-    status: "completed",
-    title: "Completed",
-    gradient: "linear-gradient(135deg, #00d9ff 0%, #0072ff 100%)",
+    status: 'completed',
+    title: 'Completed',
+    gradient: 'linear-gradient(135deg, #00d9ff 0%, #0072ff 100%)',
   },
 ];
 
 const Projects = () => {
-  const [filter, setFilter] = useState<FilterStatus>("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<ViewMode>("folders");
+  const [filter, setFilter] = useState<FilterStatus>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState<ViewMode>('folders');
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY_MS);
 
   useEffect(() => {
-    document.title = "Projects";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.title = 'Projects';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const filteredProjects = useMemo(() => {
     let result = projectsData;
 
-    if (filter !== "all") {
+    if (filter !== 'all') {
       result = result.filter((p) => p.status === filter);
     }
 
@@ -71,7 +71,7 @@ const Projects = () => {
           .toLowerCase()
           .includes(query);
         const techMatch = project.techStack.some((tech) =>
-          tech.toLowerCase().includes(query),
+          tech.toLowerCase().includes(query)
         );
         return nameMatch || descriptionMatch || techMatch;
       });
@@ -92,7 +92,7 @@ const Projects = () => {
       : projectsData;
 
     projectsToGroup.forEach((project) => {
-      const status = project.status || "completed";
+      const status = project.status || 'completed';
       if (grouped[status]) {
         grouped[status].push({
           id: project.id,
@@ -111,7 +111,7 @@ const Projects = () => {
   }, [filteredProjects, debouncedSearchQuery]);
 
   const getFilterCount = (status: FilterStatus): number => {
-    if (status === "all") {
+    if (status === 'all') {
       return debouncedSearchQuery.trim()
         ? filteredProjects.length
         : projectsData.length;
@@ -122,7 +122,7 @@ const Projects = () => {
           const nameMatch = p.name.toLowerCase().includes(query);
           const descriptionMatch = p.description.toLowerCase().includes(query);
           const techMatch = p.techStack.some((tech) =>
-            tech.toLowerCase().includes(query),
+            tech.toLowerCase().includes(query)
           );
           return nameMatch || descriptionMatch || techMatch;
         })
@@ -131,7 +131,7 @@ const Projects = () => {
   };
 
   const clearSearch = () => {
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   return (
@@ -177,11 +177,11 @@ const Projects = () => {
           <div className="flex h-12 items-center gap-1 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-1.5">
             <button
               type="button"
-              onClick={() => setViewMode("folders")}
+              onClick={() => setViewMode('folders')}
               className={`flex h-full items-center justify-center rounded-lg px-3 transition-all ${
-                viewMode === "folders"
-                  ? "bg-[#05df72] text-black"
-                  : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                viewMode === 'folders'
+                  ? 'bg-[#05df72] text-black'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
               }`}
               title="Folder View"
             >
@@ -189,11 +189,11 @@ const Projects = () => {
             </button>
             <button
               type="button"
-              onClick={() => setViewMode("grid")}
+              onClick={() => setViewMode('grid')}
               className={`flex h-full items-center justify-center rounded-lg px-3 transition-all ${
-                viewMode === "grid"
-                  ? "bg-[#05df72] text-black"
-                  : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                viewMode === 'grid'
+                  ? 'bg-[#05df72] text-black'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
               }`}
               title="Grid View"
             >
@@ -212,16 +212,16 @@ const Projects = () => {
               whileTap={{ scale: 0.98 }}
               className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                 filter === option.value
-                  ? "bg-[#05df72] text-black"
-                  : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-secondary)]"
+                  ? 'bg-[#05df72] text-black'
+                  : 'bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-secondary)]'
               }`}
             >
               {option.label}
               <span
                 className={`rounded-full px-2 py-0.5 text-xs ${
                   filter === option.value
-                    ? "bg-black/20 text-black"
-                    : "grid grid-cols-2 gap-2 bg-[var(--bg-elevated)] py-2 text-[var(--text-muted)]"
+                    ? 'bg-black/20 text-black'
+                    : 'grid grid-cols-2 gap-2 bg-[var(--bg-elevated)] py-2 text-[var(--text-muted)]'
                 }`}
               >
                 {getFilterCount(option.value)}
@@ -237,14 +237,14 @@ const Projects = () => {
             className="mt-4 text-sm text-[var(--text-muted)]"
           >
             Showing {filteredProjects.length} result
-            {filteredProjects.length !== 1 ? "s" : ""} for "
+            {filteredProjects.length !== 1 ? 's' : ''} for "
             {debouncedSearchQuery}"
           </motion.p>
         )}
       </motion.header>
 
       <AnimatePresence mode="wait">
-        {viewMode === "folders" ? (
+        {viewMode === 'folders' ? (
           <motion.div
             key="folders"
             initial={{ opacity: 0, y: 20 }}
@@ -253,7 +253,7 @@ const Projects = () => {
             transition={{ duration: 0.4 }}
             className="grid w-full max-w-5xl grid-cols-1 justify-items-center gap-8 py-4 md:grid-cols-2 lg:grid-cols-3"
           >
-            {filter === "all" ? (
+            {filter === 'all' ? (
               folderConfig.map(
                 (folder) =>
                   projectsByStatus[folder.status].length > 0 && (
@@ -275,7 +275,7 @@ const Projects = () => {
                         }
                       />
                     </motion.div>
-                  ),
+                  )
               )
             ) : (
               <motion.div
@@ -287,7 +287,7 @@ const Projects = () => {
                 <AnimatedFolder
                   title={
                     folderConfig.find((f) => f.status === filter)?.title ||
-                    "Projects"
+                    'Projects'
                   }
                   projects={filteredProjects.map((p) => ({
                     id: p.id,

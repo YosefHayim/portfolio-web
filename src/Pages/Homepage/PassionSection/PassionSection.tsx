@@ -1,19 +1,19 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { FolderGit2, GitCommitHorizontal, Star } from "lucide-react";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { FolderGit2, GitCommitHorizontal, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-import { CommitsGrid } from "@/Components/ui/commits-grid";
-import { useGitHubStats } from "@/hooks/useGitHubStats";
+import { CommitsGrid } from '@/Components/ui/commits-grid';
+import { useGitHubStats } from '@/hooks/useGitHubStats';
 
 const PASSION_PHRASES = [
-  "SHIP IT",
-  "BUILD",
-  "CREATE",
-  "DEPLOY",
-  "HUSTLE",
-  "SCALE",
-  "GROW",
-  "CODE",
+  'SHIP IT',
+  'BUILD',
+  'CREATE',
+  'DEPLOY',
+  'HUSTLE',
+  'SCALE',
+  'GROW',
+  'CODE',
 ];
 
 const PHRASE_INTERVAL_MS = 3000;
@@ -74,7 +74,7 @@ const PassionSection = () => {
         <div className="flex flex-col items-center">
           <span className="flex items-center gap-1 text-2xl font-bold text-[#05df72]">
             <GitCommitHorizontal className="size-5" />
-            {isLoading ? "..." : formatNumber(stats?.totalCommits || 0)}
+            {isLoading ? '...' : formatNumber(stats?.totalCommits || 0)}
           </span>
           <span className="text-xs text-[var(--text-muted)]">
             Total Commits
@@ -86,7 +86,7 @@ const PassionSection = () => {
         <div className="flex flex-col items-center">
           <span className="flex items-center gap-1 text-2xl font-bold text-[#00d9ff]">
             <FolderGit2 className="size-5" />
-            {isLoading ? "..." : stats?.totalRepos || 0}
+            {isLoading ? '...' : stats?.totalRepos || 0}
           </span>
           <span className="text-xs text-[var(--text-muted)]">Repositories</span>
         </div>
@@ -96,7 +96,7 @@ const PassionSection = () => {
         <div className="flex flex-col items-center">
           <span className="flex items-center gap-1 text-2xl font-bold text-[#fdc700]">
             <Star className="size-5" />
-            {isLoading ? "..." : stats?.totalStars || 0}
+            {isLoading ? '...' : stats?.totalStars || 0}
           </span>
           <span className="text-xs text-[var(--text-muted)]">GitHub Stars</span>
         </div>

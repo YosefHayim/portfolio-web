@@ -1,4 +1,4 @@
-import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import { Award, FolderKanban, Home, Layers, User } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -8,37 +8,37 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/Components/ui/sidebar";
+} from '@/Components/ui/sidebar';
 
-import { Link } from "react-router";
-import { SocialIcons } from "../ui/social-icons";
+import { Link } from 'react-router';
+import { SocialIcons } from '../ui/social-icons';
 
 const ICON_SIZE = 18;
 
 const items = [
   {
-    title: "Home",
-    url: "/",
+    title: 'Home',
+    url: '/',
     icon: <Home size={ICON_SIZE} />,
   },
   {
-    title: "About",
-    url: "/about",
+    title: 'About',
+    url: '/about',
     icon: <User size={ICON_SIZE} />,
   },
   {
-    title: "Tech Stack",
-    url: "/techStack",
+    title: 'Tech Stack',
+    url: '/techStack',
     icon: <Layers size={ICON_SIZE} />,
   },
   {
-    title: "Projects",
-    url: "/projects",
+    title: 'Projects',
+    url: '/projects',
     icon: <FolderKanban size={ICON_SIZE} />,
   },
   {
-    title: "Certifications",
-    url: "/certifications",
+    title: 'Certifications',
+    url: '/certifications',
     icon: <Award size={ICON_SIZE} />,
   },
 ];

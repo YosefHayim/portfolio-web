@@ -46,17 +46,17 @@ export function AppSidebar() {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
+    <Sidebar className="border-none bg-transparent">
+      <SidebarContent className="bg-[var(--bg-card)] p-3">
+        <SidebarGroup className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-1">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     onClick={toggleSidebar}
                     asChild
-                    className="text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--bg-elevated)] hover:text-[#05df72]"
+                    className="rounded-xl text-[var(--text-primary)] transition-all duration-200 hover:bg-[var(--bg-elevated)] hover:text-[#05df72]"
                   >
                     <Link to={item.url}>
                       {item.icon}
@@ -65,13 +65,13 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <hr className="my-3 border-[var(--border-subtle)]" />
-              <section className="flex justify-center px-2 py-2">
-                <SocialIcons />
-              </section>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        <div className="mt-3 flex justify-center rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
+          <SocialIcons />
+        </div>
       </SidebarContent>
     </Sidebar>
   );

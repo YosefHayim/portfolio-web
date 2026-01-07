@@ -1,10 +1,7 @@
-import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 
-import { HiOutlineSparkles } from "react-icons/hi2";
-import ImageOfMyself from "@/Components/ImageOfMyself/ImageOfMyself";
-import { Link } from "react-router";
-import { StackedCarousel } from "@/Components/ui/stacked-carousel";
-import { motion } from "framer-motion";
+import { Link } from 'react-router';
+import { motion } from 'framer-motion';
 
 const STAGGER_DELAY = 0.1;
 const ANIMATION_DURATION = 0.8;
@@ -29,7 +26,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: ANIMATION_DURATION,
-      ease: "easeOut" as const,
+      ease: 'easeOut' as const,
     },
   },
 };
@@ -48,14 +45,14 @@ const Hero = () => {
       >
         Building digital tools
         <br />
-        <span className="text-[var(--text-muted)]">that actually</span>{" "}
+        <span className="text-[var(--text-muted)]">that actually</span>{' '}
         <span className="relative">
           <span className="relative z-10 text-[#05df72]">matter</span>
           <motion.span
             className="absolute -inset-x-2 -z-0 rounded-lg bg-[#05df72]/10"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
             style={{ originX: 0 }}
           />
         </span>

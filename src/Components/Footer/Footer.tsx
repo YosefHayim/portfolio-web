@@ -17,8 +17,8 @@ const navLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t border-[var(--border-subtle)] bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+    <footer className="w-full max-w-full overflow-hidden border-t border-[var(--border-subtle)] bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
+      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <motion.section
             initial={{ opacity: 0, y: ANIMATION_Y_OFFSET }}
@@ -73,7 +73,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-[var(--border-subtle)] px-6 py-4">
+      <div className="border-t border-[var(--border-subtle)] px-4 py-4 sm:px-6">
         <p className="text-center text-xs text-[var(--text-dim)]">
           © {CURRENT_YEAR} Joseph Sabag. All rights reserved.
         </p>

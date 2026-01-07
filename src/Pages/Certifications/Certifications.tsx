@@ -1,15 +1,14 @@
-import { Award, TrendingUp } from "lucide-react";
-import { staggerContainer, staggerItem } from "@/animations/variants";
+import { staggerContainer, staggerItem } from '@/animations/variants';
 
-import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
-import CertificationCards from "./CertificationsCards/CertificationCards";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
+import CertificationCards from './CertificationsCards/CertificationCards';
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Certifications = () => {
   useEffect(() => {
-    document.title = "Certifications";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.title = 'Certifications';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (

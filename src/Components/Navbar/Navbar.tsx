@@ -1,15 +1,20 @@
 import NavigationButton from './NavigationButton/NavigationButton';
 import Logo from '../Logo/Logo';
 import { AppSidebar } from '../Sidebar/Sidebar';
-import { SidebarTrigger } from '../ui/sidebar';
+import { useSidebar } from '../ui/sidebar';
+import AnimatedHamburger from '../AnimatedHamburger/AnimatedHamburger';
 
 const Navbar = () => {
+  const { openMobile, toggleSidebar } = useSidebar();
+
   return (
     <header className="fixed left-0 z-20 flex w-full items-center justify-between gap-2 border-b border-gray-800 p-3 backdrop-blur-3xl">
       <div className="flex w-full items-center justify-between gap-2">
         <Logo />
         <AppSidebar />
-        <SidebarTrigger className="bg-transparent hover:bg-gray-700 md:hidden" />
+        <div className="md:hidden">
+          <AnimatedHamburger isOpen={openMobile} onClick={toggleSidebar} />
+        </div>
       </div>
       <nav className="hidden w-full items-center md:flex">
         <NavigationButton to="/" pageName="Home" />

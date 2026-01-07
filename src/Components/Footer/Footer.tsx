@@ -1,18 +1,18 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router';
-import Logo from '../Logo/Logo';
-import { SocialIcons } from '../ui/social-icons';
+import { Link } from "react-router";
+import Logo from "../Logo/Logo";
+import { SocialIcons } from "../ui/social-icons";
+import { motion } from "framer-motion";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const ANIMATION_DELAY_STEP = 0.1;
 const ANIMATION_Y_OFFSET = 20;
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/techStack', label: 'Tech Stack' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/certifications', label: 'Certifications' },
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/techStack", label: "Tech Stack" },
+  { to: "/projects", label: "Projects" },
+  { to: "/certifications", label: "Certifications" },
 ];
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
           >
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-              Just trying to get better{' '}
+              Just trying to get better{" "}
               <span className="font-semibold text-[#05df72]">everyday.</span>
             </p>
           </motion.section>

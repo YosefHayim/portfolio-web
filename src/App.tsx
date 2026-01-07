@@ -20,10 +20,10 @@ const App = () => {
   const { shouldShowDialog, dismissDialog } = useReturnVisitor();
 
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
       <ScrollProgress />
       <Navbar />
-      <div className="flex w-full flex-col items-center justify-center gap-10 overflow-hidden p-5 pb-24 md:pb-5">
+      <main className="flex flex-1 flex-col items-center justify-center gap-10 overflow-hidden p-5 pb-24 md:pb-5">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Homepage />} />
@@ -35,8 +35,8 @@ const App = () => {
             <Route path="/404" element={<NotFound404 />} />
           </Routes>
         </AnimatePresence>
-        <Footer />
-      </div>
+      </main>
+      <Footer />
       <BottomNav />
       <ReturnVisitorDialog isOpen={shouldShowDialog} onClose={dismissDialog} />
     </div>

@@ -1,6 +1,3 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { FaWhatsapp } from "react-icons/fa";
 import {
   FiCheckCircle,
   FiCode,
@@ -19,9 +16,13 @@ import {
 } from "react-icons/fi";
 import { IoArrowBack, IoCodeSlash, IoOpenOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
-import { getProjectById } from "@/data/projects";
+import { FaWhatsapp } from "react-icons/fa";
 import { TechBadge } from "@/utils/techIcons";
+import { getProjectById } from "@/data/projects";
 
 const ICON_SIZE = 20;
 
@@ -203,7 +204,7 @@ const ProjectDetail = () => {
               initial={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-3 py-2">
                 {status && (
                   <motion.span
                     animate={{ opacity: 1 }}
@@ -219,7 +220,7 @@ const ProjectDetail = () => {
                 )}
                 <motion.span
                   animate={{ opacity: 1 }}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-muted)]"
+                  className="inline-flex justify-start gap-1.5 rounded-full bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-muted)]"
                   initial={{ opacity: 0 }}
                   transition={{ delay: 0.3 }}
                 >
@@ -302,7 +303,7 @@ const ProjectDetail = () => {
 
           <div className="relative mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <motion.div
-              className="mb-12 text-center"
+              className="mb-12 flex flex-col items-center justify-center py-4 text-center"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
@@ -473,18 +474,18 @@ const ProjectDetail = () => {
             viewport={{ once: true }}
             whileInView={{ opacity: 1 }}
           >
-            <div className="mb-6 inline-flex rounded-xl bg-[var(--bg-card)] p-3">
+            <div className="mb-6 flex items-center justify-center rounded-xl p-3">
               <FiGithub className="text-[#05df72]" size={28} />
             </div>
 
-            <h2 className="mb-3 text-xl font-semibold text-[var(--text-primary)] md:text-2xl">
+            <h2 className="mb-3 text-center text-xl font-semibold text-[var(--text-primary)] md:text-2xl">
               Interested in this project?
             </h2>
-            <p className="mb-8 text-[var(--text-muted)]">
-              Explore the code or reach out for collaboration.
+            <p className="pb-8 text-[var(--text-muted)]">
+              Explore my code or reach out for collaboration.
             </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <div className="flex w-full flex-col items-center justify-center gap-2">
               <Link
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#05df72] px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#04c566]"
                 target="_blank"

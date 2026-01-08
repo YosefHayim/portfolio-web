@@ -24,6 +24,11 @@ import React, {
 } from "react";
 
 import { ColorOrb } from "@/Components/ui/ai-input";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/Components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { cx } from "class-variance-authority";
 import { formatDistanceToNow } from "date-fns";
@@ -516,24 +521,33 @@ export const AIChatSidebar = () => {
               exit={{ opacity: 0 }}
               className="flex h-[52px] items-center justify-center whitespace-nowrap select-none"
             >
-              <div className="flex items-center justify-center gap-3 px-4">
-                <ColorOrb
-                  dimension="28px"
-                  tones={{
-                    base: "oklch(10% 0.02 145)",
-                    accent1: "oklch(80% 0.25 145)",
-                    accent2: "oklch(70% 0.2 195)",
-                    accent3: "oklch(75% 0.18 280)",
-                  }}
-                />
-                <button
-                  type="button"
-                  className="flex items-center gap-2 rounded-full px-3 py-1.5 text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72]"
-                  onClick={() => setIsOpen(true)}
-                >
-                  <span className="text-sm font-medium">Ask AI</span>
-                </button>
-              </div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div
+                    className="flex cursor-pointer items-center justify-center gap-3 px-4"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    <ColorOrb
+                      dimension="28px"
+                      tones={{
+                        base: "oklch(10% 0.02 145)",
+                        accent1: "oklch(80% 0.25 145)",
+                        accent2: "oklch(70% 0.2 195)",
+                        accent3: "oklch(75% 0.18 280)",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="flex items-center gap-2 rounded-full px-3 py-1.5 text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72]"
+                    >
+                      <span className="text-sm font-medium">Ask AI</span>
+                    </button>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="top" sideOffset={8}>
+                  Chat with Joseph's AI assistant
+                </TooltipContent>
+              </Tooltip>
             </motion.footer>
           )}
         </AnimatePresence>
@@ -578,28 +592,39 @@ export const AIChatSidebar = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 sm:gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setAutoSpeak(!autoSpeak)}
-                    className={cn(
-                      "rounded-lg p-1 transition-colors sm:p-1.5",
-                      autoSpeak
-                        ? "bg-[#05df72]/20 text-[#05df72]"
-                        : "text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]",
-                    )}
-                    title={
-                      autoSpeak ? "Auto-speak enabled" : "Auto-speak disabled"
-                    }
-                  >
-                    <FiVolume2 size={isMobile ? 14 : 16} />
-                  </button>
-                  <button
-                    className="rounded-lg p-1 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)] sm:p-1.5"
-                    onClick={() => setIsOpen(false)}
-                    type="button"
-                  >
-                    <FiX size={isMobile ? 16 : 18} />
-                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        type="button"
+                        onClick={() => setAutoSpeak(!autoSpeak)}
+                        className={cn(
+                          "rounded-lg p-1 transition-colors sm:p-1.5",
+                          autoSpeak
+                            ? "bg-[#05df72]/20 text-[#05df72]"
+                            : "text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]",
+                        )}
+                      >
+                        <FiVolume2 size={isMobile ? 14 : 16} />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={8}>
+                      {autoSpeak ? "Disable auto-speak" : "Enable auto-speak for voice replies"}
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        className="rounded-lg p-1 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)] sm:p-1.5"
+                        onClick={() => setIsOpen(false)}
+                        type="button"
+                      >
+                        <FiX size={isMobile ? 16 : 18} />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" sideOffset={8}>
+                      Close chat
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
 
@@ -610,7 +635,7 @@ export const AIChatSidebar = () => {
                 </div>
               )}
 
-              <div className="flex-1 overflow-y-auto p-3">
+              <div className="flex-1 overflow-y-auto p-2 sm:p-3">
                 <div className="space-y-3">
                   {messages.map((message) => (
                     <motion.div
@@ -683,7 +708,7 @@ export const AIChatSidebar = () => {
                 </div>
               </div>
 
-              <div className="border-t border-[var(--border-subtle)] p-3">
+              <div className="border-t border-[var(--border-subtle)] p-2 sm:p-3">
                 <AnimatePresence>
                   {(speechSynthesis.isPlaying ||
                     speechSynthesis.state === "paused") && (
@@ -742,16 +767,22 @@ export const AIChatSidebar = () => {
                     {QUICK_ACTIONS.slice(0, isMobile ? 2 : 3).map((action) => {
                       const Icon = ICON_MAP[action.icon as IconKey];
                       return (
-                        <button
-                          className="flex shrink-0 items-center gap-1 rounded-full border border-[var(--border-subtle)] bg-transparent px-2 py-1 text-[11px] whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50 sm:gap-1.5 sm:px-3 sm:py-1.5 sm:text-xs"
-                          disabled={isInputDisabled}
-                          key={action.label}
-                          onClick={() => handleSendMessage(action.prompt)}
-                          type="button"
-                        >
-                          <Icon size={isMobile ? 10 : 12} />
-                          {action.label}
-                        </button>
+                        <Tooltip key={action.label}>
+                          <TooltipTrigger asChild>
+                            <button
+                              className="flex shrink-0 items-center gap-1 rounded-full border border-[var(--border-subtle)] bg-transparent px-2 py-1 text-[11px] whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50 sm:gap-1.5 sm:px-3 sm:py-1.5 sm:text-xs"
+                              disabled={isInputDisabled}
+                              onClick={() => handleSendMessage(action.prompt)}
+                              type="button"
+                            >
+                              <Icon size={isMobile ? 10 : 12} />
+                              {action.label}
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" sideOffset={8}>
+                            {action.prompt}
+                          </TooltipContent>
+                        </Tooltip>
                       );
                     })}
                   </div>
@@ -784,69 +815,94 @@ export const AIChatSidebar = () => {
                     />
                   </div>
 
-                  <motion.button
-                    type="button"
-                    onClick={handleVoiceRecord}
-                    disabled={isStreaming || isTyping}
-                    className={cn(
-                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors sm:h-11 sm:w-11",
-                      voiceRecorder.isRecording
-                        ? "bg-[#ff6467] text-white"
-                        : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
-                      (isStreaming || isTyping) &&
-                        "cursor-not-allowed opacity-50",
-                    )}
-                    whileHover={{ scale: isStreaming || isTyping ? 1 : 1.02 }}
-                    whileTap={{ scale: isStreaming || isTyping ? 1 : 0.98 }}
-                  >
-                    {isTranscribing ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "linear",
-                        }}
-                        className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
-                      />
-                    ) : voiceRecorder.isRecording ? (
-                      <FiSquare className="h-4 w-4 sm:h-5 sm:w-5" />
-                    ) : (
-                      <FiMic className="h-4 w-4 sm:h-5 sm:w-5" />
-                    )}
-                  </motion.button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <motion.button
+                        type="button"
+                        onClick={handleVoiceRecord}
+                        disabled={isStreaming || isTyping}
+                        className={cn(
+                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors sm:h-11 sm:w-11",
+                          voiceRecorder.isRecording
+                            ? "bg-[#ff6467] text-white"
+                            : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
+                          (isStreaming || isTyping) &&
+                            "cursor-not-allowed opacity-50",
+                        )}
+                        whileHover={{ scale: isStreaming || isTyping ? 1 : 1.02 }}
+                        whileTap={{ scale: isStreaming || isTyping ? 1 : 0.98 }}
+                      >
+                        {isTranscribing ? (
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{
+                              duration: 1,
+                              repeat: Number.POSITIVE_INFINITY,
+                              ease: "linear",
+                            }}
+                            className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
+                          />
+                        ) : voiceRecorder.isRecording ? (
+                          <FiSquare className="h-4 w-4 sm:h-5 sm:w-5" />
+                        ) : (
+                          <FiMic className="h-4 w-4 sm:h-5 sm:w-5" />
+                        )}
+                      </motion.button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" sideOffset={8}>
+                      {isTranscribing
+                        ? "Processing voice..."
+                        : voiceRecorder.isRecording
+                          ? "Stop recording"
+                          : "Record voice message"}
+                    </TooltipContent>
+                  </Tooltip>
 
-                  <motion.button
-                    type="submit"
-                    disabled={!inputValue.trim() || isInputDisabled}
-                    className={cn(
-                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors sm:h-11 sm:w-11",
-                      "hover:bg-[#04c566]",
-                      (!inputValue.trim() || isInputDisabled) &&
-                        "cursor-not-allowed opacity-50",
-                    )}
-                    whileHover={{
-                      scale: !inputValue.trim() || isInputDisabled ? 1 : 1.02,
-                    }}
-                    whileTap={{
-                      scale: !inputValue.trim() || isInputDisabled ? 1 : 0.98,
-                    }}
-                  >
-                    <FiSend size={isMobile ? 16 : 18} />
-                  </motion.button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <motion.button
+                        type="submit"
+                        disabled={!inputValue.trim() || isInputDisabled}
+                        className={cn(
+                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors sm:h-11 sm:w-11",
+                          "hover:bg-[#04c566]",
+                          (!inputValue.trim() || isInputDisabled) &&
+                            "cursor-not-allowed opacity-50",
+                        )}
+                        whileHover={{
+                          scale: !inputValue.trim() || isInputDisabled ? 1 : 1.02,
+                        }}
+                        whileTap={{
+                          scale: !inputValue.trim() || isInputDisabled ? 1 : 0.98,
+                        }}
+                      >
+                        <FiSend size={isMobile ? 16 : 18} />
+                      </motion.button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" sideOffset={8}>
+                      Send message
+                    </TooltipContent>
+                  </Tooltip>
                 </form>
 
                 {messages.length > 1 &&
                   !voiceRecorder.isRecording &&
                   !speechSynthesis.isPlaying && (
-                    <button
-                      type="button"
-                      onClick={speakLastMessage}
-                      className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-lg py-1 text-[11px] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72] sm:mt-2 sm:py-1.5 sm:text-xs"
-                    >
-                      <FiVolume2 size={12} />
-                      Play last response
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={speakLastMessage}
+                          className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-lg py-1 text-[11px] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72] sm:mt-2 sm:py-1.5 sm:text-xs"
+                        >
+                          <FiVolume2 size={12} />
+                          Play last response
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" sideOffset={8}>
+                        Listen to the AI's last reply
+                      </TooltipContent>
+                    </Tooltip>
                   )}
               </div>
             </motion.div>

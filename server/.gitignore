@@ -3,17 +3,7 @@ node_modules
 
 # Build outputs
 dist
-dist-ssr
 build
-*.local
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-lerna-debug.log*
 
 # Environment files
 .env
@@ -22,6 +12,13 @@ lerna-debug.log*
 .env.production
 .env.*.local
 
+# Logs directory (Winston logs)
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
 # Credentials and secrets
 *.pem
 *.key
@@ -29,18 +26,16 @@ lerna-debug.log*
 credentials.json
 service-account.json
 secrets.json
+
+# API keys and tokens
 .api-keys
+tokens.json
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
 
 # OS files
 .DS_Store
@@ -48,15 +43,11 @@ Thumbs.db
 
 # TypeScript cache
 *.tsbuildinfo
+tsconfig.tsbuildinfo
 
 # Test coverage
 coverage
 .nyc_output
-
-# Lock files (use pnpm-lock.yaml only at root)
-bun.lock
-package-lock.json
-yarn.lock
 
 # Temporary files
 *.tmp
@@ -65,7 +56,7 @@ yarn.lock
 tmp/
 temp/
 
-# Database files
+# Database files (if using SQLite locally)
 *.db
 *.sqlite
 *.sqlite3

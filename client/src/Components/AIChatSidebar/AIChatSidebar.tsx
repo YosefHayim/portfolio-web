@@ -15,7 +15,13 @@ import {
   FiX,
 } from "react-icons/fi";
 import { QUICK_ACTIONS, SAMPLE_RESPONSES } from "@/data/chatContext";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { ColorOrb } from "@/Components/ui/ai-input";
 import { cn } from "@/lib/utils";
@@ -52,12 +58,25 @@ const SPEED_FACTOR = 1;
 const PANEL_WIDTH = 380;
 const PANEL_HEIGHT_COLLAPSED = 52;
 const PANEL_HEIGHT_EXPANDED = 520;
+const PANEL_HEIGHT_EXPANDED_MOBILE = 450;
 
 const generateId = () =>
   Math.random().toString(RADIX).substring(ID_START, ID_END);
 
 function formatTimeAgo(date: Date): string {
   return formatDistanceToNow(date, { addSuffix: true });
+}
+
+// Simple markdown renderer for assistant messages
+function renderMarkdown(text: string): string {
+  return text
+    // Bold: **text** or __text__
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>')
+    .replace(/__(.*?)__/g, '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>')
+    // Inline code: `code`
+    .replace(/`([^`]+)`/g, '<code class="bg-[var(--bg-elevated)] px-1 py-0.5 rounded text-[#00d9ff] font-mono text-xs">$1</code>')
+    // Links: [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#05df72] hover:underline">$1</a>');
 }
 
 const getOfflineResponse = (userMessage: string): string => {
@@ -449,22 +468,37 @@ export const AIChatSidebar = () => {
   const isInputDisabled =
     isStreaming || isTyping || isTranscribing || voiceRecorder.isRecording;
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useLayoutEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div
-      className="fixed right-4 bottom-20 z-50 flex items-end justify-end md:bottom-6"
-      style={{ width: PANEL_WIDTH }}
+      className={cn(
+        "fixed z-50 flex items-end justify-end",
+        isMobile
+          ? "bottom-4 left-4 right-4"
+          : "right-4 bottom-6",
+      )}
+      style={{ width: isMobile ? "auto" : PANEL_WIDTH }}
     >
       <motion.div
         ref={wrapperRef}
         data-panel
         className={cx(
           "relative flex flex-col overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-2xl",
+          isMobile && isOpen && "w-full",
         )}
         initial={false}
         animate={{
-          width: isOpen ? PANEL_WIDTH : "auto",
-          height: isOpen ? PANEL_HEIGHT_EXPANDED : PANEL_HEIGHT_COLLAPSED,
-          borderRadius: isOpen ? 16 : 26,
+          width: isOpen ? (isMobile ? "100%" : PANEL_WIDTH) : "auto",
+          height: isOpen ? (isMobile ? PANEL_HEIGHT_EXPANDED_MOBILE : PANEL_HEIGHT_EXPANDED) : PANEL_HEIGHT_COLLAPSED,
+          borderRadius: isOpen ? (isMobile ? 12 : 16) : 26,
         }}
         transition={{
           type: "spring",
@@ -513,10 +547,10 @@ export const AIChatSidebar = () => {
               transition={{ duration: 0.15 }}
               className="flex h-full flex-col"
             >
-              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-4 py-3">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-3 py-2 sm:px-4 sm:py-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <ColorOrb
-                    dimension="28px"
+                    dimension={isMobile ? "24px" : "28px"}
                     tones={{
                       base: "oklch(10% 0.02 145)",
                       accent1: "oklch(80% 0.25 145)",
@@ -525,10 +559,10 @@ export const AIChatSidebar = () => {
                     }}
                   />
                   <div>
-                    <h3 className="text-sm font-medium text-[var(--text-primary)]">
+                    <h3 className="text-xs font-medium text-[var(--text-primary)] sm:text-sm">
                       Ask about Joseph
                     </h3>
-                    <p className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+                    <p className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] sm:gap-1.5 sm:text-xs">
                       {useAI ? (
                         <>
                           <span className="h-1.5 w-1.5 rounded-full bg-[#05df72]" />
@@ -543,12 +577,12 @@ export const AIChatSidebar = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 sm:gap-2">
                   <button
                     type="button"
                     onClick={() => setAutoSpeak(!autoSpeak)}
                     className={cn(
-                      "rounded-lg p-1.5 transition-colors",
+                      "rounded-lg p-1 transition-colors sm:p-1.5",
                       autoSpeak
                         ? "bg-[#05df72]/20 text-[#05df72]"
                         : "text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]",
@@ -557,14 +591,14 @@ export const AIChatSidebar = () => {
                       autoSpeak ? "Auto-speak enabled" : "Auto-speak disabled"
                     }
                   >
-                    <FiVolume2 size={16} />
+                    <FiVolume2 size={isMobile ? 14 : 16} />
                   </button>
                   <button
-                    className="rounded-lg p-1.5 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]"
+                    className="rounded-lg p-1 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)] sm:p-1.5"
                     onClick={() => setIsOpen(false)}
                     type="button"
                   >
-                    <FiX size={18} />
+                    <FiX size={isMobile ? 16 : 18} />
                   </button>
                 </div>
               </div>
@@ -600,7 +634,15 @@ export const AIChatSidebar = () => {
                           {message.isVoice && message.role === "user" && (
                             <span className="mr-1 text-black/60">🎤</span>
                           )}
-                          {message.content}
+                          {message.role === "assistant" ? (
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: renderMarkdown(message.content),
+                              }}
+                            />
+                          ) : (
+                            message.content
+                          )}
                           {isStreaming &&
                             message.role === "assistant" &&
                             message.id ===
@@ -627,10 +669,13 @@ export const AIChatSidebar = () => {
                       className="flex flex-col items-start"
                       initial={{ opacity: 0 }}
                     >
-                      <div className="flex gap-1 rounded-xl bg-[var(--bg-surface)] px-3 py-2">
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--text-muted)] [animation-delay:-0.3s]" />
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--text-muted)] [animation-delay:-0.15s]" />
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--text-muted)]" />
+                      <div className="flex items-center gap-2 rounded-xl bg-[var(--bg-surface)] px-3 py-2">
+                        <div className="flex gap-1">
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72] [animation-delay:-0.3s]" />
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72] [animation-delay:-0.15s]" />
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72]" />
+                        </div>
+                        <span className="text-xs text-[var(--text-muted)]">AI is thinking...</span>
                       </div>
                     </motion.div>
                   )}
@@ -693,18 +738,18 @@ export const AIChatSidebar = () => {
                 </AnimatePresence>
 
                 {!voiceRecorder.isRecording && (
-                  <div className="mb-3 flex flex-wrap gap-2">
-                    {QUICK_ACTIONS.slice(0, 3).map((action) => {
+                  <div className="mb-2 flex flex-wrap gap-1.5 sm:mb-3 sm:gap-2">
+                    {QUICK_ACTIONS.slice(0, isMobile ? 2 : 3).map((action) => {
                       const Icon = ICON_MAP[action.icon as IconKey];
                       return (
                         <button
-                          className="flex shrink-0 items-center gap-1.5 rounded-full border border-[var(--border-subtle)] bg-transparent px-3 py-1.5 text-xs whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50"
+                          className="flex shrink-0 items-center gap-1 rounded-full border border-[var(--border-subtle)] bg-transparent px-2 py-1 text-[11px] whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50 sm:gap-1.5 sm:px-3 sm:py-1.5 sm:text-xs"
                           disabled={isInputDisabled}
                           key={action.label}
                           onClick={() => handleSendMessage(action.prompt)}
                           type="button"
                         >
-                          <Icon size={12} />
+                          <Icon size={isMobile ? 10 : 12} />
                           {action.label}
                         </button>
                       );
@@ -713,14 +758,14 @@ export const AIChatSidebar = () => {
                 )}
 
                 <form
-                  className="flex items-center gap-2 py-2"
+                  className="flex items-center gap-1.5 py-1 sm:gap-2 sm:py-2"
                   onSubmit={handleSubmit}
                 >
                   <div className="relative flex-1">
                     <input
                       type="text"
                       className={cn(
-                        "h-11 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] pr-10 pl-4 text-sm text-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)]",
+                        "h-10 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] pr-4 pl-3 text-sm text-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)] sm:h-11 sm:pl-4",
                         "focus:border-[#05df72] focus:ring-1 focus:ring-[#05df72]/30 focus:outline-none",
                         voiceRecorder.isRecording && "opacity-50",
                       )}
@@ -744,7 +789,7 @@ export const AIChatSidebar = () => {
                     onClick={handleVoiceRecord}
                     disabled={isStreaming || isTyping}
                     className={cn(
-                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
+                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors sm:h-11 sm:w-11",
                       voiceRecorder.isRecording
                         ? "bg-[#ff6467] text-white"
                         : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
@@ -765,9 +810,9 @@ export const AIChatSidebar = () => {
                         className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
                       />
                     ) : voiceRecorder.isRecording ? (
-                      <FiSquare className="h-5 w-5" />
+                      <FiSquare className="h-4 w-4 sm:h-5 sm:w-5" />
                     ) : (
-                      <FiMic className="h-5 w-5" />
+                      <FiMic className="h-4 w-4 sm:h-5 sm:w-5" />
                     )}
                   </motion.button>
 
@@ -775,7 +820,7 @@ export const AIChatSidebar = () => {
                     type="submit"
                     disabled={!inputValue.trim() || isInputDisabled}
                     className={cn(
-                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors",
+                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors sm:h-11 sm:w-11",
                       "hover:bg-[#04c566]",
                       (!inputValue.trim() || isInputDisabled) &&
                         "cursor-not-allowed opacity-50",
@@ -787,7 +832,7 @@ export const AIChatSidebar = () => {
                       scale: !inputValue.trim() || isInputDisabled ? 1 : 0.98,
                     }}
                   >
-                    <FiSend size={18} />
+                    <FiSend size={isMobile ? 16 : 18} />
                   </motion.button>
                 </form>
 
@@ -797,7 +842,7 @@ export const AIChatSidebar = () => {
                     <button
                       type="button"
                       onClick={speakLastMessage}
-                      className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg py-1.5 text-xs text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72]"
+                      className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-lg py-1 text-[11px] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72] sm:mt-2 sm:py-1.5 sm:text-xs"
                     >
                       <FiVolume2 size={12} />
                       Play last response

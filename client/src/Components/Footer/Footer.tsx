@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
 import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
-import type { ReactNode } from "react";
+
 import { Link } from "react-router";
 import Logo from "../Logo/Logo";
+import type { ReactNode } from "react";
 import { SocialIcons } from "../ui/social-icons";
+import { motion } from "framer-motion";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const ANIMATION_DELAY_STEP = 0.1;
@@ -35,7 +36,7 @@ const navLinks: NavLink[] = [
 const Footer = () => {
   return (
     <footer className="w-full max-w-full overflow-hidden border-t border-[var(--border-subtle)] bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
-      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto w-full p-5">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <motion.section
             className="flex flex-col items-start gap-4"

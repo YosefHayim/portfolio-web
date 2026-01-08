@@ -1,4 +1,4 @@
-import TechnologyBubble from '../TechBubble/TechBubble';
+import TechnologyBubble from "../TechBubble/TechBubble";
 
 const TechOfProject: React.FC<{ techStackForProject: string[] }> = ({
   techStackForProject,

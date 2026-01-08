@@ -1,7 +1,7 @@
-import { FaJs, FaReact, FaTheaterMasks } from 'react-icons/fa';
-import { GiBearFace } from 'react-icons/gi';
-import { IoLogoCss3 } from 'react-icons/io5';
-import { RiTailwindCssFill } from 'react-icons/ri';
+import { FaJs, FaReact, FaTheaterMasks } from "react-icons/fa";
+import { GiBearFace } from "react-icons/gi";
+import { IoLogoCss3 } from "react-icons/io5";
+import { RiTailwindCssFill } from "react-icons/ri";
 import {
   SiAxios,
   SiHtml5,
@@ -13,28 +13,28 @@ import {
   SiStorybook,
   SiTypescript,
   SiZod,
-} from 'react-icons/si';
-import TechRow from '../TechRow/TechRow';
+} from "react-icons/si";
+import TechRow from "../TechRow/TechRow";
 
 const TechStack = [
-  { name: 'React', icon: <FaReact size={20} /> },
-  { name: 'React Native', icon: <FaReact size={20} /> },
-  { name: 'HTML', icon: <SiHtml5 size={20} /> },
-  { name: 'CSS', icon: <IoLogoCss3 size={20} /> },
-  { name: 'TypeScript', icon: <SiTypescript size={20} /> },
-  { name: 'Tailwind', icon: <RiTailwindCssFill size={20} /> },
-  { name: 'JavaScript', icon: <FaJs size={20} /> },
-  { name: 'Axios', icon: <SiAxios size={20} /> },
-  { name: 'Shadcn UI', icon: <SiShadcnui size={20} /> },
-  { name: 'React Router', icon: <SiReactrouter size={20} /> },
-  { name: 'Zustand', icon: <GiBearFace size={20} /> },
-  { name: 'React Query', icon: <SiReactquery size={20} /> },
-  { name: 'Redux', icon: <SiRedux size={20} /> },
-  { name: 'Mui', icon: <SiMui size={20} /> },
-  { name: 'Storybook', icon: <SiStorybook size={20} /> },
-  { name: 'Playwright', icon: <FaTheaterMasks size={20} /> },
+  { name: "React", icon: <FaReact size={20} /> },
+  { name: "React Native", icon: <FaReact size={20} /> },
+  { name: "HTML", icon: <SiHtml5 size={20} /> },
+  { name: "CSS", icon: <IoLogoCss3 size={20} /> },
+  { name: "TypeScript", icon: <SiTypescript size={20} /> },
+  { name: "Tailwind", icon: <RiTailwindCssFill size={20} /> },
+  { name: "JavaScript", icon: <FaJs size={20} /> },
+  { name: "Axios", icon: <SiAxios size={20} /> },
+  { name: "Shadcn UI", icon: <SiShadcnui size={20} /> },
+  { name: "React Router", icon: <SiReactrouter size={20} /> },
+  { name: "Zustand", icon: <GiBearFace size={20} /> },
+  { name: "React Query", icon: <SiReactquery size={20} /> },
+  { name: "Redux", icon: <SiRedux size={20} /> },
+  { name: "Mui", icon: <SiMui size={20} /> },
+  { name: "Storybook", icon: <SiStorybook size={20} /> },
+  { name: "Playwright", icon: <FaTheaterMasks size={20} /> },
   {
-    name: 'Zod',
+    name: "Zod",
     icon: <SiZod size={20} />,
   },
 ];

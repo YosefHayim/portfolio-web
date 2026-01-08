@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 import {
   FiCheckCircle,
   FiCode,
@@ -16,12 +16,12 @@ import {
   FiShield,
   FiUsers,
   FiZap,
-} from 'react-icons/fi';
-import { IoArrowBack, IoCodeSlash, IoOpenOutline } from 'react-icons/io5';
-import { Link, useNavigate, useParams } from 'react-router';
-import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
-import { getProjectById } from '@/data/projects';
-import { TechBadge } from '@/utils/techIcons';
+} from "react-icons/fi";
+import { IoArrowBack, IoCodeSlash, IoOpenOutline } from "react-icons/io5";
+import { Link, useNavigate, useParams } from "react-router";
+import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import { getProjectById } from "@/data/projects";
+import { TechBadge } from "@/utils/techIcons";
 
 const ICON_SIZE = 20;
 const PARTICLE_ANIMATION_DURATION = 4;
@@ -32,38 +32,38 @@ const PARTICLE_SCALE_MAX = 1.2;
 
 const statusConfig = {
   live: {
-    label: 'Live',
-    className: 'border border-[#05df72]/30 bg-[#05df72]/20 text-[#05df72]',
-    dot: 'bg-[#05df72]',
-    glow: 'shadow-[0_0_20px_rgba(5,223,114,0.3)]',
+    label: "Live",
+    className: "border border-[#05df72]/30 bg-[#05df72]/20 text-[#05df72]",
+    dot: "bg-[#05df72]",
+    glow: "shadow-[0_0_20px_rgba(5,223,114,0.3)]",
   },
   development: {
-    label: 'In Development',
-    className: 'border border-[#fdc700]/30 bg-[#fdc700]/20 text-[#fdc700]',
-    dot: 'bg-[#fdc700]',
-    glow: 'shadow-[0_0_20px_rgba(253,199,0,0.3)]',
+    label: "In Development",
+    className: "border border-[#fdc700]/30 bg-[#fdc700]/20 text-[#fdc700]",
+    dot: "bg-[#fdc700]",
+    glow: "shadow-[0_0_20px_rgba(253,199,0,0.3)]",
   },
   completed: {
-    label: 'Completed',
-    className: 'border border-[#00d9ff]/30 bg-[#00d9ff]/20 text-[#00d9ff]',
-    dot: 'bg-[#00d9ff]',
-    glow: 'shadow-[0_0_20px_rgba(0,217,255,0.3)]',
+    label: "Completed",
+    className: "border border-[#00d9ff]/30 bg-[#00d9ff]/20 text-[#00d9ff]",
+    dot: "bg-[#00d9ff]",
+    glow: "shadow-[0_0_20px_rgba(0,217,255,0.3)]",
   },
 };
 
 type IconComponent = typeof FiGlobe;
 
 const highlightIconMap: Array<{ keywords: string[]; icon: IconComponent }> = [
-  { keywords: ['marketplace', 'integration'], icon: FiGlobe },
-  { keywords: ['trademark', 'patent', 'verification'], icon: FiShield },
-  { keywords: ['pricing', 'payment', 'stripe'], icon: FiDollarSign },
-  { keywords: ['inventory', 'sync', 'real-time'], icon: FiRefreshCw },
-  { keywords: ['api', 'oauth'], icon: FiServer },
-  { keywords: ['automated', 'automation'], icon: FiZap },
-  { keywords: ['database', 'data'], icon: FiDatabase },
-  { keywords: ['test', 'coverage'], icon: FiCheckCircle },
-  { keywords: ['npm', 'package'], icon: FiPackage },
-  { keywords: ['ai', 'machine'], icon: FiCpu },
+  { keywords: ["marketplace", "integration"], icon: FiGlobe },
+  { keywords: ["trademark", "patent", "verification"], icon: FiShield },
+  { keywords: ["pricing", "payment", "stripe"], icon: FiDollarSign },
+  { keywords: ["inventory", "sync", "real-time"], icon: FiRefreshCw },
+  { keywords: ["api", "oauth"], icon: FiServer },
+  { keywords: ["automated", "automation"], icon: FiZap },
+  { keywords: ["database", "data"], icon: FiDatabase },
+  { keywords: ["test", "coverage"], icon: FiCheckCircle },
+  { keywords: ["npm", "package"], icon: FiPackage },
+  { keywords: ["ai", "machine"], icon: FiCpu },
 ];
 
 const getHighlightIcon = (highlight: string): IconComponent => {
@@ -77,55 +77,55 @@ const getHighlightIcon = (highlight: string): IconComponent => {
 };
 
 const techCategoryMap: Record<string, string> = {
-  'Next.js': 'Frameworks & Languages',
-  React: 'Frameworks & Languages',
-  'React Native': 'Frameworks & Languages',
-  TypeScript: 'Frameworks & Languages',
-  JavaScript: 'Frameworks & Languages',
-  Python: 'Frameworks & Languages',
-  'Node.js': 'Frameworks & Languages',
-  Express: 'Frameworks & Languages',
-  Playwright: 'Testing & Quality',
-  Jest: 'Testing & Quality',
-  Vitest: 'Testing & Quality',
-  Husky: 'Testing & Quality',
-  AWS: 'Cloud & DevOps',
-  Firebase: 'Cloud & DevOps',
-  Supabase: 'Cloud & DevOps',
-  'GitHub Actions': 'Cloud & DevOps',
-  'eBay API': 'APIs & Integrations',
-  'Amazon SP-API': 'APIs & Integrations',
-  'USA USPTO Trademarks API': 'APIs & Integrations',
-  'International WIPO Patents API': 'APIs & Integrations',
-  'Stripe API': 'APIs & Integrations',
-  'PayPal API': 'APIs & Integrations',
-  'Google API': 'APIs & Integrations',
-  'Telegram API': 'APIs & Integrations',
-  'Binance API': 'APIs & Integrations',
-  'Interactive Brokers API': 'APIs & Integrations',
-  'TMDB API': 'APIs & Integrations',
-  'OpenAI API': 'APIs & Integrations',
-  'Open AI Agents': 'APIs & Integrations',
-  OAuth: 'APIs & Integrations',
-  'OAuth 2.1': 'APIs & Integrations',
+  "Next.js": "Frameworks & Languages",
+  React: "Frameworks & Languages",
+  "React Native": "Frameworks & Languages",
+  TypeScript: "Frameworks & Languages",
+  JavaScript: "Frameworks & Languages",
+  Python: "Frameworks & Languages",
+  "Node.js": "Frameworks & Languages",
+  Express: "Frameworks & Languages",
+  Playwright: "Testing & Quality",
+  Jest: "Testing & Quality",
+  Vitest: "Testing & Quality",
+  Husky: "Testing & Quality",
+  AWS: "Cloud & DevOps",
+  Firebase: "Cloud & DevOps",
+  Supabase: "Cloud & DevOps",
+  "GitHub Actions": "Cloud & DevOps",
+  "eBay API": "APIs & Integrations",
+  "Amazon SP-API": "APIs & Integrations",
+  "USA USPTO Trademarks API": "APIs & Integrations",
+  "International WIPO Patents API": "APIs & Integrations",
+  "Stripe API": "APIs & Integrations",
+  "PayPal API": "APIs & Integrations",
+  "Google API": "APIs & Integrations",
+  "Telegram API": "APIs & Integrations",
+  "Binance API": "APIs & Integrations",
+  "Interactive Brokers API": "APIs & Integrations",
+  "TMDB API": "APIs & Integrations",
+  "OpenAI API": "APIs & Integrations",
+  "Open AI Agents": "APIs & Integrations",
+  OAuth: "APIs & Integrations",
+  "OAuth 2.1": "APIs & Integrations",
 };
 
 const categorizeTech = (techStack: string[]): Record<string, string[]> => {
   const categories: Record<string, string[]> = {
-    'Frameworks & Languages': [],
-    'Testing & Quality': [],
-    'Cloud & DevOps': [],
-    'APIs & Integrations': [],
-    'Tools & Libraries': [],
+    "Frameworks & Languages": [],
+    "Testing & Quality": [],
+    "Cloud & DevOps": [],
+    "APIs & Integrations": [],
+    "Tools & Libraries": [],
   };
 
   for (const tech of techStack) {
-    const category = techCategoryMap[tech] ?? 'Tools & Libraries';
+    const category = techCategoryMap[tech] ?? "Tools & Libraries";
     categories[category].push(tech);
   }
 
   return Object.fromEntries(
-    Object.entries(categories).filter(([, techs]) => techs.length > 0)
+    Object.entries(categories).filter(([, techs]) => techs.length > 0),
   );
 };
 
@@ -154,7 +154,7 @@ const FloatingParticle = ({ delay, size, x, y }: FloatingParticleProps) => (
       duration: PARTICLE_ANIMATION_DURATION,
       delay,
       repeat: Number.POSITIVE_INFINITY,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     }}
   />
 );
@@ -167,7 +167,7 @@ const ProjectDetail = () => {
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
@@ -177,7 +177,7 @@ const ProjectDetail = () => {
     if (project) {
       document.title = `${project.name} | Projects`;
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [project]);
 
   if (!project) {
@@ -197,7 +197,7 @@ const ProjectDetail = () => {
           </p>
           <button
             className="inline-flex items-center gap-2 rounded-xl bg-[#05df72] px-6 py-3 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_30px_rgba(5,223,114,0.4)]"
-            onClick={() => navigate('/projects')}
+            onClick={() => navigate("/projects")}
             type="button"
           >
             <IoArrowBack size={ICON_SIZE} />
@@ -208,7 +208,7 @@ const ProjectDetail = () => {
     );
   }
 
-  const hasLiveUrl = project.deployedUrl && project.deployedUrl !== 'projects';
+  const hasLiveUrl = project.deployedUrl && project.deployedUrl !== "projects";
   const status = project.status ? statusConfig[project.status] : null;
   const categorizedTech = categorizeTech(project.techStack);
 
@@ -226,8 +226,8 @@ const ProjectDetail = () => {
           className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage:
-              'linear-gradient(#05df72 1px, transparent 1px), linear-gradient(90deg, #05df72 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
+              "linear-gradient(#05df72 1px, transparent 1px), linear-gradient(90deg, #05df72 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
           }}
         />
 
@@ -242,7 +242,7 @@ const ProjectDetail = () => {
             animate={{ opacity: 1, x: 0 }}
             className="group mb-8 flex items-center gap-2 text-[var(--text-muted)] transition-all hover:text-[#05df72]"
             initial={{ opacity: 0, x: -20 }}
-            onClick={() => navigate('/projects')}
+            onClick={() => navigate("/projects")}
             transition={{ delay: 0.1 }}
             type="button"
           >
@@ -265,7 +265,7 @@ const ProjectDetail = () => {
                     animate={{ scale: 1 }}
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${status.className} ${status.glow}`}
                     initial={{ scale: 0.8 }}
-                    transition={{ delay: 0.2, type: 'spring' }}
+                    transition={{ delay: 0.2, type: "spring" }}
                   >
                     <span
                       className={`h-2 w-2 animate-pulse rounded-full ${status.dot}`}
@@ -488,7 +488,7 @@ const ProjectDetail = () => {
                     ))}
                   </div>
                 </motion.div>
-              )
+              ),
             )}
           </div>
         </div>

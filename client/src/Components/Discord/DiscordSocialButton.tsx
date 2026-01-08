@@ -1,5 +1,5 @@
-import { FaDiscord } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { FaDiscord } from "react-icons/fa";
+import { Link } from "react-router";
 
 const DiscordSocialButton = () => {
   return (

@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
-import { FiExternalLink } from 'react-icons/fi';
-import { Link } from 'react-router';
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
+import { FiExternalLink } from "react-icons/fi";
+import { Link } from "react-router";
 
 type CertificationCardProps = {
   icon: ReactNode;

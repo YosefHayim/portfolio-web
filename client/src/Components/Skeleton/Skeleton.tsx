@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 type SkeletonProps = {
   className?: string;
@@ -8,31 +8,31 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        'animate-pulse rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%]',
-        className
+        "animate-pulse rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%]",
+        className,
       )}
       style={{
-        animation: 'shimmer 1.5s ease-in-out infinite',
+        animation: "shimmer 1.5s ease-in-out infinite",
       }}
     />
   );
 }
 
 export function SkeletonText({ className }: SkeletonProps) {
-  return <Skeleton className={cn('h-4 w-full', className)} />;
+  return <Skeleton className={cn("h-4 w-full", className)} />;
 }
 
 export function SkeletonTitle({ className }: SkeletonProps) {
-  return <Skeleton className={cn('h-8 w-3/4', className)} />;
+  return <Skeleton className={cn("h-8 w-3/4", className)} />;
 }
 
 export function SkeletonAvatar({ className }: SkeletonProps) {
-  return <Skeleton className={cn('h-16 w-16 rounded-full', className)} />;
+  return <Skeleton className={cn("h-16 w-16 rounded-full", className)} />;
 }
 
 export function SkeletonCard({ className }: SkeletonProps) {
   return (
-    <div className={cn('space-y-4 rounded-lg bg-gray-800/50 p-4', className)}>
+    <div className={cn("space-y-4 rounded-lg bg-gray-800/50 p-4", className)}>
       <Skeleton className="h-48 w-full rounded-lg" />
       <div className="space-y-2">
         <SkeletonTitle />

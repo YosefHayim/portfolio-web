@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import { Award, FolderKanban, Home, Layers, User } from 'lucide-react';
-import type { ReactNode } from 'react';
-import { Link, useLocation } from 'react-router';
+import { motion } from "framer-motion";
+import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import type { ReactNode } from "react";
+import { Link, useLocation } from "react-router";
 
 type NavItem = {
   path: string;
@@ -24,19 +24,19 @@ const FONT_WEIGHT_ACTIVE = 600;
 const FONT_WEIGHT_INACTIVE = 400;
 
 const navItems: NavItem[] = [
-  { path: '/', icon: <Home size={ICON_SIZE} />, label: 'Home' },
-  { path: '/about', icon: <User size={ICON_SIZE} />, label: 'About' },
-  { path: '/techStack', icon: <Layers size={ICON_SIZE} />, label: 'Stack' },
+  { path: "/", icon: <Home size={ICON_SIZE} />, label: "Home" },
+  { path: "/about", icon: <User size={ICON_SIZE} />, label: "About" },
+  { path: "/techStack", icon: <Layers size={ICON_SIZE} />, label: "Stack" },
   {
-    path: '/projects',
+    path: "/projects",
     icon: <FolderKanban size={ICON_SIZE} />,
-    label: 'Projects',
+    label: "Projects",
   },
-  { path: '/certifications', icon: <Award size={ICON_SIZE} />, label: 'Certs' },
+  { path: "/certifications", icon: <Award size={ICON_SIZE} />, label: "Certs" },
 ];
 
 const springTransition = {
-  type: 'spring' as const,
+  type: "spring" as const,
   stiffness: SPRING_STIFFNESS,
   damping: SPRING_DAMPING,
 };
@@ -74,7 +74,7 @@ export function BottomNav() {
               <motion.div
                 animate={{
                   scale: isActive ? SCALE_ACTIVE : SCALE_INACTIVE,
-                  color: isActive ? '#05df72' : 'var(--text-muted)',
+                  color: isActive ? "#05df72" : "var(--text-muted)",
                 }}
                 className="relative z-10"
                 transition={{ duration: DURATION_FAST }}
@@ -83,7 +83,7 @@ export function BottomNav() {
               </motion.div>
               <motion.span
                 animate={{
-                  color: isActive ? '#05df72' : 'var(--text-muted)',
+                  color: isActive ? "#05df72" : "var(--text-muted)",
                   fontWeight: isActive
                     ? FONT_WEIGHT_ACTIVE
                     : FONT_WEIGHT_INACTIVE,

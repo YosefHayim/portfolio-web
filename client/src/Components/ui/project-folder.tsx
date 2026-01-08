@@ -4,7 +4,7 @@ import {
   ExternalLink,
   Github,
   X,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   forwardRef,
   useCallback,
@@ -12,11 +12,11 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-} from 'react';
+} from "react";
 
-import { Link } from 'react-router';
-import { cn } from '@/lib/utils';
-import { TechBadge } from '@/utils/techIcons';
+import { Link } from "react-router";
+import { cn } from "@/lib/utils";
+import { TechBadge } from "@/utils/techIcons";
 
 export interface FolderProject {
   id: string;
@@ -26,11 +26,11 @@ export interface FolderProject {
   techStack?: string[];
   deployedUrl?: string;
   repoUrl?: string;
-  status?: 'live' | 'development' | 'completed';
+  status?: "live" | "development" | "completed";
 }
 
 const PLACEHOLDER_IMAGE =
-  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200';
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200";
 
 const CARD_ROTATION_FACTOR = 25;
 const CARD_TRANSLATION_X_FACTOR = 85;
@@ -64,7 +64,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
       isSelected,
       techStack,
     },
-    ref
+    ref,
   ) => {
     const [showTech, setShowTech] = useState(false);
     const middleIndex = (totalCount - 1) / 2;
@@ -77,8 +77,8 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
     return (
       <div
         className={cn(
-          'group/card absolute h-28 w-20 cursor-pointer',
-          isSelected && 'opacity-0'
+          "group/card absolute h-28 w-20 cursor-pointer",
+          isSelected && "opacity-0",
         )}
         onClick={(e) => {
           e.stopPropagation();
@@ -90,19 +90,19 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         style={{
           transform: isVisible
             ? `translateY(calc(-100px + ${translationY}px)) translateX(${translationX}px) rotate(${rotation}deg) scale(1)`
-            : 'translateY(0px) translateX(0px) rotate(0deg) scale(0.4)',
+            : "translateY(0px) translateX(0px) rotate(0deg) scale(0.4)",
           opacity: isSelected ? 0 : isVisible ? 1 : 0,
           transition: `all ${ANIMATION_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
           zIndex: 10 + index,
-          left: '-40px',
-          top: '-56px',
+          left: "-40px",
+          top: "-56px",
         }}
       >
         <div
           className={cn(
-            'relative h-full w-full overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl',
-            'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-            'group-hover/card:-translate-y-6 group-hover/card:scale-125 group-hover/card:shadow-2xl group-hover/card:ring-2 group-hover/card:shadow-[#05df72]/40 group-hover/card:ring-[#05df72]'
+            "relative h-full w-full overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl",
+            "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "group-hover/card:-translate-y-6 group-hover/card:scale-125 group-hover/card:shadow-2xl group-hover/card:ring-2 group-hover/card:shadow-[#05df72]/40 group-hover/card:ring-[#05df72]",
           )}
         >
           <img
@@ -122,7 +122,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         {showTech && techStack && techStack.length > 0 && (
           <div
             className="fade-in zoom-in-95 animate-in absolute -top-20 left-1/2 z-50 -translate-x-1/2 duration-200"
-            style={{ width: 'max-content', maxWidth: '200px' }}
+            style={{ width: "max-content", maxWidth: "200px" }}
           >
             <div className="flex flex-wrap justify-center gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/95 p-2 shadow-xl backdrop-blur-sm">
               {techStack.slice(0, 6).map((tech) => (
@@ -144,9 +144,9 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         )}
       </div>
     );
-  }
+  },
 );
-ProjectCard.displayName = 'ProjectCard';
+ProjectCard.displayName = "ProjectCard";
 
 interface ImageLightboxProps {
   projects: FolderProject[];
@@ -168,8 +168,8 @@ const ImageLightbox = ({
   onNavigate,
 }: ImageLightboxProps) => {
   const [animationPhase, setAnimationPhase] = useState<
-    'initial' | 'animating' | 'complete'
-  >('initial');
+    "initial" | "animating" | "complete"
+  >("initial");
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [internalIndex, setInternalIndex] = useState(currentIndex);
@@ -226,7 +226,7 @@ const ImageLightbox = ({
     setTimeout(() => {
       setIsClosing(false);
       setShouldRender(false);
-      setAnimationPhase('initial');
+      setAnimationPhase("initial");
       onCloseComplete?.();
     }, 500);
   }, [onClose, onCloseComplete]);
@@ -236,38 +236,38 @@ const ImageLightbox = ({
       if (!isOpen) {
         return;
       }
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         handleClose();
       }
-      if (e.key === 'ArrowRight') {
+      if (e.key === "ArrowRight") {
         navigateNext();
       }
-      if (e.key === 'ArrowLeft') {
+      if (e.key === "ArrowLeft") {
         navigatePrev();
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [isOpen, handleClose, navigateNext, navigatePrev]);
 
   useLayoutEffect(() => {
     if (isOpen && sourceRect) {
       setShouldRender(true);
-      setAnimationPhase('initial');
+      setAnimationPhase("initial");
       setIsClosing(false);
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          setAnimationPhase('animating');
+          setAnimationPhase("animating");
         });
       });
       const timer = setTimeout(() => {
-        setAnimationPhase('complete');
+        setAnimationPhase("complete");
       }, 700);
       return () => clearTimeout(timer);
     }
@@ -311,37 +311,37 @@ const ImageLightbox = ({
     return {
       transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
       opacity: 0.5,
-      borderRadius: '12px',
+      borderRadius: "12px",
     };
   };
 
   const getFinalStyles = (): React.CSSProperties => ({
-    transform: 'translate(0, 0) scale(1)',
+    transform: "translate(0, 0) scale(1)",
     opacity: 1,
-    borderRadius: '24px',
+    borderRadius: "24px",
   });
 
   const currentStyles =
-    animationPhase === 'initial' && !isClosing
+    animationPhase === "initial" && !isClosing
       ? getInitialStyles()
       : getFinalStyles();
 
   return (
     <div
       className={cn(
-        'fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8'
+        "fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8",
       )}
       onClick={handleClose}
       style={{
         opacity: isClosing ? 0 : 1,
-        transition: 'opacity 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: "opacity 500ms cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       <div
         className="absolute inset-0 bg-[var(--bg-void)]/95 backdrop-blur-2xl"
         style={{
-          opacity: animationPhase === 'initial' && !isClosing ? 0 : 1,
-          transition: 'opacity 600ms cubic-bezier(0.16, 1, 0.3, 1)',
+          opacity: animationPhase === "initial" && !isClosing ? 0 : 1,
+          transition: "opacity 600ms cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       />
 
@@ -352,13 +352,13 @@ const ImageLightbox = ({
           handleClose();
         }}
         style={{
-          opacity: animationPhase === 'complete' && !isClosing ? 1 : 0,
+          opacity: animationPhase === "complete" && !isClosing ? 1 : 0,
           transform:
-            animationPhase === 'complete' && !isClosing
-              ? 'translateY(0)'
-              : 'translateY(-30px)',
+            animationPhase === "complete" && !isClosing
+              ? "translateY(0)"
+              : "translateY(-30px)",
           transition:
-            'opacity 400ms ease-out 400ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 400ms',
+            "opacity 400ms ease-out 400ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 400ms",
         }}
         type="button"
       >
@@ -374,13 +374,13 @@ const ImageLightbox = ({
         }}
         style={{
           opacity:
-            animationPhase === 'complete' && !isClosing && hasPrev ? 1 : 0,
+            animationPhase === "complete" && !isClosing && hasPrev ? 1 : 0,
           transform:
-            animationPhase === 'complete' && !isClosing
-              ? 'translateX(0)'
-              : 'translateX(-40px)',
+            animationPhase === "complete" && !isClosing
+              ? "translateX(0)"
+              : "translateX(-40px)",
           transition:
-            'opacity 400ms ease-out 600ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 600ms',
+            "opacity 400ms ease-out 600ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 600ms",
         }}
         type="button"
       >
@@ -396,13 +396,13 @@ const ImageLightbox = ({
         }}
         style={{
           opacity:
-            animationPhase === 'complete' && !isClosing && hasNext ? 1 : 0,
+            animationPhase === "complete" && !isClosing && hasNext ? 1 : 0,
           transform:
-            animationPhase === 'complete' && !isClosing
-              ? 'translateX(0)'
-              : 'translateX(40px)',
+            animationPhase === "complete" && !isClosing
+              ? "translateX(0)"
+              : "translateX(40px)",
           transition:
-            'opacity 400ms ease-out 600ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 600ms',
+            "opacity 400ms ease-out 600ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 600ms",
         }}
         type="button"
       >
@@ -416,13 +416,13 @@ const ImageLightbox = ({
         style={{
           ...currentStyles,
           transform: isClosing
-            ? 'translate(0, 0) scale(0.92)'
+            ? "translate(0, 0) scale(0.92)"
             : currentStyles.transform,
           transition:
-            animationPhase === 'initial' && !isClosing
-              ? 'none'
-              : 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out, border-radius 700ms ease',
-          transformOrigin: 'center center',
+            animationPhase === "initial" && !isClosing
+              ? "none"
+              : "transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out, border-radius 700ms ease",
+          transformOrigin: "center center",
         }}
       >
         <div className="relative overflow-hidden rounded-[inherit] border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)]">
@@ -432,8 +432,8 @@ const ImageLightbox = ({
               style={{
                 transform: `translateX(-${internalIndex * 100}%)`,
                 transition: isSliding
-                  ? 'transform 500ms cubic-bezier(0.16, 1, 0.3, 1)'
-                  : 'none',
+                  ? "transform 500ms cubic-bezier(0.16, 1, 0.3, 1)"
+                  : "none",
               }}
             >
               {projects.map((project) => (
@@ -455,13 +455,13 @@ const ImageLightbox = ({
           <div
             className="border-t border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-5 lg:px-8 lg:py-6"
             style={{
-              opacity: animationPhase === 'complete' && !isClosing ? 1 : 0,
+              opacity: animationPhase === "complete" && !isClosing ? 1 : 0,
               transform:
-                animationPhase === 'complete' && !isClosing
-                  ? 'translateY(0)'
-                  : 'translateY(40px)',
+                animationPhase === "complete" && !isClosing
+                  ? "translateY(0)"
+                  : "translateY(40px)",
               transition:
-                'opacity 500ms ease-out 500ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms',
+                "opacity 500ms ease-out 500ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms",
             }}
           >
             <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
@@ -473,13 +473,13 @@ const ImageLightbox = ({
                   {currentProject?.status && (
                     <span
                       className={cn(
-                        'shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-semibold uppercase sm:px-2 sm:text-[10px]',
-                        currentProject.status === 'live' &&
-                          'bg-[#05df72]/20 text-[#05df72]',
-                        currentProject.status === 'development' &&
-                          'bg-[#fdc700]/20 text-[#fdc700]',
-                        currentProject.status === 'completed' &&
-                          'bg-[#00d9ff]/20 text-[#00d9ff]'
+                        "shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-semibold uppercase sm:px-2 sm:text-[10px]",
+                        currentProject.status === "live" &&
+                          "bg-[#05df72]/20 text-[#05df72]",
+                        currentProject.status === "development" &&
+                          "bg-[#fdc700]/20 text-[#fdc700]",
+                        currentProject.status === "completed" &&
+                          "bg-[#00d9ff]/20 text-[#00d9ff]",
                       )}
                     >
                       {currentProject.status}
@@ -509,7 +509,7 @@ const ImageLightbox = ({
                           type="button"
                         >
                           {showAllTech
-                            ? 'Show less'
+                            ? "Show less"
                             : `+${currentProject.techStack.length - 4}`}
                         </button>
                       )}
@@ -521,10 +521,10 @@ const ImageLightbox = ({
                     {projects.map((_, idx) => (
                       <button
                         className={cn(
-                          'h-2 w-2 shrink-0 rounded-full transition-all duration-500 sm:h-2.5 sm:w-2.5',
+                          "h-2 w-2 shrink-0 rounded-full transition-all duration-500 sm:h-2.5 sm:w-2.5",
                           idx === internalIndex
-                            ? 'bg-[#05df72]'
-                            : 'bg-[var(--text-muted)]/30 hover:bg-[var(--text-muted)]/60'
+                            ? "bg-[#05df72]"
+                            : "bg-[var(--text-muted)]/30 hover:bg-[var(--text-muted)]/60",
                         )}
                         key={`dot-${projects[idx].id}`}
                         onClick={() => handleDotClick(idx)}
@@ -613,52 +613,52 @@ export const AnimatedFolder = ({
     setHiddenCardId(projects[newIndex]?.id || null);
   };
 
-  const defaultGradient = 'linear-gradient(135deg, #1a1f2e 0%, #0f1115 100%)';
+  const defaultGradient = "linear-gradient(135deg, #1a1f2e 0%, #0f1115 100%)";
   const backBg = gradient || defaultGradient;
-  const tabBg = gradient || 'var(--bg-elevated)';
+  const tabBg = gradient || "var(--bg-elevated)";
   const frontBg =
-    gradient || 'linear-gradient(135deg, #1c1f26 0%, #12141a 100%)';
+    gradient || "linear-gradient(135deg, #1c1f26 0%, #12141a 100%)";
 
   return (
     <>
       <div
         className={cn(
-          'group relative flex min-h-[320px] min-w-[280px] cursor-pointer flex-col items-center justify-center rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#05df72]/40 hover:shadow-2xl hover:shadow-[#05df72]/10',
-          className
+          "group relative flex min-h-[320px] min-w-[280px] cursor-pointer flex-col items-center justify-center rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#05df72]/40 hover:shadow-2xl hover:shadow-[#05df72]/10",
+          className,
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
-          perspective: '1200px',
+          perspective: "1200px",
           transform: showHoverEffect
-            ? 'scale(1.04) rotate(-1.5deg)'
-            : 'scale(1) rotate(0deg)',
+            ? "scale(1.04) rotate(-1.5deg)"
+            : "scale(1) rotate(0deg)",
         }}
       >
         <div
           className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-700"
           style={{
             background: gradient
-              ? `radial-gradient(circle at 50% 70%, ${gradient.match(/#[a-fA-F0-9]{3,6}/)?.[0] || '#05df72'} 0%, transparent 70%)`
-              : 'radial-gradient(circle at 50% 70%, #05df72 0%, transparent 70%)',
+              ? `radial-gradient(circle at 50% 70%, ${gradient.match(/#[a-fA-F0-9]{3,6}/)?.[0] || "#05df72"} 0%, transparent 70%)`
+              : "radial-gradient(circle at 50% 70%, #05df72 0%, transparent 70%)",
             opacity: showHoverEffect ? 0.12 : 0,
           }}
         />
 
         <div
           className="relative mb-4 flex items-center justify-center"
-          style={{ height: '160px', width: '200px' }}
+          style={{ height: "160px", width: "200px" }}
         >
           <div
             className="absolute h-24 w-32 rounded-lg border border-[var(--border-subtle)] shadow-md"
             style={{
               background: backBg,
-              filter: gradient ? 'brightness(0.9)' : 'none',
-              transformOrigin: 'bottom center',
+              filter: gradient ? "brightness(0.9)" : "none",
+              transformOrigin: "bottom center",
               transform: showHoverEffect
-                ? 'rotateX(-20deg) scaleY(1.05)'
-                : 'rotateX(0deg) scaleY(1)',
-              transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+                ? "rotateX(-20deg) scaleY(1.05)"
+                : "rotateX(0deg) scaleY(1)",
+              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 10,
             }}
           />
@@ -667,14 +667,14 @@ export const AnimatedFolder = ({
             className="absolute h-4 w-12 rounded-t-md border-x border-t border-[var(--border-subtle)]"
             style={{
               background: tabBg,
-              filter: gradient ? 'brightness(0.85)' : 'none',
-              top: 'calc(50% - 48px - 12px)',
-              left: 'calc(50% - 64px + 16px)',
-              transformOrigin: 'bottom center',
+              filter: gradient ? "brightness(0.85)" : "none",
+              top: "calc(50% - 48px - 12px)",
+              left: "calc(50% - 64px + 16px)",
+              transformOrigin: "bottom center",
               transform: showHoverEffect
-                ? 'rotateX(-30deg) translateY(-3px)'
-                : 'rotateX(0deg) translateY(0)',
-              transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+                ? "rotateX(-30deg) translateY(-3px)"
+                : "rotateX(0deg) translateY(0)",
+              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 10,
             }}
           />
@@ -682,9 +682,9 @@ export const AnimatedFolder = ({
           <div
             className="absolute"
             style={{
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
               zIndex: 20,
             }}
           >
@@ -711,12 +711,12 @@ export const AnimatedFolder = ({
             className="absolute h-24 w-32 rounded-lg border border-[var(--border-subtle)]/20 shadow-lg"
             style={{
               background: frontBg,
-              top: 'calc(50% - 48px + 4px)',
-              transformOrigin: 'bottom center',
+              top: "calc(50% - 48px + 4px)",
+              transformOrigin: "bottom center",
               transform: showHoverEffect
-                ? 'rotateX(35deg) translateY(12px)'
-                : 'rotateX(0deg) translateY(0)',
-              transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+                ? "rotateX(35deg) translateY(12px)"
+                : "rotateX(0deg) translateY(0)",
+              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 30,
             }}
           />
@@ -724,14 +724,14 @@ export const AnimatedFolder = ({
           <div
             className="pointer-events-none absolute h-24 w-32 overflow-hidden rounded-lg"
             style={{
-              top: 'calc(50% - 48px + 4px)',
+              top: "calc(50% - 48px + 4px)",
               background:
-                'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%)',
-              transformOrigin: 'bottom center',
+                "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%)",
+              transformOrigin: "bottom center",
               transform: showHoverEffect
-                ? 'rotateX(35deg) translateY(12px)'
-                : 'rotateX(0deg) translateY(0)',
-              transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+                ? "rotateX(35deg) translateY(12px)"
+                : "rotateX(0deg) translateY(0)",
+              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 31,
             }}
           />
@@ -741,8 +741,8 @@ export const AnimatedFolder = ({
           <h3
             className="mt-4 text-lg font-bold text-[var(--text-primary)] transition-all duration-500"
             style={{
-              transform: showHoverEffect ? 'translateY(2px)' : 'translateY(0)',
-              letterSpacing: showHoverEffect ? '-0.01em' : '0',
+              transform: showHoverEffect ? "translateY(2px)" : "translateY(0)",
+              letterSpacing: showHoverEffect ? "-0.01em" : "0",
             }}
           >
             {title}
@@ -751,7 +751,7 @@ export const AnimatedFolder = ({
             className="text-sm font-medium text-[var(--text-muted)] transition-all duration-500"
             style={{ opacity: showHoverEffect ? 0.8 : 1 }}
           >
-            {projects.length} {projects.length === 1 ? 'project' : 'projects'}
+            {projects.length} {projects.length === 1 ? "project" : "projects"}
           </p>
         </div>
 
@@ -759,7 +759,7 @@ export const AnimatedFolder = ({
           className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1.5 text-xs font-semibold tracking-widest text-[var(--text-muted)]/50 uppercase transition-all duration-500"
           style={{
             opacity: showHoverEffect ? 0 : 1,
-            transform: showHoverEffect ? 'translateY(10px)' : 'translateY(0)',
+            transform: showHoverEffect ? "translateY(10px)" : "translateY(0)",
           }}
         >
           <span>Hover</span>

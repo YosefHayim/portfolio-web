@@ -1,27 +1,27 @@
-import { motion } from 'framer-motion';
-import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router';
-import type { Project } from '@/data/projects';
-import { TechBadge } from '@/utils/techIcons';
+import { motion } from "framer-motion";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { Link, useNavigate } from "react-router";
+import type { Project } from "@/data/projects";
+import { TechBadge } from "@/utils/techIcons";
 
 const ICON_SIZE = 18;
 const VISIBLE_TECH_COUNT = 4;
 
 const statusConfig = {
   live: {
-    label: 'Live',
-    className: 'bg-[#05df72]/90 text-black',
-    dot: 'bg-[#05df72]',
+    label: "Live",
+    className: "bg-[#05df72]/90 text-black",
+    dot: "bg-[#05df72]",
   },
   development: {
-    label: 'In Progress',
-    className: 'bg-[#fdc700]/90 text-black',
-    dot: 'bg-[#fdc700] animate-pulse',
+    label: "In Progress",
+    className: "bg-[#fdc700]/90 text-black",
+    dot: "bg-[#fdc700] animate-pulse",
   },
   completed: {
-    label: 'Completed',
-    className: 'bg-[#00d9ff]/90 text-black',
-    dot: 'bg-[#00d9ff]',
+    label: "Completed",
+    className: "bg-[#00d9ff]/90 text-black",
+    dot: "bg-[#00d9ff]",
   },
 };
 
@@ -32,10 +32,10 @@ type ProjectCardProps = {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
-  searchQuery = '',
+  searchQuery = "",
 }) => {
   const navigate = useNavigate();
-  const hasLiveUrl = project.deployedUrl && project.deployedUrl !== 'projects';
+  const hasLiveUrl = project.deployedUrl && project.deployedUrl !== "projects";
   const status = project.status ? statusConfig[project.status] : null;
 
   const handleCardClick = () => {
@@ -142,7 +142,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {project.techStack.slice(0, VISIBLE_TECH_COUNT).map((tech) => (
             <span
               className={`transition-all duration-200 ${
-                isMatchingTech(tech) ? 'ring-1 ring-[#05df72]/50' : ''
+                isMatchingTech(tech) ? "ring-1 ring-[#05df72]/50" : ""
               }`}
               key={tech}
             >

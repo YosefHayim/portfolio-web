@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Award, FolderKanban, Home, Layers, User } from 'lucide-react';
-import type { ReactNode } from 'react';
-import { Link } from 'react-router';
-import Logo from '../Logo/Logo';
-import { SocialIcons } from '../ui/social-icons';
+import { motion } from "framer-motion";
+import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import type { ReactNode } from "react";
+import { Link } from "react-router";
+import Logo from "../Logo/Logo";
+import { SocialIcons } from "../ui/social-icons";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const ANIMATION_DELAY_STEP = 0.1;
@@ -17,17 +17,17 @@ type NavLink = {
 };
 
 const navLinks: NavLink[] = [
-  { to: '/', label: 'Home', icon: <Home size={ICON_SIZE} /> },
-  { to: '/about', label: 'About', icon: <User size={ICON_SIZE} /> },
-  { to: '/techStack', label: 'Tech Stack', icon: <Layers size={ICON_SIZE} /> },
+  { to: "/", label: "Home", icon: <Home size={ICON_SIZE} /> },
+  { to: "/about", label: "About", icon: <User size={ICON_SIZE} /> },
+  { to: "/techStack", label: "Tech Stack", icon: <Layers size={ICON_SIZE} /> },
   {
-    to: '/projects',
-    label: 'Projects',
+    to: "/projects",
+    label: "Projects",
     icon: <FolderKanban size={ICON_SIZE} />,
   },
   {
-    to: '/certifications',
-    label: 'Certifications',
+    to: "/certifications",
+    label: "Certifications",
     icon: <Award size={ICON_SIZE} />,
   },
 ];
@@ -45,7 +45,7 @@ const Footer = () => {
           >
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-              Just trying to get better{' '}
+              Just trying to get better{" "}
               <span className="font-semibold text-[#05df72]">everyday.</span>
             </p>
           </motion.section>

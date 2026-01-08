@@ -1,13 +1,13 @@
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import {
   forwardRef,
   type HTMLAttributes,
   type MouseEvent,
   useEffect,
   useRef,
-} from 'react';
-import type { IconType } from 'react-icons';
-import { cn } from '@/lib/utils';
+} from "react";
+import type { IconType } from "react-icons";
+import { cn } from "@/lib/utils";
 
 export type TechIconData = {
   id: number;
@@ -66,13 +66,13 @@ const FloatingIcon = ({
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         const distance = Math.sqrt(
-          (mouseX.current - centerX) ** 2 + (mouseY.current - centerY) ** 2
+          (mouseX.current - centerX) ** 2 + (mouseY.current - centerY) ** 2,
         );
 
         if (distance < REPEL_DISTANCE) {
           const angle = Math.atan2(
             mouseY.current - centerY,
-            mouseX.current - centerX
+            mouseX.current - centerX,
           );
           const force =
             (1 - distance / REPEL_DISTANCE) * REPEL_FORCE_MULTIPLIER;
@@ -85,8 +85,8 @@ const FloatingIcon = ({
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [x, y, mouseX, mouseY]);
 
   const Icon = iconData.icon;
@@ -97,7 +97,7 @@ const FloatingIcon = ({
   return (
     <motion.div
       animate={{ opacity: 1, scale: 1 }}
-      className={cn('absolute', iconData.className)}
+      className={cn("absolute", iconData.className)}
       initial={{ opacity: 0, scale: 0.5 }}
       ref={ref}
       style={{ x: springX, y: springY }}
@@ -117,8 +117,8 @@ const FloatingIcon = ({
         transition={{
           duration: floatDuration,
           repeat: Number.POSITIVE_INFINITY,
-          repeatType: 'mirror',
-          ease: 'easeInOut',
+          repeatType: "mirror",
+          ease: "easeInOut",
         }}
       >
         <Icon
@@ -152,8 +152,8 @@ const FloatingTechIcons = forwardRef<
   return (
     <section
       className={cn(
-        'relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[var(--bg-void)] md:min-h-[700px]',
-        className
+        "relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[var(--bg-void)] md:min-h-[700px]",
+        className,
       )}
       onMouseMove={handleMouseMove}
       ref={ref}
@@ -195,6 +195,6 @@ const FloatingTechIcons = forwardRef<
   );
 });
 
-FloatingTechIcons.displayName = 'FloatingTechIcons';
+FloatingTechIcons.displayName = "FloatingTechIcons";
 
 export { FloatingTechIcons };

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { Award, ExternalLink, Star } from 'lucide-react';
-import type React from 'react';
-import { cn } from '@/lib/utils';
+import { Award, ExternalLink, Star } from "lucide-react";
+import type React from "react";
+import { cn } from "@/lib/utils";
 
 export interface AwardsComponentProps {
-  variant?: 'stamp' | 'award' | 'certificate' | 'badge' | 'modern-card';
+  variant?: "stamp" | "award" | "certificate" | "badge" | "modern-card";
   title: string;
   subtitle?: string;
   description?: string;
   date?: string;
   recipient?: string;
-  level?: 'bronze' | 'silver' | 'gold' | 'platinum';
+  level?: "bronze" | "silver" | "gold" | "platinum";
   className?: string;
   showIcon?: boolean;
   customIcon?: React.ReactNode;
@@ -20,19 +20,19 @@ export interface AwardsComponentProps {
 }
 
 const levelColors = {
-  bronze: 'from-amber-600 to-amber-800',
-  silver: 'from-gray-400 to-gray-600',
-  gold: 'from-yellow-400 to-yellow-600',
-  platinum: 'from-slate-300 to-slate-500',
+  bronze: "from-amber-600 to-amber-800",
+  silver: "from-gray-400 to-gray-600",
+  gold: "from-yellow-400 to-yellow-600",
+  platinum: "from-slate-300 to-slate-500",
 };
 
 export function Awards({
-  variant = 'badge',
+  variant = "badge",
   title,
   subtitle,
   date,
   recipient,
-  level = 'gold',
+  level = "gold",
   className,
   showIcon = true,
   customIcon,
@@ -40,14 +40,14 @@ export function Awards({
   platform,
 }: AwardsComponentProps) {
   // Stamp Variant
-  if (variant === 'stamp') {
+  if (variant === "stamp") {
     const createSerratedPath = () => {
       const radius = 96;
       const teeth = 40;
       const innerRadius = radius - 8;
       const outerRadius = radius;
 
-      let path = '';
+      let path = "";
       for (let i = 0; i < teeth; i++) {
         const angle = (i / teeth) * 2 * Math.PI;
         const r = i % 2 === 0 ? outerRadius : innerRadius;
@@ -60,7 +60,7 @@ export function Awards({
           path += ` L ${x} ${y}`;
         }
       }
-      path += ' Z';
+      path += " Z";
       return path;
     };
 
@@ -73,8 +73,8 @@ export function Awards({
     return (
       <div
         className={cn(
-          'relative mx-auto flex h-48 w-48 items-center justify-center',
-          className
+          "relative mx-auto flex h-48 w-48 items-center justify-center",
+          className,
         )}
       >
         <svg
@@ -144,7 +144,7 @@ export function Awards({
   }
 
   // Award Variant
-  if (variant === 'award') {
+  if (variant === "award") {
     const LaurelWreath = () => (
       <svg
         className="absolute top-1/2 h-full w-full -translate-y-1/2 fill-[#05df72]/20"
@@ -160,18 +160,18 @@ export function Awards({
     return (
       <div
         className={cn(
-          'relative z-0',
-          'flex flex-col items-center justify-center p-6',
-          'overflow-hidden',
-          className
+          "relative z-0",
+          "flex flex-col items-center justify-center p-6",
+          "overflow-hidden",
+          className,
         )}
       >
         <LaurelWreath />
         <div className="z-10 px-8 text-center">
           <div
             className={cn(
-              'mt-6 mb-2 inline-block rounded-md px-4 py-1 tracking-wider text-white',
-              `bg-gradient-to-r ${levelColors[level]}`
+              "mt-6 mb-2 inline-block rounded-md px-4 py-1 tracking-wider text-white",
+              `bg-gradient-to-r ${levelColors[level]}`,
             )}
           >
             {level.toUpperCase()}
@@ -198,7 +198,7 @@ export function Awards({
   }
 
   // Certificate Variant
-  if (variant === 'certificate') {
+  if (variant === "certificate") {
     const Badge = () => (
       <svg
         className="-mt-12 h-18 w-full overflow-hidden fill-[#05df72]"
@@ -213,11 +213,11 @@ export function Awards({
     const content = (
       <div
         className={cn(
-          'relative z-0',
-          'flex flex-col items-center justify-center rounded-xl border-2 border-dotted border-[var(--border-subtle)] p-2',
-          'overflow-hidden transition-all duration-300',
-          link && 'cursor-pointer hover:border-[#05df72]/50',
-          className
+          "relative z-0",
+          "flex flex-col items-center justify-center rounded-xl border-2 border-dotted border-[var(--border-subtle)] p-2",
+          "overflow-hidden transition-all duration-300",
+          link && "cursor-pointer hover:border-[#05df72]/50",
+          className,
         )}
       >
         <div className="z-10 rounded-sm border border-[var(--border-subtle)] bg-[var(--bg-card)] p-6 px-8 text-center">
@@ -225,7 +225,7 @@ export function Awards({
           <h1 className="mt-4 grid text-3xl leading-7 font-bold tracking-tighter text-[var(--text-primary)] uppercase">
             Certificate
             <span className="text-sm font-light tracking-tight text-[var(--text-secondary)]">
-              {' '}
+              {" "}
               of {title}
             </span>
           </h1>
@@ -267,7 +267,7 @@ export function Awards({
   }
 
   // Badge Variant
-  if (variant === 'badge') {
+  if (variant === "badge") {
     const BadgeSvg = () => (
       <svg
         className="h-full w-18 overflow-hidden fill-[#05df72]"
@@ -282,10 +282,10 @@ export function Awards({
     );
 
     return (
-      <div className={cn('', className)}>
+      <div className={cn("", className)}>
         <div
           className={cn(
-            'flex justify-start gap-3 rounded-md border-4 border-[var(--border-subtle)] p-4'
+            "flex justify-start gap-3 rounded-md border-4 border-[var(--border-subtle)] p-4",
           )}
         >
           <BadgeSvg />
@@ -307,14 +307,14 @@ export function Awards({
     );
   }
 
-  if (variant === 'modern-card') {
+  if (variant === "modern-card") {
     const content = (
       <div
         className={cn(
-          'group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] transition-all duration-300',
+          "group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] transition-all duration-300",
           link &&
-            'cursor-pointer hover:border-[#05df72]/40 hover:shadow-lg hover:shadow-[#05df72]/10',
-          className
+            "cursor-pointer hover:border-[#05df72]/40 hover:shadow-lg hover:shadow-[#05df72]/10",
+          className,
         )}
       >
         <div className="flex items-center gap-4 p-4 sm:flex-col sm:p-5">

@@ -1,4 +1,4 @@
-import type { Transition, Variants } from 'framer-motion';
+import type { Transition, Variants } from "framer-motion";
 
 const DURATION_FAST = 0.3;
 const DURATION_NORMAL = 0.4;
@@ -11,13 +11,13 @@ const EASE_EXPO_3 = 0.3;
 const EASE_BACK_1 = 0.34;
 const EASE_BACK_2 = 1.56;
 const EASE_BACK_3 = 0.64;
-const EASE_OUT_EXPO: Transition['ease'] = [
+const EASE_OUT_EXPO: Transition["ease"] = [
   EASE_EXPO_1,
   EASE_EXPO_2,
   EASE_EXPO_3,
   EASE_EXPO_2,
 ];
-const EASE_OUT_BACK: Transition['ease'] = [
+const EASE_OUT_BACK: Transition["ease"] = [
   EASE_BACK_1,
   EASE_BACK_2,
   EASE_BACK_3,
@@ -28,7 +28,7 @@ export const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: DURATION_NORMAL, ease: 'easeOut' },
+    transition: { duration: DURATION_NORMAL, ease: "easeOut" },
   },
 };
 
@@ -78,44 +78,44 @@ export const scaleIn: Variants = {
 };
 
 export const slideInFromLeft: Variants = {
-  hidden: { x: '-100%', opacity: 0 },
+  hidden: { x: "-100%", opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
     transition: { duration: DURATION_SLOW, ease: EASE_OUT_EXPO },
   },
   exit: {
-    x: '-100%',
+    x: "-100%",
     opacity: 0,
-    transition: { duration: DURATION_FAST, ease: 'easeIn' },
+    transition: { duration: DURATION_FAST, ease: "easeIn" },
   },
 };
 
 export const slideInFromRight: Variants = {
-  hidden: { x: '100%', opacity: 0 },
+  hidden: { x: "100%", opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
     transition: { duration: DURATION_SLOW, ease: EASE_OUT_EXPO },
   },
   exit: {
-    x: '100%',
+    x: "100%",
     opacity: 0,
-    transition: { duration: DURATION_FAST, ease: 'easeIn' },
+    transition: { duration: DURATION_FAST, ease: "easeIn" },
   },
 };
 
 export const pageSlide: Variants = {
-  hidden: { x: '100%', opacity: 0 },
+  hidden: { x: "100%", opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
     transition: { duration: DURATION_NORMAL, ease: EASE_OUT_EXPO },
   },
   exit: {
-    x: '-30%',
+    x: "-30%",
     opacity: 0,
-    transition: { duration: DURATION_FAST, ease: 'easeIn' },
+    transition: { duration: DURATION_FAST, ease: "easeIn" },
   },
 };
 
@@ -171,14 +171,14 @@ export const buttonTap = {
 export const pulseGlow: Variants = {
   animate: {
     boxShadow: [
-      '0 0 0 0 rgba(5, 223, 114, 0)',
-      '0 0 0 8px rgba(5, 223, 114, 0.3)',
-      '0 0 0 0 rgba(5, 223, 114, 0)',
+      "0 0 0 0 rgba(5, 223, 114, 0)",
+      "0 0 0 8px rgba(5, 223, 114, 0.3)",
+      "0 0 0 0 rgba(5, 223, 114, 0)",
     ],
     transition: {
       duration: 2,
       repeat: Number.POSITIVE_INFINITY,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
@@ -189,7 +189,7 @@ export const blinkCursor: Variants = {
     transition: {
       duration: 1,
       repeat: Number.POSITIVE_INFINITY,
-      ease: 'linear',
+      ease: "linear",
     },
   },
 };
@@ -200,18 +200,18 @@ export const floatAnimation: Variants = {
     transition: {
       duration: 3,
       repeat: Number.POSITIVE_INFINITY,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
 
 export const shimmer: Variants = {
   animate: {
-    backgroundPosition: ['200% 0', '-200% 0'],
+    backgroundPosition: ["200% 0", "-200% 0"],
     transition: {
       duration: 1.5,
       repeat: Number.POSITIVE_INFINITY,
-      ease: 'linear',
+      ease: "linear",
     },
   },
 };

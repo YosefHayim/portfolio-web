@@ -9,27 +9,25 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 const logsDir = path.join(__dirname, "../../logs");
 
-type LogInfo = {
-	timestamp?: string;
-	level: string;
-	message: string;
-	stack?: string;
-};
-
 const logFormat = winston.format.combine(
 	winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
 	winston.format.errors({ stack: true }),
-	winston.format.printf((info: LogInfo) => {
-		const logMessage = `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`;
-		return info.stack ? `${logMessage}\n${info.stack}` : logMessage;
+	winston.format.printf((info) => {
+		const timestamp = info.timestamp as string;
+		const message = info.message as string;
+		const stack = info.stack as string | undefined;
+		const logMessage = `${timestamp} [${info.level.toUpperCase()}]: ${message}`;
+		return stack ? `${logMessage}\n${stack}` : logMessage;
 	}),
 );
 
 const consoleFormat = winston.format.combine(
 	winston.format.colorize({ all: true }),
 	winston.format.timestamp({ format: "HH:mm:ss" }),
-	winston.format.printf((info: LogInfo) => {
-		return `${info.timestamp} ${info.level}: ${info.message}`;
+	winston.format.printf((info) => {
+		const timestamp = info.timestamp as string;
+		const message = info.message as string;
+		return `${timestamp} ${info.level}: ${message}`;
 	}),
 );
 

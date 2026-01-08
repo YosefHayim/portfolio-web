@@ -1,4 +1,4 @@
-import GithubSocialButton from '@/Components/GithubSocialButton/GithubSocialButton';
+import GithubSocialButton from "@/Components/GithubSocialButton/GithubSocialButton";
 
 interface CollaboratorToProjectProps {
   [key: string]: string;
@@ -20,7 +20,7 @@ const Collaborators: React.FC<{
               <GithubSocialButton to={collaborator.githubProfileLink} />
               <p>{collaborator.name}</p>
             </li>
-          )
+          ),
         )}
       </ul>
     </div>

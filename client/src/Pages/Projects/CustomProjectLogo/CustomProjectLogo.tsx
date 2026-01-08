@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 const CustomProjectLogo: React.FC<{ children: ReactNode }> = ({ children }) => {
   return <div>{children}</div>;

@@ -1,6 +1,6 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useCallback, useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type StackedCarouselProps = {
   images: string[];
@@ -63,7 +63,7 @@ export const StackedCarousel = ({
   };
 
   return (
-    <div className={cn('relative h-80 w-full max-w-md', className)}>
+    <div className={cn("relative h-80 w-full max-w-md", className)}>
       <AnimatePresence mode="popLayout">
         {getVisibleIndices().map((imageIndex, position) => (
           <motion.div
@@ -73,7 +73,7 @@ export const StackedCarousel = ({
             initial={{ y: ENTER_Y_OFFSET, scale: ENTER_SCALE, opacity: 0 }}
             key={`slide-${images[imageIndex]}`}
             transition={{
-              type: 'spring',
+              type: "spring",
               stiffness: SPRING_STIFFNESS,
               damping: SPRING_DAMPING,
             }}
@@ -99,10 +99,10 @@ export const StackedCarousel = ({
             <button
               aria-label={`Go to slide ${images.indexOf(imageSrc) + 1}`}
               className={cn(
-                'h-2 rounded-full transition-all duration-300',
+                "h-2 rounded-full transition-all duration-300",
                 isActive
-                  ? 'w-6 bg-[#05df72]'
-                  : 'w-2 bg-[var(--border-subtle)] hover:bg-[var(--text-muted)]'
+                  ? "w-6 bg-[#05df72]"
+                  : "w-2 bg-[var(--border-subtle)] hover:bg-[var(--text-muted)]",
               )}
               key={`dot-${imageSrc}`}
               onClick={() => setCurrentIndex(images.indexOf(imageSrc))}

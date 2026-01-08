@@ -1,5 +1,5 @@
-import { ChevronRight, Minus } from 'lucide-react';
-import { Link } from 'react-router';
+import { ChevronRight, Minus } from "lucide-react";
+import { Link } from "react-router";
 
 const Logo = () => {
   return (

@@ -1,8 +1,8 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, X } from 'lucide-react'; // Changed icon to Lightbulb for creativity
-import { FaWhatsapp } from 'react-icons/fa';
-import { Link } from 'react-router';
-import { Button } from '../ui/button';
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, X } from "lucide-react"; // Changed icon to Lightbulb for creativity
+import { FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router";
+import { Button } from "../ui/button";
 
 type ReturnVisitorDialogProps = {
   isOpen: boolean;
@@ -32,7 +32,7 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
             className="fixed right-4 bottom-4 left-4 z-50 sm:top-1/2 sm:right-auto sm:bottom-auto sm:left-1/2 sm:w-full sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2"
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
             <div className="overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-2xl">
               {/* Flex Container */}

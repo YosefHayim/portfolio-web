@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import { FaDownload, FaWhatsapp } from 'react-icons/fa';
-import { Link } from 'react-router';
-import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
-import MyJourney from './MyJourney/MyJourney';
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { FaDownload, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router";
+import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import MyJourney from "./MyJourney/MyJourney";
 
 const STAGGER_DELAY = 0.1;
 const CHILDREN_DELAY = 0.2;
@@ -24,14 +24,14 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' as const },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
 const About = () => {
   useEffect(() => {
-    document.title = 'About | Joseph Sabag';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = "About | Joseph Sabag";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
@@ -76,7 +76,7 @@ const About = () => {
           <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
             From earning 2 excellence awards as an IDF combat commander to
             graduating with excellence from my 795-hour bootcamp, I've learned
-            that the best way to grow is to{' '}
+            that the best way to grow is to{" "}
             <span className="font-medium text-[#05df72]">
               build things that matter
             </span>

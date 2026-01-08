@@ -1,10 +1,10 @@
-import type { GitHubStats, SiteConfig, VisitorStats } from './types';
+import type { GitHubStats, SiteConfig, VisitorStats } from "./types";
 
 const STORAGE_KEYS = {
-  GITHUB_STATS: 'portfolio_github_stats',
-  VISITOR_STATS: 'portfolio_visitor_stats',
-  SITE_CONFIG: 'portfolio_site_config',
-  CACHE_EXPIRY: 'portfolio_cache_expiry',
+  GITHUB_STATS: "portfolio_github_stats",
+  VISITOR_STATS: "portfolio_visitor_stats",
+  SITE_CONFIG: "portfolio_site_config",
+  CACHE_EXPIRY: "portfolio_cache_expiry",
 } as const;
 
 const HOURS_PER_DAY = 24;
@@ -96,15 +96,15 @@ export const localDb = {
       setItem(STORAGE_KEYS.SITE_CONFIG, config);
     },
     getDefault: (): SiteConfig => ({
-      ownerName: 'Joseph Sabag',
-      ownerTitle: 'Full-Stack Developer',
+      ownerName: "Joseph Sabag",
+      ownerTitle: "Full-Stack Developer",
       ownerBio:
-        'I turn complex problems into elegant solutions. From trading bots to AI-powered tools.',
-      contactEmail: '',
-      whatsappNumber: '546187549',
-      githubUsername: 'YosefHayim',
-      linkedinUrl: 'https://www.linkedin.com/in/yosef-hayim-sabag/',
-      resumeUrl: '',
+        "I turn complex problems into elegant solutions. From trading bots to AI-powered tools.",
+      contactEmail: "",
+      whatsappNumber: "546187549",
+      githubUsername: "YosefHayim",
+      linkedinUrl: "https://www.linkedin.com/in/yosef-hayim-sabag/",
+      resumeUrl: "",
     }),
   },
 

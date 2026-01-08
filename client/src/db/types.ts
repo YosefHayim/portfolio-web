@@ -3,7 +3,7 @@ export type Collaborator = {
   githubProfileLink: string;
 };
 
-export type ProjectStatus = 'live' | 'development' | 'completed';
+export type ProjectStatus = "live" | "development" | "completed";
 
 export type Project = {
   id: string;

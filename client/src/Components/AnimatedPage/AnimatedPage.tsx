@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type AnimatedPageProps = {
   children: ReactNode;
@@ -34,7 +34,7 @@ const pageVariants = {
     x: -SLIDE_OFFSET,
     transition: {
       duration: DURATION_EXIT,
-      ease: 'easeIn',
+      ease: "easeIn",
     },
   },
 };
@@ -45,7 +45,7 @@ const reducedMotionVariants = {
   exit: { opacity: 0, transition: { duration: REDUCED_EXIT } },
 };
 
-export function AnimatedPage({ children, className = '' }: AnimatedPageProps) {
+export function AnimatedPage({ children, className = "" }: AnimatedPageProps) {
   const prefersReducedMotion = useReducedMotion();
   const variants = prefersReducedMotion ? reducedMotionVariants : pageVariants;
 

@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'react';
-import { cn } from '@/lib/utils';
+import type { CSSProperties } from "react";
+import { cn } from "@/lib/utils";
 
 const letterPatterns: { [key: string]: number[] } = {
   A: [
@@ -56,21 +56,21 @@ const letterPatterns: { [key: string]: number[] } = {
   X: [0, 50, 203, 254, 304, 4, 54, 152, 101, 103, 201, 250, 300],
   Y: [0, 50, 101, 152, 202, 252, 302, 4, 54, 103],
   Z: [0, 1, 2, 3, 4, 54, 103, 152, 201, 250, 300, 301, 302, 303, 304],
-  '0': [1, 2, 3, 50, 100, 150, 200, 250, 301, 302, 303, 54, 104, 154, 204, 254],
-  '1': [1, 52, 102, 152, 202, 252, 302, 0, 2, 300, 301, 302, 303, 304],
-  '2': [0, 1, 2, 3, 54, 104, 152, 153, 201, 250, 300, 301, 302, 303, 304],
-  '3': [0, 1, 2, 3, 54, 104, 152, 153, 204, 254, 300, 301, 302, 303],
-  '4': [0, 50, 100, 150, 4, 54, 104, 151, 152, 153, 154, 204, 254, 304],
-  '5': [0, 1, 2, 3, 4, 50, 100, 151, 152, 153, 204, 254, 300, 301, 302, 303],
-  '6': [
+  "0": [1, 2, 3, 50, 100, 150, 200, 250, 301, 302, 303, 54, 104, 154, 204, 254],
+  "1": [1, 52, 102, 152, 202, 252, 302, 0, 2, 300, 301, 302, 303, 304],
+  "2": [0, 1, 2, 3, 54, 104, 152, 153, 201, 250, 300, 301, 302, 303, 304],
+  "3": [0, 1, 2, 3, 54, 104, 152, 153, 204, 254, 300, 301, 302, 303],
+  "4": [0, 50, 100, 150, 4, 54, 104, 151, 152, 153, 154, 204, 254, 304],
+  "5": [0, 1, 2, 3, 4, 50, 100, 151, 152, 153, 204, 254, 300, 301, 302, 303],
+  "6": [
     1, 2, 3, 50, 100, 150, 151, 152, 153, 200, 250, 301, 302, 204, 254, 303,
   ],
-  '7': [0, 1, 2, 3, 4, 54, 103, 152, 201, 250, 300],
-  '8': [
+  "7": [0, 1, 2, 3, 4, 54, 103, 152, 201, 250, 300],
+  "8": [
     1, 2, 3, 50, 100, 151, 152, 153, 200, 250, 301, 302, 303, 54, 104, 204, 254,
   ],
-  '9': [1, 2, 3, 50, 100, 151, 152, 153, 154, 204, 254, 304, 54, 104],
-  ' ': [],
+  "9": [1, 2, 3, 50, 100, 151, 152, 153, 154, 204, 254, 304, 54, 104],
+  " ": [],
 };
 
 const GRID_CHAR_WIDTH = 6;
@@ -80,19 +80,19 @@ const FLASH_PROBABILITY = 0.3;
 const MAX_ANIMATION_DELAY = 0.6;
 const MIN_GRID_WIDTH = 6;
 
-const commitColors = ['#05df72', '#016d32', '#0d4429'];
+const commitColors = ["#05df72", "#016d32", "#0d4429"];
 
 export const CommitsGrid = ({ text }: { text: string }) => {
   const cleanString = (str: string): string => {
     const upperStr = str.toUpperCase();
     const withoutAccents = upperStr
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
     const allowedChars = Object.keys(letterPatterns);
     return withoutAccents
-      .split('')
+      .split("")
       .filter((char) => allowedChars.includes(char))
-      .join('');
+      .join("");
   };
 
   const generateHighlightedCells = (inputText: string) => {
@@ -105,7 +105,7 @@ export const CommitsGrid = ({ text }: { text: string }) => {
 
     cleanedText
       .toUpperCase()
-      .split('')
+      .split("")
       .forEach((char) => {
         if (letterPatterns[char]) {
           const pattern = letterPatterns[char].map((pos) => {
@@ -155,16 +155,16 @@ export const CommitsGrid = ({ text }: { text: string }) => {
         return (
           <div
             className={cn(
-              'aspect-square h-full w-full rounded-[4px] border border-[var(--border-subtle)] sm:rounded-[3px]',
-              isHighlighted ? 'animate-highlight' : '',
-              shouldFlash ? 'animate-flash' : '',
-              isHighlighted || shouldFlash ? '' : 'bg-[var(--bg-card)]'
+              "aspect-square h-full w-full rounded-[4px] border border-[var(--border-subtle)] sm:rounded-[3px]",
+              isHighlighted ? "animate-highlight" : "",
+              shouldFlash ? "animate-flash" : "",
+              isHighlighted || shouldFlash ? "" : "bg-[var(--bg-card)]",
             )}
             key={index}
             style={
               {
                 animationDelay: getRandomDelay(),
-                '--highlight': getRandomColor(),
+                "--highlight": getRandomColor(),
               } as CSSProperties
             }
           />

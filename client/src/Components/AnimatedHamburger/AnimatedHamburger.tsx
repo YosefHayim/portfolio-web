@@ -1,4 +1,4 @@
-import { motion, type Transition } from 'framer-motion';
+import { motion, type Transition } from "framer-motion";
 
 const LINE_HEIGHT = 2;
 const LINE_WIDTH = 24;
@@ -18,7 +18,7 @@ const lineTransition: Transition = {
 
 const fadeTransition: Transition = {
   duration: FADE_DURATION,
-  ease: 'easeInOut',
+  ease: "easeInOut",
 };
 
 type AnimatedHamburgerProps = {
@@ -30,14 +30,14 @@ type AnimatedHamburgerProps = {
 const AnimatedHamburger = ({
   isOpen,
   onClick,
-  className = '',
+  className = "",
 }: AnimatedHamburgerProps) => {
   const lineOffset = GAP + LINE_HEIGHT;
 
   return (
     <button
       aria-expanded={isOpen}
-      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
       className={`relative flex h-10 w-10 items-center justify-center ${className}`}
       onClick={onClick}
       type="button"

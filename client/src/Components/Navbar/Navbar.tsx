@@ -1,9 +1,9 @@
-import { Award, FolderKanban, Home, Layers, User } from 'lucide-react';
-import AnimatedHamburger from '../AnimatedHamburger/AnimatedHamburger';
-import Logo from '../Logo/Logo';
-import { AppSidebar } from '../Sidebar/Sidebar';
-import { useSidebar } from '../ui/sidebar';
-import NavigationButton from './NavigationButton/NavigationButton';
+import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import AnimatedHamburger from "../AnimatedHamburger/AnimatedHamburger";
+import Logo from "../Logo/Logo";
+import { AppSidebar } from "../Sidebar/Sidebar";
+import { useSidebar } from "../ui/sidebar";
+import NavigationButton from "./NavigationButton/NavigationButton";
 
 const ICON_SIZE = 16;
 

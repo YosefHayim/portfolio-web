@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import { localDb } from '@/db/localDb';
-import type { GitHubStats } from '@/db/types';
+import { useCallback, useEffect, useState } from "react";
+import { localDb } from "@/db/localDb";
+import type { GitHubStats } from "@/db/types";
 
-const GITHUB_USERNAME = 'YosefHayim';
-const GITHUB_API_BASE = 'https://api.github.com';
+const GITHUB_USERNAME = "YosefHayim";
+const GITHUB_API_BASE = "https://api.github.com";
 const LAST_PAGE_REGEX = /page=(\d+)>; rel="last"/;
 const RATE_LIMIT_STATUS = 403;
 
@@ -23,15 +23,15 @@ const FALLBACK_STATS: GitHubStats = {
 
 const fetchGitHubStats = async (): Promise<GitHubStats> => {
   const reposResponse = await fetch(
-    `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?per_page=100&type=owner`
+    `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?per_page=100&type=owner`,
   );
 
   if (!reposResponse.ok) {
     const errorData = await reposResponse.json().catch(() => ({}));
-    if (errorData.message?.includes('rate limit')) {
-      throw new Error('RATE_LIMITED');
+    if (errorData.message?.includes("rate limit")) {
+      throw new Error("RATE_LIMITED");
     }
-    throw new Error('Failed to fetch GitHub repositories');
+    throw new Error("Failed to fetch GitHub repositories");
   }
 
   const repos = await reposResponse.json();
@@ -45,14 +45,14 @@ const fetchGitHubStats = async (): Promise<GitHubStats> => {
     try {
       const commitsResponse = await fetch(
         `${GITHUB_API_BASE}/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=1`,
-        { method: 'HEAD' }
+        { method: "HEAD" },
       );
 
       if (commitsResponse.status === RATE_LIMIT_STATUS) {
         break;
       }
 
-      const linkHeader = commitsResponse.headers.get('Link');
+      const linkHeader = commitsResponse.headers.get("Link");
       if (linkHeader) {
         const match = linkHeader.match(LAST_PAGE_REGEX);
         if (match) {
@@ -60,7 +60,7 @@ const fetchGitHubStats = async (): Promise<GitHubStats> => {
         }
       } else {
         const commitsData = await fetch(
-          `${GITHUB_API_BASE}/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=100`
+          `${GITHUB_API_BASE}/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=100`,
         );
         if (commitsData.ok) {
           const commits = await commitsData.json();
@@ -103,7 +103,7 @@ export const useGitHubStats = (): UseGitHubStatsResult => {
     } catch (err) {
       setStats(FALLBACK_STATS);
       localDb.gitHubStats.set(FALLBACK_STATS);
-      setError(err instanceof Error ? err.message : 'Failed to fetch stats');
+      setError(err instanceof Error ? err.message : "Failed to fetch stats");
     } finally {
       setIsLoading(false);
     }

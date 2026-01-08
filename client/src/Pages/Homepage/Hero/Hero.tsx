@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { FaArrowRight, FaWhatsapp } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { motion } from "framer-motion";
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router";
 
 const STAGGER_DELAY = 0.1;
 const ANIMATION_DURATION = 0.8;
@@ -25,7 +25,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: ANIMATION_DURATION,
-      ease: 'easeOut' as const,
+      ease: "easeOut" as const,
     },
   },
 };
@@ -58,7 +58,7 @@ const Hero = () => {
         >
           Building digital tools
           <br />
-          <span className="text-[var(--text-muted)]">that actually</span>{' '}
+          <span className="text-[var(--text-muted)]">that actually</span>{" "}
           <span className="relative">
             <span className="relative z-10 text-[#05df72]">matter</span>
             <motion.span
@@ -66,7 +66,7 @@ const Hero = () => {
               className="absolute -inset-x-2 -z-0 rounded-lg bg-[#05df72]/10"
               initial={{ scaleX: 0 }}
               style={{ originX: 0 }}
-              transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
+              transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
             />
           </span>
         </motion.h1>

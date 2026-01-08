@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ProjectImg: React.FC<{ path: string; to: string }> = ({
-  path = 'https://placehold.co/450x200',
+  path = "https://placehold.co/450x200",
   to,
 }) => {
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (to === 'projects') {
-      alert('This project is not deployed yet.');
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (to === "projects") {
+      alert("This project is not deployed yet.");
       return;
     }
   };
@@ -16,7 +16,7 @@ const ProjectImg: React.FC<{ path: string; to: string }> = ({
     <Link
       className="group relative w-full"
       onClick={handleClick}
-      to={to === 'projects' ? '/projects' : to}
+      to={to === "projects" ? "/projects" : to}
     >
       <div className="relative w-full opacity-50 duration-300 ease-in-out hover:opacity-100">
         {/** biome-ignore lint/performance/noImgElement: <explanation> */}

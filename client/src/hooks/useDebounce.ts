@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const DEFAULT_DELAY_MS = 300;
 
 export const useDebounce = <T>(
   value: T,
-  delay: number = DEFAULT_DELAY_MS
+  delay: number = DEFAULT_DELAY_MS,
 ): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 

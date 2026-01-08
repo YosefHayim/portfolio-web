@@ -1,6 +1,6 @@
-import { Terminal } from 'lucide-react';
+import { Terminal } from "lucide-react";
 
-import { Alert, AlertDescription, AlertTitle } from '@/Components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from "@/Components/ui/alert";
 
 const UserAlert: React.FC<{ alertTitle: string; alertDescription: string }> = ({
   alertTitle,

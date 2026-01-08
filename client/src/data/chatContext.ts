@@ -86,34 +86,34 @@ export const JOSEPH_SYSTEM_PROMPT = `You are an AI assistant on Joseph Sabag's p
 export type QuickAction = {
   label: string;
   prompt: string;
-  icon: 'skills' | 'projects' | 'experience' | 'contact' | 'resume';
+  icon: "skills" | "projects" | "experience" | "contact" | "resume";
 };
 
 export const QUICK_ACTIONS: QuickAction[] = [
   {
-    label: 'Technical Skills',
+    label: "Technical Skills",
     prompt: "What are Joseph's main technical skills and proficiencies?",
-    icon: 'skills',
+    icon: "skills",
   },
   {
-    label: 'Recent Projects',
+    label: "Recent Projects",
     prompt: "Tell me about Joseph's most impressive recent projects.",
-    icon: 'projects',
+    icon: "projects",
   },
   {
-    label: 'Work Experience',
+    label: "Work Experience",
     prompt: "What is Joseph's professional work experience?",
-    icon: 'experience',
+    icon: "experience",
   },
   {
-    label: 'Why Hire Joseph?',
-    prompt: 'What makes Joseph a good candidate for a software developer role?',
-    icon: 'contact',
+    label: "Why Hire Joseph?",
+    prompt: "What makes Joseph a good candidate for a software developer role?",
+    icon: "contact",
   },
   {
-    label: 'Download Resume',
-    prompt: '__ACTION_DOWNLOAD_RESUME__',
-    icon: 'resume',
+    label: "Download Resume",
+    prompt: "__ACTION_DOWNLOAD_RESUME__",
+    icon: "resume",
   },
 ];
 

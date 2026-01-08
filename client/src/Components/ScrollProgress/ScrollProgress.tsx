@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const SPRING_STIFFNESS = 100;
 const SPRING_DAMPING = 30;

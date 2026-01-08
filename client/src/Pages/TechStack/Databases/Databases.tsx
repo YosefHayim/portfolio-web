@@ -1,17 +1,17 @@
-import { BiLogoPostgresql } from 'react-icons/bi';
-import { ImDatabase } from 'react-icons/im';
-import { IoLogoFirebase } from 'react-icons/io5';
-import { RiFlashlightFill } from 'react-icons/ri';
-import { SiMongodb } from 'react-icons/si';
-import TechRow from '../TechRow/TechRow';
+import { BiLogoPostgresql } from "react-icons/bi";
+import { ImDatabase } from "react-icons/im";
+import { IoLogoFirebase } from "react-icons/io5";
+import { RiFlashlightFill } from "react-icons/ri";
+import { SiMongodb } from "react-icons/si";
+import TechRow from "../TechRow/TechRow";
 
 const datbasesTech = [
-  { name: 'SQL', icon: <ImDatabase size={20} /> },
-  { name: 'MongoDB', icon: <SiMongodb size={20} /> },
-  { name: 'PostgreSQL', icon: <BiLogoPostgresql size={20} /> },
-  { name: 'Firebase', icon: <IoLogoFirebase size={20} /> },
+  { name: "SQL", icon: <ImDatabase size={20} /> },
+  { name: "MongoDB", icon: <SiMongodb size={20} /> },
+  { name: "PostgreSQL", icon: <BiLogoPostgresql size={20} /> },
+  { name: "Firebase", icon: <IoLogoFirebase size={20} /> },
   {
-    name: 'Supabase',
+    name: "Supabase",
     icon: <RiFlashlightFill size={20} />,
   },
 ];

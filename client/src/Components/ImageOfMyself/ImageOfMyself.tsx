@@ -1,5 +1,5 @@
 const ImageOfMyself = ({
-  profilePic = '/images-of-me/linkedin-profile.png',
+  profilePic = "/images-of-me/linkedin-profile.png",
 }) => {
   return (
     <div className="flex w-full items-center justify-center">

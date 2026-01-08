@@ -3,21 +3,23 @@ import {
   type HTMLMotionProps,
   motion,
   type Variants,
-} from 'framer-motion';
-import { Loader2, Plus } from 'lucide-react';
-import { forwardRef, type MouseEvent, type ReactNode, useState } from 'react';
-import { cn } from '@/lib/utils';
+} from "framer-motion";
+import { Loader2, Plus } from "lucide-react";
+import { forwardRef, type MouseEvent, type ReactNode, useState } from "react";
+import { cn } from "@/lib/utils";
 
-interface MicroExpanderProps
-  extends Omit<HTMLMotionProps<'button'>, 'children'> {
+interface MicroExpanderProps extends Omit<
+  HTMLMotionProps<"button">,
+  "children"
+> {
   text: string;
   icon?: ReactNode;
-  variant?: 'default' | 'outline' | 'ghost' | 'destructive';
+  variant?: "default" | "outline" | "ghost" | "destructive";
   isLoading?: boolean;
 }
 
-const COLLAPSED_WIDTH = '44px';
-const EXPANDED_WIDTH = 'auto';
+const COLLAPSED_WIDTH = "44px";
+const EXPANDED_WIDTH = "auto";
 const BUTTON_HEIGHT = 44;
 const SPRING_STIFFNESS = 150;
 const SPRING_DAMPING = 20;
@@ -42,34 +44,34 @@ const textVariants: Variants = {
   hover: {
     opacity: 1,
     x: 0,
-    transition: { delay: TEXT_DELAY, duration: TEXT_DURATION, ease: 'easeOut' },
+    transition: { delay: TEXT_DELAY, duration: TEXT_DURATION, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
     x: EXIT_X_OFFSET,
-    transition: { duration: EXIT_DURATION, ease: 'linear' },
+    transition: { duration: EXIT_DURATION, ease: "linear" },
   },
 };
 
 const variantStyles = {
   default:
-    'bg-[#05df72] text-[var(--bg-void)] border border-[#05df72] hover:bg-[#04c966]',
+    "bg-[#05df72] text-[var(--bg-void)] border border-[#05df72] hover:bg-[#04c966]",
   outline:
-    'bg-transparent border border-[var(--border-subtle)] text-[var(--text-primary)] hover:border-[#05df72] hover:text-[#05df72]',
+    "bg-transparent border border-[var(--border-subtle)] text-[var(--text-primary)] hover:border-[#05df72] hover:text-[#05df72]",
   ghost:
-    'bg-[var(--bg-card)] border border-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]',
+    "bg-[var(--bg-card)] border border-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]",
   destructive:
-    'bg-[#ff6467] text-white border border-[#ff6467] hover:bg-[#ff6467]/90',
+    "bg-[#ff6467] text-white border border-[#ff6467] hover:bg-[#ff6467]/90",
 };
 
 const getAnimateState = (isLoading: boolean, isHovered: boolean) => {
   if (isLoading) {
-    return 'loading';
+    return "loading";
   }
   if (isHovered) {
-    return 'hover';
+    return "hover";
   }
-  return 'initial';
+  return "initial";
 };
 
 const MicroExpander = forwardRef<HTMLButtonElement, MicroExpanderProps>(
@@ -77,13 +79,13 @@ const MicroExpander = forwardRef<HTMLButtonElement, MicroExpanderProps>(
     {
       text,
       icon,
-      variant = 'default',
+      variant = "default",
       isLoading = false,
       className,
       onClick,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -99,12 +101,12 @@ const MicroExpander = forwardRef<HTMLButtonElement, MicroExpanderProps>(
         animate={getAnimateState(isLoading, isHovered)}
         aria-label={text}
         className={cn(
-          'relative flex items-center overflow-hidden rounded-full',
-          'text-xs font-medium tracking-wide whitespace-nowrap uppercase',
-          'transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#05df72] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-void)] focus-visible:outline-none',
-          isLoading && 'cursor-not-allowed opacity-70',
+          "relative flex items-center overflow-hidden rounded-full",
+          "text-xs font-medium tracking-wide whitespace-nowrap uppercase",
+          "transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#05df72] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-void)] focus-visible:outline-none",
+          isLoading && "cursor-not-allowed opacity-70",
           variantStyles[variant],
-          className
+          className,
         )}
         disabled={isLoading}
         initial="initial"
@@ -116,7 +118,7 @@ const MicroExpander = forwardRef<HTMLButtonElement, MicroExpanderProps>(
         ref={ref}
         style={{ height: BUTTON_HEIGHT }}
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: SPRING_STIFFNESS,
           damping: SPRING_DAMPING,
           mass: SPRING_MASS,
@@ -163,9 +165,9 @@ const MicroExpander = forwardRef<HTMLButtonElement, MicroExpanderProps>(
         </motion.div>
       </motion.button>
     );
-  }
+  },
 );
 
-MicroExpander.displayName = 'MicroExpander';
+MicroExpander.displayName = "MicroExpander";
 
 export { MicroExpander };

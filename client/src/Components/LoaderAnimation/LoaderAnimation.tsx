@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 const LoaderAnimation: React.FC<{
   state: boolean;

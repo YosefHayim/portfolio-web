@@ -1,4 +1,4 @@
-import LastTimeUpdatedBy from '@/Components/LastTimeUpdatedBy/LastTimeUpdatedBy';
+import LastTimeUpdatedBy from "@/Components/LastTimeUpdatedBy/LastTimeUpdatedBy";
 
 const CertificationHeader = () => {
   return (

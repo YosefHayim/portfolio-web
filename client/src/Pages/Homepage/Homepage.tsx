@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { AnimatedPage } from '@/Components/AnimatedPage/AnimatedPage';
-import Hero from './Hero/Hero';
-import PassionSection from './PassionSection/PassionSection';
-import WhoAmI from './WhoAmI/WhoAmI';
+import { useEffect } from "react";
+import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import Hero from "./Hero/Hero";
+import PassionSection from "./PassionSection/PassionSection";
+import WhoAmI from "./WhoAmI/WhoAmI";
 
 const Homepage = () => {
   useEffect(() => {
-    document.title = 'Joseph Sabag | AI Software Engineer';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = "Joseph Sabag | AI Software Engineer";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function useScrollProgress(): number {
   const [progress, setProgress] = useState(0);
@@ -12,10 +12,10 @@ export function useScrollProgress(): number {
       setProgress(Math.min(scrollProgress, 1));
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
 
-    return () => window.removeEventListener('scroll', updateProgress);
+    return () => window.removeEventListener("scroll", updateProgress);
   }, []);
 
   return progress;

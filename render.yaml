@@ -3,7 +3,6 @@ services:
     name: portfolio-api
     runtime: node
     region: oregon
-    plan: free
     rootDir: server
     buildCommand: pnpm install && pnpm build
     startCommand: pnpm start

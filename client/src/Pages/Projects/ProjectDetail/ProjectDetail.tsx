@@ -24,30 +24,22 @@ import { getProjectById } from "@/data/projects";
 import { TechBadge } from "@/utils/techIcons";
 
 const ICON_SIZE = 20;
-const PARTICLE_ANIMATION_DURATION = 4;
-const PARTICLE_Y_OFFSET = -20;
-const PARTICLE_OPACITY_MIN = 0.3;
-const PARTICLE_OPACITY_MAX = 0.6;
-const PARTICLE_SCALE_MAX = 1.2;
 
 const statusConfig = {
   live: {
     label: "Live",
-    className: "border border-[#05df72]/30 bg-[#05df72]/20 text-[#05df72]",
+    className: "border border-[#05df72]/40 bg-[#05df72]/10 text-[#05df72]",
     dot: "bg-[#05df72]",
-    glow: "shadow-[0_0_20px_rgba(5,223,114,0.3)]",
   },
   development: {
     label: "In Development",
-    className: "border border-[#fdc700]/30 bg-[#fdc700]/20 text-[#fdc700]",
+    className: "border border-[#fdc700]/40 bg-[#fdc700]/10 text-[#fdc700]",
     dot: "bg-[#fdc700]",
-    glow: "shadow-[0_0_20px_rgba(253,199,0,0.3)]",
   },
   completed: {
     label: "Completed",
-    className: "border border-[#00d9ff]/30 bg-[#00d9ff]/20 text-[#00d9ff]",
+    className: "border border-[#00d9ff]/40 bg-[#00d9ff]/10 text-[#00d9ff]",
     dot: "bg-[#00d9ff]",
-    glow: "shadow-[0_0_20px_rgba(0,217,255,0.3)]",
   },
 };
 
@@ -129,36 +121,6 @@ const categorizeTech = (techStack: string[]): Record<string, string[]> => {
   );
 };
 
-type FloatingParticleProps = {
-  delay: number;
-  size: number;
-  x: string;
-  y: string;
-};
-
-const FloatingParticle = ({ delay, size, x, y }: FloatingParticleProps) => (
-  <motion.div
-    animate={{
-      y: [0, PARTICLE_Y_OFFSET, 0],
-      opacity: [
-        PARTICLE_OPACITY_MIN,
-        PARTICLE_OPACITY_MAX,
-        PARTICLE_OPACITY_MIN,
-      ],
-      scale: [1, PARTICLE_SCALE_MAX, 1],
-    }}
-    className="absolute rounded-full bg-[#05df72]/20 blur-sm"
-    initial={{ opacity: 0 }}
-    style={{ width: size, height: size, left: x, top: y }}
-    transition={{
-      duration: PARTICLE_ANIMATION_DURATION,
-      delay,
-      repeat: Number.POSITIVE_INFINITY,
-      ease: "easeInOut",
-    }}
-  />
-);
-
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
@@ -219,25 +181,7 @@ const ProjectDetail = () => {
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05df72]/5 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#05df72]/10 via-transparent to-transparent" />
-
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#05df72 1px, transparent 1px), linear-gradient(90deg, #05df72 1px, transparent 1px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-
-        <FloatingParticle delay={0} size={8} x="10%" y="20%" />
-        <FloatingParticle delay={0.5} size={12} x="85%" y="30%" />
-        <FloatingParticle delay={1} size={6} x="70%" y="60%" />
-        <FloatingParticle delay={1.5} size={10} x="25%" y="70%" />
-        <FloatingParticle delay={2} size={8} x="90%" y="80%" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-8 md:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-8 lg:py-16">
           <motion.button
             animate={{ opacity: 1, x: 0 }}
             className="group mb-8 flex items-center gap-2 text-[var(--text-muted)] transition-all hover:text-[#05df72]"
@@ -262,13 +206,13 @@ const ProjectDetail = () => {
               <div className="flex flex-wrap items-center gap-3">
                 {status && (
                   <motion.span
-                    animate={{ scale: 1 }}
-                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${status.className} ${status.glow}`}
-                    initial={{ scale: 0.8 }}
-                    transition={{ delay: 0.2, type: "spring" }}
+                    animate={{ opacity: 1 }}
+                    className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${status.className}`}
+                    initial={{ opacity: 0 }}
+                    transition={{ delay: 0.2 }}
                   >
                     <span
-                      className={`h-2 w-2 animate-pulse rounded-full ${status.dot}`}
+                      className={`h-1.5 w-1.5 rounded-full ${status.dot}`}
                     />
                     {status.label}
                   </motion.span>
@@ -290,14 +234,7 @@ const ProjectDetail = () => {
                 initial={{ opacity: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <span className="relative">
-                  {project.name}
-                  <span className="absolute -inset-1 -z-10 hidden blur-2xl lg:block">
-                    <span className="bg-gradient-to-r from-[#05df72]/20 to-[#00d9ff]/20 bg-clip-text text-transparent">
-                      {project.name}
-                    </span>
-                  </span>
-                </span>
+                {project.name}
               </motion.h1>
 
               <motion.p
@@ -316,64 +253,43 @@ const ProjectDetail = () => {
                 transition={{ delay: 0.4 }}
               >
                 {hasLiveUrl && (
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Link
-                      className="group inline-flex items-center gap-2 rounded-xl bg-[#05df72] px-6 py-3.5 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_40px_rgba(5,223,114,0.5)]"
-                      target="_blank"
-                      to={project.deployedUrl}
-                    >
-                      <IoOpenOutline
-                        className="transition-transform group-hover:rotate-12"
-                        size={ICON_SIZE}
-                      />
-                      View Live Demo
-                    </Link>
-                  </motion.div>
-                )}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
                   <Link
-                    className="group inline-flex items-center gap-2 rounded-xl border border-[var(--border-default)] bg-[var(--bg-card)]/50 px-6 py-3.5 font-semibold text-[var(--text-primary)] backdrop-blur-sm transition-all hover:border-[#05df72] hover:bg-[var(--bg-card)] hover:text-[#05df72] hover:shadow-[0_0_30px_rgba(5,223,114,0.2)]"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#05df72] px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#04c566]"
                     target="_blank"
-                    to={project.repoUrl}
+                    to={project.deployedUrl}
                   >
-                    <FiGithub
-                      className="transition-transform group-hover:scale-110"
-                      size={ICON_SIZE}
-                    />
-                    View Source Code
+                    <IoOpenOutline size={18} />
+                    View Live
                   </Link>
-                </motion.div>
+                )}
+                <Link
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-5 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--border-hover)] hover:text-[#05df72]"
+                  target="_blank"
+                  to={project.repoUrl}
+                >
+                  <FiGithub size={18} />
+                  Source Code
+                </Link>
               </motion.div>
             </motion.div>
 
             <motion.div
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              animate={{ opacity: 1 }}
               className="relative"
-              initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="relative aspect-video overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-2xl shadow-black/20">
-                <div className="absolute -inset-4 -z-10 bg-gradient-to-r from-[#05df72]/20 to-[#00d9ff]/20 opacity-50 blur-3xl" />
-
+              <div className="relative aspect-video overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]">
                 <picture>
                   <source srcSet={project.image} type="image/png" />
                   <img
                     alt={project.name}
-                    className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                    className="h-full w-full object-cover object-top"
                     height={1080}
                     src={project.image}
                     width={1920}
                   />
                 </picture>
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-[#05df72] via-[#00d9ff] to-[#05df72]" />
               </div>
             </motion.div>
           </div>
@@ -549,65 +465,41 @@ const ProjectDetail = () => {
         </section>
       )}
 
-      <section className="relative py-20">
-        <div className="mx-auto w-full px-4 md:px-6 lg:px-8">
+      <section className="py-16">
+        <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
           <motion.div
-            className="relative overflow-hidden rounded-3xl border border-[var(--border-subtle)]"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#05df72]/10 via-[var(--bg-card)] to-[#00d9ff]/10" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#05df72]/5 via-transparent to-transparent" />
+            <div className="mb-6 inline-flex rounded-xl bg-[var(--bg-card)] p-3">
+              <FiGithub className="text-[#05df72]" size={28} />
+            </div>
 
-            <div className="relative px-8 py-16 text-center md:px-16">
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                className="mb-6 inline-flex rounded-2xl bg-[#05df72]/10 p-4"
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            <h2 className="mb-3 text-xl font-semibold text-[var(--text-primary)] md:text-2xl">
+              Interested in this project?
+            </h2>
+            <p className="mb-8 text-[var(--text-muted)]">
+              Explore the code or reach out for collaboration.
+            </p>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <Link
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#05df72] px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#04c566]"
+                target="_blank"
+                to={project.repoUrl}
               >
-                <FiGithub className="text-[#05df72]" size={40} />
-              </motion.div>
-
-              <h2 className="mb-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-                Interested in this project?
-              </h2>
-              <p className="mx-auto mb-8 max-w-lg text-[var(--text-muted)]">
-                Feel free to explore the code, contribute, or reach out for
-                collaboration opportunities. I&apos;m always open to feedback
-                and new ideas.
-              </p>
-
-              <div className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row sm:justify-center">
-                <motion.div
-                  className="flex-1"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#05df72] px-8 py-4 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_40px_rgba(5,223,114,0.5)]"
-                    target="_blank"
-                    to={project.repoUrl}
-                  >
-                    <FiGithub size={ICON_SIZE} />
-                    Star on GitHub
-                  </Link>
-                </motion.div>
-                <motion.div
-                  className="flex-1"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border-default)] bg-[var(--bg-void)]/50 px-8 py-4 font-semibold text-[var(--text-primary)] backdrop-blur-sm transition-all hover:border-[#05df72] hover:text-[#05df72]"
-                    to="https://wa.me/546187549"
-                  >
-                    <FaWhatsapp size={ICON_SIZE} />
-                    Get in Touch
-                  </Link>
-                </motion.div>
-              </div>
+                <FiGithub size={18} />
+                Star on GitHub
+              </Link>
+              <Link
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-6 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--border-hover)] hover:text-[#05df72]"
+                to="https://wa.me/546187549"
+              >
+                <FaWhatsapp size={18} />
+                Get in Touch
+              </Link>
             </div>
           </motion.div>
         </div>

@@ -4,6 +4,11 @@ import { z } from "zod";
 import { env } from "../config/env.js";
 import { SYSTEM_PROMPT } from "../config/systemPrompt.js";
 import { AppError, asyncHandler } from "../middleware/errorHandler.js";
+import {
+	chatRateLimiter,
+	sttRateLimiter,
+	ttsRateLimiter,
+} from "../middleware/rateLimiter.js";
 
 const router = Router();
 
@@ -24,6 +29,7 @@ type ChatRequest = z.infer<typeof chatRequestSchema>;
 
 router.post(
 	"/",
+	chatRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
 		const parseResult = chatRequestSchema.safeParse(req.body);
 
@@ -55,6 +61,7 @@ router.post(
 
 router.post(
 	"/stream",
+	chatRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
 		const parseResult = chatRequestSchema.safeParse(req.body);
 
@@ -101,6 +108,7 @@ const ttsRequestSchema = z.object({
 
 router.post(
 	"/tts",
+	ttsRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
 		const parseResult = ttsRequestSchema.safeParse(req.body);
 
@@ -127,6 +135,7 @@ router.post(
 
 router.post(
 	"/stt",
+	sttRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
 		const contentType = req.headers["content-type"] || "";
 

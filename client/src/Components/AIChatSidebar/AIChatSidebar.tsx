@@ -693,12 +693,12 @@ export const AIChatSidebar = () => {
                 </AnimatePresence>
 
                 {!voiceRecorder.isRecording && (
-                  <div className="mb-3 flex gap-2 overflow-x-auto">
+                  <div className="mb-3 flex flex-wrap gap-2">
                     {QUICK_ACTIONS.slice(0, 3).map((action) => {
                       const Icon = ICON_MAP[action.icon as IconKey];
                       return (
                         <button
-                          className="flex items-center gap-1.5 rounded-full border border-[var(--border-subtle)] bg-transparent px-3 py-1.5 text-xs text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50"
+                          className="flex shrink-0 items-center gap-1.5 rounded-full border border-[var(--border-subtle)] bg-transparent px-3 py-1.5 text-xs whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50"
                           disabled={isInputDisabled}
                           key={action.label}
                           onClick={() => handleSendMessage(action.prompt)}
@@ -713,14 +713,14 @@ export const AIChatSidebar = () => {
                 )}
 
                 <form
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 py-2"
                   onSubmit={handleSubmit}
                 >
                   <div className="relative flex-1">
                     <input
                       type="text"
                       className={cn(
-                        "h-11 w-full rounded-xl border pr-10 pl-4 text-sm transition-colors",
+                        "h-11 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] pr-10 pl-4 text-sm text-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)]",
                         "focus:border-[#05df72] focus:ring-1 focus:ring-[#05df72]/30 focus:outline-none",
                         voiceRecorder.isRecording && "opacity-50",
                       )}
@@ -737,17 +737,6 @@ export const AIChatSidebar = () => {
                       ref={inputRef}
                       value={inputValue}
                     />
-                    <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
-                      <ColorOrb
-                        dimension="20px"
-                        tones={{
-                          base: "oklch(10% 0.02 145)",
-                          accent1: "oklch(80% 0.25 145)",
-                          accent2: "oklch(70% 0.2 195)",
-                          accent3: "oklch(75% 0.18 280)",
-                        }}
-                      />
-                    </div>
                   </div>
 
                   <motion.button
@@ -755,7 +744,7 @@ export const AIChatSidebar = () => {
                     onClick={handleVoiceRecord}
                     disabled={isStreaming || isTyping}
                     className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl transition-colors",
+                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
                       voiceRecorder.isRecording
                         ? "bg-[#ff6467] text-white"
                         : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
@@ -786,7 +775,7 @@ export const AIChatSidebar = () => {
                     type="submit"
                     disabled={!inputValue.trim() || isInputDisabled}
                     className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors",
+                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors",
                       "hover:bg-[#04c566]",
                       (!inputValue.trim() || isInputDisabled) &&
                         "cursor-not-allowed opacity-50",

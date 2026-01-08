@@ -10,7 +10,7 @@ import {
 	ttsRateLimiter,
 } from "../middleware/rateLimiter.js";
 
-const router = Router();
+const router: Router = Router();
 
 const openai = new OpenAI({
 	apiKey: env.OPENAI_API_KEY,

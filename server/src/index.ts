@@ -1,11 +1,11 @@
 import cors from "cors";
-import express from "express";
+import express, { type Express } from "express";
 import { env } from "./config/env.js";
 import { httpLogger, logger } from "./config/logger.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import chatRouter from "./routes/chat.js";
 
-const app = express();
+const app: Express = express();
 
 const corsOptions = {
 	origin: env.FRONTEND_URL.split(",").map((url) => url.trim()),

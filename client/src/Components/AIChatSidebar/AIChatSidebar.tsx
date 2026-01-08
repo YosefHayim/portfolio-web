@@ -22,13 +22,13 @@ import React, {
   useRef,
   useState,
 } from "react";
-
-import { ColorOrb } from "@/Components/ui/ai-input";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/Components/ui/tooltip";
+
+import { ColorOrb } from "@/Components/ui/ai-input";
 import { cn } from "@/lib/utils";
 import { cx } from "class-variance-authority";
 import { formatDistanceToNow } from "date-fns";
@@ -74,14 +74,28 @@ function formatTimeAgo(date: Date): string {
 
 // Simple markdown renderer for assistant messages
 function renderMarkdown(text: string): string {
-  return text
-    // Bold: **text** or __text__
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>')
-    .replace(/__(.*?)__/g, '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>')
-    // Inline code: `code`
-    .replace(/`([^`]+)`/g, '<code class="bg-[var(--bg-elevated)] px-1 py-0.5 rounded text-[#00d9ff] font-mono text-xs">$1</code>')
-    // Links: [text](url)
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#05df72] hover:underline">$1</a>');
+  return (
+    text
+      // Bold: **text** or __text__
+      .replace(
+        /\*\*(.*?)\*\*/g,
+        '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>',
+      )
+      .replace(
+        /__(.*?)__/g,
+        '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>',
+      )
+      // Inline code: `code`
+      .replace(
+        /`([^`]+)`/g,
+        '<code class="bg-[var(--bg-elevated)] px-1 py-0.5 rounded text-[#00d9ff] font-mono text-xs">$1</code>',
+      )
+      // Links: [text](url)
+      .replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#05df72] hover:underline">$1</a>',
+      )
+  );
 }
 
 const getOfflineResponse = (userMessage: string): string => {
@@ -486,9 +500,7 @@ export const AIChatSidebar = () => {
     <div
       className={cn(
         "fixed z-50 flex items-end justify-end",
-        isMobile
-          ? "bottom-4 left-4 right-4"
-          : "right-4 bottom-6",
+        isMobile ? "right-4 bottom-4 left-4" : "right-4 bottom-6",
       )}
       style={{ width: isMobile ? "auto" : PANEL_WIDTH }}
     >
@@ -502,7 +514,11 @@ export const AIChatSidebar = () => {
         initial={false}
         animate={{
           width: isOpen ? (isMobile ? "100%" : PANEL_WIDTH) : "auto",
-          height: isOpen ? (isMobile ? PANEL_HEIGHT_EXPANDED_MOBILE : PANEL_HEIGHT_EXPANDED) : PANEL_HEIGHT_COLLAPSED,
+          height: isOpen
+            ? isMobile
+              ? PANEL_HEIGHT_EXPANDED_MOBILE
+              : PANEL_HEIGHT_EXPANDED
+            : PANEL_HEIGHT_COLLAPSED,
           borderRadius: isOpen ? (isMobile ? 12 : 16) : 26,
         }}
         transition={{
@@ -608,7 +624,9 @@ export const AIChatSidebar = () => {
                       </button>
                     </TooltipTrigger>
                     <TooltipContent side="bottom" sideOffset={8}>
-                      {autoSpeak ? "Disable auto-speak" : "Enable auto-speak for voice replies"}
+                      {autoSpeak
+                        ? "Disable auto-speak"
+                        : "Enable auto-speak for voice replies"}
                     </TooltipContent>
                   </Tooltip>
                   <Tooltip>
@@ -700,7 +718,9 @@ export const AIChatSidebar = () => {
                           <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72] [animation-delay:-0.15s]" />
                           <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72]" />
                         </div>
-                        <span className="text-xs text-[var(--text-muted)]">AI is thinking...</span>
+                        <span className="text-xs text-[var(--text-muted)]">
+                          AI is thinking...
+                        </span>
                       </div>
                     </motion.div>
                   )}
@@ -822,14 +842,15 @@ export const AIChatSidebar = () => {
                         onClick={handleVoiceRecord}
                         disabled={isStreaming || isTyping}
                         className={cn(
-                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors sm:h-11 sm:w-11",
                           voiceRecorder.isRecording
                             ? "bg-[#ff6467] text-white"
-                            : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
+                            : "rounded-md bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
                           (isStreaming || isTyping) &&
                             "cursor-not-allowed opacity-50",
                         )}
-                        whileHover={{ scale: isStreaming || isTyping ? 1 : 1.02 }}
+                        whileHover={{
+                          scale: isStreaming || isTyping ? 1 : 1.02,
+                        }}
                         whileTap={{ scale: isStreaming || isTyping ? 1 : 0.98 }}
                       >
                         {isTranscribing ? (
@@ -840,7 +861,7 @@ export const AIChatSidebar = () => {
                               repeat: Number.POSITIVE_INFINITY,
                               ease: "linear",
                             }}
-                            className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
+                            className="h-4 w-4 rounded-md border-2 border-current border-t-transparent"
                           />
                         ) : voiceRecorder.isRecording ? (
                           <FiSquare className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -864,16 +885,17 @@ export const AIChatSidebar = () => {
                         type="submit"
                         disabled={!inputValue.trim() || isInputDisabled}
                         className={cn(
-                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#05df72] text-black transition-colors sm:h-11 sm:w-11",
-                          "hover:bg-[#04c566]",
+                          "rounded-md hover:bg-[#04c566]",
                           (!inputValue.trim() || isInputDisabled) &&
                             "cursor-not-allowed opacity-50",
                         )}
                         whileHover={{
-                          scale: !inputValue.trim() || isInputDisabled ? 1 : 1.02,
+                          scale:
+                            !inputValue.trim() || isInputDisabled ? 1 : 1.02,
                         }}
                         whileTap={{
-                          scale: !inputValue.trim() || isInputDisabled ? 1 : 0.98,
+                          scale:
+                            !inputValue.trim() || isInputDisabled ? 1 : 0.98,
                         }}
                       >
                         <FiSend size={isMobile ? 16 : 18} />

@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "Zod",
     ],
     deployedUrl: "https://www.npmjs.com/package/ebay-mcp",
-    repoUrl: "https://github.com/YosefHayim/ebay-api-mcp-server",
+    repoUrl: "https://github.com/YosefHayim/ebay-mcp",
     image: "/screenshots/ebay-mcp.png",
     status: "live",
     highlights: [
@@ -88,34 +88,57 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "quiz-ai",
-    name: "Quiz AI React Native",
+    id: "extension-sora-auto-queue",
+    name: "Sora Auto Queue Prompts Extension",
     description:
-      "Quiz AI application for iOS and Android using React Native framework with Expo.",
+      "A browser extension that introduces an automated prompt-queuing system for AI-driven workflows with clarity, flow, and openness.",
     longDescription:
-      "Quiz AI application for iOS and Android using React Native framework with Expo. Users can upload image, PDF files and even URLs of YouTube to parse and get American quiz based on the context provided to the AI. With a tracking system to maintain high motivation.",
+      "A browser extension that introduces an automated prompt-queuing system inspired by the concept of 'Sora'—clarity, flow, and openness. It streamlines how prompts are submitted, organizes them into a controlled queue, and ensures consistent, uninterrupted task execution for AI-driven workflows. Features a complete UI redesign in v2.0.0 with reusable components.",
     techStack: [
-      "React Native",
-      "Native Tailwind",
-      "Supabase",
-      "Pdf Parse",
-      "Axios",
-      "Open AI Agents",
-      "Open AI API",
-      "Zod",
-      "Express",
-      "Expo",
-      "TanStack",
+      "TypeScript",
+      "WXT",
+      "Tailwind CSS",
+      "Jest",
+      "Playwright",
+      "pnpm",
+      "GitHub Actions",
+      "Husky",
     ],
     deployedUrl: "projects",
-    repoUrl: "https://github.com/YosefHayim/Quizio-AI-App",
-    image: "/screenshots/quiz-ai-on-boarding.png",
-    status: "development",
+    repoUrl: "https://github.com/YosefHayim/extension-sora-auto-queue-prompts",
+    image: "/screenshots/sora-extension.png",
+    status: "live",
     highlights: [
-      "Multi-format content parsing (PDF, Image, YouTube)",
-      "AI-powered quiz generation",
-      "Progress tracking system",
-      "Cross-platform (iOS & Android)",
+      "Automated prompt queuing system",
+      "Complete UI redesign in v2.0.0",
+      "E2E testing with Playwright",
+      "CI/CD with GitHub Actions",
+    ],
+  },
+  {
+    id: "extension-ai-conversation-navigator",
+    name: "AI Conversation Navigator Extension",
+    description:
+      "Advanced navigation and analytics for ChatGPT, Claude, and Gemini conversations.",
+    longDescription:
+      "A browser extension providing advanced navigation and analytics for ChatGPT, Claude, and Gemini conversations. Enables users to better organize and analyze their AI chat interactions across multiple platforms with comprehensive testing (90%+ coverage) and automated CI/CD pipelines.",
+    techStack: [
+      "TypeScript",
+      "JavaScript",
+      "esbuild",
+      "Jest",
+      "GitHub Actions",
+      "pnpm",
+    ],
+    deployedUrl: "projects",
+    repoUrl: "https://github.com/YosefHayim/extension-ai-conversation-navigator",
+    image: "/screenshots/ai-navigator-extension.png",
+    status: "live",
+    highlights: [
+      "Multi-platform support (ChatGPT, Claude, Gemini)",
+      "90%+ test coverage requirement",
+      "Chrome/Edge and Firefox support",
+      "Automated security audits",
     ],
   },
   {
@@ -140,7 +163,7 @@ export const projects: Project[] = [
       "GitHub Actions",
     ],
     deployedUrl: "projects",
-    repoUrl: "https://github.com/YosefHayim/AI-Calendar-Agent",
+    repoUrl: "https://github.com/YosefHayim/ai-google-calendar-assistant",
     image: "/screenshots/ally-ai-calendar.png",
     status: "development",
     highlights: [
@@ -167,7 +190,7 @@ export const projects: Project[] = [
       "Redux",
     ],
     deployedUrl: "https://udemy-clone-ron-and-ben-front.onrender.com/",
-    repoUrl: "https://github.com/YosefHayim/Udemy-Clone-Ron-Ben-IITC-2025",
+    repoUrl: "https://github.com/YosefHayim/udemy-clone-ron-ben-iitc",
     image: "/screenshots/udemy.png",
     status: "completed",
     collaborators: [
@@ -193,8 +216,7 @@ export const projects: Project[] = [
       "A comprehensive movie database application built from scratch to master web development fundamentals. Constructed entirely with Vanilla JavaScript (no frameworks) to demonstrate deep understanding of the DOM, state management, and API integration, featuring a custom AI-driven asset pipeline.",
     techStack: ["JavaScript", "TMDB API"],
     deployedUrl: "https://iitc-b-frontend-vanilla-tim-trailers.onrender.com/",
-    repoUrl:
-      "https://github.com/YosefHayim/iitc-b/tree/main/full-stack-2024/october-2024/14-10-2024/sukot-assigment",
+    repoUrl: "https://github.com/YosefHayim/tim-trailers-vanilla-js",
     image: "/screenshots/tim-trailer.png",
     status: "completed",
     highlights: [
@@ -228,7 +250,7 @@ export const projects: Project[] = [
       "Morgan",
     ],
     deployedUrl: "https://pdf-extractor-data-helping-mom-fronted.onrender.com/",
-    repoUrl: "https://github.com/YosefHayim/OCR-Parse-AI",
+    repoUrl: "https://github.com/YosefHayim/ai-ocr-parser-web",
     image: "/screenshots/MomTool.png",
     status: "completed",
     highlights: [
@@ -248,7 +270,7 @@ export const projects: Project[] = [
     techStack: ["Selenium", "2Captcha API", "Python"],
     deployedUrl: "projects",
     repoUrl:
-      "https://github.com/YosefHayim/p-w-gpt/tree/main/Python/09.08.2024%20-%20Amazon%20ASIN%20Collector%20%2B%20normal%20captcha",
+      "https://github.com/YosefHayim/projects-with-chatgpt/tree/main/Python/09.08.2024%20-%20Amazon%20ASIN%20Collector%20%2B%20normal%20captcha",
     image: "/screenshots/amazon.png",
     status: "completed",
     highlights: [
@@ -267,7 +289,7 @@ export const projects: Project[] = [
     techStack: ["Selenium", "Python"],
     deployedUrl: "projects",
     repoUrl:
-      "https://github.com/YosefHayim/p-w-gpt/tree/main/Python/11.08.2024%20-%20eBay%20Titles%20Collector",
+      "https://github.com/YosefHayim/projects-with-chatgpt/tree/main/Python/11.08.2024%20-%20eBay%20Titles%20Collector",
     image: "/screenshots/ebay.png",
     status: "completed",
     highlights: [
@@ -286,7 +308,7 @@ export const projects: Project[] = [
     techStack: ["Selenium", "Python"],
     deployedUrl: "projects",
     repoUrl:
-      "https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.02.2024%20-%20HarABituh-data%20read%20and%20extraction%20with%20manual%20captcha%20automation",
+      "https://github.com/YosefHayim/projects-with-chatgpt/tree/main/Python/19.02.2024%20-%20HarABituh-data%20read%20and%20extraction%20with%20manual%20captcha%20automation",
     image: "/screenshots/har-a-bituah.png",
     status: "completed",
     highlights: [
@@ -311,7 +333,7 @@ export const projects: Project[] = [
     ],
     deployedUrl: "projects",
     repoUrl:
-      "https://github.com/YosefHayim/p-w-gpt/tree/main/Python/19.11.2023%20-%20Interactive%20broker%20API%20trading%20bots",
+      "https://github.com/YosefHayim/projects-with-chatgpt/tree/main/Python/19.11.2023%20-%20Interactive%20broker%20API%20trading%20bots",
     image: "/screenshots/interactive-brokers.png",
     status: "completed",
     highlights: [
@@ -331,7 +353,7 @@ export const projects: Project[] = [
     techStack: ["Selenium", "Binance API", "Telegram API", "Python"],
     deployedUrl: "projects",
     repoUrl:
-      "https://github.com/YosefHayim/p-w-gpt/tree/main/Python/10.28.2023%20-%20Binance%20API%20trading%20bots",
+      "https://github.com/YosefHayim/projects-with-chatgpt/tree/main/Python/10.28.2023%20-%20Binance%20API%20trading%20bots",
     image: "/screenshots/binance.png",
     status: "completed",
     highlights: [

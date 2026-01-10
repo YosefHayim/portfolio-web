@@ -38,7 +38,7 @@ export const projects: Project[] = [
       "Vitest",
       "OAuth 2.1",
     ],
-    deployedUrl: "https://www.npmjs.com/package/ebay-api-mcp-server",
+    deployedUrl: "https://www.npmjs.com/package/ebay-mcp",
     repoUrl: "https://github.com/YosefHayim/ebay-api-mcp-server",
     image: "/screenshots/ebay-mcp.png",
     status: "live",

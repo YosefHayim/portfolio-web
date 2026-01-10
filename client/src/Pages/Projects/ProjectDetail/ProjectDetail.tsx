@@ -204,7 +204,7 @@ const ProjectDetail = () => {
               initial={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex flex-wrap items-center justify-center gap-3 py-2">
+              <div className="flex flex-wrap items-center justify-start gap-3 py-2">
                 {status && (
                   <motion.span
                     animate={{ opacity: 1 }}
@@ -363,7 +363,7 @@ const ProjectDetail = () => {
               <IoCodeSlash className="text-[#00d9ff]" size={32} />
               Tech Stack
             </h2>
-            <p className="mx-auto max-w-2xl text-[var(--text-muted)]">
+            <p className="w-full max-w-full py-2 text-[var(--text-muted)]">
               Built with modern, production-ready technologies
             </p>
           </motion.div>
@@ -467,7 +467,7 @@ const ProjectDetail = () => {
       )}
 
       <section className="py-16">
-        <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
+        <div className="w-full max-w-full px-4 text-center md:px-6">
           <motion.div
             initial={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
@@ -481,11 +481,11 @@ const ProjectDetail = () => {
             <h2 className="mb-3 text-center text-xl font-semibold text-[var(--text-primary)] md:text-2xl">
               Interested in this project?
             </h2>
-            <p className="pb-8 text-[var(--text-muted)]">
+            <p className="py-4 text-[var(--text-muted)]">
               Explore my code or reach out for collaboration.
             </p>
 
-            <div className="flex w-full flex-col items-center justify-center gap-2">
+            <div className="flex w-full items-center justify-center gap-2">
               <Link
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#05df72] px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-[#04c566]"
                 target="_blank"

@@ -189,7 +189,7 @@ export const projects: Project[] = [
       "Tailwind",
       "Redux",
     ],
-    deployedUrl: "https://udemy-clone-ron-and-ben-front.onrender.com/",
+    deployedUrl: "https://udemy-clone-ron-ben-iitc.onrender.com/",
     repoUrl: "https://github.com/YosefHayim/udemy-clone-ron-ben-iitc",
     image: "/screenshots/udemy.png",
     status: "completed",

@@ -4,6 +4,7 @@ import { env } from "./config/env.js";
 import { httpLogger, logger } from "./config/logger.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import chatRouter from "./routes/chat.js";
+import emailRouter from "./routes/email.js";
 
 const app: Express = express();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/chat", chatRouter);
+app.use("/api/email", emailRouter);
 
 app.get("/health", (_req, res) => {
 	res.json({ status: "ok", timestamp: new Date().toISOString() });

@@ -10,6 +10,8 @@ const envSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   FRONTEND_URL: z.string().default('http://localhost:5173'),
+  EMAIL_USER: z.string().email().optional(),
+  EMAIL_PASS: z.string().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

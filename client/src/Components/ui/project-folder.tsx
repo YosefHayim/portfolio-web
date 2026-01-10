@@ -425,8 +425,8 @@ const ImageLightbox = ({
           transformOrigin: "center center",
         }}
       >
-        <div className="relative overflow-hidden rounded-[inherit] border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)]">
-          <div className="relative aspect-[4/3] overflow-hidden md:aspect-[16/10]">
+        <div className="relative flex max-h-[85vh] flex-col overflow-hidden rounded-[inherit] border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] md:max-h-none">
+          <div className="relative min-h-0 flex-1 overflow-hidden md:aspect-[16/10] md:flex-none">
             <div
               className="flex h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{
@@ -440,7 +440,7 @@ const ImageLightbox = ({
                 <div className="relative h-full min-w-full" key={project.id}>
                   <img
                     alt={project.title}
-                    className="h-full w-full object-cover select-none"
+                    className="h-full w-full object-contain select-none md:object-cover"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
                     }}

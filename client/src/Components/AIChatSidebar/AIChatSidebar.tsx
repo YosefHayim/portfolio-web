@@ -6,6 +6,7 @@ import {
 import {
   FiAlertCircle,
   FiBriefcase,
+  FiCheck,
   FiCode,
   FiDownload,
   FiMic,
@@ -41,9 +42,41 @@ type Message = {
   content: string;
   timestamp: Date;
   isVoice?: boolean;
+  emailStatus?: "sending" | "sent" | "failed";
+};
+
+type EmailData = {
+  senderName: string;
+  senderEmail: string;
+  subject: string;
+  message: string;
 };
 
 type IconKey = "skills" | "projects" | "experience" | "contact" | "resume";
+
+// Regex to detect email sending marker in AI response
+const EMAIL_MARKER_REGEX = /\[SEND_EMAIL:(\{[\s\S]*?\})\]/;
+
+// Parse email data from AI response
+function parseEmailMarker(content: string): EmailData | null {
+  const match = content.match(EMAIL_MARKER_REGEX);
+  if (!match) return null;
+
+  try {
+    const data = JSON.parse(match[1]);
+    if (data.senderName && data.senderEmail && data.subject && data.message) {
+      return data as EmailData;
+    }
+  } catch {
+    // Invalid JSON
+  }
+  return null;
+}
+
+// Strip email marker from displayed content
+function stripEmailMarker(content: string): string {
+  return content.replace(EMAIL_MARKER_REGEX, "").trim();
+}
 
 const ICON_MAP: Record<IconKey, React.ComponentType<{ size?: number }>> = {
   skills: FiCode,
@@ -75,7 +108,7 @@ function formatTimeAgo(date: Date): string {
 // Simple markdown renderer for assistant messages
 function renderMarkdown(text: string): string {
   return (
-    text
+    stripEmailMarker(text)
       // Bold: **text** or __text__
       .replace(
         /\*\*(.*?)\*\*/g,
@@ -204,6 +237,7 @@ export const AIChatSidebar = () => {
   const [useAI, setUseAI] = useState(true);
   const [isTranscribing, setIsTranscribing] = useState(false);
   const [autoSpeak, setAutoSpeak] = useState(true);
+  const processedEmailsRef = useRef<Set<string>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -484,6 +518,66 @@ export const AIChatSidebar = () => {
     }
   }, [messages, speechSynthesis]);
 
+  // Automatically send email when AI includes the SEND_EMAIL marker
+  const sendEmailFromMarker = useCallback(
+    async (messageId: string, emailData: EmailData) => {
+      // Prevent duplicate sends
+      if (processedEmailsRef.current.has(messageId)) return;
+      processedEmailsRef.current.add(messageId);
+
+      // Update message status to sending
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === messageId ? { ...m, emailStatus: "sending" as const } : m,
+        ),
+      );
+
+      try {
+        const response = await fetch(`${API_URL}/api/email/send`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(emailData),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || "Failed to send email");
+        }
+
+        // Update message status to sent
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === messageId ? { ...m, emailStatus: "sent" as const } : m,
+          ),
+        );
+      } catch (err) {
+        // Update message status to failed
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === messageId ? { ...m, emailStatus: "failed" as const } : m,
+          ),
+        );
+        setError(err instanceof Error ? err.message : "Failed to send email");
+      }
+    },
+    [],
+  );
+
+  // Detect email markers in messages and send automatically
+  useEffect(() => {
+    const lastMessage = messages[messages.length - 1];
+    if (
+      lastMessage?.role === "assistant" &&
+      !lastMessage.emailStatus &&
+      !isStreaming
+    ) {
+      const emailData = parseEmailMarker(lastMessage.content);
+      if (emailData) {
+        sendEmailFromMarker(lastMessage.id, emailData);
+      }
+    }
+  }, [messages, isStreaming, sendEmailFromMarker]);
+
   const isInputDisabled =
     isStreaming || isTyping || isTranscribing || voiceRecorder.isRecording;
 
@@ -693,6 +787,46 @@ export const AIChatSidebar = () => {
                               <span className="ml-0.5 inline-block h-3 w-0.5 animate-pulse bg-[var(--text-muted)]" />
                             )}
                         </div>
+                        {message.emailStatus && (
+                          <div
+                            className={cn(
+                              "mt-2 flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] font-medium",
+                              message.emailStatus === "sending" &&
+                                "bg-[#fdc700]/20 text-[#fdc700]",
+                              message.emailStatus === "sent" &&
+                                "bg-[#05df72]/20 text-[#05df72]",
+                              message.emailStatus === "failed" &&
+                                "bg-[#ff6467]/20 text-[#ff6467]",
+                            )}
+                          >
+                            {message.emailStatus === "sending" && (
+                              <>
+                                <motion.div
+                                  animate={{ rotate: 360 }}
+                                  transition={{
+                                    duration: 1,
+                                    repeat: Number.POSITIVE_INFINITY,
+                                    ease: "linear",
+                                  }}
+                                  className="h-3 w-3 rounded-full border-[1.5px] border-current border-t-transparent"
+                                />
+                                Sending email...
+                              </>
+                            )}
+                            {message.emailStatus === "sent" && (
+                              <>
+                                <FiCheck size={12} />
+                                Email sent successfully
+                              </>
+                            )}
+                            {message.emailStatus === "failed" && (
+                              <>
+                                <FiAlertCircle size={12} />
+                                Failed to send email
+                              </>
+                            )}
+                          </div>
+                        )}
                       </div>
                       <span
                         className={cn(

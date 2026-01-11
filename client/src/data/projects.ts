@@ -10,6 +10,7 @@ export type Project = {
   longDescription?: string;
   techStack: string[];
   deployedUrl: string;
+  telegramBotUrl?: string;
   repoUrl: string;
   image: string;
   collaborators?: Collaborator[];
@@ -162,10 +163,11 @@ export const projects: Project[] = [
       "OpenAI Agents",
       "GitHub Actions",
     ],
-    deployedUrl: "projects",
+    deployedUrl: "https://niicspurpm.eu-central-1.awsapprunner.com/",
+    telegramBotUrl: "https://t.me/ai_schedule_event_server_bot",
     repoUrl: "https://github.com/YosefHayim/ai-google-calendar-assistant",
     image: "/screenshots/ally-ai-calendar.png",
-    status: "development",
+    status: "live",
     highlights: [
       "Multi-platform support (Web, Telegram, WhatsApp)",
       "Multi-agent AI architecture with OpenAI",

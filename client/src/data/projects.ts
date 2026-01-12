@@ -163,7 +163,7 @@ export const projects: Project[] = [
       "OpenAI Agents",
       "GitHub Actions",
     ],
-    deployedUrl: "https://niicspurpm.eu-central-1.awsapprunner.com/",
+    deployedUrl: "https://askally.io",
     telegramBotUrl: "https://t.me/ai_schedule_event_server_bot",
     repoUrl: "https://github.com/YosefHayim/ai-google-calendar-assistant",
     image: "/screenshots/ally-ai-calendar.png",

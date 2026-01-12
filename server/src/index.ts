@@ -1,3 +1,4 @@
+import compression from "compression";
 import cors from "cors";
 import express, { type Express } from "express";
 import { env } from "./config/env.js";
@@ -14,9 +15,25 @@ const corsOptions = {
 	allowedHeaders: ["Content-Type", "Authorization"],
 };
 
+// Enable gzip compression for all responses
+app.use(
+	compression({
+		level: 6, // Balanced compression level
+		threshold: 1024, // Only compress responses > 1KB
+		filter: (req, res) => {
+			// Don't compress streaming responses
+			if (req.path === "/api/chat/stream") {
+				return false;
+			}
+			return compression.filter(req, res);
+		},
+	}),
+);
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Request timing middleware
 app.use((req, res, next) => {
 	const start = Date.now();
 	res.on("finish", () => {
@@ -26,19 +43,42 @@ app.use((req, res, next) => {
 	next();
 });
 
+// Cache headers for static-like responses
+app.use((req, res, next) => {
+	// Health check can be cached briefly
+	if (req.path === "/health") {
+		res.setHeader("Cache-Control", "public, max-age=30");
+	}
+	next();
+});
+
 app.use("/api/chat", chatRouter);
 app.use("/api/email", emailRouter);
 
 app.get("/health", (_req, res) => {
-	res.json({ status: "ok", timestamp: new Date().toISOString() });
+	res.json({
+		status: "ok",
+		timestamp: new Date().toISOString(),
+		uptime: process.uptime(),
+	});
 });
 
 app.use(errorHandler);
 
-app.listen(env.PORT, () => {
+// Graceful shutdown
+const server = app.listen(env.PORT, () => {
 	logger.info(`Server running on port ${env.PORT}`);
 	logger.info(`Environment: ${env.NODE_ENV}`);
 	logger.debug(`CORS origins: ${env.FRONTEND_URL}`);
+});
+
+// Handle graceful shutdown
+process.on("SIGTERM", () => {
+	logger.info("SIGTERM received, shutting down gracefully");
+	server.close(() => {
+		logger.info("Server closed");
+		process.exit(0);
+	});
 });
 
 export default app;

@@ -1,22 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { FiAlertCircle } from "react-icons/fi";
+import { SAMPLE_RESPONSES } from "@/data/chatContext";
 import {
-  AudioVisualizer,
-  SpeakingIndicator,
-} from "@/Components/ui/ai-voice-input";
-import {
-  FiAlertCircle,
-  FiBriefcase,
-  FiCheck,
-  FiCode,
-  FiDownload,
-  FiMic,
-  FiSend,
-  FiSquare,
-  FiVolume2,
-  FiX,
-} from "react-icons/fi";
-import { QUICK_ACTIONS, SAMPLE_RESPONSES } from "@/data/chatContext";
-import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -32,9 +17,14 @@ import {
 import { ColorOrb } from "@/Components/ui/ai-input";
 import { cn } from "@/lib/utils";
 import { cx } from "class-variance-authority";
-import { formatDistanceToNow } from "date-fns";
 import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
 import { useVoiceRecorder } from "@/hooks/useVoiceRecorder";
+
+// Import memoized components
+import { ChatMessage, TypingIndicator } from "./ChatMessage";
+import { ChatHeader } from "./ChatHeader";
+import { ChatInput } from "./ChatInput";
+import { QuickActions } from "./QuickActions";
 
 type Message = {
   id: string;
@@ -51,8 +41,6 @@ type EmailData = {
   subject: string;
   message: string;
 };
-
-type IconKey = "skills" | "projects" | "experience" | "contact" | "resume";
 
 // Regex to detect email sending marker in AI response
 const EMAIL_MARKER_REGEX = /\[SEND_EMAIL:(\{[\s\S]*?\})\]/;
@@ -73,19 +61,6 @@ function parseEmailMarker(content: string): EmailData | null {
   return null;
 }
 
-// Strip email marker from displayed content
-function stripEmailMarker(content: string): string {
-  return content.replace(EMAIL_MARKER_REGEX, "").trim();
-}
-
-const ICON_MAP: Record<IconKey, React.ComponentType<{ size?: number }>> = {
-  skills: FiCode,
-  projects: FiCode,
-  experience: FiBriefcase,
-  contact: FiCode,
-  resume: FiDownload,
-};
-
 const ID_START = 2;
 const ID_END = 9;
 const RADIX = 36;
@@ -100,36 +75,6 @@ const PANEL_HEIGHT_EXPANDED_MOBILE = 450;
 
 const generateId = () =>
   Math.random().toString(RADIX).substring(ID_START, ID_END);
-
-function formatTimeAgo(date: Date): string {
-  return formatDistanceToNow(date, { addSuffix: true });
-}
-
-// Simple markdown renderer for assistant messages
-function renderMarkdown(text: string): string {
-  return (
-    stripEmailMarker(text)
-      // Bold: **text** or __text__
-      .replace(
-        /\*\*(.*?)\*\*/g,
-        '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>',
-      )
-      .replace(
-        /__(.*?)__/g,
-        '<strong class="font-semibold text-[var(--text-primary)]">$1</strong>',
-      )
-      // Inline code: `code`
-      .replace(
-        /`([^`]+)`/g,
-        '<code class="bg-[var(--bg-elevated)] px-1 py-0.5 rounded text-[#00d9ff] font-mono text-xs">$1</code>',
-      )
-      // Links: [text](url)
-      .replace(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#05df72] hover:underline">$1</a>',
-      )
-  );
-}
 
 const getOfflineResponse = (userMessage: string): string => {
   const lowerMessage = userMessage.toLowerCase();
@@ -493,20 +438,26 @@ export const AIChatSidebar = () => {
     }
   }, [voiceRecorder, transcribeAudio, handleSendMessage, speechSynthesis]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSendMessage(inputValue);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Escape") {
-      setIsOpen(false);
-    }
-    if (e.key === "Enter" && !e.shiftKey) {
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
       e.preventDefault();
       handleSendMessage(inputValue);
-    }
-  };
+    },
+    [handleSendMessage, inputValue],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleSendMessage(inputValue);
+      }
+    },
+    [handleSendMessage, inputValue],
+  );
 
   const speakLastMessage = useCallback(() => {
     const lastAssistantMessage = [...messages]
@@ -590,6 +541,11 @@ export const AIChatSidebar = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Callbacks for child components
+  const handleAutoSpeakToggle = useCallback(() => setAutoSpeak((prev) => !prev), []);
+  const handleClose = useCallback(() => setIsOpen(false), []);
+  const handleInputChange = useCallback((value: string) => setInputValue(value), []);
+
   return (
     <div
       className={cn(
@@ -671,74 +627,13 @@ export const AIChatSidebar = () => {
               transition={{ duration: 0.15 }}
               className="flex h-full flex-col"
             >
-              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-3 py-2 sm:px-4 sm:py-3">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <ColorOrb
-                    dimension={isMobile ? "24px" : "28px"}
-                    tones={{
-                      base: "oklch(10% 0.02 145)",
-                      accent1: "oklch(80% 0.25 145)",
-                      accent2: "oklch(70% 0.2 195)",
-                      accent3: "oklch(75% 0.18 280)",
-                    }}
-                  />
-                  <div>
-                    <h3 className="text-xs font-medium text-[var(--text-primary)] sm:text-sm">
-                      Ask about Joseph
-                    </h3>
-                    <p className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] sm:gap-1.5 sm:text-xs">
-                      {useAI ? (
-                        <>
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#05df72]" />
-                          AI-powered
-                        </>
-                      ) : (
-                        <>
-                          <span className="h-1.5 w-1.5 rounded-full bg-[var(--text-muted)]" />
-                          Offline
-                        </>
-                      )}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        type="button"
-                        onClick={() => setAutoSpeak(!autoSpeak)}
-                        className={cn(
-                          "rounded-lg p-1 transition-colors sm:p-1.5",
-                          autoSpeak
-                            ? "bg-[#05df72]/20 text-[#05df72]"
-                            : "text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]",
-                        )}
-                      >
-                        <FiVolume2 size={isMobile ? 14 : 16} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" sideOffset={8}>
-                      {autoSpeak
-                        ? "Disable auto-speak"
-                        : "Enable auto-speak for voice replies"}
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        className="rounded-lg p-1 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)] sm:p-1.5"
-                        onClick={() => setIsOpen(false)}
-                        type="button"
-                      >
-                        <FiX size={isMobile ? 16 : 18} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" sideOffset={8}>
-                      Close chat
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
+              <ChatHeader
+                useAI={useAI}
+                autoSpeak={autoSpeak}
+                isMobile={isMobile}
+                onAutoSpeakToggle={handleAutoSpeakToggle}
+                onClose={handleClose}
+              />
 
               {error && (
                 <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] bg-[#fdc700]/10 px-3 py-1.5 text-xs text-[#fdc700]">
@@ -749,317 +644,50 @@ export const AIChatSidebar = () => {
 
               <div className="flex-1 overflow-y-auto p-2 sm:p-3">
                 <div className="space-y-3">
-                  {messages.map((message) => (
-                    <motion.div
-                      animate={{ opacity: 1, y: 0 }}
-                      className={cn(
-                        "flex flex-col",
-                        message.role === "user" ? "items-end" : "items-start",
-                      )}
-                      initial={{ opacity: 0, y: 8 }}
+                  {messages.map((message, index) => (
+                    <ChatMessage
                       key={message.id}
-                    >
-                      <div
-                        className={cn(
-                          "max-w-[85%] rounded-xl px-3 py-2 text-[13px] leading-relaxed",
-                          message.role === "user"
-                            ? "bg-[#05df72] text-black"
-                            : "bg-[var(--bg-surface)] text-[var(--text-secondary)]",
-                        )}
-                      >
-                        <div className="whitespace-pre-wrap">
-                          {message.isVoice && message.role === "user" && (
-                            <span className="mr-1 text-black/60">🎤</span>
-                          )}
-                          {message.role === "assistant" ? (
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html: renderMarkdown(message.content),
-                              }}
-                            />
-                          ) : (
-                            message.content
-                          )}
-                          {isStreaming &&
-                            message.role === "assistant" &&
-                            message.id ===
-                              messages[messages.length - 1]?.id && (
-                              <span className="ml-0.5 inline-block h-3 w-0.5 animate-pulse bg-[var(--text-muted)]" />
-                            )}
-                        </div>
-                        {message.emailStatus && (
-                          <div
-                            className={cn(
-                              "mt-2 flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] font-medium",
-                              message.emailStatus === "sending" &&
-                                "bg-[#fdc700]/20 text-[#fdc700]",
-                              message.emailStatus === "sent" &&
-                                "bg-[#05df72]/20 text-[#05df72]",
-                              message.emailStatus === "failed" &&
-                                "bg-[#ff6467]/20 text-[#ff6467]",
-                            )}
-                          >
-                            {message.emailStatus === "sending" && (
-                              <>
-                                <motion.div
-                                  animate={{ rotate: 360 }}
-                                  transition={{
-                                    duration: 1,
-                                    repeat: Number.POSITIVE_INFINITY,
-                                    ease: "linear",
-                                  }}
-                                  className="h-3 w-3 rounded-full border-[1.5px] border-current border-t-transparent"
-                                />
-                                Sending email...
-                              </>
-                            )}
-                            {message.emailStatus === "sent" && (
-                              <>
-                                <FiCheck size={12} />
-                                Email sent successfully
-                              </>
-                            )}
-                            {message.emailStatus === "failed" && (
-                              <>
-                                <FiAlertCircle size={12} />
-                                Failed to send email
-                              </>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                      <span
-                        className={cn(
-                          "mt-1 text-[10px]",
-                          message.role === "user"
-                            ? "text-[var(--text-muted)]"
-                            : "text-[var(--text-dim)]",
-                        )}
-                      >
-                        {formatTimeAgo(message.timestamp)}
-                      </span>
-                    </motion.div>
+                      message={message}
+                      isStreaming={isStreaming}
+                      isLastMessage={index === messages.length - 1}
+                    />
                   ))}
-                  {isTyping && (
-                    <motion.div
-                      animate={{ opacity: 1 }}
-                      className="flex flex-col items-start"
-                      initial={{ opacity: 0 }}
-                    >
-                      <div className="flex items-center gap-2 rounded-xl bg-[var(--bg-surface)] px-3 py-2">
-                        <div className="flex gap-1">
-                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72] [animation-delay:-0.3s]" />
-                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72] [animation-delay:-0.15s]" />
-                          <span className="h-2 w-2 animate-bounce rounded-full bg-[#05df72]" />
-                        </div>
-                        <span className="text-xs text-[var(--text-muted)]">
-                          AI is thinking...
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
+                  {isTyping && <TypingIndicator />}
                   <div ref={messagesEndRef} />
                 </div>
               </div>
 
               <div className="border-t border-[var(--border-subtle)] p-2 sm:p-3">
-                <AnimatePresence>
-                  {(speechSynthesis.isPlaying ||
-                    speechSynthesis.state === "paused") && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mb-2"
-                    >
-                      <SpeakingIndicator
-                        isPlaying={speechSynthesis.isPlaying}
-                        isPaused={speechSynthesis.state === "paused"}
-                        onPause={speechSynthesis.pause}
-                        onResume={speechSynthesis.resume}
-                        onStop={speechSynthesis.stop}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <AnimatePresence>
-                  {voiceRecorder.isRecording && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mb-3 flex flex-col items-center gap-2 rounded-xl bg-[var(--bg-surface)] p-3"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="h-2 w-2 animate-pulse rounded-full bg-[#ff6467]" />
-                        <span className="font-mono text-sm text-[#ff6467]">
-                          {Math.floor(voiceRecorder.duration / 60)
-                            .toString()
-                            .padStart(2, "0")}
-                          :
-                          {(voiceRecorder.duration % 60)
-                            .toString()
-                            .padStart(2, "0")}
-                        </span>
-                      </div>
-                      <AudioVisualizer
-                        levels={voiceRecorder.audioLevels}
-                        isActive={voiceRecorder.isRecording}
-                        barCount={32}
-                        color="#ff6467"
-                      />
-                      <span className="text-xs text-[var(--text-muted)]">
-                        Recording... Tap mic to stop
-                      </span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
                 {!voiceRecorder.isRecording && (
-                  <div className="mb-2 flex flex-wrap gap-1.5 sm:mb-3 sm:gap-2">
-                    {QUICK_ACTIONS.slice(0, isMobile ? 2 : 3).map((action) => {
-                      const Icon = ICON_MAP[action.icon as IconKey];
-                      return (
-                        <Tooltip key={action.label}>
-                          <TooltipTrigger asChild>
-                            <button
-                              className="flex shrink-0 items-center gap-1 rounded-full border border-[var(--border-subtle)] bg-transparent px-2 py-1 text-[11px] whitespace-nowrap text-[var(--text-muted)] transition-colors hover:border-[#05df72]/50 hover:text-[#05df72] disabled:opacity-50 sm:gap-1.5 sm:px-3 sm:py-1.5 sm:text-xs"
-                              disabled={isInputDisabled}
-                              onClick={() => handleSendMessage(action.prompt)}
-                              type="button"
-                            >
-                              <Icon size={isMobile ? 10 : 12} />
-                              {action.label}
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top" sideOffset={8}>
-                            {action.prompt}
-                          </TooltipContent>
-                        </Tooltip>
-                      );
-                    })}
-                  </div>
+                  <QuickActions
+                    onAction={handleSendMessage}
+                    disabled={isInputDisabled}
+                    isMobile={isMobile}
+                  />
                 )}
 
-                <form
-                  className="flex items-center gap-1.5 py-1 sm:gap-2 sm:py-2"
+                <ChatInput
+                  ref={inputRef}
+                  inputValue={inputValue}
+                  isStreaming={isStreaming}
+                  isTyping={isTyping}
+                  isTranscribing={isTranscribing}
+                  isRecording={voiceRecorder.isRecording}
+                  recordingDuration={voiceRecorder.duration}
+                  audioLevels={voiceRecorder.audioLevels}
+                  isMobile={isMobile}
+                  speechIsPlaying={speechSynthesis.isPlaying}
+                  speechState={speechSynthesis.state}
+                  hasMessages={messages.length > 1}
+                  onInputChange={handleInputChange}
                   onSubmit={handleSubmit}
-                >
-                  <div className="relative flex-1">
-                    <input
-                      type="text"
-                      className={cn(
-                        "h-10 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] pr-4 pl-3 text-sm text-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)] sm:h-11 sm:pl-4",
-                        "focus:border-[#05df72] focus:ring-1 focus:ring-[#05df72]/30 focus:outline-none",
-                        voiceRecorder.isRecording && "opacity-50",
-                      )}
-                      disabled={isInputDisabled}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      placeholder={
-                        isTranscribing
-                          ? "Transcribing..."
-                          : voiceRecorder.isRecording
-                            ? "Recording..."
-                            : "Ask anything..."
-                      }
-                      ref={inputRef}
-                      value={inputValue}
-                    />
-                  </div>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <motion.button
-                        type="button"
-                        onClick={handleVoiceRecord}
-                        disabled={isStreaming || isTyping}
-                        className={cn(
-                          voiceRecorder.isRecording
-                            ? "bg-[#ff6467] text-white"
-                            : "rounded-md bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]",
-                          (isStreaming || isTyping) &&
-                            "cursor-not-allowed opacity-50",
-                        )}
-                        whileHover={{
-                          scale: isStreaming || isTyping ? 1 : 1.02,
-                        }}
-                        whileTap={{ scale: isStreaming || isTyping ? 1 : 0.98 }}
-                      >
-                        {isTranscribing ? (
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{
-                              duration: 1,
-                              repeat: Number.POSITIVE_INFINITY,
-                              ease: "linear",
-                            }}
-                            className="h-4 w-4 rounded-md border-2 border-current border-t-transparent"
-                          />
-                        ) : voiceRecorder.isRecording ? (
-                          <FiSquare className="h-4 w-4 sm:h-5 sm:w-5" />
-                        ) : (
-                          <FiMic className="h-4 w-4 sm:h-5 sm:w-5" />
-                        )}
-                      </motion.button>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" sideOffset={8}>
-                      {isTranscribing
-                        ? "Processing voice..."
-                        : voiceRecorder.isRecording
-                          ? "Stop recording"
-                          : "Record voice message"}
-                    </TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <motion.button
-                        type="submit"
-                        disabled={!inputValue.trim() || isInputDisabled}
-                        className={cn(
-                          "rounded-md hover:bg-[#04c566]",
-                          (!inputValue.trim() || isInputDisabled) &&
-                            "cursor-not-allowed opacity-50",
-                        )}
-                        whileHover={{
-                          scale:
-                            !inputValue.trim() || isInputDisabled ? 1 : 1.02,
-                        }}
-                        whileTap={{
-                          scale:
-                            !inputValue.trim() || isInputDisabled ? 1 : 0.98,
-                        }}
-                      >
-                        <FiSend size={isMobile ? 16 : 18} />
-                      </motion.button>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" sideOffset={8}>
-                      Send message
-                    </TooltipContent>
-                  </Tooltip>
-                </form>
-
-                {messages.length > 1 &&
-                  !voiceRecorder.isRecording &&
-                  !speechSynthesis.isPlaying && (
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button
-                          type="button"
-                          onClick={speakLastMessage}
-                          className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-lg py-1 text-[11px] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[#05df72] sm:mt-2 sm:py-1.5 sm:text-xs"
-                        >
-                          <FiVolume2 size={12} />
-                          Play last response
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent side="top" sideOffset={8}>
-                        Listen to the AI's last reply
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
+                  onKeyDown={handleKeyDown}
+                  onVoiceRecord={handleVoiceRecord}
+                  onSpeechPause={speechSynthesis.pause}
+                  onSpeechResume={speechSynthesis.resume}
+                  onSpeechStop={speechSynthesis.stop}
+                  onSpeakLastMessage={speakLastMessage}
+                />
               </div>
             </motion.div>
           )}

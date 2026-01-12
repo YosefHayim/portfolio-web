@@ -1,20 +1,41 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router";
-import AIChatSidebar from "./Components/AIChatSidebar/AIChatSidebar";
+import { lazy, Suspense } from "react";
 import BottomNav from "./Components/BottomNav/BottomNav";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import ReturnVisitorDialog from "./Components/ReturnVisitorDialog/ReturnVisitorDialog";
 import ScrollProgress from "./Components/ScrollProgress/ScrollProgress";
 import { useReturnVisitor } from "./hooks/useReturnVisitor";
-import About from "./Pages/About/About";
-import Certifications from "./Pages/Certifications/Certifications";
-import Homepage from "./Pages/Homepage/Homepage";
-import NotFound404 from "./Pages/NotFound404/NotFound404";
-import ProjectDetail from "./Pages/Projects/ProjectDetail/ProjectDetail";
-import Projects from "./Pages/Projects/Projects";
-import TechStack from "./Pages/TechStack/TechStack";
 import "@/index.css";
+
+// Lazy load page components for code splitting
+const Homepage = lazy(() => import("./Pages/Homepage/Homepage"));
+const About = lazy(() => import("./Pages/About/About"));
+const Projects = lazy(() => import("./Pages/Projects/Projects"));
+const ProjectDetail = lazy(
+  () => import("./Pages/Projects/ProjectDetail/ProjectDetail"),
+);
+const TechStack = lazy(() => import("./Pages/TechStack/TechStack"));
+const Certifications = lazy(
+  () => import("./Pages/Certifications/Certifications"),
+);
+const NotFound404 = lazy(() => import("./Pages/NotFound404/NotFound404"));
+
+// Lazy load AI Chat Sidebar - it's heavy and not needed immediately
+const AIChatSidebar = lazy(
+  () => import("./Components/AIChatSidebar/AIChatSidebar"),
+);
+
+// Loading fallback for routes
+const PageLoader = () => (
+  <div className="flex min-h-[50vh] items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#05df72] border-t-transparent" />
+  </div>
+);
+
+// Minimal loading for chat (just empty space to avoid layout shift)
+const ChatLoader = () => null;
 
 const App = () => {
   const location = useLocation();
@@ -26,21 +47,25 @@ const App = () => {
       <Navbar />
       <main className="flex flex-1 flex-col items-center justify-center gap-10 overflow-hidden p-5 pb-24 md:pb-5">
         <AnimatePresence mode="wait">
-          <Routes key={location.pathname} location={location}>
-            <Route element={<Homepage />} path="/" />
-            <Route element={<About />} path="/about" />
-            <Route element={<Projects />} path="/projects" />
-            <Route element={<ProjectDetail />} path="/projects/:projectId" />
-            <Route element={<TechStack />} path="/techStack" />
-            <Route element={<Certifications />} path="/certifications" />
-            <Route element={<NotFound404 />} path="/404" />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes key={location.pathname} location={location}>
+              <Route element={<Homepage />} path="/" />
+              <Route element={<About />} path="/about" />
+              <Route element={<Projects />} path="/projects" />
+              <Route element={<ProjectDetail />} path="/projects/:projectId" />
+              <Route element={<TechStack />} path="/techStack" />
+              <Route element={<Certifications />} path="/certifications" />
+              <Route element={<NotFound404 />} path="/404" />
+            </Routes>
+          </Suspense>
         </AnimatePresence>
       </main>
       <Footer />
       <BottomNav />
       <ReturnVisitorDialog isOpen={shouldShowDialog} onClose={dismissDialog} />
-      <AIChatSidebar />
+      <Suspense fallback={<ChatLoader />}>
+        <AIChatSidebar />
+      </Suspense>
     </div>
   );
 };

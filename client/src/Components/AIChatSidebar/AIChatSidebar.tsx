@@ -43,10 +43,8 @@ type EmailData = {
   message: string;
 };
 
-// Regex to detect email sending marker in AI response
 const EMAIL_MARKER_REGEX = /\[SEND_EMAIL:(\{[\s\S]*?\})\]/;
 
-// Parse email data from AI response
 function parseEmailMarker(content: string): EmailData | null {
   const match = content.match(EMAIL_MARKER_REGEX);
   if (!match) return null;
@@ -57,9 +55,13 @@ function parseEmailMarker(content: string): EmailData | null {
       return data as EmailData;
     }
   } catch {
-    // Invalid JSON
+    return null;
   }
   return null;
+}
+
+function stripEmailMarker(content: string): string {
+  return content.replace(EMAIL_MARKER_REGEX, "").trim();
 }
 
 const ID_START = 2;

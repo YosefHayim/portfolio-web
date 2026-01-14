@@ -1,6 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router";
 import { lazy, Suspense } from "react";
+import { Toaster } from "sonner";
 import BottomNav from "./Components/BottomNav/BottomNav";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
@@ -9,7 +10,6 @@ import ScrollProgress from "./Components/ScrollProgress/ScrollProgress";
 import { useReturnVisitor } from "./hooks/useReturnVisitor";
 import "@/index.css";
 
-// Lazy load page components for code splitting
 const Homepage = lazy(() => import("./Pages/Homepage/Homepage"));
 const About = lazy(() => import("./Pages/About/About"));
 const Projects = lazy(() => import("./Pages/Projects/Projects"));
@@ -22,19 +22,16 @@ const Certifications = lazy(
 );
 const NotFound404 = lazy(() => import("./Pages/NotFound404/NotFound404"));
 
-// Lazy load AI Chat Sidebar - it's heavy and not needed immediately
 const AIChatSidebar = lazy(
   () => import("./Components/AIChatSidebar/AIChatSidebar"),
 );
 
-// Loading fallback for routes
 const PageLoader = () => (
   <div className="flex min-h-[50vh] items-center justify-center">
     <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#05df72] border-t-transparent" />
   </div>
 );
 
-// Minimal loading for chat (just empty space to avoid layout shift)
 const ChatLoader = () => null;
 
 const App = () => {
@@ -66,6 +63,17 @@ const App = () => {
       <Suspense fallback={<ChatLoader />}>
         <AIChatSidebar />
       </Suspense>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "var(--bg-card)",
+            border: "1px solid var(--border-subtle)",
+            color: "var(--text-primary)",
+          },
+        }}
+        theme="dark"
+      />
     </div>
   );
 };

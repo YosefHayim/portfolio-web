@@ -18,6 +18,8 @@ import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import { TechBadge } from "@/utils/techIcons";
 
+export type ProjectStatus = "live" | "development" | "completed";
+
 export interface FolderProject {
   id: string;
   image: string;
@@ -26,8 +28,31 @@ export interface FolderProject {
   techStack?: string[];
   deployedUrl?: string;
   repoUrl?: string;
-  status?: "live" | "development" | "completed";
+  status?: ProjectStatus | ProjectStatus[];
 }
+
+const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
+  if (!status) return [];
+  return Array.isArray(status) ? status : [status];
+};
+
+const statusConfig: Record<ProjectStatus, { label: string; className: string; dot: string }> = {
+  live: {
+    label: "Live",
+    className: "bg-[#05df72]/20 text-[#05df72]",
+    dot: "bg-[#05df72]",
+  },
+  development: {
+    label: "In Progress",
+    className: "bg-[#fdc700]/20 text-[#fdc700]",
+    dot: "bg-[#fdc700]",
+  },
+  completed: {
+    label: "Completed",
+    className: "bg-[#00d9ff]/20 text-[#00d9ff]",
+    dot: "bg-[#00d9ff]",
+  },
+};
 
 const PLACEHOLDER_IMAGE =
   "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200";
@@ -470,21 +495,20 @@ const ImageLightbox = ({
                   <h3 className="truncate text-base font-bold tracking-tight text-[var(--text-primary)] sm:text-lg md:text-xl lg:text-2xl">
                     {currentProject?.title}
                   </h3>
-                  {currentProject?.status && (
-                    <span
-                      className={cn(
-                        "shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-semibold uppercase sm:px-2 sm:text-[10px]",
-                        currentProject.status === "live" &&
-                          "bg-[#05df72]/20 text-[#05df72]",
-                        currentProject.status === "development" &&
-                          "bg-[#fdc700]/20 text-[#fdc700]",
-                        currentProject.status === "completed" &&
-                          "bg-[#00d9ff]/20 text-[#00d9ff]",
-                      )}
-                    >
-                      {currentProject.status}
-                    </span>
-                  )}
+                  {currentProject?.status && getStatusArray(currentProject.status).map((s) => {
+                    const config = statusConfig[s];
+                    return (
+                      <span
+                        key={s}
+                        className={cn(
+                          "shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-semibold uppercase sm:px-2 sm:text-[10px]",
+                          config.className,
+                        )}
+                      >
+                        {config.label}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 {currentProject?.description && (

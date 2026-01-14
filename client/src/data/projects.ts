@@ -3,6 +3,8 @@ export type Collaborator = {
   githubProfileLink: string;
 };
 
+export type ProjectStatus = "live" | "development" | "completed";
+
 export type Project = {
   id: string;
   name: string;
@@ -14,7 +16,7 @@ export type Project = {
   repoUrl: string;
   image: string;
   collaborators?: Collaborator[];
-  status?: "live" | "development" | "completed";
+  status?: ProjectStatus | ProjectStatus[];
   highlights?: string[];
 };
 
@@ -108,7 +110,7 @@ export const projects: Project[] = [
     deployedUrl: "https://chromewebstore.google.com/detail/sora-auto-queue-prompts/kbpbdckjechbjmnjagfkgcplmhdkkgph",
     repoUrl: "https://github.com/YosefHayim/extension-sora-auto-queue-prompts",
     image: "/screenshots/sora-extension.png",
-    status: "live",
+    status: ["live", "development"],
     highlights: [
       "Automated prompt queuing system",
       "Complete UI redesign in v2.0.0",
@@ -131,7 +133,7 @@ export const projects: Project[] = [
       "GitHub Actions",
       "pnpm",
     ],
-    deployedUrl: "https://chromewebstore.google.com/detail/gemini-nano-flow/lidnnjbepijjbbphbdhcchgpckpcbgfm",
+    deployedUrl: "https://chromewebstore.google.com/detail/ai-conversation-navigator/lidnnjbepijjbbphbdhcchgpckpcbgfm",
     repoUrl: "https://github.com/YosefHayim/extension-ai-conversation-navigator",
     image: "/screenshots/ai-navigator-extension.png",
     status: "live",
@@ -140,6 +142,30 @@ export const projects: Project[] = [
       "90%+ test coverage requirement",
       "Chrome/Edge and Firefox support",
       "Automated security audits",
+    ],
+  },
+  {
+    id: "gemini-nano-flow",
+    name: "Gemini Nano Flow Extension",
+    description:
+      "A Chrome extension that enhances Gemini AI workflow with automated prompt queuing and streamlined interactions.",
+    longDescription:
+      "A Chrome extension designed to enhance the Gemini AI experience with automated prompt queuing capabilities. Streamlines AI-driven workflows by organizing prompts into a controlled queue system, ensuring consistent and uninterrupted task execution. Built with modern web extension technologies and actively under development with new features.",
+    techStack: [
+      "TypeScript",
+      "Chrome Extensions API",
+      "Tailwind CSS",
+      "pnpm",
+    ],
+    deployedUrl: "https://chromewebstore.google.com/detail/gemini-nano-flow/lidnnjbepijjbbphbdhcchgpckpcbgfm",
+    repoUrl: "https://github.com/YosefHayim/extension-gemini-auto-queue",
+    image: "/screenshots/gemini-nano-flow.png",
+    status: ["live", "development"],
+    highlights: [
+      "Automated prompt queuing for Gemini",
+      "Streamlined AI workflow management",
+      "Chrome Web Store published",
+      "Active development with new features",
     ],
   },
   {
@@ -194,7 +220,7 @@ export const projects: Project[] = [
     deployedUrl: "https://udemy-clone-ron-ben-iitc.onrender.com/",
     repoUrl: "https://github.com/YosefHayim/udemy-clone-ron-ben-iitc",
     image: "/screenshots/udemy.png",
-    status: "completed",
+    status: ["live", "completed"],
     collaborators: [
       { name: "Ron Sherling", githubProfileLink: "https://github.com/ron959" },
       {
@@ -220,7 +246,7 @@ export const projects: Project[] = [
     deployedUrl: "https://iitc-b-frontend-vanilla-tim-trailers.onrender.com/",
     repoUrl: "https://github.com/YosefHayim/tim-trailers-vanilla-js",
     image: "/screenshots/tim-trailer.png",
-    status: "completed",
+    status: ["live", "completed"],
     highlights: [
       "TMDB API integration",
       "Responsive design",
@@ -254,7 +280,7 @@ export const projects: Project[] = [
     deployedUrl: "https://pdf-extractor-data-helping-mom-fronted.onrender.com/",
     repoUrl: "https://github.com/YosefHayim/ai-ocr-parser-web",
     image: "/screenshots/MomTool.png",
-    status: "completed",
+    status: ["live", "completed"],
     highlights: [
       "PDF to image conversion",
       "OCR text extraction",

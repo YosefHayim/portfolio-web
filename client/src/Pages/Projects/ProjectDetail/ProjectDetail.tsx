@@ -22,11 +22,11 @@ import { useEffect, useRef } from "react";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { FaWhatsapp } from "react-icons/fa";
 import { TechBadge } from "@/utils/techIcons";
-import { getProjectById } from "@/data/projects";
+import { getProjectById, type ProjectStatus } from "@/data/projects";
 
 const ICON_SIZE = 20;
 
-const statusConfig = {
+const statusConfig: Record<ProjectStatus, { label: string; className: string; dot: string }> = {
   live: {
     label: "Live",
     className: "border border-[#05df72]/40 bg-[#05df72]/10 text-[#05df72]",
@@ -42,6 +42,11 @@ const statusConfig = {
     className: "border border-[#00d9ff]/40 bg-[#00d9ff]/10 text-[#00d9ff]",
     dot: "bg-[#00d9ff]",
   },
+};
+
+const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
+  if (!status) return [];
+  return Array.isArray(status) ? status : [status];
 };
 
 type IconComponent = typeof FiGlobe;
@@ -172,7 +177,7 @@ const ProjectDetail = () => {
   }
 
   const hasLiveUrl = project.deployedUrl && project.deployedUrl !== "projects";
-  const status = project.status ? statusConfig[project.status] : null;
+  const statuses = getStatusArray(project.status);
   const categorizedTech = categorizeTech(project.techStack);
 
   return (
@@ -204,20 +209,24 @@ const ProjectDetail = () => {
               initial={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex flex-wrap items-center justify-start gap-3 py-2">
-                {status && (
-                  <motion.span
-                    animate={{ opacity: 1 }}
-                    className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${status.className}`}
-                    initial={{ opacity: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <span
-                      className={`h-1.5 w-1.5 rounded-full ${status.dot}`}
-                    />
-                    {status.label}
-                  </motion.span>
-                )}
+              <div className="flex flex-wrap items-center justify-center gap-3 py-2">
+                {statuses.map((s, index) => {
+                  const config = statusConfig[s];
+                  return (
+                    <motion.span
+                      key={s}
+                      animate={{ opacity: 1 }}
+                      className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${config.className}`}
+                      initial={{ opacity: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
+                    >
+                      <span
+                        className={`h-1.5 w-1.5 rounded-full ${config.dot}`}
+                      />
+                      {config.label}
+                    </motion.span>
+                  );
+                })}
                 <motion.span
                   animate={{ opacity: 1 }}
                   className="inline-flex justify-start gap-1.5 rounded-full bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-muted)]"

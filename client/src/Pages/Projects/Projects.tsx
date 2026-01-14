@@ -7,12 +7,23 @@ import {
   AnimatedFolder,
   type FolderProject,
 } from "@/Components/ui/project-folder";
-import { projects as projectsData } from "@/data/projects";
+import { projects as projectsData, type ProjectStatus } from "@/data/projects";
 import { useDebounce } from "@/hooks/useDebounce";
 import ProjectCard from "./ProjectCard/ProjectCard";
 
 type FilterStatus = "all" | "live" | "development" | "completed";
 type ViewMode = "grid" | "folders";
+
+const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
+  if (!status) return [];
+  return Array.isArray(status) ? status : [status];
+};
+
+const hasStatus = (projectStatus: ProjectStatus | ProjectStatus[] | undefined, filterStatus: FilterStatus): boolean => {
+  if (filterStatus === "all") return true;
+  const statuses = getStatusArray(projectStatus);
+  return statuses.includes(filterStatus);
+};
 
 const filterOptions: { value: FilterStatus; label: string }[] = [
   { value: "all", label: "All" },
@@ -60,7 +71,7 @@ const Projects = () => {
     let result = projectsData;
 
     if (filter !== "all") {
-      result = result.filter((p) => p.status === filter);
+      result = result.filter((p) => hasStatus(p.status, filter));
     }
 
     if (debouncedSearchQuery.trim()) {
@@ -92,19 +103,23 @@ const Projects = () => {
       : projectsData;
 
     projectsToGroup.forEach((project) => {
-      const status = project.status || "completed";
-      if (grouped[status]) {
-        grouped[status].push({
-          id: project.id,
-          image: project.image,
-          title: project.name,
-          description: project.description,
-          techStack: project.techStack,
-          deployedUrl: project.deployedUrl,
-          repoUrl: project.repoUrl,
-          status: project.status,
-        });
-      }
+      const statuses = getStatusArray(project.status);
+      const statusesToUse = statuses.length > 0 ? statuses : ["completed" as ProjectStatus];
+      
+      statusesToUse.forEach((status) => {
+        if (grouped[status]) {
+          grouped[status].push({
+            id: project.id,
+            image: project.image,
+            title: project.name,
+            description: project.description,
+            techStack: project.techStack,
+            deployedUrl: project.deployedUrl,
+            repoUrl: project.repoUrl,
+            status: project.status,
+          });
+        }
+      });
     });
 
     return grouped;
@@ -127,7 +142,7 @@ const Projects = () => {
           return nameMatch || descriptionMatch || techMatch;
         })
       : projectsData;
-    return baseFiltered.filter((p) => p.status === status).length;
+    return baseFiltered.filter((p) => hasStatus(p.status, status)).length;
   };
 
   const clearSearch = () => {

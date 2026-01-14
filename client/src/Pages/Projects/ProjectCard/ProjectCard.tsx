@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
-import type { Project } from "@/data/projects";
+import type { Project, ProjectStatus } from "@/data/projects";
 import { TechBadge } from "@/utils/techIcons";
 
 const ICON_SIZE = 18;
 const VISIBLE_TECH_COUNT = 4;
 
-const statusConfig = {
+const statusConfig: Record<ProjectStatus, { label: string; className: string; dot: string }> = {
   live: {
     label: "Live",
     className: "bg-[#05df72]/90 text-black",
@@ -25,6 +25,11 @@ const statusConfig = {
   },
 };
 
+const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
+  if (!status) return [];
+  return Array.isArray(status) ? status : [status];
+};
+
 type ProjectCardProps = {
   project: Project;
   searchQuery?: string;
@@ -36,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const hasLiveUrl = project.deployedUrl && project.deployedUrl !== "projects";
-  const status = project.status ? statusConfig[project.status] : null;
+  const statuses = getStatusArray(project.status);
 
   const handleCardClick = () => {
     navigate(`/projects/${project.id}`);
@@ -91,12 +96,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent opacity-60" />
 
-        {status && (
-          <div
-            className={`absolute top-3 right-3 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold backdrop-blur-sm ${status.className}`}
-          >
-            <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
-            {status.label}
+        {statuses.length > 0 && (
+          <div className="absolute top-3 right-3 flex flex-wrap justify-end gap-1.5">
+            {statuses.map((s) => {
+              const config = statusConfig[s];
+              return (
+                <div
+                  key={s}
+                  className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold backdrop-blur-sm ${config.className}`}
+                >
+                  <span className={`h-1.5 w-1.5 rounded-full ${config.dot}`} />
+                  {config.label}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

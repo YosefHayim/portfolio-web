@@ -13,6 +13,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/Components/ui/tooltip";
+import { toast } from "sonner";
 
 import { ColorOrb } from "@/Components/ui/ai-input";
 import { cn } from "@/lib/utils";
@@ -188,6 +189,7 @@ export const AIChatSidebar = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const lastAssistantMessageRef = useRef<string>("");
+  const isOpenRef = useRef(isOpen);
 
   const voiceRecorder = useVoiceRecorder({
     onError: (err) => setError(err.message),
@@ -196,6 +198,10 @@ export const AIChatSidebar = () => {
   const speechSynthesis = useSpeechSynthesis({
     onError: (err) => setError(err.message),
   });
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -342,6 +348,18 @@ export const AIChatSidebar = () => {
           setMessages((prev) => [...prev, assistantMessage]);
           setIsTyping(false);
 
+          if (!isOpenRef.current) {
+            const preview = response.slice(0, 80);
+            toast.success("AI Response Ready", {
+              description: preview + (response.length > 80 ? "..." : ""),
+              action: {
+                label: "View",
+                onClick: () => setIsOpen(true),
+              },
+              duration: 5000,
+            });
+          }
+
           if (autoSpeak && isVoiceMessage) {
             speechSynthesis.speakWithBrowserTTS(response);
           }
@@ -380,6 +398,18 @@ export const AIChatSidebar = () => {
         );
 
         lastAssistantMessageRef.current = fullResponse;
+
+        if (!isOpenRef.current && fullResponse) {
+          const preview = stripEmailMarker(fullResponse).slice(0, 80);
+          toast.success("AI Response Ready", {
+            description: preview + (fullResponse.length > 80 ? "..." : ""),
+            action: {
+              label: "View",
+              onClick: () => setIsOpen(true),
+            },
+            duration: 5000,
+          });
+        }
 
         if (autoSpeak && isVoiceMessage && fullResponse) {
           speechSynthesis.speak(fullResponse);

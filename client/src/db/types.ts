@@ -15,7 +15,7 @@ export type Project = {
   repoUrl: string;
   image: string;
   collaborators?: Collaborator[];
-  status?: ProjectStatus;
+  status?: ProjectStatus | ProjectStatus[];
   highlights?: string[];
   createdAt?: string;
   updatedAt?: string;

@@ -1,4 +1,4 @@
-import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import { Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
 import AnimatedHamburger from "../AnimatedHamburger/AnimatedHamburger";
 import Logo from "../Logo/Logo";
 import { AppSidebar } from "../Sidebar/Sidebar";
@@ -44,6 +44,11 @@ const Navbar = () => {
           icon={<Award size={ICON_SIZE} />}
           pageName="Certifications"
           to="/certifications"
+        />
+        <NavigationButton
+          icon={<BookOpen size={ICON_SIZE} />}
+          pageName="Blog"
+          to="/blog"
         />
       </nav>
     </header>

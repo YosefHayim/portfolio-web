@@ -42,6 +42,7 @@ import {
 import { TbBrandReactNative } from "react-icons/tb";
 import { VscDebugAlt } from "react-icons/vsc";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import { SEO } from "@/Components/SEO/SEO";
 import {
   FloatingTechIcons,
   type TechIconData,
@@ -305,13 +306,30 @@ const itemVariants = {
 
 const TechStack = () => {
   useEffect(() => {
-    document.title = "Tech Stack | Joseph Sabag";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <AnimatedPage className="flex w-full flex-col items-center pb-20">
-      <FloatingTechIcons
+    <>
+      <SEO
+        title="Tech Stack"
+        description="Explore Joseph Sabag's technical skills and expertise. Proficient in React, Node.js, TypeScript, Python, AWS, and modern full-stack development tools."
+        url="/techStack"
+        keywords={[
+          "Tech Stack",
+          "Skills",
+          "React",
+          "Node.js",
+          "TypeScript",
+          "Python",
+          "AWS",
+          "MongoDB",
+          "PostgreSQL",
+          "Full Stack",
+        ]}
+      />
+      <AnimatedPage className="flex w-full flex-col items-center pb-20">
+        <FloatingTechIcons
         className="pt-16"
         icons={floatingIcons}
         subtitle="When I code and drink coffee, it is usually with these technologies"
@@ -373,7 +391,8 @@ const TechStack = () => {
           and always learning new tools to add to my arsenal...
         </p>
       </motion.div>
-    </AnimatedPage>
+      </AnimatedPage>
+    </>
   );
 };
 

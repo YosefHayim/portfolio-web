@@ -1,4 +1,4 @@
-import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import { Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
 import { Link } from "react-router";
 import {
   Sidebar,
@@ -39,6 +39,11 @@ const items = [
     title: "Certifications",
     url: "/certifications",
     icon: <Award size={ICON_SIZE} />,
+  },
+  {
+    title: "Blog",
+    url: "/blog",
+    icon: <BookOpen size={ICON_SIZE} />,
   },
 ];
 

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { FaDownload, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import { SEO } from "@/Components/SEO/SEO";
 import MyJourney from "./MyJourney/MyJourney";
 
 const STAGGER_DELAY = 0.1;
@@ -30,12 +31,26 @@ const itemVariants = {
 
 const About = () => {
   useEffect(() => {
-    document.title = "About | Joseph Sabag";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <AnimatedPage className="flex w-full flex-col items-center px-4 pb-20">
+    <>
+      <SEO
+        title="About"
+        description="Learn about Joseph Sabag's journey from IDF combat commander to AI Software Engineer. Discover the story behind the code and my passion for building impactful software."
+        url="/about"
+        keywords={[
+          "Joseph Sabag",
+          "About",
+          "Software Engineer",
+          "IDF",
+          "Full Stack Developer",
+          "Career Journey",
+          "Predicto AI",
+        ]}
+      />
+      <AnimatedPage className="flex w-full flex-col items-center px-4 pb-20">
       <motion.section
         animate="visible"
         className="flex w-full max-w-3xl flex-col items-center gap-12 pt-32"
@@ -126,6 +141,7 @@ const About = () => {
         <MyJourney />
       </motion.div>
     </AnimatedPage>
+    </>
   );
 };
 

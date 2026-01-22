@@ -20,6 +20,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import { SEO } from "@/Components/SEO/SEO";
 import { FaWhatsapp } from "react-icons/fa";
 import { TechBadge } from "@/utils/techIcons";
 import { getProjectById, type ProjectStatus } from "@/data/projects";
@@ -142,37 +143,41 @@ const ProjectDetail = () => {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
 
   useEffect(() => {
-    if (project) {
-      document.title = `${project.name} | Projects`;
-    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [project]);
 
   if (!project) {
     return (
-      <AnimatedPage className="flex min-h-screen w-full flex-col items-center justify-center gap-4 px-4">
-        <motion.div
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-center"
-          initial={{ scale: 0.9, opacity: 0 }}
-        >
-          <h1 className="mb-4 text-4xl font-bold text-[var(--text-primary)]">
-            Project not found
-          </h1>
-          <p className="mb-8 text-[var(--text-muted)]">
-            The project you&apos;re looking for doesn&apos;t exist or has been
-            moved.
-          </p>
-          <button
-            className="inline-flex items-center gap-2 rounded-xl bg-[#05df72] px-6 py-3 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_30px_rgba(5,223,114,0.4)]"
-            onClick={() => navigate("/projects")}
-            type="button"
+      <>
+        <SEO
+          title="Project Not Found"
+          description="The project you're looking for doesn't exist or has been moved."
+          noindex
+        />
+        <AnimatedPage className="flex min-h-screen w-full flex-col items-center justify-center gap-4 px-4">
+          <motion.div
+            animate={{ scale: 1, opacity: 1 }}
+            className="text-center"
+            initial={{ scale: 0.9, opacity: 0 }}
           >
-            <IoArrowBack size={ICON_SIZE} />
-            Back to Projects
-          </button>
-        </motion.div>
-      </AnimatedPage>
+            <h1 className="mb-4 text-4xl font-bold text-[var(--text-primary)]">
+              Project not found
+            </h1>
+            <p className="mb-8 text-[var(--text-muted)]">
+              The project you&apos;re looking for doesn&apos;t exist or has been
+              moved.
+            </p>
+            <button
+              className="inline-flex items-center gap-2 rounded-xl bg-[#05df72] px-6 py-3 font-semibold text-black transition-all hover:bg-[#04c566] hover:shadow-[0_0_30px_rgba(5,223,114,0.4)]"
+              onClick={() => navigate("/projects")}
+              type="button"
+            >
+              <IoArrowBack size={ICON_SIZE} />
+              Back to Projects
+            </button>
+          </motion.div>
+        </AnimatedPage>
+      </>
     );
   }
 
@@ -181,7 +186,15 @@ const ProjectDetail = () => {
   const categorizedTech = categorizeTech(project.techStack);
 
   return (
-    <AnimatedPage className="min-h-screen w-full bg-[var(--bg-void)]">
+    <>
+      <SEO
+        title={project.name}
+        description={project.longDescription || project.description}
+        url={`/projects/${project.id}`}
+        image={project.image}
+        keywords={[project.name, ...project.techStack.slice(0, 5), "Project", "Portfolio"]}
+      />
+      <AnimatedPage className="min-h-screen w-full bg-[var(--bg-void)]">
       <motion.section
         className="relative overflow-hidden"
         ref={heroRef}
@@ -514,7 +527,8 @@ const ProjectDetail = () => {
           </motion.div>
         </div>
       </section>
-    </AnimatedPage>
+      </AnimatedPage>
+    </>
   );
 };
 

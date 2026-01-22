@@ -3,6 +3,7 @@ import { FolderOpen, Grid3X3, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { staggerContainer, staggerItem } from "@/animations/variants";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
+import { SEO } from "@/Components/SEO/SEO";
 import {
   AnimatedFolder,
   type FolderProject,
@@ -63,7 +64,6 @@ const Projects = () => {
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY_MS);
 
   useEffect(() => {
-    document.title = "Projects";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -150,18 +150,34 @@ const Projects = () => {
   };
 
   return (
-    <AnimatedPage className="flex w-full flex-col items-center px-4 pb-20">
-      <motion.header
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-12 w-full max-w-2xl pt-32 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
-          Projects
-        </h1>
-        <p className="mx-auto py-4 text-lg text-[var(--text-secondary)]">
-          A collection of things I've built, from automation tools to full-stack
+    <>
+      <SEO
+        title="Projects"
+        description="Explore Joseph Sabag's portfolio of projects including full-stack applications, Chrome extensions, trading bots, and AI-powered tools built with React, Node.js, and TypeScript."
+        url="/projects"
+        keywords={[
+          "Projects",
+          "Portfolio",
+          "Full Stack",
+          "React",
+          "Node.js",
+          "Chrome Extensions",
+          "AI Tools",
+          "Open Source",
+        ]}
+      />
+      <AnimatedPage className="flex w-full flex-col items-center px-4 pb-20">
+        <motion.header
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12 w-full max-w-2xl pt-32 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
+            Projects
+          </h1>
+          <p className="mx-auto py-4 text-lg text-[var(--text-secondary)]">
+            A collection of things I've built, from automation tools to full-stack
           applications
         </p>
 
@@ -364,7 +380,8 @@ const Projects = () => {
           )}
         </motion.div>
       )}
-    </AnimatedPage>
+      </AnimatedPage>
+    </>
   );
 };
 

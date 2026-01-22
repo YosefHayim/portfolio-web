@@ -21,6 +21,8 @@ const Certifications = lazy(
   () => import("./Pages/Certifications/Certifications"),
 );
 const NotFound404 = lazy(() => import("./Pages/NotFound404/NotFound404"));
+const Blog = lazy(() => import("./Pages/Blog/Blog"));
+const BlogPost = lazy(() => import("./Pages/Blog/BlogPost"));
 
 const AIChatSidebar = lazy(
   () => import("./Components/AIChatSidebar/AIChatSidebar"),
@@ -52,6 +54,8 @@ const App = () => {
               <Route element={<ProjectDetail />} path="/projects/:projectId" />
               <Route element={<TechStack />} path="/techStack" />
               <Route element={<Certifications />} path="/certifications" />
+              <Route element={<Blog />} path="/blog" />
+              <Route element={<BlogPost />} path="/blog/:slug" />
               <Route element={<NotFound404 />} path="/404" />
             </Routes>
           </Suspense>

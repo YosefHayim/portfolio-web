@@ -1,4 +1,4 @@
-import { Award, FolderKanban, Home, Layers, User } from "lucide-react";
+import { Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
 
 import { Link } from "react-router";
 import Logo from "../Logo/Logo";
@@ -30,6 +30,11 @@ const navLinks: NavLink[] = [
     to: "/certifications",
     label: "Certifications",
     icon: <Award size={ICON_SIZE} />,
+  },
+  {
+    to: "/blog",
+    label: "Blog",
+    icon: <BookOpen size={ICON_SIZE} />,
   },
 ];
 

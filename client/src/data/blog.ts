@@ -122,7 +122,7 @@ The path isn't always conventional. But sometimes, the unconventional path is ex
     tags: ["career change", "IDF", "software engineering", "journey"],
     author: {
       name: "Joseph Sabag",
-      avatar: "/images-of-me/profile.jpg",
+      avatar: "/images-of-me/hero-image.svg",
     },
     publishedAt: "2025-01-15",
     readingTime: 6,
@@ -217,7 +217,7 @@ Check out the [GitHub repo](https://github.com/YosefHayim/ebay-mcp) for full doc
     tags: ["open source", "MCP", "TypeScript", "eBay API", "AI tools"],
     author: {
       name: "Joseph Sabag",
-      avatar: "/images-of-me/profile.jpg",
+      avatar: "/images-of-me/hero-image.svg",
     },
     publishedAt: "2025-01-10",
     readingTime: 8,
@@ -300,7 +300,7 @@ Plus, there's something magical about seeing "X users" on your extension page. R
     tags: ["browser extensions", "Chrome", "side projects", "WXT"],
     author: {
       name: "Joseph Sabag",
-      avatar: "/images-of-me/profile.jpg",
+      avatar: "/images-of-me/hero-image.svg",
     },
     publishedAt: "2025-01-05",
     readingTime: 5,
@@ -388,7 +388,7 @@ The tools have changed. The goal hasn't. Build things that matter.
     tags: ["AI learning", "ChatGPT", "career advice", "self-taught"],
     author: {
       name: "Joseph Sabag",
-      avatar: "/images-of-me/profile.jpg",
+      avatar: "/images-of-me/hero-image.svg",
     },
     publishedAt: "2024-12-20",
     readingTime: 5,
@@ -488,10 +488,532 @@ Sometimes the best way to learn is to build something you actually care about. F
     tags: ["trading bots", "Python", "automation", "Binance", "APIs"],
     author: {
       name: "Joseph Sabag",
-      avatar: "/images-of-me/profile.jpg",
+      avatar: "/images-of-me/hero-image.svg",
     },
     publishedAt: "2024-12-10",
     readingTime: 6,
+  },
+  {
+    id: "6",
+    slug: "react-native-first-mobile-app",
+    title: "Building My First React Native App: Lessons from Get Barber",
+    excerpt:
+      "Transitioning from web to mobile development with React Native and Expo. What surprised me, what frustrated me, and what I'd do differently.",
+    content: `
+# From Web to Mobile
+
+After building web apps for over a year, I finally took the plunge into mobile development. The project: Get Barber, a barber booking app built with React Native and Expo.
+
+## Why React Native?
+
+The decision was practical:
+- I already knew React
+- Cross-platform from day one
+- Expo makes deployment painless
+- Large ecosystem and community
+
+## The Surprises
+
+### 1. Styling is Different (But Familiar)
+No CSS files. Everything is StyleSheet or inline styles. But coming from Tailwind, NativeWind felt right at home.
+
+\`\`\`javascript
+// NativeWind makes this possible
+<View className="flex-1 bg-black p-4">
+  <Text className="text-white text-xl font-bold">
+    Hello Mobile
+  </Text>
+</View>
+\`\`\`
+
+### 2. Navigation is Complex
+React Router on web is simple. React Navigation has more concepts - stacks, tabs, drawers. Expo Router simplified this significantly.
+
+### 3. Platform Differences Are Real
+iOS and Android handle things differently. Keyboard behavior, status bars, safe areas - you can't ignore these.
+
+## The Tech Stack
+
+- **Expo** - Build tooling and development
+- **Expo Router** - File-based routing
+- **NativeWind** - Tailwind for React Native
+- **Supabase** - Backend and auth
+- **TanStack Query** - Data fetching
+- **Zustand** - State management
+- **React Native Maps** - Location features
+
+## What I'd Do Differently
+
+1. **Start with Expo from day one** - I initially tried bare React Native. Don't.
+2. **Design mobile-first** - Web thinking doesn't translate directly
+3. **Test on real devices early** - Simulators lie
+
+## The Result
+
+Get Barber now has:
+- Real-time appointment booking
+- Location-based barber discovery
+- Apple authentication
+- Push notifications
+
+## Should You Learn React Native?
+
+If you know React, the barrier is lower than you think. The hardest part isn't the technology - it's thinking in mobile patterns.
+
+Start with a small project. Use Expo. Ship something.
+
+---
+
+*Mobile development opened up a whole new world of possibilities. The skills transfer more than you'd expect.*
+    `,
+    coverImage: "/screenshots/get-barber.png",
+    category: "tutorials",
+    tags: ["React Native", "Expo", "mobile development", "NativeWind"],
+    author: {
+      name: "Joseph Sabag",
+      avatar: "/images-of-me/hero-image.svg",
+    },
+    publishedAt: "2024-11-28",
+    readingTime: 7,
+  },
+  {
+    id: "7",
+    slug: "mcp-protocol-future-of-ai-tools",
+    title: "The MCP Protocol: Why I Built Two MCP Servers",
+    excerpt:
+      "Model Context Protocol is changing how AI assistants interact with the world. Here's why I went all-in on building MCP servers.",
+    content: `
+# The Rise of MCP
+
+When Anthropic released the Model Context Protocol, I immediately saw the potential. This wasn't just another API standard - it was a way to give AI assistants real capabilities.
+
+## What is MCP?
+
+In simple terms: MCP lets AI assistants use tools. Instead of just generating text, Claude can now:
+- Search databases
+- Call APIs
+- Read files
+- Execute actions
+
+## Why I Built Two MCP Servers
+
+### 1. eBay MCP Server
+387 tools for eBay's selling APIs. Sellers can now ask their AI assistant to manage inventory, track orders, run marketing campaigns - all through natural language.
+
+### 2. Chrome Extension API Reference MCP
+This one helps AI assistants write better Chrome extensions. Instead of hallucinating API details, they can look up the actual documentation.
+
+## The Architecture Pattern
+
+Both servers follow similar patterns:
+
+\`\`\`typescript
+// Tool definition
+const tool = {
+  name: "get_inventory_item",
+  description: "Retrieves inventory item by SKU",
+  inputSchema: z.object({
+    sku: z.string()
+  }),
+  handler: async (input) => {
+    // API call
+    return result;
+  }
+};
+\`\`\`
+
+## Key Learnings
+
+### 1. Documentation is Everything
+AI assistants need to understand when and how to use each tool. Vague descriptions lead to misuse.
+
+### 2. Error Handling Matters More
+When a human uses an API, they can interpret error messages. AI needs structured, clear error responses.
+
+### 3. Test Coverage is Non-Negotiable
+The eBay MCP has 958+ tests. When you're building something AI will use autonomously, you need confidence.
+
+## The Future
+
+MCP is still early. But I believe this pattern - giving AI assistants access to real tools - is how we'll interact with software in the future.
+
+Instead of learning 100 different UIs, you'll just ask your AI assistant to handle it.
+
+## Getting Started with MCP
+
+If you want to build your own MCP server:
+
+1. Start with the [MCP SDK](https://github.com/modelcontextprotocol/sdk)
+2. Pick an API you know well
+3. Build incrementally - start with 5 tools, not 50
+4. Write tests for every tool
+5. Document extensively
+
+---
+
+*The best time to learn MCP was when it launched. The second best time is now.*
+    `,
+    coverImage: "/screenshots/chrome-extension-mcp.png",
+    category: "engineering",
+    tags: ["MCP", "AI tools", "TypeScript", "open source"],
+    author: {
+      name: "Joseph Sabag",
+      avatar: "/images-of-me/hero-image.svg",
+    },
+    publishedAt: "2024-11-15",
+    readingTime: 6,
+    featured: true,
+  },
+  {
+    id: "8",
+    slug: "from-zero-to-predicto-ai",
+    title: "Landing My First Dev Job: From Bootcamp to Predicto AI",
+    excerpt:
+      "The job search, the interviews, the rejections, and finally the offer. An honest look at breaking into tech in 2024.",
+    content: `
+# The Job Hunt Reality
+
+Let me be honest: the job search was brutal. Here's what actually happened between finishing my bootcamp and starting at Predicto AI.
+
+## The Numbers
+
+- **Applications sent**: 150+
+- **Responses received**: ~30
+- **Technical interviews**: 12
+- **Final round interviews**: 4
+- **Offers**: 1
+
+Those numbers aren't pretty. But they're real.
+
+## What Didn't Work
+
+### Mass Applying
+Sending generic applications to every job posting was a waste of time. Maybe 2% response rate.
+
+### Focusing Only on Big Companies
+The competition for entry-level roles at established companies is fierce. Hundreds of applicants per position.
+
+### Underselling My Background
+I initially downplayed my military experience and trading bot projects. Mistake.
+
+## What Actually Worked
+
+### 1. Building in Public
+My GitHub was active. Real projects, not just tutorial clones. When recruiters looked, they saw:
+- The eBay MCP server
+- Browser extensions
+- Full-stack applications
+
+### 2. The "Different" Background
+Turns out, "IDF commander who taught himself Python to build trading bots" is memorable. It became my story.
+
+### 3. Targeting Startups
+Startups care less about years of experience and more about:
+- Can you ship?
+- Will you learn fast?
+- Do you have initiative?
+
+I could demonstrate all three.
+
+### 4. Networking (The Real Kind)
+Not LinkedIn spam. Actually talking to developers, attending meetups, engaging in communities. One conversation led to the Predicto AI opportunity.
+
+## The Predicto AI Interview
+
+The interview process:
+1. Initial call - culture fit, background discussion
+2. Technical assessment - take-home project
+3. Technical interview - code review and system design
+4. Final conversation with founders
+
+The take-home was building a feature I actually found interesting. I over-delivered - not because I was trying to impress, but because I was genuinely curious.
+
+## Lessons for Job Seekers
+
+**1. Quality over quantity**
+5 thoughtful applications beat 50 generic ones.
+
+**2. Build things you'd actually use**
+Passion shows. If you're bored building it, interviewers will be bored hearing about it.
+
+**3. Your "weakness" might be your strength**
+Non-traditional background? That's differentiation.
+
+**4. Keep building during the search**
+Every week without a job is a week to add to your portfolio.
+
+**5. It only takes one yes**
+150 rejections don't matter if application 151 is the one.
+
+---
+
+*The job search tested my resilience more than the bootcamp did. But every rejection was just data pointing me toward the right opportunity.*
+    `,
+    coverImage: "/screenshots/ally-ai-calendar.png",
+    category: "career",
+    tags: ["job search", "career advice", "interviews", "bootcamp"],
+    author: {
+      name: "Joseph Sabag",
+      avatar: "/images-of-me/hero-image.svg",
+    },
+    publishedAt: "2024-11-01",
+    readingTime: 7,
+  },
+  {
+    id: "9",
+    slug: "supabase-vs-firebase-real-experience",
+    title: "Supabase vs Firebase: My Real-World Experience",
+    excerpt:
+      "After using both extensively in production projects, here's my honest comparison of Supabase and Firebase for full-stack applications.",
+    content: `
+# The Backend-as-a-Service Decision
+
+Every new project starts with the same question: what's the backend going to be?
+
+I've shipped projects with both Supabase and Firebase. Here's what I actually experienced.
+
+## Projects Built
+
+**With Firebase:**
+- AutoBay SaaS platform
+- Early trading bot dashboards
+
+**With Supabase:**
+- Ally AI Calendar
+- Get Barber mobile app
+- Facebook Lead AI Extension
+
+## The Comparison
+
+### Authentication
+
+**Firebase Auth**
+- More providers out of the box
+- Better documentation
+- Google integration is seamless (obviously)
+
+**Supabase Auth**
+- Simpler API
+- Row Level Security integration
+- Better for Postgres-centric apps
+
+**Winner**: Tie - depends on your needs
+
+### Database
+
+**Firebase (Firestore)**
+- NoSQL - flexible schema
+- Real-time by default
+- Pricing can surprise you at scale
+
+**Supabase (PostgreSQL)**
+- SQL - structured and powerful
+- Real-time as an option
+- Predictable pricing
+
+**Winner**: Supabase - PostgreSQL is just more capable
+
+### Real-time
+
+**Firebase**
+- Built into the core product
+- Works great, just expensive
+
+**Supabase**
+- Requires explicit subscription
+- More control, less magic
+
+**Winner**: Firebase for simplicity, Supabase for control
+
+### Developer Experience
+
+**Firebase**
+- Mature tooling
+- Sometimes feels heavy
+- Google Cloud integration
+
+**Supabase**
+- Modern, clean dashboard
+- Open source
+- SQL is a superpower
+
+**Winner**: Supabase
+
+## When I Choose What
+
+**Choose Firebase when:**
+- Deep Google Cloud integration needed
+- Team is already familiar with it
+- NoSQL fits your data model
+
+**Choose Supabase when:**
+- You want PostgreSQL power
+- Budget is a concern
+- You prefer open source
+- Row Level Security is important
+
+## The Real Answer
+
+For my personal projects now, I default to Supabase. The PostgreSQL foundation means I'm not fighting the database - I'm working with it.
+
+But Firebase isn't bad. It's just different. The right choice depends on your project, your team, and your preferences.
+
+## Code Comparison
+
+**Supabase query:**
+\`\`\`typescript
+const { data, error } = await supabase
+  .from('appointments')
+  .select('*, barber:barbers(*)')
+  .eq('user_id', userId)
+  .order('date', { ascending: true });
+\`\`\`
+
+**Firebase query:**
+\`\`\`typescript
+const snapshot = await db.collection('appointments')
+  .where('userId', '==', userId)
+  .orderBy('date')
+  .get();
+const data = snapshot.docs.map(doc => doc.data());
+\`\`\`
+
+Both work. Supabase feels more like writing SQL (because it is).
+
+---
+
+*Don't overthink the BaaS decision. Pick one, learn it well, and ship. You can always migrate later (though you probably won't).*
+    `,
+    coverImage: "/screenshots/facebook-lead-ai.png",
+    category: "tutorials",
+    tags: ["Supabase", "Firebase", "backend", "comparison"],
+    author: {
+      name: "Joseph Sabag",
+      avatar: "/images-of-me/hero-image.svg",
+    },
+    publishedAt: "2024-10-20",
+    readingTime: 6,
+  },
+  {
+    id: "10",
+    slug: "ai-assisted-development-workflow",
+    title: "My AI-Assisted Development Workflow in 2025",
+    excerpt:
+      "How I use Claude, Cursor, and custom MCP servers to ship code faster. A practical guide to AI pair programming.",
+    content: `
+# The New Development Reality
+
+I write more code than ever, but I type less. Here's how AI has changed my development workflow.
+
+## The Tools
+
+### Claude (via API and Claude Code)
+My thinking partner. Architecture decisions, code review, debugging complex issues.
+
+### Cursor
+Daily driver IDE. Tab completion that actually understands context.
+
+### Custom MCP Servers
+My eBay MCP and Chrome Extension API MCP give Claude access to real documentation and APIs.
+
+## The Workflow
+
+### 1. Planning Phase
+Before writing code, I discuss architecture with Claude:
+
+\`\`\`
+"I need to build a queue system for prompt submissions.
+Users should be able to add, reorder, and remove prompts.
+It needs to persist across sessions.
+What patterns would you suggest?"
+\`\`\`
+
+Claude suggests options, I evaluate trade-offs, we refine together.
+
+### 2. Implementation Phase
+In Cursor, I write the skeleton and let AI fill in the details:
+
+\`\`\`typescript
+// I write this
+function processQueue(queue: Prompt[]): void {
+  // Process each prompt in order
+  // Handle errors gracefully
+  // Update progress state
+}
+
+// AI completes the implementation
+\`\`\`
+
+### 3. Review Phase
+After a feature is complete, I ask Claude to review:
+
+\`\`\`
+"Review this code for:
+- Edge cases I might have missed
+- Performance issues
+- Security concerns
+- Better patterns"
+\`\`\`
+
+### 4. Documentation Phase
+AI generates first drafts of documentation that I refine.
+
+## What AI Is Good At
+
+- Boilerplate code
+- Remembering syntax details
+- Exploring API options
+- Catching obvious bugs
+- Explaining unfamiliar code
+
+## What AI Is Bad At
+
+- Understanding full system context
+- Making product decisions
+- Knowing your codebase conventions
+- Catching subtle business logic errors
+
+## The 80/20 Rule
+
+AI handles ~80% of the mechanical work. The remaining 20% - architecture, decisions, reviews - still requires human judgment.
+
+That 20% is also where the value is.
+
+## Practical Tips
+
+### 1. Be Specific
+Bad: "Write a function to handle users"
+Good: "Write a TypeScript function that validates user input against this Zod schema and returns typed errors"
+
+### 2. Provide Context
+Share relevant code, explain constraints, describe the system.
+
+### 3. Verify Everything
+AI makes confident mistakes. Always read the generated code.
+
+### 4. Learn the Patterns
+Over time, you'll know what prompts work best. Build that intuition.
+
+## The Controversial Take
+
+Using AI doesn't make you a worse developer. It makes you a more productive one.
+
+The developers who resist AI tools will write less code, ship slower, and eventually wonder why they're being left behind.
+
+---
+
+*The question isn't whether to use AI in development. It's how to use it effectively.*
+    `,
+    coverImage: "/screenshots/vision-agent-mas.png",
+    category: "engineering",
+    tags: ["AI", "productivity", "Cursor", "Claude", "workflow"],
+    author: {
+      name: "Joseph Sabag",
+      avatar: "/images-of-me/hero-image.svg",
+    },
+    publishedAt: "2024-10-05",
+    readingTime: 8,
+    featured: true,
   },
 ];
 

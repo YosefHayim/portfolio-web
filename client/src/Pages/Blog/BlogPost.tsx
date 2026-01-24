@@ -365,7 +365,7 @@ const BlogPost = () => {
                   <img
                     src={post.author.avatar}
                     alt={post.author.name}
-                    className="h-12 w-12 rounded-full border-2 border-[#05df72]/50 object-cover"
+                    className="h-12 w-12 rounded-full border-2 border-[#05df72]/50 object-cover object-top"
                   />
                   <div>
                     <p className="font-semibold text-white">{post.author.name}</p>
@@ -538,14 +538,14 @@ const BlogPost = () => {
 
         <style>{`
           .blog-content {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 1.125rem;
             line-height: 1.8;
             color: var(--text-secondary);
           }
 
           .blog-h1 {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 2.25rem;
             font-weight: 700;
             color: var(--text-primary);
@@ -555,7 +555,7 @@ const BlogPost = () => {
           }
 
           .blog-h2 {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 1.75rem;
             font-weight: 600;
             color: #05df72;
@@ -567,7 +567,7 @@ const BlogPost = () => {
           }
 
           .blog-h3 {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 1.375rem;
             font-weight: 600;
             color: var(--text-primary);

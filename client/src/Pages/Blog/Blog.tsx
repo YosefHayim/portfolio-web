@@ -113,7 +113,7 @@ const BlogCard = ({
                 <img
                   src={post.author.avatar}
                   alt={post.author.name}
-                  className="h-8 w-8 rounded-full border border-[var(--border-subtle)] object-cover"
+                  className="h-8 w-8 rounded-full border border-[var(--border-subtle)] object-cover object-top"
                 />
                 <span className="text-sm text-[var(--text-secondary)]">
                   {post.author.name}

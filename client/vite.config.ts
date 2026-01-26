@@ -40,6 +40,8 @@ export default defineConfig(({ mode }) => ({
           "vendor-react": ["react", "react-dom", "react-router", "react-router-dom"],
           // Animation libraries - can be loaded after initial paint
           "vendor-motion": ["framer-motion", "motion"],
+          // Icons - must be separate chunk to avoid circular init issues
+          "vendor-icons": ["lucide-react", "react-icons"],
           // UI components
           "vendor-radix": [
             "@radix-ui/react-dialog",

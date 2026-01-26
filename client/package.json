@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "start": "vite run",
     "preview": "vite preview",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,md,html,css}\" --write && biome format --write .",
     "lint": "biome check .",

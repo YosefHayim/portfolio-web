@@ -1,6 +1,6 @@
+import type { AppConfig } from "./types";
 import { gqminiConfig } from "./gqmini";
 import { sorqaConfig } from "./sorqa";
-import type { AppConfig } from "./types";
 
 export const appRegistry: Record<string, AppConfig> = {
   gqmini: gqminiConfig,

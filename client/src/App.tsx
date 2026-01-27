@@ -61,6 +61,7 @@ const App = () => {
           <Route element={<AppLanding />} path="/:appId" />
           <Route element={<PrivacyPolicy />} path="/:appId/privacy" />
           <Route element={<TermsOfService />} path="/:appId/terms" />
+          <Route element={<NotFound404 />} path="*" />
         </Routes>
         <Toaster
           position="top-center"
@@ -94,6 +95,7 @@ const App = () => {
               <Route element={<Blog />} path="/blog" />
               <Route element={<BlogPost />} path="/blog/:slug" />
               <Route element={<NotFound404 />} path="/404" />
+              <Route element={<NotFound404 />} path="*" />
             </Routes>
           </Suspense>
         </AnimatePresence>

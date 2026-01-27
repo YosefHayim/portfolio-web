@@ -82,7 +82,7 @@ const App = () => {
       <ScrollProgress />
       <Navbar />
       <main className="flex flex-1 flex-col items-center justify-center gap-10 overflow-hidden p-5 pb-24 md:pb-5">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <Suspense fallback={<PageLoader />}>
             <Routes key={location.pathname} location={location}>
               <Route element={<Homepage />} path="/" />

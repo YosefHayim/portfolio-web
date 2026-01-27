@@ -1,4 +1,4 @@
-import { useParams, Navigate } from "react-router";
+import { useParams, Navigate, Link } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { getAppConfig } from "@/data/apps/registry";
@@ -17,6 +17,9 @@ export const AppLanding = () => {
     <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b]">
       <Helmet>
         <title>{config.name}</title>
+        <meta name="description" content={config.description} />
+        <meta property="og:title" content={config.name} />
+        <meta property="og:description" content={config.description} />
       </Helmet>
       <AppHeader config={config} />
 
@@ -75,6 +78,21 @@ export const AppLanding = () => {
                 Add to Chrome - Free
               </motion.a>
             )}
+
+            <motion.div
+              animate={{ opacity: 1 }}
+              className="mt-8 flex items-center justify-center gap-4 text-sm text-[#6b6878]"
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Link className="underline hover:text-[#eeeef0]" to={`/${config.id}/privacy`}>
+                Privacy Policy
+              </Link>
+              <span>|</span>
+              <Link className="underline hover:text-[#eeeef0]" to={`/${config.id}/terms`}>
+                Terms of Service
+              </Link>
+            </motion.div>
           </div>
         </section>
 

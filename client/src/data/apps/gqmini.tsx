@@ -2,7 +2,7 @@ import { Layers } from "lucide-react";
 import type { AppConfig } from "./types";
 
 export const gqminiConfig: AppConfig = {
-  id: "gqmini",
+  id: "prompt-queue",
   name: "PromptQueue",
   tagline: "Bulk Image Generation & Automation for Gemini",
   description:

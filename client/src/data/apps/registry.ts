@@ -3,7 +3,7 @@ import { gqminiConfig } from "./gqmini";
 import { sorqaConfig } from "./sorqa";
 
 export const appRegistry: Record<string, AppConfig> = {
-  gqmini: gqminiConfig,
+  "prompt-queue": gqminiConfig,
   sorqa: sorqaConfig,
 };
 

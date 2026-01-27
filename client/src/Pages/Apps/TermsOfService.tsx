@@ -17,7 +17,7 @@ export const TermsOfService = () => {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b]">
-      <AppHeader config={config} currentPage="terms" />
+      <AppHeader config={config} />
 
       <main className="flex-1 px-6 py-16 md:px-12 md:py-24">
         <article className="mx-auto max-w-3xl">

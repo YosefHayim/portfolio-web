@@ -14,7 +14,7 @@ export const AppLanding = () => {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b]">
-      <AppHeader config={config} currentPage="landing" />
+      <AppHeader config={config} />
 
       <main className="flex-1">
         <section className="relative overflow-hidden px-6 py-24 md:px-12 md:py-32">

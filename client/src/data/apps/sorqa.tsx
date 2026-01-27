@@ -9,7 +9,7 @@ export const sorqaConfig: AppConfig = {
     "Supercharge your Sora AI workflow with automated prompt generation and queue management. Generate creative prompts using AI and automatically queue them for Sora video/image generation.",
   brandColor: "#ffffff",
   logoBgColor: "#ffffff",
-  chromeStoreUrl: "https://chrome.google.com/webstore",
+  chromeStoreUrl: "https://chromewebstore.google.com/detail/sora-auto-queue-prompts/kbpbdckjechbjmnjagfkgcplmhdkkgph",
   logoIcon: <Zap className="h-5 w-5 text-[#0a0a0b]" />,
   features: [
     {

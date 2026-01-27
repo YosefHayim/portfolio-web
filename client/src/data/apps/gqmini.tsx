@@ -9,7 +9,7 @@ export const gqminiConfig: AppConfig = {
     "Transform Google Gemini into a batch processing powerhouse. Queue multiple prompts, attach reference images, and let the extension automate your creative workflow.",
   brandColor: "#ffffff",
   logoBgColor: "#ffffff",
-  chromeStoreUrl: "https://chrome.google.com/webstore",
+  chromeStoreUrl: "https://chromewebstore.google.com/detail/gemini-nano-flow/lidnnjbepijjbbphbdhcchgpckpcbgfm",
   logoIcon: <Layers className="h-5 w-5 text-[#0a0a0b]" />,
   features: [
     {

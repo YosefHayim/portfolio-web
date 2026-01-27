@@ -11,24 +11,18 @@ const DIST = join(__dirname, 'dist');
 
 app.use(express.static(DIST, { index: 'index.html', redirect: false }));
 
-// Serve static prompt-queue pages (for Google OAuth verification)
+// Serve static PromptQueue pages (for Google OAuth verification)
 app.get('/prompt-queue', (req, res) => {
   res.sendFile(join(DIST, 'prompt-queue', 'index.html'));
 });
 app.get('/prompt-queue/', (req, res) => {
   res.sendFile(join(DIST, 'prompt-queue', 'index.html'));
 });
-app.get('/prompt-queue/privacy', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'privacy', 'index.html'));
+app.get('/promptqueue-privacy', (req, res) => {
+  res.sendFile(join(DIST, 'promptqueue-privacy.html'));
 });
-app.get('/prompt-queue/privacy/', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'privacy', 'index.html'));
-});
-app.get('/prompt-queue/terms', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'terms', 'index.html'));
-});
-app.get('/prompt-queue/terms/', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'terms', 'index.html'));
+app.get('/promptqueue-terms', (req, res) => {
+  res.sendFile(join(DIST, 'promptqueue-terms.html'));
 });
 
 // SPA fallback - serve index.html for all other routes

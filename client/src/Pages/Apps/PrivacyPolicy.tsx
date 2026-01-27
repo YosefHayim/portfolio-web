@@ -1,4 +1,5 @@
 import { useParams, Navigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { getAppConfig } from "@/data/apps/registry";
 import { DEVELOPER_INFO } from "@/data/apps/types";
@@ -17,6 +18,9 @@ export const PrivacyPolicy = () => {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b]">
+      <Helmet>
+        <title>{config.name} - Privacy Policy</title>
+      </Helmet>
       <AppHeader config={config} />
 
       <main className="flex-1 px-6 py-16 md:px-12 md:py-24">

@@ -1,4 +1,5 @@
 import { useParams, Navigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { getAppConfig } from "@/data/apps/registry";
 import { AppHeader } from "./components/AppHeader";
@@ -14,6 +15,9 @@ export const AppLanding = () => {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b]">
+      <Helmet>
+        <title>{config.name}</title>
+      </Helmet>
       <AppHeader config={config} />
 
       <main className="flex-1">

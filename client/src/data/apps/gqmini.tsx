@@ -3,7 +3,7 @@ import type { AppConfig } from "./types";
 
 export const gqminiConfig: AppConfig = {
   id: "gqmini",
-  name: "Gemini Nano Flow - By Yosef Hayim Sabag",
+  name: "PromptQueue by Yosef Hayim Sabag",
   tagline: "Bulk Image Generation & Automation for Gemini",
   description:
     "Transform Google Gemini into a batch processing powerhouse. Queue multiple prompts, attach reference images, and let the extension automate your creative workflow.",

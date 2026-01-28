@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://josephsabag.dev/sitemap.xml
+Sitemap: https://yosefhayimsabag.com/sitemap.xml
 
 # Disallow admin or sensitive areas
 Disallow: /api/

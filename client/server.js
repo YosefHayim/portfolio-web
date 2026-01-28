@@ -25,6 +25,20 @@ app.get('/promptqueue-terms', (req, res) => {
   res.sendFile(join(DIST, 'promptqueue-terms.html'));
 });
 
+// Serve static Sorqa pages (for Google OAuth verification)
+app.get('/sorqa', (req, res) => {
+  res.sendFile(join(DIST, 'sorqa', 'index.html'));
+});
+app.get('/sorqa/', (req, res) => {
+  res.sendFile(join(DIST, 'sorqa', 'index.html'));
+});
+app.get('/sorqa-privacy', (req, res) => {
+  res.sendFile(join(DIST, 'sorqa-privacy.html'));
+});
+app.get('/sorqa-terms', (req, res) => {
+  res.sendFile(join(DIST, 'sorqa-terms.html'));
+});
+
 // SPA fallback - serve index.html for all other routes
 app.get('*', (req, res) => {
   res.sendFile(join(DIST, 'index.html'));

@@ -51,6 +51,12 @@ export const AppFooter = ({ config }: AppFooterProps) => {
               Support
             </h3>
             <nav className="flex flex-col gap-2">
+              <Link
+                className="text-sm text-[#6b6878] transition-colors hover:text-[#eeeef0]"
+                to={`/${config.id}/report`}
+              >
+                Report an Issue
+              </Link>
               <a
                 className="text-sm text-[#6b6878] transition-colors hover:text-[#eeeef0]"
                 href={`mailto:${DEVELOPER_INFO.email}`}

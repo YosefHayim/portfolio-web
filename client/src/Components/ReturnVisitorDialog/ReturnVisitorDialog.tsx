@@ -62,7 +62,6 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                     <X className="text-[var(--text-muted)]" size={16} />
                   </Button>
 
-                  {/* Header */}
                   <motion.div
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-4 space-y-1"
@@ -70,25 +69,22 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                     transition={{ delay: 0.1 }}
                   >
                     <h2 className="text-xl leading-tight font-bold tracking-tight text-[var(--text-primary)] sm:text-2xl">
-                      Code is my tool. <br />
-                      <span className="text-[var(--text-secondary)]">
-                        Innovation is my craft.
-                      </span>
+                      Hey, you're back! <span className="inline-block">👋</span>
                     </h2>
                   </motion.div>
 
-                  {/* The Story / Hook */}
                   <motion.p
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-6 pb-2 text-sm leading-relaxed text-[var(--text-secondary)]"
                     initial={{ opacity: 0, y: 10 }}
                     transition={{ delay: 0.2 }}
                   >
-                    The t-shirt story wasn't a stunt it was a <b>UX decision</b>
-                    . I saw a friction point (paper resumes) and built a better
-                    interface (QR code).
-                    <br className="mb-2 block" />I bring that same creative
-                    energy and product love to every team I join.
+                    If you're visiting twice, you're either{" "}
+                    <b className="text-[var(--text-primary)]">interested</b> or{" "}
+                    <b className="text-[var(--text-primary)]">hesitating</b>.
+                    <br className="mb-2 block" />
+                    Either way, let's have a quick chat. I might be exactly what
+                    you're looking for, and there's only one way to find out.
                   </motion.p>
 
                   {/* Buttons */}

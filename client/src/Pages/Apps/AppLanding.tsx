@@ -1,9 +1,10 @@
-import { useParams, Navigate, Link } from "react-router";
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { getAppConfig } from "@/data/apps/registry";
-import { AppHeader } from "./components/AppHeader";
+import { Link, Navigate, useParams } from "react-router";
+
 import { AppFooter } from "./components/AppFooter";
+import { AppHeader } from "./components/AppHeader";
+import { Helmet } from "react-helmet-async";
+import { getAppConfig } from "@/data/apps/registry";
+import { motion } from "framer-motion";
 
 export const AppLanding = () => {
   const { appId } = useParams<{ appId: string }>();
@@ -24,8 +25,8 @@ export const AppLanding = () => {
       <AppHeader config={config} />
 
       <main className="flex-1">
-        <section className="relative overflow-hidden px-6 py-24 md:px-12 md:py-32">
-          <div className="mx-auto max-w-4xl text-center">
+        <section className="relative flex flex-col items-center overflow-hidden px-6 py-24 md:px-12 md:py-32">
+          <div className="w-full max-w-4xl shrink-0 text-center">
             <motion.div
               animate={{ opacity: 1, y: 0 }}
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111112] px-4 py-2"
@@ -58,7 +59,7 @@ export const AppLanding = () => {
 
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#9896a3]"
+              className="mx-auto mb-10 w-full max-w-full text-lg leading-relaxed text-[#9896a3]"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
@@ -81,15 +82,21 @@ export const AppLanding = () => {
 
             <motion.div
               animate={{ opacity: 1 }}
-              className="mt-8 flex items-center justify-center gap-4 text-sm text-[#6b6878]"
+              className="flex items-center justify-center gap-4 pt-8 text-sm text-[#6b6878]"
               initial={{ opacity: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <Link className="underline hover:text-[#eeeef0]" to={`/${config.id}/privacy`}>
+              <Link
+                className="underline hover:text-[#eeeef0]"
+                to={`/${config.id}/privacy`}
+              >
                 Privacy Policy
               </Link>
               <span>|</span>
-              <Link className="underline hover:text-[#eeeef0]" to={`/${config.id}/terms`}>
+              <Link
+                className="underline hover:text-[#eeeef0]"
+                to={`/${config.id}/terms`}
+              >
                 Terms of Service
               </Link>
             </motion.div>

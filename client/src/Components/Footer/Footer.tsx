@@ -50,10 +50,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
           >
             <Logo />
-            <p className="max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-              Just trying to get better{" "}
-              <span className="font-semibold text-[#05df72]">everyday.</span>
-            </p>
+             <p className="max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
+               Building products that save time and{" "}
+               <span className="font-semibold text-[#05df72]">make money.</span>
+             </p>
           </motion.section>
 
           <motion.section

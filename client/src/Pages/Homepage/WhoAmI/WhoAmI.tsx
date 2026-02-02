@@ -18,7 +18,7 @@ const lines = [
     value: "React, Node, TypeScript, JavaScript",
     link: "/techStack",
   },
-  { label: "motto", value: "Trying to get better", highlight: "everyday" },
+   { label: "motto", value: "Building products that save time and", highlight: "make money" },
 ];
 
 const WhoAmI = () => {

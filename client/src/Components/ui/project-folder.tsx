@@ -596,6 +596,7 @@ interface AnimatedFolderProps {
   className?: string;
   gradient?: string;
   forceHover?: boolean;
+  onFolderClick?: () => void;
 }
 
 export const AnimatedFolder = ({
@@ -604,6 +605,7 @@ export const AnimatedFolder = ({
   className,
   gradient,
   forceHover = false,
+  onFolderClick,
 }: AnimatedFolderProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -650,6 +652,10 @@ export const AnimatedFolder = ({
           "group relative flex min-h-[320px] min-w-[280px] cursor-pointer flex-col items-center justify-center rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#05df72]/40 hover:shadow-2xl hover:shadow-[#05df72]/10",
           className,
         )}
+        onClick={(e) => {
+          e.stopPropagation();
+          onFolderClick?.();
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{

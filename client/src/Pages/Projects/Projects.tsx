@@ -285,59 +285,67 @@ const Projects = () => {
             transition={{ duration: 0.4 }}
           >
             {filter === "all" ? (
-              folderConfig.map(
-                (folder) =>
-                  projectsByStatus[folder.status].length > 0 && (
-                    <motion.div
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="w-full"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      key={folder.status}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <AnimatedFolder
-                        className="w-full"
-                        forceHover={
-                          debouncedSearchQuery.trim().length > 0 &&
-                          projectsByStatus[folder.status].length > 0
-                        }
-                        gradient={folder.gradient}
-                        projects={projectsByStatus[folder.status]}
-                        title={folder.title}
-                      />
-                    </motion.div>
-                  ),
-              )
-            ) : (
-              <motion.div
-                animate={{ opacity: 1, scale: 1 }}
-                className="col-span-full w-full max-w-sm"
-                initial={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
-              >
-                <AnimatedFolder
-                  className="w-full"
-                  forceHover={debouncedSearchQuery.trim().length > 0}
-                  gradient={
-                    folderConfig.find((f) => f.status === filter)?.gradient
-                  }
-                  projects={filteredProjects.map((p) => ({
-                    id: p.id,
-                    image: p.image,
-                    title: p.name,
-                    description: p.description,
-                    techStack: p.techStack,
-                    deployedUrl: p.deployedUrl,
-                    repoUrl: p.repoUrl,
-                    status: p.status,
-                  }))}
-                  title={
-                    folderConfig.find((f) => f.status === filter)?.title ||
-                    "Projects"
-                  }
-                />
-              </motion.div>
-            )}
+               folderConfig.map(
+                 (folder) =>
+                   projectsByStatus[folder.status].length > 0 && (
+                     <motion.div
+                       animate={{ opacity: 1, scale: 1 }}
+                       className="w-full"
+                       initial={{ opacity: 0, scale: 0.9 }}
+                       key={folder.status}
+                       transition={{ duration: 0.5 }}
+                     >
+                       <AnimatedFolder
+                         className="w-full"
+                         forceHover={
+                           debouncedSearchQuery.trim().length > 0 &&
+                           projectsByStatus[folder.status].length > 0
+                         }
+                         gradient={folder.gradient}
+                         onFolderClick={() => {
+                           setViewMode("grid");
+                           setFilter(folder.status);
+                         }}
+                         projects={projectsByStatus[folder.status]}
+                         title={folder.title}
+                       />
+                     </motion.div>
+                   ),
+               )
+             ) : (
+               <motion.div
+                 animate={{ opacity: 1, scale: 1 }}
+                 className="col-span-full w-full max-w-sm"
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 transition={{ duration: 0.5 }}
+               >
+                 <AnimatedFolder
+                   className="w-full"
+                   forceHover={debouncedSearchQuery.trim().length > 0}
+                   gradient={
+                     folderConfig.find((f) => f.status === filter)?.gradient
+                   }
+                   onFolderClick={() => {
+                     setViewMode("grid");
+                     setFilter(filter);
+                   }}
+                   projects={filteredProjects.map((p) => ({
+                     id: p.id,
+                     image: p.image,
+                     title: p.name,
+                     description: p.description,
+                     techStack: p.techStack,
+                     deployedUrl: p.deployedUrl,
+                     repoUrl: p.repoUrl,
+                     status: p.status,
+                   }))}
+                   title={
+                     folderConfig.find((f) => f.status === filter)?.title ||
+                     "Projects"
+                   }
+                 />
+               </motion.div>
+             )}
           </motion.div>
         ) : (
           <motion.div

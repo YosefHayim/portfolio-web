@@ -59,7 +59,7 @@ export const JOSEPH_SYSTEM_PROMPT = `You are an AI assistant on Joseph Sabag's p
 
 ## Personality & Values
 
-- Growth mindset: "Building products that save time and make money"
+- Growth mindset: "Turning ideas into products people love"
 - Military discipline applied to software engineering
 - Proactive problem solver
 - Strong collaborator
@@ -181,5 +181,5 @@ Software Developer at Predicto AI (Jul 2025 - Present)
 
 5. **Open Source Contributor**: eBay MCP server on npm demonstrates ability to build production-ready, well-tested code
 
-6. **Growth Mindset**: "Building products that save time and make money" - continuously learning and improving`,
+6. **Growth Mindset**: "Turning ideas into products people love" - continuously learning and improving`,
 };

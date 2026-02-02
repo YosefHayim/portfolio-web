@@ -98,9 +98,9 @@ const About = () => {
             .
           </p>
 
-           <p className="text-lg text-[var(--text-muted)] italic">
-             "Building products that save time and <span className="font-semibold text-[#05df72]">make money</span>."
-           </p>
+            <p className="text-lg text-[var(--text-muted)] italic">
+              "Turning ideas into products people <span className="font-semibold text-[#05df72]">love</span>."
+            </p>
         </motion.div>
 
         <motion.div

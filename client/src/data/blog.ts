@@ -101,7 +101,7 @@ I graduated with Excellence. Not because I was the most talented in the room, bu
 
 Today, as a Software Developer at Predicto AI, I still approach every day with the same mindset:
 
-**"Building products that save time and make money."**
+**"Turning ideas into products people love."**
 
 It's not about being the best. It's about being better than yesterday. Whether that's learning a new TypeScript pattern, optimizing a database query, or building a side project that pushes my limits.
 

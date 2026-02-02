@@ -323,7 +323,7 @@ const ProjectDetail = () => {
         <section className="relative py-20">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-card)]/30 to-transparent" />
 
-          <div className="relative mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-full px-4 md:px-6 lg:px-8">
             <motion.div
               className="mb-12 flex flex-col items-center justify-center py-4 text-center"
               initial={{ opacity: 0, y: 20 }}

@@ -372,23 +372,23 @@ const ProjectDetail = () => {
         </section>
       )}
 
-      <section className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-          <motion.div
-            className="mb-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            whileInView={{ opacity: 1, y: 0 }}
-          >
-            <h2 className="mb-4 flex items-center justify-center gap-3 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
-              <IoCodeSlash className="text-[#00d9ff]" size={32} />
-              Tech Stack
-            </h2>
-            <p className="w-full max-w-full py-2 text-[var(--text-muted)]">
-              Built with modern, production-ready technologies
-            </p>
-          </motion.div>
+       <section className="relative py-20">
+         <div className="mx-auto max-w-full px-4 md:px-6 lg:px-8">
+           <motion.div
+             className="mb-12 text-center"
+             initial={{ opacity: 0, y: 20 }}
+             transition={{ duration: 0.5 }}
+             viewport={{ once: true }}
+             whileInView={{ opacity: 1, y: 0 }}
+           >
+             <h2 className="mb-4 flex items-center justify-center gap-3 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
+               <IoCodeSlash className="text-[#00d9ff]" size={32} />
+               Tech Stack
+             </h2>
+             <p className="w-full max-w-full py-2 text-[var(--text-muted)]">
+               Built with modern, production-ready technologies
+             </p>
+           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(categorizedTech).map(

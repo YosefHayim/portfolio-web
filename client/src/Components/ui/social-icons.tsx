@@ -20,12 +20,12 @@ const socials: Social[] = [
     icon: <Github size={ICON_SIZE} />,
     hoverColor: "group-hover:text-white",
   },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/yosefhayim/",
-    icon: <Linkedin size={ICON_SIZE} />,
-    hoverColor: "group-hover:text-[#0A66C2]",
-  },
+   {
+     name: "LinkedIn",
+     href: "https://www.linkedin.com/in/yosef-hayim-sabag/",
+     icon: <Linkedin size={ICON_SIZE} />,
+     hoverColor: "group-hover:text-[#0A66C2]",
+   },
   {
     name: "WhatsApp",
     href: `https://wa.me/${WHATSAPP_NUMBER}`,

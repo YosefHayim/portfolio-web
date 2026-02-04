@@ -52,9 +52,9 @@ export const SEO = ({
     jobTitle: "AI Software Engineer",
     url: SITE_URL,
     sameAs: [
-      "https://github.com/YosefHayim",
-      "https://linkedin.com/in/yosefhayim",
-    ],
+       "https://github.com/YosefHayim",
+       "https://linkedin.com/in/yosef-hayim-sabag",
+     ],
     worksFor: {
       "@type": "Organization",
       name: "Predicto AI",

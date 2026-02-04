@@ -7,14 +7,12 @@ import {
   Upload,
   X,
   CheckCircle2,
-  MessageCircle,
   Mail,
-  Linkedin,
-  AlertCircle,
   ChevronDown,
   FileImage,
   FileVideo,
 } from "lucide-react";
+import { FaWhatsapp, FaLinkedin } from "react-icons/fa";
 import { getAppConfig, getAllAppIds } from "@/data/apps/registry";
 import { appRegistry } from "@/data/apps/registry";
 import { AppHeader } from "./components/AppHeader";
@@ -237,15 +235,15 @@ export const ReportIssue = () => {
                 Alternative Contact Methods
               </h2>
               <div className="flex flex-col gap-3">
-                <a
-                  className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-green-500/50 hover:bg-green-500/10"
-                  href="https://wa.me/972546187549"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <MessageCircle className="h-5 w-5 text-green-500" />
-                  Contact via WhatsApp
-                </a>
+                 <a
+                   className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-green-500/50 hover:bg-green-500/10"
+                   href="https://wa.me/972546187549"
+                   rel="noopener noreferrer"
+                   target="_blank"
+                 >
+                   <FaWhatsapp className="h-5 w-5 text-green-500" />
+                   Contact via WhatsApp
+                 </a>
                 <a
                   className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-blue-500/50 hover:bg-blue-500/10"
                   href={`mailto:${DEVELOPER_INFO.email}`}
@@ -253,33 +251,33 @@ export const ReportIssue = () => {
                   <Mail className="h-5 w-5 text-blue-500" />
                   Email Directly
                 </a>
-                <a
-                  className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10"
-                  href="https://www.linkedin.com/in/yosefhayim/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Linkedin className="h-5 w-5 text-[#0077b5]" />
-                  Connect on LinkedIn
-                </a>
+                 <a
+                   className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10"
+                   href="https://www.linkedin.com/in/yosef-hayim-sabag/"
+                   rel="noopener noreferrer"
+                   target="_blank"
+                 >
+                   <FaLinkedin className="h-5 w-5 text-[#0077b5]" />
+                   Connect on LinkedIn
+                 </a>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <button
-                className="rounded-lg border border-white/10 bg-[#111112] px-6 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-white/20"
-                onClick={resetForm}
-                type="button"
-              >
-                Submit Another Report
-              </button>
-              <Link
-                className="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#0a0a0b] transition-colors hover:bg-[#e5e5e5]"
-                to={`/${config.id}`}
-              >
-                Back to {config.name}
-              </Link>
-            </div>
+             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+               <button
+                 className="rounded-lg border border-white/10 bg-[#111112] px-6 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-white/20"
+                 onClick={resetForm}
+                 type="button"
+               >
+                 Submit Another Report
+               </button>
+               <Link
+                 className="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#0a0a0b] transition-colors hover:bg-[#e5e5e5]"
+                 to={`/${config.id}`}
+               >
+                 Back to {config.name}
+               </Link>
+             </div>
           </motion.div>
         </main>
 
@@ -311,12 +309,6 @@ export const ReportIssue = () => {
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111112] px-4 py-2 shadow-sm">
-              <AlertCircle className="h-4 w-4 text-amber-400" />
-              <span className="text-sm font-medium text-[#e5e5e5]">
-                Issue Reporter
-              </span>
-            </div>
             <h1 className="mb-4 text-4xl font-bold text-[#eeeef0] md:text-5xl">
               Report an Issue
             </h1>
@@ -328,12 +320,12 @@ export const ReportIssue = () => {
 
           <motion.form
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl border border-white/10 bg-[#111112] p-6 shadow-sm transition-colors hover:border-white/15 md:p-8"
+            className="space-y-8 rounded-2xl border border-white/10 bg-[#111112] p-6 shadow-sm transition-colors hover:border-white/15 md:p-8"
             initial={{ opacity: 0, y: 20 }}
             onSubmit={handleSubmit}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="my-5">
+            <div>
               <label
                 className="mb-2 block text-sm font-medium text-[#e5e5e5]"
                 htmlFor="extension"
@@ -368,7 +360,7 @@ export const ReportIssue = () => {
               )}
             </div>
 
-            <div className="my-5">
+            <div>
               <label
                 className="mb-2 block text-sm font-medium text-[#e5e5e5]"
                 htmlFor="issueType"
@@ -407,7 +399,7 @@ export const ReportIssue = () => {
               {issueType === "Other (Custom)" && (
                 <motion.div
                   animate={{ opacity: 1, height: "auto" }}
-                  className="my-5 overflow-hidden"
+                  className="overflow-hidden"
                   exit={{ opacity: 0, height: 0 }}
                   initial={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
@@ -442,7 +434,7 @@ export const ReportIssue = () => {
               )}
             </AnimatePresence>
 
-            <div className="my-5">
+            <div>
               <div className="mb-2 flex items-center justify-between">
                 <label
                   className="text-sm font-medium text-[#e5e5e5]"
@@ -483,7 +475,7 @@ export const ReportIssue = () => {
               )}
             </div>
 
-            <div className="my-5">
+            <div>
               <label className="mb-2 block text-sm font-medium text-[#e5e5e5]">
                 Attachments <span className="text-[#6b6878]">(optional)</span>
               </label>
@@ -601,15 +593,15 @@ export const ReportIssue = () => {
               Or reach out directly
             </h2>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <a
-                className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-green-500/50 hover:bg-green-500/10"
-                href="https://wa.me/972546187549"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <MessageCircle className="h-5 w-5 text-green-500" />
-                WhatsApp
-              </a>
+               <a
+                 className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-green-500/50 hover:bg-green-500/10"
+                 href="https://wa.me/972546187549"
+                 rel="noopener noreferrer"
+                 target="_blank"
+               >
+                 <FaWhatsapp className="h-5 w-5 text-green-500" />
+                 WhatsApp
+               </a>
               <a
                 className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-blue-500/50 hover:bg-blue-500/10"
                 href={`mailto:${DEVELOPER_INFO.email}`}
@@ -617,15 +609,15 @@ export const ReportIssue = () => {
                 <Mail className="h-5 w-5 text-blue-500" />
                 Email
               </a>
-              <a
-                className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10"
-                href="https://www.linkedin.com/in/yosefhayim/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <Linkedin className="h-5 w-5 text-[#0077b5]" />
-                LinkedIn
-              </a>
+               <a
+                 className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#18181a] px-4 py-3 text-sm font-medium text-[#eeeef0] transition-colors hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10"
+                 href="https://www.linkedin.com/in/yosef-hayim-sabag/"
+                 rel="noopener noreferrer"
+                 target="_blank"
+               >
+                 <FaLinkedin className="h-5 w-5 text-[#0077b5]" />
+                 LinkedIn
+               </a>
             </div>
           </motion.div>
         </div>

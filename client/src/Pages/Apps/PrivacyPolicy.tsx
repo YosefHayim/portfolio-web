@@ -1,5 +1,4 @@
 import { useParams, Navigate } from "react-router";
-import { useParams, Navigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { getAppConfig } from "@/data/apps/registry";

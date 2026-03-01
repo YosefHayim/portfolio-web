@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,md,html,css}\" --write && biome format --write .",
     "lint": "biome check .",
-    "prepare": "husky"
+    "prepare": "cd .. && husky client/.husky"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.7",

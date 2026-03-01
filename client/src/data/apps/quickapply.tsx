@@ -52,6 +52,8 @@ export const quickApplyConfig: AppConfig = {
     lastUpdated: "March 1, 2025",
     intro:
       'This Privacy Policy describes how QuickApply ("we", "us", or "our") collects, uses, and protects your information when you use our browser extension. QuickApply is developed and operated by Yosef Hayim Sabag.',
+    googleApiDisclosure:
+      "QuickApply uses the Google API to enhance job application features. Your Google API credentials are stored locally on your device and are only used to communicate directly with Google's servers. We do not collect, store, or transmit your credentials to any other servers. QuickApply's use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements.",
     sections: [
       {
         title: "1. Information We Collect",

@@ -16,3 +16,7 @@ export const getAppConfig = (appId: string): AppConfig | undefined => {
 export const getAllAppIds = (): string[] => {
   return Object.keys(appRegistry);
 };
+
+export const getAllApps = (): AppConfig[] => {
+  return Object.values(appRegistry);
+};

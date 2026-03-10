@@ -1,4 +1,4 @@
-import { Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
+import { AppWindow, Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
 import { Link } from "react-router";
 import {
   Sidebar,
@@ -34,6 +34,11 @@ const items = [
     title: "Projects",
     url: "/projects",
     icon: <FolderKanban size={ICON_SIZE} />,
+  },
+  {
+    title: "Apps",
+    url: "/apps",
+    icon: <AppWindow size={ICON_SIZE} />,
   },
   {
     title: "Certifications",
@@ -74,7 +79,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SocialIcons />
+        <SocialIcons labelSides={["top", "bottom", "left", "right"]} showLabels />
       </SidebarContent>
     </Sidebar>
   );

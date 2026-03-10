@@ -24,10 +24,10 @@ export const PrivacyPolicy = () => {
       <AppHeader config={config} />
 
       <main className="flex-1 px-6 py-16 md:px-12 md:py-24">
-        <article className="mx-auto max-w-3xl">
+        <article className="mx-auto max-w-full">
           <motion.h1
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4 font-['Space_Grotesk'] text-4xl font-bold text-[#eeeef0] md:text-5xl"
+            className="mb-4 text-4xl font-bold text-[#eeeef0] md:text-5xl"
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
@@ -54,11 +54,11 @@ export const PrivacyPolicy = () => {
 
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12 rounded-xl border border-white/10 bg-[#111112] p-6"
+            className="mb-12 flex gap-2 flex-col item-start"
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h2 className="mb-3 font-['Space_Grotesk'] text-lg font-semibold text-[#e5e5e5]">
+            <h2 className="mb-3  text-lg font-semibold text-[#e5e5e5]">
               Google API Data Disclosure
             </h2>
             <p className="text-sm leading-relaxed text-[#9896a3]">
@@ -74,7 +74,7 @@ export const PrivacyPolicy = () => {
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               >
-                <h2 className="mb-4 font-['Space_Grotesk'] text-2xl font-semibold text-[#eeeef0]">
+                <h2 className="mb-4  text-2xl font-semibold text-[#eeeef0]">
                   {section.title}
                 </h2>
                 <p className="text-base leading-relaxed text-[#9896a3]">
@@ -86,7 +86,7 @@ export const PrivacyPolicy = () => {
 
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="mt-12 rounded-xl border border-white/10 bg-[#111112] p-6"
+            className="mt-12 flex gap-2 flex-col item-start"
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.9 }}
           >

@@ -38,7 +38,7 @@ const Certifications = () => {
           </motion.h1>
 
           <motion.p
-            className="mx-auto max-w-lg text-lg text-[var(--text-secondary)]"
+            className="mx-auto max-w-lg text-lg text-(--text-secondary)"
             variants={staggerItem}
           >
             Professional certifications and courses completed to enhance technical

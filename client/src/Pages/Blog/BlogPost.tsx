@@ -294,7 +294,7 @@ const BlogPost = () => {
                   <motion.span
                     key={tag}
                     whileHover={{ scale: 1.05, y: -2 }}
-                    className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4 py-2 text-sm text-[var(--text-secondary)] transition-all hover:border-[#05df72]/50 hover:text-[#05df72]"
+                    className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4 py-2 text-sm text-(--text-secondary) transition-all hover:border-[#05df72]/50 hover:text-[#05df72]"
                   >
                     {tag}
                   </motion.span>
@@ -327,7 +327,7 @@ const BlogPost = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={handleShareTwitter}
                     type="button"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition-all hover:border-[#1DA1F2]/50 hover:text-[#1DA1F2]"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-(--text-secondary) transition-all hover:border-[#1DA1F2]/50 hover:text-[#1DA1F2]"
                     aria-label="Share on Twitter"
                   >
                     <Twitter size={20} />
@@ -337,7 +337,7 @@ const BlogPost = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={handleShareLinkedIn}
                     type="button"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition-all hover:border-[#0A66C2]/50 hover:text-[#0A66C2]"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-(--text-secondary) transition-all hover:border-[#0A66C2]/50 hover:text-[#0A66C2]"
                     aria-label="Share on LinkedIn"
                   >
                     <Linkedin size={20} />
@@ -350,7 +350,7 @@ const BlogPost = () => {
                     className={`flex h-11 items-center gap-2 rounded-lg border px-4 text-sm font-medium transition-all ${
                       copied
                         ? "border-[#05df72]/50 bg-[#05df72]/10 text-[#05df72]"
-                        : "border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[#05df72]/50 hover:text-[#05df72]"
+                        : "border-[var(--border-subtle)] bg-[var(--bg-surface)] text-(--text-secondary) hover:border-[#05df72]/50 hover:text-[#05df72]"
                     }`}
                   >
                     {copied ? <Check size={18} /> : <Copy size={18} />}

@@ -183,7 +183,7 @@ export function Awards({
 
           <div className="mx-auto my-3 h-[1px] w-40 bg-[#05df72]" />
 
-          <h2 className="mb-4 w-60 text-xl font-light text-[var(--text-secondary)]">
+          <h2 className="mb-4 w-60 text-xl font-light text-(--text-secondary)">
             {subtitle}
           </h2>
 
@@ -224,7 +224,7 @@ export function Awards({
           <Badge />
           <h1 className="mt-4 grid text-3xl leading-7 font-bold tracking-tighter text-[var(--text-primary)] uppercase">
             Certificate
-            <span className="text-sm font-light tracking-tight text-[var(--text-secondary)]">
+            <span className="text-sm font-light tracking-tight text-(--text-secondary)">
               {" "}
               of {title}
             </span>
@@ -241,7 +241,7 @@ export function Awards({
           <div className="mt-6 flex justify-center">
             <Award className="h-4 w-4 text-[#05df72]" strokeWidth={1} />
           </div>
-          <div className="mt-2 text-xs text-[var(--text-secondary)]">
+          <div className="mt-2 text-xs text-(--text-secondary)">
             Awarded on: {date}
           </div>
 
@@ -297,7 +297,7 @@ export function Awards({
               {subtitle}
             </h2>
 
-            <div className="mt-1 flex items-center gap-4 text-xs text-[var(--text-secondary)]">
+            <div className="mt-1 flex items-center gap-4 text-xs text-(--text-secondary)">
               {recipient && <p className="italic">by {recipient}</p>}•
               <div>{date}</div>
             </div>

@@ -58,7 +58,7 @@ export const ChatMessage = memo(
             "max-w-[85%] rounded-xl px-3 py-2 text-[13px] leading-relaxed",
             message.role === "user"
               ? "bg-[#05df72] text-black"
-              : "bg-[var(--bg-surface)] text-[var(--text-secondary)]",
+              : "bg-[var(--bg-surface)] text-(--text-secondary)",
           )}
         >
           <div className="whitespace-pre-wrap">

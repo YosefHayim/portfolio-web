@@ -48,7 +48,7 @@ export const RelatedPostCard = ({ post }: { post: BlogPost }) => {
             {post.title}
           </h3>
 
-          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
+          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-(--text-secondary)">
             {post.excerpt}
           </p>
         </div>

@@ -11,7 +11,7 @@ const ProjectsHeader = () => {
       <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
         Projects
       </h1>
-      <p className="mx-auto max-w-md text-lg text-[var(--text-secondary)]">
+      <p className="mx-auto max-w-md text-lg text-(--text-secondary)">
         A collection of things I've built, from automation tools to full-stack
         applications
       </p>

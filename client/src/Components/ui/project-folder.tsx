@@ -146,7 +146,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             <div className="flex flex-wrap justify-center gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/95 p-2 shadow-xl backdrop-blur-sm">
               {techStack.slice(0, 6).map((tech) => (
                 <span
-                  className="rounded-full bg-[var(--bg-elevated)] px-2 py-0.5 text-[8px] font-medium text-[var(--text-secondary)]"
+                  className="rounded-full bg-[var(--bg-elevated)] px-2 py-0.5 text-[8px] font-medium text-(--text-secondary)"
                   key={tech}
                 >
                   {tech}

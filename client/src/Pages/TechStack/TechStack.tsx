@@ -367,7 +367,7 @@ const TechStack = () => {
                     whileHover={{ scale: 1.05, y: -2 }}
                   >
                     <Icon size={14} style={{ color: category.color }} />
-                    <span className="text-xs text-[var(--text-secondary)]">
+                    <span className="text-xs text-(--text-secondary)">
                       {tech.name}
                     </span>
                   </motion.div>

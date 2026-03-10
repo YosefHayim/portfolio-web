@@ -59,7 +59,7 @@ const variantStyles = {
   outline:
     "bg-transparent border border-[var(--border-subtle)] text-[var(--text-primary)] hover:border-[#05df72] hover:text-[#05df72]",
   ghost:
-    "bg-[var(--bg-card)] border border-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]",
+    "bg-[var(--bg-card)] border border-transparent text-(--text-secondary) hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]",
   destructive:
     "bg-[#ff6467] text-white border border-[#ff6467] hover:bg-[#ff6467]/90",
 };

@@ -165,7 +165,7 @@ const Projects = () => {
           <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
             Projects
           </h1>
-          <p className="mx-auto py-4 text-lg text-[var(--text-secondary)]">
+          <p className="mx-auto py-4 text-lg text-(--text-secondary)">
             A collection of things I've built, from automation tools to full-stack
           applications
         </p>
@@ -228,7 +228,7 @@ const Projects = () => {
               className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                 filter === option.value
                   ? "bg-[#05df72] text-black"
-                  : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-secondary)]"
+                  : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-(--text-secondary)"
               }`}
               key={option.value}
               onClick={() => setFilter(option.value)}

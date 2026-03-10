@@ -1,4 +1,5 @@
 import {
+  AppWindow,
   ArrowRight,
   Award,
   BookOpen,
@@ -12,16 +13,10 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { Link } from "react-router";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Logo from "../Logo/Logo";
 import { SocialIcons, type IconItem } from "../ui/social-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "../ui/tooltip";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const ANIMATION_DELAY_STEP = 0.1;
@@ -37,38 +32,37 @@ const taglineWords = [
   { word: "love.", icon: <Heart size={ICON_SIZE} /> },
 ];
 
+const taglineColorMap: Record<string, string> = {
+  Turning: "group-hover:text-[#F59E0B]",
+  ideas: "group-hover:text-[#FBBF24]",
+  into: "group-hover:text-[#05df72]",
+  products: "group-hover:text-[#3B82F6]",
+  people: "group-hover:text-[#A78BFA]",
+  "love.": "group-hover:text-[#F43F5E]",
+};
+
 const taglineItems: IconItem[] = taglineWords.map((item) => ({
   label: item.word,
   icon: item.icon,
-  hoverColor: "group-hover:text-[#05df72]",
+  hoverColor: taglineColorMap[item.word],
 }));
 
-type NavLink = {
-  to: string;
-  label: string;
-  icon: ReactNode;
-};
-
-const navLinks: NavLink[] = [
+const navLinks = [
   { to: "/", label: "Home", icon: <Home size={ICON_SIZE} /> },
   { to: "/about", label: "About", icon: <User size={ICON_SIZE} /> },
   { to: "/techStack", label: "Tech Stack", icon: <Layers size={ICON_SIZE} /> },
-  {
-    to: "/projects",
-    label: "Projects",
-    icon: <FolderKanban size={ICON_SIZE} />,
-  },
-  {
-    to: "/certifications",
-    label: "Certifications",
-    icon: <Award size={ICON_SIZE} />,
-  },
-  {
-    to: "/blog",
-    label: "Blog",
-    icon: <BookOpen size={ICON_SIZE} />,
-  },
+  { to: "/projects", label: "Projects", icon: <FolderKanban size={ICON_SIZE} /> },
+  { to: "/apps", label: "Apps", icon: <AppWindow size={ICON_SIZE} /> },
+  { to: "/certifications", label: "Certifications", icon: <Award size={ICON_SIZE} /> },
+  { to: "/blog", label: "Blog", icon: <BookOpen size={ICON_SIZE} /> },
 ];
+
+const navItems: IconItem[] = navLinks.map((link) => ({
+  label: link.label,
+  icon: link.icon,
+  to: link.to,
+  hoverColor: "group-hover:text-[#05df72]",
+}));
 
 const Footer = () => {
   const [isSectionHovered, setIsSectionHovered] = useState(false);
@@ -76,7 +70,7 @@ const Footer = () => {
   return (
     <footer className="w-full max-w-full overflow-hidden border-t border-[var(--border-subtle)] bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
       <div className="mx-auto w-full p-5">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 items-end">
           <motion.section
             className="flex flex-col items-start gap-4"
             initial={{ opacity: 0, y: ANIMATION_Y_OFFSET }}
@@ -86,7 +80,11 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
           >
             <Logo />
-            <SocialIcons items={taglineItems} forceShowLabels={isSectionHovered} />
+            <SocialIcons
+              forceShowLabels={isSectionHovered}
+              items={taglineItems}
+              labelSides={["top", "bottom", "left", "right"]}
+            />
           </motion.section>
 
           <motion.section
@@ -97,26 +95,11 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
           >
             <p className="text-xs text-[var(--text-dim)]">Navigation</p>
-            <div className="relative w-fit rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] px-1.5 py-1.5">
-              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent" />
-              <nav className="relative flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2">
-                {navLinks.map((link) => (
-                  <Tooltip key={link.to}>
-                    <TooltipTrigger asChild>
-                      <Link
-                        className="flex items-center text-sm text-[var(--text-muted)] transition-colors hover:text-[#05df72]"
-                        to={link.to}
-                      >
-                        {link.icon}
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" sideOffset={8}>
-                      {link.label}
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </nav>
-            </div>
+            <SocialIcons
+              items={navItems}
+              labelSides={["top", "bottom", "left", "right"]}
+              showLabels
+            />
           </motion.section>
 
           <motion.section

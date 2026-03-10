@@ -63,7 +63,7 @@ const WhoAmI = () => {
               key={line.label}
               transition={{ duration: 0.3, delay: index * LINE_STAGGER }}
             >
-              <span className="text-[var(--text-secondary)]">{line.label}</span>
+              <span className="text-(--text-secondary)">{line.label}</span>
               <span className="text-[var(--text-muted)]">: </span>
               <span className="text-[var(--text-primary)]">
                 "{line.value}

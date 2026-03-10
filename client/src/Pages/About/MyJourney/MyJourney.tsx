@@ -138,7 +138,7 @@ const MyJourney = () => {
                   <p className="mb-2 text-sm" style={{ color: item.color }}>
                     {item.role}
                   </p>
-                  <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
+                  <p className="text-sm leading-relaxed text-(--text-secondary)">
                     {item.description}
                   </p>
                 </div>

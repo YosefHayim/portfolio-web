@@ -257,7 +257,7 @@ const ProjectDetail = () => {
 
               <motion.p
                 animate={{ opacity: 1 }}
-                className="max-w-xl text-lg leading-relaxed text-[var(--text-secondary)] md:text-xl"
+                className="max-w-xl text-lg leading-relaxed text-(--text-secondary) md:text-xl"
                 initial={{ opacity: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >

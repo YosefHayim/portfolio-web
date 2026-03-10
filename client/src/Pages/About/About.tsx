@@ -59,7 +59,7 @@ const About = () => {
           <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
             About me
           </h1>
-          <p className="text-lg text-[var(--text-secondary)]">
+          <p className="text-lg text-(--text-secondary)">
             The story behind the code
           </p>
         </motion.div>
@@ -78,7 +78,7 @@ const About = () => {
           className="flex flex-col gap-6 text-center"
           variants={itemVariants}
         >
-          <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
+          <p className="text-lg leading-relaxed text-(--text-secondary)">
             I'm <span className="text-[var(--text-primary)]">Joseph</span>, a
             Software Developer dedicated to building robust backend architecture
             for superior products. Passionate about tackling complex API
@@ -86,7 +86,7 @@ const About = () => {
             integrity through rigorous DevOps and database design.
           </p>
 
-          <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
+          <p className="text-lg leading-relaxed text-(--text-secondary)">
             From earning 2 excellence awards as an IDF combat commander to
             graduating with excellence from my 795-hour bootcamp, I've learned
             that the best way to grow is to{" "}

@@ -19,7 +19,7 @@ export const AppLanding = () => {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b] font-['Space_Grotesk']">
+    <div className="flex min-h-screen w-full flex-col bg-[#0a0a0b] ">
       <Helmet>
         <title>{config.name}</title>
         <meta name="description" content={config.description} />
@@ -39,7 +39,7 @@ export const AppLanding = () => {
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,255,255,0.06),transparent)]"
           />
-          <div className="relative flex w-full max-w-4xl shrink-0 flex-col items-center gap-2 text-center">
+          <div className="relative flex w-full max-w-4xl shrink-0 flex-col items-center gap-4 text-center">
             <motion.div
               animate={{ opacity: 1, y: 0 }}
               className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111112] px-4 py-2 text-sm font-medium text-[#e5e5e5] shadow-sm"
@@ -133,7 +133,7 @@ export const AppLanding = () => {
 
         {/* Features */}
         <section className="relative border-t border-white/5 bg-[#080809] px-6 pt-20 pb-24 md:pt-28 md:pb-32">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-full">
             <motion.header
               animate={{ opacity: 1, y: 0 }}
               className="mb-16 text-center md:mb-20"

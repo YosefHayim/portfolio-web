@@ -25,6 +25,7 @@ const NotFound404 = lazy(() => import("./Pages/NotFound404/NotFound404"));
 const Blog = lazy(() => import("./Pages/Blog/Blog"));
 const BlogPost = lazy(() => import("./Pages/Blog/BlogPost"));
 
+const AppsListing = lazy(() => import("./Pages/Apps/AppsListing"));
 const AppLanding = lazy(() => import("./Pages/Apps/AppLanding"));
 const PrivacyPolicy = lazy(() => import("./Pages/Apps/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./Pages/Apps/TermsOfService"));
@@ -57,7 +58,7 @@ const App = () => {
 
   if (isOnAppPage) {
     return (
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<div className="flex min-h-screen w-full items-center justify-center"><PageLoader /></div>}>
         <Routes location={location}>
           <Route element={<AppLanding />} path="/:appId" />
           <Route element={<PrivacyPolicy />} path="/:appId/privacy" />
@@ -94,6 +95,7 @@ const App = () => {
               <Route element={<ProjectDetail />} path="/projects/:projectId" />
               <Route element={<TechStack />} path="/techStack" />
               <Route element={<Certifications />} path="/certifications" />
+              <Route element={<AppsListing />} path="/apps" />
               <Route element={<Blog />} path="/blog" />
               <Route element={<BlogPost />} path="/blog/:slug" />
               <Route element={<NotFound404 />} path="/404" />

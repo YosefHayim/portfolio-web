@@ -82,7 +82,7 @@ const BlogCard = ({
               {highlightMatch(post.title, searchQuery)}
             </h2>
 
-            <p className="line-clamp-3 text-[var(--text-secondary)]">
+            <p className="line-clamp-3 text-(--text-secondary)">
               {highlightMatch(post.excerpt, searchQuery)}
             </p>
 
@@ -93,7 +93,7 @@ const BlogCard = ({
                   alt={post.author.name}
                   className="h-8 w-8 rounded-full border border-[var(--border-subtle)] object-cover object-top"
                 />
-                <span className="text-sm text-[var(--text-secondary)]">
+                <span className="text-sm text-(--text-secondary)">
                   {post.author.name}
                 </span>
               </div>
@@ -149,7 +149,7 @@ const BlogCard = ({
             {highlightMatch(post.title, searchQuery)}
           </h3>
 
-          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
+          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-(--text-secondary)">
             {highlightMatch(post.excerpt, searchQuery)}
           </p>
 
@@ -270,7 +270,7 @@ const Blog = () => {
           <h1 className="mb-4 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
             Blog
           </h1>
-          <p className="mx-auto max-w-2xl py-4 text-lg text-[var(--text-secondary)]">
+          <p className="mx-auto max-w-2xl py-4 text-lg text-(--text-secondary)">
             Thoughts on software engineering, AI development, career pivots, and
             lessons learned building things that matter
           </p>
@@ -316,7 +316,7 @@ const Blog = () => {
                       ? "bg-[#05df72] text-black"
                       : isDisabled
                         ? "cursor-not-allowed bg-[var(--bg-surface)] text-[var(--text-dim)] opacity-50"
-                        : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-secondary)]"
+                        : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-elevated)] hover:text-(--text-secondary)"
                   }`}
                   whileHover={!isDisabled ? { scale: 1.02 } : {}}
                   whileTap={!isDisabled ? { scale: 0.98 } : {}}

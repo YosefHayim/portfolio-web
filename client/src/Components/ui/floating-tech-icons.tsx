@@ -127,7 +127,7 @@ const FloatingIcon = ({
         />
       </motion.div>
       <motion.span
-        className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-md bg-[var(--bg-card)] px-2 py-0.5 text-[10px] font-medium whitespace-nowrap text-[var(--text-secondary)] opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
+        className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-md bg-[var(--bg-card)] px-2 py-0.5 text-[10px] font-medium whitespace-nowrap text-(--text-secondary) opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
         initial={{ opacity: 0, y: 5 }}
         whileHover={{ opacity: 1, y: 0 }}
       >

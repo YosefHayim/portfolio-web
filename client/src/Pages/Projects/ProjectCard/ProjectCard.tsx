@@ -120,7 +120,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        <p className="flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
+        <p className="flex-1 text-sm leading-relaxed text-(--text-secondary)">
           {highlightMatch(project.description, searchQuery)}
         </p>
 

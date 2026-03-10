@@ -72,7 +72,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="mb-12 max-w-xl text-center text-lg leading-relaxed text-[var(--text-secondary)] lg:text-left"
+          className="mb-12 max-w-xl text-center text-lg leading-relaxed text-(--text-secondary) lg:text-left"
           variants={itemVariants}
         >
           AI Software engineer who codes with intent. I automate the boring

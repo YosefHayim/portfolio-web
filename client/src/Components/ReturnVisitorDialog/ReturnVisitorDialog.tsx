@@ -75,7 +75,7 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
 
                   <motion.p
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 pb-2 text-sm leading-relaxed text-[var(--text-secondary)]"
+                    className="mb-6 pb-2 text-sm leading-relaxed text-(--text-secondary)"
                     initial={{ opacity: 0, y: 10 }}
                     transition={{ delay: 0.2 }}
                   >
@@ -109,7 +109,7 @@ const ReturnVisitorDialog: React.FC<ReturnVisitorDialogProps> = ({
                     </Link>
 
                     <button
-                      className="w-full text-center text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-secondary)] hover:underline"
+                      className="w-full text-center text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-(--text-secondary) hover:underline"
                       onClick={onClose}
                       type="button"
                     >

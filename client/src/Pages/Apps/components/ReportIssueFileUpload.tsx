@@ -23,19 +23,19 @@ export function ReportIssueFileUpload({
 
   return (
     <div>
-      <Label className="mb-2 block">
-        Attachments <span className="text-muted-foreground">(optional)</span>
+      <Label className="mb-2 block text-[#e5e5e5]">
+        Attachments <span className="text-[#6b6878]">(optional)</span>
       </Label>
       <div
         className={cn(
-          "flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-input bg-muted/30 px-6 py-8 outline-none transition-colors focus-within:ring-2 focus-within:ring-ring hover:border-primary/50",
+          "flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-white/10 bg-white/[0.03] px-6 py-6 outline-none transition-colors focus-within:ring-2 focus-within:ring-white/20 hover:border-white/20",
           error && "border-destructive focus-within:ring-destructive/20",
         )}
         onClick={() => fileInputRef.current?.click()}
       >
-        <Upload className="mb-3 h-8 w-8 text-muted-foreground" />
-        <p className="mb-1 text-sm">Click to upload or drag and drop</p>
-        <p className="text-xs text-muted-foreground">
+        <Upload className="mb-3 h-8 w-8 text-[#9896a3]" />
+        <p className="mb-1 text-sm text-[#c4c3cc]">Click to upload or drag and drop</p>
+        <p className="text-xs text-[#9896a3]">
           PNG, JPEG, JPG, GIF, MP4 (max 25MB)
         </p>
       </div>
@@ -64,7 +64,7 @@ export function ReportIssueFileUpload({
               <motion.div
                 key={file.preview}
                 animate={{ opacity: 1, scale: 1 }}
-                className="group relative aspect-video overflow-hidden rounded-lg border border-input bg-card"
+                className="group relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-[#111112]"
                 exit={{ opacity: 0, scale: 0.8 }}
                 initial={{ opacity: 0, scale: 0.8 }}
               >
@@ -75,8 +75,8 @@ export function ReportIssueFileUpload({
                     src={file.preview}
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-muted">
-                    <FileVideo className="h-8 w-8 text-muted-foreground" />
+                  <div className="flex h-full w-full items-center justify-center bg-[#111112]">
+                    <FileVideo className="h-8 w-8 text-[#9896a3]" />
                   </div>
                 )}
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">

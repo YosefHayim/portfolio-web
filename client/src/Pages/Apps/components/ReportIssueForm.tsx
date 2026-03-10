@@ -47,7 +47,7 @@ export function ReportIssueForm({
   return (
     <motion.form
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-8 rounded-2xl border border-input p-6 shadow-sm transition-colors md:p-8"
+      className="space-y-8 rounded-2xl border border-white/10 bg-[#0f0f10] p-6 shadow-sm transition-colors md:p-8"
       initial={{ opacity: 0, y: 20 }}
       onSubmit={onSubmit}
       transition={{ duration: 0.5, delay: 0.1 }}

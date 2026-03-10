@@ -157,8 +157,8 @@ export function ReportIssueFormFields({
             className={cn(
               "text-xs",
               description.length > MAX_DESCRIPTION_LENGTH
-                ? "text-destructive"
-                : "text-muted-foreground",
+                ? "text-red-400"
+                : "text-[#9896a3]",
             )}
           >
             {description.length}/{MAX_DESCRIPTION_LENGTH}

@@ -2,10 +2,9 @@ import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/Components/ui/button";
-import { ReportIssueContactCard } from "./ReportIssueContactCard";
+import { SocialIcons } from "@/Components/ui/social-icons";
 import { cn } from "@/lib/utils";
-
-type AppConfig = { id: string; name: string };
+import type { AppConfig } from "@/data/apps/types";
 
 type ReportIssueSuccessProps = {
   config: AppConfig;
@@ -23,7 +22,7 @@ export function ReportIssueSuccess({ config, onReset }: ReportIssueSuccessProps)
       <motion.div
         animate={{ scale: 1 }}
         className={cn(
-          "mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full border shadow-[0_0_0_1px_rgba(34,197,94,0.2)]",
+          "mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full border border-white/10 shadow-[0_0_0_1px_rgba(34,197,94,0.2)]",
         )}
         initial={{ scale: 0 }}
         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -31,21 +30,21 @@ export function ReportIssueSuccess({ config, onReset }: ReportIssueSuccessProps)
         <CheckCircle2 className="h-10 w-10 text-green-500" />
       </motion.div>
 
-      <h1 className="mb-4 text-3xl font-bold text-foreground">
+      <h1 className="mb-4 text-3xl font-bold text-[#eeeef0]">
         Report Submitted!
       </h1>
 
-      <p className="my-4 text-lg leading-relaxed text-muted-foreground">
+      <p className="my-4 text-lg leading-relaxed text-[#9896a3]">
         Thank you for your feedback. Your email client should have opened with
         the report details. We'll review your issue and get back to you as soon
         as possible.
       </p>
 
-      <div className="my-4">
-        <ReportIssueContactCard
-          title="Alternative Contact Methods"
-          variant="success"
-        />
+      <div className="my-4 flex flex-col items-center space-y-2">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#9896a3]">
+          Alternative Contact Methods
+        </p>
+        <SocialIcons labelSides={["top", "bottom", "left", "right"]} showLabels />
       </div>
 
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">

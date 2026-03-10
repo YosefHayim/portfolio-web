@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { format } from "date-fns";
 import { BookOpen, Calendar, Clock, Search, Sparkles, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import { staggerContainer, staggerItem } from "@/animations/variants";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
@@ -14,6 +14,8 @@ import {
   type BlogPost,
 } from "@/data/blog";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { highlightMatch } from "@/utils/searchHighlight";
 
 type FilterCategory = "all" | BlogCategory;
 
@@ -39,30 +41,6 @@ const BlogCard = ({
 }) => {
   const categoryConfig = getCategoryConfig(post.category);
   const formattedDate = format(new Date(post.publishedAt), "MMM d, yyyy");
-
-  const highlightMatch = (text: string): React.ReactNode => {
-    if (!searchQuery.trim()) return text;
-
-    const query = searchQuery.toLowerCase();
-    const lowerText = text.toLowerCase();
-    const index = lowerText.indexOf(query);
-
-    if (index === -1) return text;
-
-    const before = text.slice(0, index);
-    const match = text.slice(index, index + searchQuery.length);
-    const after = text.slice(index + searchQuery.length);
-
-    return (
-      <>
-        {before}
-        <span className="rounded bg-[#05df72]/20 px-0.5 text-[#05df72]">
-          {match}
-        </span>
-        {after}
-      </>
-    );
-  };
 
   if (isFeatured) {
     return (
@@ -101,11 +79,11 @@ const BlogCard = ({
             </div>
 
             <h2 className="text-2xl leading-tight font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[#05df72] md:text-3xl">
-              {highlightMatch(post.title)}
+              {highlightMatch(post.title, searchQuery)}
             </h2>
 
             <p className="line-clamp-3 text-[var(--text-secondary)]">
-              {highlightMatch(post.excerpt)}
+              {highlightMatch(post.excerpt, searchQuery)}
             </p>
 
             <div className="mt-auto flex items-center gap-4 pt-2">
@@ -168,11 +146,11 @@ const BlogCard = ({
           </div>
 
           <h3 className="line-clamp-2 text-lg leading-tight font-medium text-[var(--text-primary)] transition-colors group-hover:text-[#05df72]">
-            {highlightMatch(post.title)}
+            {highlightMatch(post.title, searchQuery)}
           </h3>
 
           <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
-            {highlightMatch(post.excerpt)}
+            {highlightMatch(post.excerpt, searchQuery)}
           </p>
 
           <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
@@ -201,9 +179,7 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY_MS);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   const featuredPosts = useMemo(() => getFeaturedPosts(), []);
 

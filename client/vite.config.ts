@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { compression } from "vite-plugin-compression2";
 import { visualizer } from "rollup-plugin-visualizer";
 import path from "node:path";
+import dyadTagger from "@dyad-sh/react-vite-component-tagger";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -9,6 +10,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
+    dyadTagger(),
     tailwindcss(),
     // Gzip compression for production
     compression({

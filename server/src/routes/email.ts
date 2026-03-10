@@ -53,8 +53,8 @@ router.post(
 			);
 		}
 
-		const { senderName, senderEmail, subject, message } =
-			parseResult.data as EmailRequest;
+	const { senderName, senderEmail, subject, message } =
+		parseResult.data;
 
 		// Check if email is configured
 		if (!env.EMAIL_USER || !env.EMAIL_PASS) {

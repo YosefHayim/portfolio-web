@@ -1,14 +1,12 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { staggerContainer, staggerItem } from "@/animations/variants";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import CertificationCards from "./CertificationsCards/CertificationCards";
 
 const Certifications = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   return (
     <>

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
-import type { Project, ProjectStatus } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { getStatusArray, type ProjectStatus } from "@/utils/projectStatus";
 import { TechBadge } from "@/utils/techIcons";
+import { highlightMatch } from "@/utils/searchHighlight";
 
 const ICON_SIZE = 18;
 const VISIBLE_TECH_COUNT = 4;
@@ -25,11 +27,6 @@ const statusConfig: Record<ProjectStatus, { label: string; className: string; do
   },
 };
 
-const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
-  if (!status) return [];
-  return Array.isArray(status) ? status : [status];
-};
-
 type ProjectCardProps = {
   project: Project;
   searchQuery?: string;
@@ -45,30 +42,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const handleCardClick = () => {
     navigate(`/projects/${project.id}`);
-  };
-
-  const highlightMatch = (text: string): React.ReactNode => {
-    if (!searchQuery.trim()) return text;
-
-    const query = searchQuery.toLowerCase();
-    const lowerText = text.toLowerCase();
-    const index = lowerText.indexOf(query);
-
-    if (index === -1) return text;
-
-    const before = text.slice(0, index);
-    const match = text.slice(index, index + searchQuery.length);
-    const after = text.slice(index + searchQuery.length);
-
-    return (
-      <>
-        {before}
-        <span className="rounded bg-[#05df72]/20 px-0.5 text-[#05df72]">
-          {match}
-        </span>
-        {after}
-      </>
-    );
   };
 
   const isMatchingTech = (tech: string): boolean => {
@@ -117,7 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-lg leading-tight font-medium text-[var(--text-primary)] transition-colors group-hover:text-[#05df72]">
-            {highlightMatch(project.name)}
+            {highlightMatch(project.name, searchQuery)}
           </h3>
 
           <div
@@ -148,7 +121,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         <p className="flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
-          {highlightMatch(project.description)}
+          {highlightMatch(project.description, searchQuery)}
         </p>
 
         <div className="flex flex-wrap gap-2">

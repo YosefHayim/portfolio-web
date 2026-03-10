@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { FaDownload, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import MyJourney from "./MyJourney/MyJourney";
 
 const STAGGER_DELAY = 0.1;
@@ -30,9 +30,7 @@ const itemVariants = {
 };
 
 const About = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   return (
     <>

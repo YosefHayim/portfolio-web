@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import Hero from "./Hero/Hero";
 import PassionSection from "./PassionSection/PassionSection";
 import WhoAmI from "./WhoAmI/WhoAmI";
 
 const Homepage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   return (
     <>

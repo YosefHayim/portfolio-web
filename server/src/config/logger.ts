@@ -2,20 +2,20 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import winston from "winston";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirPath = path.dirname(currentFilePath);
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-const logsDir = path.join(__dirname, "../../logs");
+const logsDir = path.join(currentDirPath, "../../logs");
 
 const logFormat = winston.format.combine(
   winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
   winston.format.errors({ stack: true }),
   winston.format.printf((info) => {
-    const timestamp = info.timestamp as string;
-    const message = info.message as string;
-    const stack = info.stack as string | undefined;
+    const timestamp = String(info.timestamp ?? "");
+    const message = String(info.message ?? "");
+    const stack = typeof info.stack === "string" ? info.stack : undefined;
     const logMessage = `${timestamp} [${info.level.toUpperCase()}]: ${message}`;
     return stack ? `${logMessage}\n${stack}` : logMessage;
   })
@@ -25,8 +25,8 @@ const consoleFormat = winston.format.combine(
   winston.format.colorize({ all: true }),
   winston.format.timestamp({ format: "HH:mm:ss" }),
   winston.format.printf((info) => {
-    const timestamp = info.timestamp as string;
-    const message = info.message as string;
+    const timestamp = String(info.timestamp ?? "");
+    const message = String(info.message ?? "");
     return `${timestamp} ${info.level}: ${message}`;
   })
 );

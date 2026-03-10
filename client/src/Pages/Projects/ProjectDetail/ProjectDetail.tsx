@@ -17,13 +17,15 @@ import {
 import { IoArrowBack, IoCodeSlash, IoOpenOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
 import { FaWhatsapp } from "react-icons/fa";
 import { TechBadge } from "@/utils/techIcons";
-import { getProjectById, type ProjectStatus } from "@/data/projects";
+import { getProjectById } from "@/data/projects";
+import { getStatusArray, type ProjectStatus } from "@/utils/projectStatus";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const ICON_SIZE = 20;
 
@@ -43,11 +45,6 @@ const statusConfig: Record<ProjectStatus, { label: string; className: string; do
     className: "border border-[#00d9ff]/40 bg-[#00d9ff]/10 text-[#00d9ff]",
     dot: "bg-[#00d9ff]",
   },
-};
-
-const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
-  if (!status) return [];
-  return Array.isArray(status) ? status : [status];
 };
 
 type IconComponent = typeof FiGlobe;
@@ -142,9 +139,7 @@ const ProjectDetail = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [project]);
+  useScrollToTop();
 
   if (!project) {
     return (

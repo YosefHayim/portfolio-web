@@ -38,24 +38,24 @@ router.post(
 	asyncHandler(async (req: Request, res: Response) => {
 		const parseResult = chatRequestSchema.safeParse(req.body);
 
-		if (!parseResult.success) {
-			throw new AppError("Invalid request body", 400);
-		}
+	if (!parseResult.success) {
+		throw new AppError("Invalid request body", 400);
+	}
 
-		const { messages } = parseResult.data as ChatRequest;
-		const lastUserMessage = messages[messages.length - 1]?.content || "";
+	const { messages } = parseResult.data;
+	const lastUserMessage = messages[messages.length - 1]?.content || "";
 
-		// Check cache for single-turn questions
-		if (messages.length === 1) {
-			const cachedResponse = responseCache.get(lastUserMessage);
-			if (cachedResponse) {
-				res.setHeader("X-Cache", "HIT");
-				return res.json({
-					success: true,
-					message: cachedResponse,
-				});
-			}
+	// Check cache for single-turn questions
+	if (messages.length === 1) {
+		const cachedResponse = responseCache.get(lastUserMessage);
+		if (cachedResponse) {
+			res.setHeader("X-Cache", "HIT");
+			return res.json({
+				success: true,
+				message: cachedResponse,
+			});
 		}
+	}
 
 		res.setHeader("X-Cache", "MISS");
 
@@ -91,22 +91,22 @@ router.post(
 	asyncHandler(async (req: Request, res: Response) => {
 		const parseResult = chatRequestSchema.safeParse(req.body);
 
-		if (!parseResult.success) {
-			throw new AppError("Invalid request body", 400);
-		}
+	if (!parseResult.success) {
+		throw new AppError("Invalid request body", 400);
+	}
 
-		const { messages } = parseResult.data as ChatRequest;
-		const lastUserMessage = messages[messages.length - 1]?.content || "";
+	const { messages } = parseResult.data;
+	const lastUserMessage = messages[messages.length - 1]?.content || "";
 
-		// Check cache for single-turn questions
-		if (messages.length === 1) {
-			const cachedResponse = responseCache.get(lastUserMessage);
-			if (cachedResponse) {
-				// Stream cached response for consistent UX
-				res.setHeader("Content-Type", "text/event-stream");
-				res.setHeader("Cache-Control", "no-cache");
-				res.setHeader("Connection", "keep-alive");
-				res.setHeader("X-Cache", "HIT");
+	// Check cache for single-turn questions
+	if (messages.length === 1) {
+		const cachedResponse = responseCache.get(lastUserMessage);
+		if (cachedResponse) {
+			// Stream cached response for consistent UX
+			res.setHeader("Content-Type", "text/event-stream");
+			res.setHeader("Cache-Control", "no-cache");
+			res.setHeader("Connection", "keep-alive");
+			res.setHeader("X-Cache", "HIT");
 
 				// Send cached response in chunks for natural feel
 				const words = cachedResponse.split(" ");

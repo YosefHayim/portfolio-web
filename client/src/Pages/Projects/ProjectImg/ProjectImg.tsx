@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const ProjectImg: React.FC<{ path: string; to: string }> = ({
   path = "https://placehold.co/450x200",
   to,
 }) => {
+  useScrollToTop();
+
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     if (to === "projects") {
       alert("This project is not deployed yet.");
       return;

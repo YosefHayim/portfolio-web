@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FolderOpen, Grid3X3, Search, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { staggerContainer, staggerItem } from "@/animations/variants";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
@@ -8,23 +8,14 @@ import {
   AnimatedFolder,
   type FolderProject,
 } from "@/Components/ui/project-folder";
-import { projects as projectsData, type ProjectStatus } from "@/data/projects";
+import { projects as projectsData } from "@/data/projects";
+import { getStatusArray, hasStatus, type ProjectStatus } from "@/utils/projectStatus";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import ProjectCard from "./ProjectCard/ProjectCard";
 
 type FilterStatus = "all" | "live" | "development" | "completed";
 type ViewMode = "grid" | "folders";
-
-const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
-  if (!status) return [];
-  return Array.isArray(status) ? status : [status];
-};
-
-const hasStatus = (projectStatus: ProjectStatus | ProjectStatus[] | undefined, filterStatus: FilterStatus): boolean => {
-  if (filterStatus === "all") return true;
-  const statuses = getStatusArray(projectStatus);
-  return statuses.includes(filterStatus);
-};
 
 const filterOptions: { value: FilterStatus; label: string }[] = [
   { value: "all", label: "All" },
@@ -63,9 +54,7 @@ const Projects = () => {
   const [viewMode, setViewMode] = useState<ViewMode>("folders");
   const debouncedSearchQuery = useDebounce(searchQuery, DEBOUNCE_DELAY_MS);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   const filteredProjects = useMemo(() => {
     let result = projectsData;

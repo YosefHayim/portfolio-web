@@ -11,142 +11,21 @@ import {
   Linkedin,
   Tag,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { processContent } from "@/utils/markdownProcessor";
 import {
   getPostBySlug,
   getRecentPosts,
   getCategoryConfig,
-  type BlogPost as BlogPostType,
 } from "@/data/blog";
+import { RelatedPostCard } from "./RelatedPostCard";
+import "./blogContent.css";
 
 const SITE_URL = "https://josephsabag.dev";
-
-const processContent = (content: string): string => {
-  let processed = content.trim();
-
-  processed = processed.replace(
-    /^# (.+)$/gm,
-    '<h1 class="blog-h1">$1</h1>'
-  );
-
-  processed = processed.replace(
-    /^## (.+)$/gm,
-    '<h2 class="blog-h2">$1</h2>'
-  );
-
-  processed = processed.replace(
-    /^### (.+)$/gm,
-    '<h3 class="blog-h3">$1</h3>'
-  );
-
-  processed = processed.replace(
-    /```(\w+)?\n([\s\S]*?)```/g,
-    '<pre class="blog-code-block"><code>$2</code></pre>'
-  );
-
-  processed = processed.replace(
-    /`([^`]+)`/g,
-    '<code class="blog-inline-code">$1</code>'
-  );
-
-  processed = processed.replace(
-    /\*\*([^*]+)\*\*/g,
-    '<strong class="blog-bold">$1</strong>'
-  );
-
-  processed = processed.replace(
-    /\*([^*]+)\*/g,
-    '<em class="blog-italic">$1</em>'
-  );
-
-  processed = processed.replace(
-    /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" class="blog-link" target="_blank" rel="noopener noreferrer">$1</a>'
-  );
-
-  processed = processed.replace(
-    /^---$/gm,
-    '<hr class="blog-divider" />'
-  );
-
-  const paragraphs = processed.split(/\n\n+/);
-  processed = paragraphs
-    .map((p) => {
-      const trimmed = p.trim();
-      if (!trimmed) return "";
-      if (
-        trimmed.startsWith("<h1") ||
-        trimmed.startsWith("<h2") ||
-        trimmed.startsWith("<h3") ||
-        trimmed.startsWith("<pre") ||
-        trimmed.startsWith("<hr") ||
-        trimmed.startsWith("<ul") ||
-        trimmed.startsWith("<ol")
-      ) {
-        return trimmed;
-      }
-      return `<p class="blog-paragraph">${trimmed}</p>`;
-    })
-    .join("\n");
-
-  return processed;
-};
-
-const RelatedPostCard = ({ post }: { post: BlogPostType }) => {
-  const categoryConfig = getCategoryConfig(post.category);
-  const formattedDate = format(new Date(post.publishedAt), "MMM d, yyyy");
-
-  return (
-    <Link to={`/blog/${post.slug}`}>
-      <motion.article
-        className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] transition-all duration-300 hover:border-[var(--border-hover)] hover:shadow-[0_0_30px_rgba(5,223,114,0.08)]"
-        whileHover={{ scale: 1.02, y: -4 }}
-        transition={{ duration: 0.2 }}
-      >
-        <div className="relative aspect-video overflow-hidden">
-          <img
-            src={post.coverImage}
-            alt={post.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent opacity-60" />
-          <div className="absolute top-3 right-3">
-            <span
-              className={`rounded-full px-2.5 py-1 text-xs font-medium backdrop-blur-sm ${categoryConfig.bgColor}`}
-            >
-              {categoryConfig.label}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col gap-3 p-5">
-          <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
-            <div className="flex items-center gap-1.5">
-              <Calendar size={12} />
-              {formattedDate}
-            </div>
-            <span className="text-[var(--border-default)]">|</span>
-            <div className="flex items-center gap-1.5">
-              <Clock size={12} />
-              {post.readingTime} min
-            </div>
-          </div>
-
-          <h3 className="line-clamp-2 text-lg leading-tight font-medium text-[var(--text-primary)] transition-colors group-hover:text-[#05df72]">
-            {post.title}
-          </h3>
-
-          <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
-            {post.excerpt}
-          </p>
-        </div>
-      </motion.article>
-    </Link>
-  );
-};
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -164,9 +43,7 @@ const BlogPost = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0.9]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [post]);
+  useScrollToTop();
 
   const relatedPosts = useMemo(() => {
     if (!post) return [];
@@ -536,128 +413,6 @@ const BlogPost = () => {
           </section>
         )}
 
-        <style>{`
-          .blog-content {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-          }
-
-          .blog-h1 {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 2.5rem 0 1.5rem;
-            line-height: 1.3;
-            letter-spacing: -0.02em;
-          }
-
-          .blog-h2 {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #05df72;
-            margin: 2.5rem 0 1rem;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-subtle);
-          }
-
-          .blog-h3 {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 1.375rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 2rem 0 0.75rem;
-            line-height: 1.4;
-          }
-
-          .blog-paragraph {
-            margin: 1.25rem 0;
-          }
-
-          .blog-bold {
-            font-weight: 600;
-            color: var(--text-primary);
-          }
-
-          .blog-italic {
-            font-style: italic;
-            color: var(--text-secondary);
-          }
-
-          .blog-link {
-            color: #05df72;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.2s ease;
-          }
-
-          .blog-link:hover {
-            border-bottom-color: #05df72;
-          }
-
-          .blog-code-block {
-            display: block;
-            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            border: 1px solid var(--border-subtle);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
-            font-size: 0.875rem;
-            line-height: 1.7;
-          }
-
-          .blog-code-block code {
-            color: #e6edf3;
-            white-space: pre;
-          }
-
-          .blog-inline-code {
-            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
-            font-size: 0.875em;
-            color: #00d9ff;
-            background: rgba(0, 217, 255, 0.1);
-            padding: 0.2em 0.4em;
-            border-radius: 0.375rem;
-          }
-
-          .blog-divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent);
-            margin: 3rem 0;
-          }
-
-          @media (max-width: 768px) {
-            .blog-content {
-              font-size: 1rem;
-            }
-
-            .blog-h1 {
-              font-size: 1.75rem;
-            }
-
-            .blog-h2 {
-              font-size: 1.5rem;
-            }
-
-            .blog-h3 {
-              font-size: 1.25rem;
-            }
-
-            .blog-code-block {
-              padding: 1rem;
-              font-size: 0.8rem;
-              border-radius: 0.5rem;
-            }
-          }
-        `}</style>
       </AnimatedPage>
     </>
   );

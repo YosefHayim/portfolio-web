@@ -17,8 +17,7 @@ import {
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import { TechBadge } from "@/utils/techIcons";
-
-export type ProjectStatus = "live" | "development" | "completed";
+import { type ProjectStatus, getStatusArray } from "@/utils/projectStatus";
 
 export interface FolderProject {
   id: string;
@@ -30,11 +29,6 @@ export interface FolderProject {
   repoUrl?: string;
   status?: ProjectStatus | ProjectStatus[];
 }
-
-const getStatusArray = (status: ProjectStatus | ProjectStatus[] | undefined): ProjectStatus[] => {
-  if (!status) return [];
-  return Array.isArray(status) ? status : [status];
-};
 
 const statusConfig: Record<ProjectStatus, { label: string; className: string; dot: string }> = {
   live: {

@@ -1,15 +1,47 @@
-import { Award, BookOpen, FolderKanban, Home, Layers, User } from "lucide-react";
-
+import {
+  ArrowRight,
+  Award,
+  BookOpen,
+  FolderKanban,
+  Heart,
+  Home,
+  Layers,
+  Lightbulb,
+  Package,
+  Sparkles,
+  User,
+  Users,
+} from "lucide-react";
 import { Link } from "react-router";
-import Logo from "../Logo/Logo";
-import type { ReactNode } from "react";
-import { SocialIcons } from "../ui/social-icons";
+import { useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
+import Logo from "../Logo/Logo";
+import { SocialIcons, type IconItem } from "../ui/social-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const ANIMATION_DELAY_STEP = 0.1;
 const ANIMATION_Y_OFFSET = 20;
-const ICON_SIZE = 14;
+const ICON_SIZE = 18;
+
+const taglineWords = [
+  { word: "Turning", icon: <Sparkles size={ICON_SIZE} /> },
+  { word: "ideas", icon: <Lightbulb size={ICON_SIZE} /> },
+  { word: "into", icon: <ArrowRight size={ICON_SIZE} /> },
+  { word: "products", icon: <Package size={ICON_SIZE} /> },
+  { word: "people", icon: <Users size={ICON_SIZE} /> },
+  { word: "love.", icon: <Heart size={ICON_SIZE} /> },
+];
+
+const taglineItems: IconItem[] = taglineWords.map((item) => ({
+  label: item.word,
+  icon: item.icon,
+  hoverColor: "group-hover:text-[#05df72]",
+}));
 
 type NavLink = {
   to: string;
@@ -39,6 +71,8 @@ const navLinks: NavLink[] = [
 ];
 
 const Footer = () => {
+  const [isSectionHovered, setIsSectionHovered] = useState(false);
+
   return (
     <footer className="w-full max-w-full overflow-hidden border-t border-[var(--border-subtle)] bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
       <div className="mx-auto w-full p-5">
@@ -46,14 +80,13 @@ const Footer = () => {
           <motion.section
             className="flex flex-col items-start gap-4"
             initial={{ opacity: 0, y: ANIMATION_Y_OFFSET }}
+            onMouseEnter={() => setIsSectionHovered(true)}
+            onMouseLeave={() => setIsSectionHovered(false)}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
             <Logo />
-              <p className="max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-                Turning ideas into products people{" "}
-                <span className="font-semibold text-[#05df72]">love.</span>
-              </p>
+            <SocialIcons items={taglineItems} forceShowLabels={isSectionHovered} />
           </motion.section>
 
           <motion.section
@@ -63,21 +96,27 @@ const Footer = () => {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <h3 className="text-sm font-semibold tracking-wider text-[var(--text-secondary)] uppercase">
-              Navigation
-            </h3>
-            <nav className="flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2">
-              {navLinks.map((link) => (
-                <Link
-                  className="flex items-center gap-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[#05df72]"
-                  key={link.to}
-                  to={link.to}
-                >
-                  {link.icon}
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <p className="text-xs text-[var(--text-dim)]">Navigation</p>
+            <div className="relative w-fit rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] px-1.5 py-1.5">
+              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.02] to-transparent" />
+              <nav className="relative flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2">
+                {navLinks.map((link) => (
+                  <Tooltip key={link.to}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        className="flex items-center text-sm text-[var(--text-muted)] transition-colors hover:text-[#05df72]"
+                        to={link.to}
+                      >
+                        {link.icon}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" sideOffset={8}>
+                      {link.label}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </nav>
+            </div>
           </motion.section>
 
           <motion.section
@@ -87,9 +126,7 @@ const Footer = () => {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <h3 className="text-sm font-semibold tracking-wider text-[var(--text-secondary)] uppercase">
-              Connect
-            </h3>
+            <p className="text-xs text-[var(--text-dim)]">Connect</p>
             <div className="w-auto">
               <SocialIcons showLabels />
             </div>

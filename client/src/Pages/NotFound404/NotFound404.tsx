@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const NotFound404 = () => {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(5);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  useScrollToTop();
 
+  useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {

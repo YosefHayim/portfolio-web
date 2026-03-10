@@ -3,23 +3,7 @@ import { motion } from "framer-motion";
 import { FiAlertCircle, FiCheck } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
-
-type Message = {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: Date;
-  isVoice?: boolean;
-  emailStatus?: "sending" | "sent" | "failed";
-};
-
-// Regex to detect email sending marker in AI response
-const EMAIL_MARKER_REGEX = /\[SEND_EMAIL:(\{[\s\S]*?\})\]/;
-
-// Strip email marker from displayed content
-function stripEmailMarker(content: string): string {
-  return content.replace(EMAIL_MARKER_REGEX, "").trim();
-}
+import { type Message, stripEmailMarker } from "@/utils/chatUtils";
 
 // Simple markdown renderer for assistant messages
 function renderMarkdown(text: string): string {

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { BsFiletypeSql } from "react-icons/bs";
 import {
   FaAws,
@@ -43,6 +42,7 @@ import { TbBrandReactNative } from "react-icons/tb";
 import { VscDebugAlt } from "react-icons/vsc";
 import { AnimatedPage } from "@/Components/AnimatedPage/AnimatedPage";
 import { SEO } from "@/Components/SEO/SEO";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import {
   FloatingTechIcons,
   type TechIconData,
@@ -305,9 +305,7 @@ const itemVariants = {
 };
 
 const TechStack = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  useScrollToTop();
 
   return (
     <>

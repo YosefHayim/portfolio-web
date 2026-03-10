@@ -1,9 +1,11 @@
+import { type ProjectStatus } from "@/utils/projectStatus";
+
 export type Collaborator = {
   name: string;
   githubProfileLink: string;
 };
 
-export type ProjectStatus = "live" | "development" | "completed";
+export type { ProjectStatus };
 
 export type Project = {
   id: string;

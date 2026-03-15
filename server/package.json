@@ -12,10 +12,12 @@
 		"format": "biome format --write src/"
 	},
 	"dependencies": {
+		"@lemonsqueezy/lemonsqueezy.js": "^3.3.1",
 		"compression": "^1.8.1",
 		"cors": "^2.8.5",
 		"dotenv": "^16.4.5",
 		"express": "^4.21.0",
+		"fresh-squeezy": "^1.0.55",
 		"nodemailer": "^7.0.12",
 		"openai": "^4.73.0",
 		"typescript": "^5.7.2",
@@ -29,6 +31,7 @@
 		"@types/express": "^5.0.0",
 		"@types/node": "^22.10.0",
 		"@types/nodemailer": "^7.0.5",
+		"pr-prism": "^1.0.5",
 		"tsx": "^4.19.2"
 	}
 }

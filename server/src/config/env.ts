@@ -12,6 +12,8 @@ const envSchema = z.object({
   FRONTEND_URL: z.string().default('http://localhost:5173'),
   EMAIL_USER: z.string().email().optional(),
   EMAIL_PASS: z.string().optional(),
+  LS_API_KEY: z.string().optional(),
+  LS_WEBHOOK_SECRET: z.string().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

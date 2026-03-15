@@ -1,84 +1,99 @@
 import compression from "compression";
 import cors from "cors";
 import express, { type Express } from "express";
+import { initBilling } from "./config/billing.js";
 import { env } from "./config/env.js";
 import { httpLogger, logger } from "./config/logger.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import chatRouter from "./routes/chat.js";
 import emailRouter from "./routes/email.js";
+import { createWebhookRouter } from "./routes/webhooks.js";
 
-const app: Express = express();
+async function main() {
+	const app: Express = express();
 
-const corsOptions = {
-	origin: env.FRONTEND_URL.split(",").map((url) => url.trim()),
-	methods: ["GET", "POST"],
-	allowedHeaders: ["Content-Type", "Authorization"],
-};
+	const corsOptions = {
+		origin: env.FRONTEND_URL.split(",").map((url) => url.trim()),
+		methods: ["GET", "POST"],
+		allowedHeaders: ["Content-Type", "Authorization"],
+	};
 
-// Enable gzip compression for all responses
-app.use(
-	compression({
-		level: 6, // Balanced compression level
-		threshold: 1024, // Only compress responses > 1KB
-		filter: (req, res) => {
-			// Don't compress streaming responses
-			if (req.path === "/api/chat/stream") {
-				return false;
-			}
-			return compression.filter(req, res);
-		},
-	}),
-);
+	// Enable gzip compression for all responses
+	app.use(
+		compression({
+			level: 6, // Balanced compression level
+			threshold: 1024, // Only compress responses > 1KB
+			filter: (req, res) => {
+				// Don't compress streaming responses
+				if (req.path === "/api/chat/stream") {
+					return false;
+				}
+				return compression.filter(req, res);
+			},
+		}),
+	);
 
-app.use(cors(corsOptions));
-app.use(express.json());
+	app.use(cors(corsOptions));
 
-// Request timing middleware
-app.use((req, res, next) => {
-	const start = Date.now();
-	res.on("finish", () => {
-		const responseTime = Date.now() - start;
-		httpLogger(req, res, responseTime);
+	const billing = await initBilling();
+
+	// Webhook routes MUST be mounted BEFORE express.json() because
+	// HMAC signature verification requires the raw request body bytes.
+	// express.json() consumes the stream and re-serializes, breaking HMAC.
+	app.use("/api/webhooks", createWebhookRouter(billing));
+
+	app.use(express.json());
+
+	// Request timing middleware
+	app.use((req, res, next) => {
+		const start = Date.now();
+		res.on("finish", () => {
+			const responseTime = Date.now() - start;
+			httpLogger(req, res, responseTime);
+		});
+		next();
 	});
-	next();
-});
 
-// Cache headers for static-like responses
-app.use((req, res, next) => {
-	// Health check can be cached briefly
-	if (req.path === "/health") {
-		res.setHeader("Cache-Control", "public, max-age=30");
-	}
-	next();
-});
-
-app.use("/api/chat", chatRouter);
-app.use("/api/email", emailRouter);
-
-app.get("/health", (_req, res) => {
-	res.json({
-		status: "ok",
-		timestamp: new Date().toISOString(),
-		uptime: process.uptime(),
+	// Cache headers for static-like responses
+	app.use((req, res, next) => {
+		// Health check can be cached briefly
+		if (req.path === "/health") {
+			res.setHeader("Cache-Control", "public, max-age=30");
+		}
+		next();
 	});
-});
 
-app.use(errorHandler);
+	app.use("/api/chat", chatRouter);
+	app.use("/api/email", emailRouter);
 
-// Graceful shutdown
-const server = app.listen(env.PORT, () => {
-	logger.info(`Server running on port ${env.PORT}`);
-	logger.info(`Environment: ${env.NODE_ENV}`);
-	logger.debug(`CORS origins: ${env.FRONTEND_URL}`);
-});
-
-// Handle graceful shutdown
-process.on("SIGTERM", () => {
-	logger.info("SIGTERM received, shutting down gracefully");
-	server.close(() => {
-		logger.info("Server closed");
-		process.exit(0);
+	app.get("/health", (_req, res) => {
+		res.json({
+			status: "ok",
+			timestamp: new Date().toISOString(),
+			uptime: process.uptime(),
+		});
 	});
-});
 
-export default app;
+	app.use(errorHandler);
+
+	// Graceful shutdown
+	const server = app.listen(env.PORT, () => {
+		logger.info(`Server running on port ${env.PORT}`);
+		logger.info(`Environment: ${env.NODE_ENV}`);
+		logger.debug(`CORS origins: ${env.FRONTEND_URL}`);
+	});
+
+	// Handle graceful shutdown
+	process.on("SIGTERM", () => {
+		logger.info("SIGTERM received, shutting down gracefully");
+		server.close(() => {
+			logger.info("Server closed");
+			process.exit(0);
+		});
+	});
+}
+
+main().catch((err) => {
+	logger.error("Server startup failed", err);
+	process.exit(1);
+});

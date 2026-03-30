@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 import Logo from "../Logo/Logo";
 import { SocialIcons, type IconItem } from "../ui/social-icons";
 
@@ -118,9 +119,17 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-[var(--border-subtle)] px-4 py-4 sm:px-6">
-        <p className="text-center text-xs text-[var(--text-dim)]">
-          © {CURRENT_YEAR} Joseph Sabag. All rights reserved.
-        </p>
+        <div className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-3">
+          <p className="text-center text-xs text-[var(--text-dim)]">
+            © {CURRENT_YEAR} Joseph Sabag. All rights reserved.
+          </p>
+          <Link
+            className="text-xs text-[var(--text-dim)] transition-colors hover:text-[#05df72]"
+            to="/privacy-policy"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );

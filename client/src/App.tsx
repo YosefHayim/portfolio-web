@@ -30,6 +30,9 @@ const AppLanding = lazy(() => import("./Pages/Apps/AppLanding"));
 const PrivacyPolicy = lazy(() => import("./Pages/Apps/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./Pages/Apps/TermsOfService"));
 const ReportIssue = lazy(() => import("./Pages/Apps/ReportIssue"));
+const SitePrivacyPolicy = lazy(
+  () => import("./Pages/PrivacyPolicy/PrivacyPolicy"),
+);
 
 const AIChatSidebar = lazy(
   () => import("./Components/AIChatSidebar/AIChatSidebar"),
@@ -98,6 +101,7 @@ const App = () => {
               <Route element={<AppsListing />} path="/apps" />
               <Route element={<Blog />} path="/blog" />
               <Route element={<BlogPost />} path="/blog/:slug" />
+              <Route element={<SitePrivacyPolicy />} path="/privacy-policy" />
               <Route element={<NotFound404 />} path="/404" />
               <Route element={<NotFound404 />} path="*" />
             </Routes>

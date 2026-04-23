@@ -4,6 +4,7 @@ import { z } from "zod";
 import { env } from "../config/env.js";
 import { AppError, asyncHandler } from "../middleware/errorHandler.js";
 import { createRateLimiter } from "../middleware/rateLimiter.js";
+import { createHealthResponse } from "../utils/http.js";
 
 const router: Router = Router();
 
@@ -139,11 +140,9 @@ This email was sent via the AI chat on your portfolio website.
 );
 
 router.get("/health", (_req: Request, res: Response) => {
-	res.json({
-		status: "ok",
+	res.json(createHealthResponse({
 		configured: !!(env.EMAIL_USER && env.EMAIL_PASS),
-		timestamp: new Date().toISOString(),
-	});
+	}));
 });
 
 export default router;

@@ -4,6 +4,8 @@ import { z } from "zod";
 import { logger } from "../config/logger.js";
 import { AppError, asyncHandler } from "../middleware/errorHandler.js";
 import { createRateLimiter } from "../middleware/rateLimiter.js";
+import { createHealthResponse } from "../utils/http.js";
+import { parseOrThrow } from "../utils/validation.js";
 
 const webhookRateLimiter = createRateLimiter({
 	windowMs: 60 * 1000,
@@ -56,25 +58,22 @@ export function createWebhookRouter(billing: Billing | null): Router {
 				throw new AppError("Invalid signature", 401);
 			}
 
-			const parseResult = webhookPayloadSchema.safeParse(
+			const payload = parseOrThrow(
+				webhookPayloadSchema,
 				JSON.parse(rawBody),
+				"Invalid webhook payload",
 			);
-			if (!parseResult.success) {
-				throw new AppError("Invalid webhook payload", 400);
-			}
 
-			await billing.handleWebhook(parseResult.data);
+			await billing.handleWebhook(payload);
 
 			res.json({ success: true, received: true });
 		}),
 	);
 
 	router.get("/health", (_req: Request, res: Response) => {
-		res.json({
-			status: "ok",
+		res.json(createHealthResponse({
 			billingConfigured: billing !== null,
-			timestamp: new Date().toISOString(),
-		});
+		}));
 	});
 
 	return router;

@@ -2,7 +2,7 @@ import { Router, type Request, type Response } from "express";
 import OpenAI from "openai";
 import { z } from "zod";
 import { env } from "../config/env.js";
-import { SYSTEM_PROMPT } from "../config/systemPrompt.js";
+import { getSystemPrompt } from "../config/systemPrompt.js";
 import { AppError, asyncHandler } from "../middleware/errorHandler.js";
 import {
 	chatRateLimiter,
@@ -10,6 +10,8 @@ import {
 	ttsRateLimiter,
 } from "../middleware/rateLimiter.js";
 import { responseCache } from "../utils/cache.js";
+import { createHealthResponse } from "../utils/http.js";
+import { parseOrThrow } from "../utils/validation.js";
 
 const router: Router = Router();
 
@@ -31,37 +33,41 @@ const chatRequestSchema = z.object({
 
 type ChatRequest = z.infer<typeof chatRequestSchema>;
 
+const parseChatRequest = (body: unknown): ChatRequest =>
+	parseOrThrow(chatRequestSchema, body, "Invalid request body");
+
+const hasDynamicPortfolioIntent = (message: string): boolean =>
+	/\b(github|repo|repos|project|projects|recent|latest|newest|updated)\b/i.test(
+		message,
+	);
+
 // Non-streaming endpoint with caching
 router.post(
 	"/",
 	chatRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
-		const parseResult = chatRequestSchema.safeParse(req.body);
+		const { messages } = parseChatRequest(req.body);
+		const lastUserMessage = messages[messages.length - 1]?.content || "";
+		const shouldBypassCache = hasDynamicPortfolioIntent(lastUserMessage);
 
-	if (!parseResult.success) {
-		throw new AppError("Invalid request body", 400);
-	}
-
-	const { messages } = parseResult.data;
-	const lastUserMessage = messages[messages.length - 1]?.content || "";
-
-	// Check cache for single-turn questions
-	if (messages.length === 1) {
-		const cachedResponse = responseCache.get(lastUserMessage);
-		if (cachedResponse) {
-			res.setHeader("X-Cache", "HIT");
-			return res.json({
-				success: true,
-				message: cachedResponse,
-			});
+		// Check cache for single-turn questions
+		if (messages.length === 1 && !shouldBypassCache) {
+			const cachedResponse = responseCache.get(lastUserMessage);
+			if (cachedResponse) {
+				res.setHeader("X-Cache", "HIT");
+				return res.json({
+					success: true,
+					message: cachedResponse,
+				});
+			}
 		}
-	}
 
 		res.setHeader("X-Cache", "MISS");
+		const systemPrompt = await getSystemPrompt();
 
 		const completion = await openai.chat.completions.create({
 			model: "gpt-4o-mini",
-			messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+			messages: [{ role: "system", content: systemPrompt }, ...messages],
 			max_tokens: 400, // Reduced from 500 for faster responses
 			temperature: 0.7,
 		});
@@ -72,8 +78,8 @@ router.post(
 			throw new AppError("No response from AI", 500);
 		}
 
-		// Cache single-turn responses
-		if (messages.length === 1) {
+		// Cache single-turn responses (except dynamic portfolio queries)
+		if (messages.length === 1 && !shouldBypassCache) {
 			responseCache.set(lastUserMessage, responseMessage);
 		}
 
@@ -89,24 +95,19 @@ router.post(
 	"/stream",
 	chatRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
-		const parseResult = chatRequestSchema.safeParse(req.body);
+		const { messages } = parseChatRequest(req.body);
+		const lastUserMessage = messages[messages.length - 1]?.content || "";
+		const shouldBypassCache = hasDynamicPortfolioIntent(lastUserMessage);
 
-	if (!parseResult.success) {
-		throw new AppError("Invalid request body", 400);
-	}
-
-	const { messages } = parseResult.data;
-	const lastUserMessage = messages[messages.length - 1]?.content || "";
-
-	// Check cache for single-turn questions
-	if (messages.length === 1) {
-		const cachedResponse = responseCache.get(lastUserMessage);
-		if (cachedResponse) {
-			// Stream cached response for consistent UX
-			res.setHeader("Content-Type", "text/event-stream");
-			res.setHeader("Cache-Control", "no-cache");
-			res.setHeader("Connection", "keep-alive");
-			res.setHeader("X-Cache", "HIT");
+		// Check cache for single-turn questions
+		if (messages.length === 1 && !shouldBypassCache) {
+			const cachedResponse = responseCache.get(lastUserMessage);
+			if (cachedResponse) {
+				// Stream cached response for consistent UX
+				res.setHeader("Content-Type", "text/event-stream");
+				res.setHeader("Cache-Control", "no-cache");
+				res.setHeader("Connection", "keep-alive");
+				res.setHeader("X-Cache", "HIT");
 
 				// Send cached response in chunks for natural feel
 				const words = cachedResponse.split(" ");
@@ -132,9 +133,10 @@ router.post(
 		let fullResponse = "";
 
 		try {
+			const systemPrompt = await getSystemPrompt();
 			const stream = await openai.chat.completions.create({
 				model: "gpt-4o-mini",
-				messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+				messages: [{ role: "system", content: systemPrompt }, ...messages],
 				max_tokens: 400,
 				temperature: 0.7,
 				stream: true,
@@ -148,8 +150,8 @@ router.post(
 				}
 			}
 
-			// Cache the complete response for single-turn questions
-			if (messages.length === 1 && fullResponse) {
+			// Cache the complete response for single-turn questions (except dynamic portfolio queries)
+			if (messages.length === 1 && fullResponse && !shouldBypassCache) {
 				responseCache.set(lastUserMessage, fullResponse);
 			}
 		} catch (error) {
@@ -165,11 +167,9 @@ router.post(
 // Health check with cache stats
 router.get("/health", (_req: Request, res: Response) => {
 	const cacheStats = responseCache.getStats();
-	res.json({
-		status: "ok",
-		timestamp: new Date().toISOString(),
+	res.json(createHealthResponse({
 		cache: cacheStats,
-	});
+	}));
 });
 
 const ttsRequestSchema = z.object({
@@ -179,17 +179,16 @@ const ttsRequestSchema = z.object({
 		.optional(),
 });
 
+type TTSRequest = z.infer<typeof ttsRequestSchema>;
+
+const parseTTSRequest = (body: unknown): TTSRequest =>
+	parseOrThrow(ttsRequestSchema, body, "Invalid request body");
+
 router.post(
 	"/tts",
 	ttsRateLimiter,
 	asyncHandler(async (req: Request, res: Response) => {
-		const parseResult = ttsRequestSchema.safeParse(req.body);
-
-		if (!parseResult.success) {
-			throw new AppError("Invalid request body", 400);
-		}
-
-		const { text, voice = "nova" } = parseResult.data;
+		const { text, voice = "nova" } = parseTTSRequest(req.body);
 
 		const mp3 = await openai.audio.speech.create({
 			model: "tts-1", // Use tts-1 for speed, tts-1-hd for quality

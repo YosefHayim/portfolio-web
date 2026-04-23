@@ -5,11 +5,11 @@ import App from "./App.tsx";
 import { SidebarProvider } from "./Components/ui/sidebar.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
-    <BrowserRouter>
-      <SidebarProvider>
-        <App />
-      </SidebarProvider>
-    </BrowserRouter>
-  </HelmetProvider>,
+ <HelmetProvider>
+ <BrowserRouter>
+ <SidebarProvider>
+ <App />
+ </SidebarProvider>
+ </BrowserRouter>
+ </HelmetProvider>,
 );

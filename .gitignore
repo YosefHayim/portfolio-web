@@ -1,0 +1,6 @@
+.*
+!.gitignore
+!.github
+DEDUP-REPORT.md
+DEDUP-REPORT.json
+.dedup.json

@@ -33,29 +33,29 @@ export const JOSEPH_SYSTEM_PROMPT = `You are an AI assistant on Joseph Sabag's p
 ## Key Projects
 
 1. **eBay MCP API Server** (Live)
-   - Open source MCP server with 230+ tools, 99.1% API coverage
-   - OAuth 2.0 support, 870+ tests
-   - Published on npm
+ - Open source MCP server with 230+ tools, 99.1% API coverage
+ - OAuth 2.0 support, 870+ tests
+ - Published on npm
 
 2. **AutoBay SaaS Platform** (In Development)
-   - Amazon to eBay dropshipping automation
-   - Trademark/patent verification integration
-   - Multi-marketplace support
+ - Amazon to eBay dropshipping automation
+ - Trademark/patent verification integration
+ - Multi-marketplace support
 
 3. **Quiz AI React Native** (In Development)
-   - iOS/Android app for AI-powered quiz generation
-   - PDF, image, and YouTube content parsing
-   - Progress tracking system
+ - iOS/Android app for AI-powered quiz generation
+ - PDF, image, and YouTube content parsing
+ - Progress tracking system
 
 4. **Udemy Clone** (Completed)
-   - Full-stack learning platform
-   - Course management, video streaming
-   - Collaborative project
+ - Full-stack learning platform
+ - Course management, video streaming
+ - Collaborative project
 
 5. **OCR Parse AI** (Completed)
-   - AI-powered invoice data extraction
-   - PDF to structured data conversion
-   - Real-time WebSocket processing
+ - AI-powered invoice data extraction
+ - PDF to structured data conversion
+ - Real-time WebSocket processing
 
 ## Personality & Values
 
@@ -84,41 +84,41 @@ export const JOSEPH_SYSTEM_PROMPT = `You are an AI assistant on Joseph Sabag's p
 `;
 
 export type QuickAction = {
-  label: string;
-  prompt: string;
-  icon: "skills" | "projects" | "experience" | "contact" | "resume";
+ label: string;
+ prompt: string;
+ icon: "skills" | "projects" | "experience" | "contact" | "resume";
 };
 
 export const QUICK_ACTIONS: QuickAction[] = [
-  {
-    label: "Technical Skills",
-    prompt: "What are Joseph's main technical skills and proficiencies?",
-    icon: "skills",
-  },
-  {
-    label: "Recent Projects",
-    prompt: "Tell me about Joseph's most impressive recent projects.",
-    icon: "projects",
-  },
-  {
-    label: "Work Experience",
-    prompt: "What is Joseph's professional work experience?",
-    icon: "experience",
-  },
-  {
-    label: "Why Hire Joseph?",
-    prompt: "What makes Joseph a good candidate for a software developer role?",
-    icon: "contact",
-  },
-  {
-    label: "Download Resume",
-    prompt: "__ACTION_DOWNLOAD_RESUME__",
-    icon: "resume",
-  },
+ {
+ label: "Technical Skills",
+ prompt: "What are Joseph's main technical skills and proficiencies?",
+ icon: "skills",
+ },
+ {
+ label: "Recent Projects",
+ prompt: "Tell me about Joseph's most impressive recent projects.",
+ icon: "projects",
+ },
+ {
+ label: "Work Experience",
+ prompt: "What is Joseph's professional work experience?",
+ icon: "experience",
+ },
+ {
+ label: "Why Hire Joseph?",
+ prompt: "What makes Joseph a good candidate for a software developer role?",
+ icon: "contact",
+ },
+ {
+ label: "Download Resume",
+ prompt: "__ACTION_DOWNLOAD_RESUME__",
+ icon: "resume",
+ },
 ];
 
 export const SAMPLE_RESPONSES: Record<string, string> = {
-  skills: `Joseph's core technical skills include:
+ skills: `Joseph's core technical skills include:
 
 **Backend Development**
 - Node.js & Express with TypeScript
@@ -140,7 +140,7 @@ export const SAMPLE_RESPONSES: Record<string, string> = {
 
 His strongest areas are backend architecture, API integrations, and building automation tools.`,
 
-  projects: `Joseph's most notable projects:
+ projects: `Joseph's most notable projects:
 
 **1. eBay MCP API Server** (Live on npm)
 An open-source Model Context Protocol server with 230+ tools providing comprehensive eBay API access. Features 99.1% API coverage and 870+ tests.
@@ -153,7 +153,7 @@ A cross-platform mobile app that generates AI-powered quizzes from PDFs, images,
 
 Each project demonstrates his ability to architect complex systems and work with cutting-edge technologies.`,
 
-  experience: `**Current Role**
+ experience: `**Current Role**
 Software Developer at Predicto AI (Jul 2025 - Present)
 - Backend architecture and API integrations
 - Building robust systems for production
@@ -169,7 +169,7 @@ Software Developer at Predicto AI (Jul 2025 - Present)
 **Military**
 - IDF Infantry Commander, 2x Excellence Awards (Nov 2018 - Jul 2021)`,
 
-  hire: `**Why hire Joseph?**
+ hire: `**Why hire Joseph?**
 
 1. **Proven Track Record**: From building trading bots with zero coding experience to publishing npm packages and building SaaS platforms
 

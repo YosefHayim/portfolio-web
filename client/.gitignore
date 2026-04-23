@@ -45,3 +45,6 @@ coverage
 *.temp
 .cache
 node_modules
+DEDUP-REPORT.md
+DEDUP-REPORT.json
+.dedup.json

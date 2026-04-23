@@ -60,3 +60,6 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
+DEDUP-REPORT.md
+DEDUP-REPORT.json
+.dedup.json

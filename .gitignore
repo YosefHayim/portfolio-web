@@ -1,6 +1,8 @@
 .*
+*.json
+*.jsonc
+*.md
 !.gitignore
 !.github
-DEDUP-REPORT.md
-DEDUP-REPORT.json
 .dedup.json
+infra/aws/keys/*.pem

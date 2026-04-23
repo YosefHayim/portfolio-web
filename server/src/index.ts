@@ -1,13 +1,11 @@
 import compression from "compression";
 import cors from "cors";
 import express, { type Express } from "express";
-import { initBilling } from "./config/billing.js";
 import { env } from "./config/env.js";
 import { httpLogger, logger } from "./config/logger.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import chatRouter from "./routes/chat.js";
 import emailRouter from "./routes/email.js";
-import { createWebhookRouter } from "./routes/webhooks.js";
 
 async function main() {
 	const app: Express = express();
@@ -34,13 +32,6 @@ async function main() {
 	);
 
 	app.use(cors(corsOptions));
-
-	const billing = await initBilling();
-
-	// Webhook routes MUST be mounted BEFORE express.json() because
-	// HMAC signature verification requires the raw request body bytes.
-	// express.json() consumes the stream and re-serializes, breaking HMAC.
-	app.use("/api/webhooks", createWebhookRouter(billing));
 
 	app.use(express.json());
 

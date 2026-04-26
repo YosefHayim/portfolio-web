@@ -376,7 +376,11 @@ export const AIChatSidebar = () => {
  <div
  className={cn(
  "fixed z-50 flex items-end justify-end",
- isMobile ? "right-4 bottom-20 left-4" : "right-4 bottom-6",
+ isMobile
+ ? isOpen
+ ? "right-3 bottom-6 left-3"
+ : "right-3 bottom-6"
+ : "right-4 bottom-6",
  )}
  style={{ width: isMobile ? "auto" : PANEL_WIDTH }}
  >

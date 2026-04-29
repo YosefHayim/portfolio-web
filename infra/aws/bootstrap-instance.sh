@@ -20,6 +20,30 @@ fi
 APP_DIR="${APP_DIR:-/opt/portfolio}"
 REPO_URL="${REPO_URL:-https://github.com/YosefHayim/portfolio.git}"
 
+ensure_pnpm() {
+  if [[ -f pnpm-lock.yaml ]] && ! command -v pnpm >/dev/null 2>&1; then
+    sudo npm install -g pnpm
+  fi
+}
+
+install_dependencies() {
+  if [[ -f pnpm-lock.yaml ]]; then
+    ensure_pnpm
+    pnpm install --frozen-lockfile
+  else
+    npm ci
+  fi
+}
+
+run_build() {
+  if [[ -f pnpm-lock.yaml ]]; then
+    ensure_pnpm
+    pnpm run build
+  else
+    npm run build
+  fi
+}
+
 if command -v dnf >/dev/null 2>&1; then
   sudo dnf update -y
   sudo dnf install -y nginx git nodejs
@@ -46,12 +70,12 @@ git pull --ff-only
 CLIENT_API_URL="${VITE_API_URL:-https://${API_SUBDOMAIN:-api.yosefhayimsabag.com}}"
 
 cd "$APP_DIR/client"
-npm ci
-VITE_API_URL="$CLIENT_API_URL" npm run build
+install_dependencies
+VITE_API_URL="$CLIENT_API_URL" run_build
 
 cd "$APP_DIR/server"
-npm ci
-npm run build
+install_dependencies
+run_build
 
 sudo mkdir -p /etc/portfolio
 

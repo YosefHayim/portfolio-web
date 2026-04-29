@@ -1,7 +1,8 @@
-import { Router, type Request, type Response } from "express";
+import { type Request, type Response, Router } from "express";
 import OpenAI from "openai";
 import { z } from "zod";
 import { env } from "../config/env.js";
+import { logger } from "../config/logger.js";
 import { getSystemPrompt } from "../config/systemPrompt.js";
 import { AppError, asyncHandler } from "../middleware/errorHandler.js";
 import {
@@ -40,6 +41,15 @@ const hasDynamicPortfolioIntent = (message: string): boolean =>
 	/\b(github|repo|repos|project|projects|recent|latest|newest|updated)\b/i.test(
 		message,
 	);
+
+const summarizeProviderError = (error: unknown): string => {
+	if (error instanceof Error) {
+		const maybeStatus = "status" in error ? String(error.status) : "unknown";
+		return `${error.name} status=${maybeStatus}: ${error.message}`;
+	}
+
+	return String(error);
+};
 
 // Non-streaming endpoint with caching
 router.post(
@@ -112,7 +122,8 @@ router.post(
 				// Send cached response in chunks for natural feel
 				const words = cachedResponse.split(" ");
 				for (let i = 0; i < words.length; i += 3) {
-					const chunk = words.slice(i, i + 3).join(" ") + (i + 3 < words.length ? " " : "");
+					const chunk =
+						words.slice(i, i + 3).join(" ") + (i + 3 < words.length ? " " : "");
 					res.write(`data: ${JSON.stringify({ content: chunk })}\n\n`);
 				}
 				res.write("data: [DONE]\n\n");
@@ -155,8 +166,11 @@ router.post(
 				responseCache.set(lastUserMessage, fullResponse);
 			}
 		} catch (error) {
+			logger.error(`Streaming chat failed: ${summarizeProviderError(error)}`);
 			// If streaming fails partway, send error event
-			res.write(`data: ${JSON.stringify({ error: "Stream interrupted" })}\n\n`);
+			res.write(
+				`data: ${JSON.stringify({ error: "AI provider unavailable" })}\n\n`,
+			);
 		}
 
 		res.write("data: [DONE]\n\n");
@@ -167,9 +181,11 @@ router.post(
 // Health check with cache stats
 router.get("/health", (_req: Request, res: Response) => {
 	const cacheStats = responseCache.getStats();
-	res.json(createHealthResponse({
-		cache: cacheStats,
-	}));
+	res.json(
+		createHealthResponse({
+			cache: cacheStats,
+		}),
+	);
 });
 
 const ttsRequestSchema = z.object({

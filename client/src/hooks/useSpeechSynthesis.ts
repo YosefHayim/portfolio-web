@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState, useEffect } from "react";
+import { API_BASE_URL } from "@/utils/apiBaseUrl";
 
 type SpeechState = "idle" | "loading" | "playing" | "paused";
 
@@ -22,12 +23,10 @@ interface UseSpeechSynthesisReturn {
   speakWithBrowserTTS: (text: string) => void;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
 export function useSpeechSynthesis(
   options: UseSpeechSynthesisOptions = {},
 ): UseSpeechSynthesisReturn {
-  const { apiUrl = API_URL, onStart, onEnd, onError } = options;
+  const { apiUrl = API_BASE_URL, onStart, onEnd, onError } = options;
 
   const [state, setState] = useState<SpeechState>("idle");
   const [currentTime, setCurrentTime] = useState(0);

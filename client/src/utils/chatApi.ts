@@ -1,7 +1,7 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+import { API_BASE_URL } from "./apiBaseUrl";
 
 export async function transcribeAudio(audioBlob: Blob): Promise<string> {
- const response = await fetch(`${API_URL}/api/chat/stt`, {
+ const response = await fetch(`${API_BASE_URL}/api/chat/stt`, {
  method: "POST",
  headers: { "Content-Type": audioBlob.type },
  body: audioBlob,
@@ -22,7 +22,7 @@ export async function fetchStreamingResponse(
 ): Promise<string> {
  let fullResponse = "";
 
- const response = await fetch(`${API_URL}/api/chat/stream`, {
+ const response = await fetch(`${API_BASE_URL}/api/chat/stream`, {
  method: "POST",
  headers: { "Content-Type": "application/json" },
  body: JSON.stringify({ messages: userMessages }),
@@ -55,14 +55,19 @@ export async function fetchStreamingResponse(
  if (data === "[DONE]") {
  return fullResponse;
  }
+ let parsed: { content?: string; error?: string };
  try {
- const parsed: { content?: string } = JSON.parse(data);
+ parsed = JSON.parse(data);
+ } catch {
+ continue;
+ }
+
+ if (parsed.error) {
+ throw new Error(parsed.error);
+ }
  if (parsed.content) {
  fullResponse += parsed.content;
  onChunk(parsed.content);
- }
- } catch {
- /* empty */
  }
  }
  }
@@ -77,7 +82,7 @@ export async function sendEmail(emailData: {
  subject: string;
  message: string;
 }): Promise<void> {
- const response = await fetch(`${API_URL}/api/email/send`, {
+ const response = await fetch(`${API_BASE_URL}/api/email/send`, {
  method: "POST",
  headers: { "Content-Type": "application/json" },
  body: JSON.stringify(emailData),

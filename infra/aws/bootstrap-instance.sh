@@ -43,9 +43,11 @@ cd "$APP_DIR"
 git fetch --all --prune
 git pull --ff-only
 
+CLIENT_API_URL="${VITE_API_URL:-https://${API_SUBDOMAIN:-api.yosefhayimsabag.com}}"
+
 cd "$APP_DIR/client"
 npm ci
-npm run build
+VITE_API_URL="$CLIENT_API_URL" npm run build
 
 cd "$APP_DIR/server"
 npm ci

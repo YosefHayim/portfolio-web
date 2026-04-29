@@ -133,7 +133,7 @@ sudo sed -i "s/__API_SUBDOMAIN__/${API_SUBDOMAIN:-api.yosefhayimsabag.com}/g" /e
 CERT_NAME="${CERT_NAME:-${DOMAIN_ROOT:-yosefhayimsabag.com}}"
 CERT_DIR="/etc/letsencrypt/live/$CERT_NAME"
 
-if [[ -f "$CERT_DIR/fullchain.pem" && -f "$CERT_DIR/privkey.pem" ]]; then
+if sudo test -f "$CERT_DIR/fullchain.pem" && sudo test -f "$CERT_DIR/privkey.pem"; then
   cat <<NGINX >/tmp/portfolio.conf
 server {
     listen 80;

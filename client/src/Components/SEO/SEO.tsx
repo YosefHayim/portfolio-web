@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://josephsabag.dev";
 const DEFAULT_IMAGE = `${SITE_URL}/screenshots/portfolio-preview.png`;
-const SITE_NAME = "Joseph Sabag";
+const SITE_NAME = "Josrade — Joseph Sabag";
 const TWITTER_HANDLE = "@yosefhayim";
 
 type SEOProps = {
@@ -21,7 +21,7 @@ type SEOProps = {
 
 export const SEO = ({
  title,
- description = "Joseph Sabag - AI Software Engineer specializing in React, Node.js, TypeScript, and AI integrations. Building impactful software solutions.",
+ description = "Josrade is the publisher account behind a suite of Chrome extensions and Cloudflare Worker APIs by Joseph Sabag, AI Software Engineer specializing in React, Node.js, TypeScript, and AI integrations.",
  image = DEFAULT_IMAGE,
  url,
  type = "website",

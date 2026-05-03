@@ -39,6 +39,14 @@ app.get('/sorqa-terms', (req, res) => {
   res.sendFile(join(DIST, 'sorqa-terms.html'));
 });
 
+// Serve static Josrade OAuth verification page
+app.get('/jts', (req, res) => {
+  res.sendFile(join(DIST, 'jts', 'index.html'));
+});
+app.get('/jts/', (req, res) => {
+  res.sendFile(join(DIST, 'jts', 'index.html'));
+});
+
 // SPA fallback - serve index.html for all other routes
 app.get('*', (req, res) => {
   res.sendFile(join(DIST, 'index.html'));

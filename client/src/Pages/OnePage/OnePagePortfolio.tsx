@@ -212,20 +212,17 @@ const OnePagePortfolio = () => {
   return (
     <>
       <SEO
-        description="Josrade is the publisher account behind a suite of Chrome extensions and Cloudflare Worker APIs by Joseph Sabag, AI Software Engineer. Authenticates users into Prompt Queue, Sora Auto Queue Prompts, Audio Transcriber, and AI Conversation Navigator via Google sign-in."
+        description="Joseph Sabag, AI Software Engineer. Fast recruiter overview with core projects, stack, and direct contact."
         keywords={[
-          "Josrade",
           "Joseph Sabag",
           "AI Software Engineer",
-          "Chrome Extensions",
-          "OAuth",
           "Recruiter Portfolio",
           "React",
           "Node.js",
           "TypeScript",
           "GitHub Projects",
         ]}
-        title="Josrade — Portfolio"
+        title="Portfolio"
         url="/"
       />
 
@@ -297,123 +294,6 @@ const OnePagePortfolio = () => {
             </div>
           </div>
         </section>
-
-        <SectionBlock
-          id="josrade"
-          title="Josrade"
-          description="Josrade is the publisher account behind a suite of Chrome extensions and Cloudflare Worker APIs by Joseph Sabag. The Josrade OAuth application is configured under Google Cloud project 270038006281 and is the publisher name shown on the Google sign-in consent screen used by these extensions."
-        >
-          <div className="grid gap-3 md:grid-cols-2">
-            <article className="flex min-w-0 flex-col gap-2 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-              <h3 className="text-base font-semibold">
-                Purpose of the Josrade OAuth app
-              </h3>
-              <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-                The Josrade OAuth client lets end-users sign in to Joseph
-                Sabag's Chrome extensions with their Google account so each
-                extension can offer per-account features (saved prompts,
-                queues, transcripts, sync). Authentication is brokered by a
-                Cloudflare Worker backend at
-                {" "}
-                <code className="rounded bg-[var(--bg-void)]/60 px-1 py-0.5 text-xs">
-                  promptqueue-api.yosefisabag.workers.dev
-                </code>
-                .
-              </p>
-            </article>
-
-            <article className="flex min-w-0 flex-col gap-2 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-              <h3 className="text-base font-semibold">
-                Scopes requested and why
-              </h3>
-              <ul className="space-y-1.5 text-sm leading-relaxed text-[var(--text-secondary)]">
-                <li>
-                  <strong className="text-[var(--text-primary)]">
-                    openid email profile
-                  </strong>{" "}
-                  — identifies the signed-in user (email, name, avatar) so the
-                  extension can attach saved data to the correct account.
-                </li>
-                <li>
-                  <strong className="text-[var(--text-primary)]">
-                    https://www.googleapis.com/auth/chromewebstore
-                  </strong>{" "}
-                  — used only by the developer's publishing CLI to upload new
-                  versions of the developer's own extensions to the Chrome Web
-                  Store. End-users of the extensions never see this scope.
-                </li>
-              </ul>
-            </article>
-
-            <article className="flex min-w-0 flex-col gap-2 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 md:col-span-2">
-              <h3 className="text-base font-semibold">
-                Data the Josrade OAuth app does NOT access
-              </h3>
-              <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-                Josrade does not request and never accesses Google Drive,
-                Gmail, Google Photos, Google Calendar, Contacts, or any other
-                user data outside the basic profile fields above. The
-                extensions are not connected to user files, mailboxes, or
-                personal Google content of any kind.
-              </p>
-            </article>
-
-            <article className="flex min-w-0 flex-col gap-2 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 md:col-span-2">
-              <h3 className="text-base font-semibold">
-                Chrome extensions published under Josrade
-              </h3>
-              <ul className="grid gap-2 text-sm leading-relaxed text-[var(--text-secondary)] md:grid-cols-2">
-                <li>
-                  <a
-                    className="font-medium text-[var(--text-primary)] hover:text-[#7ff7af]"
-                    href="https://chromewebstore.google.com/detail/gemini-nano-flow/lidnnjbepijjbbphbdhcchgpckpcbgfm"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Prompt Queue
-                  </a>{" "}
-                  — bulk image generation and prompt automation for Google
-                  Gemini.
-                </li>
-                <li>
-                  <span className="font-medium text-[var(--text-primary)]">
-                    Sora Auto Queue Prompts
-                  </span>{" "}
-                  — automated prompt queuing for OpenAI Sora video generation.
-                </li>
-                <li>
-                  <span className="font-medium text-[var(--text-primary)]">
-                    Audio Transcriber
-                  </span>{" "}
-                  — in-browser audio transcription helper.
-                </li>
-                <li>
-                  <span className="font-medium text-[var(--text-primary)]">
-                    AI Conversation Navigator
-                  </span>{" "}
-                  — navigation and search across long AI chat threads.
-                </li>
-              </ul>
-              <p className="text-xs text-[var(--text-secondary)]">
-                Privacy is documented per-extension. See for example the{" "}
-                <a
-                  className="underline hover:text-[#7ff7af]"
-                  href="/prompt-queue/privacy"
-                >
-                  Prompt Queue privacy policy
-                </a>{" "}
-                and{" "}
-                <a
-                  className="underline hover:text-[#7ff7af]"
-                  href="/sorqa/privacy"
-                >
-                  Sorqa privacy policy
-                </a>
-                .
-              </p>
-            </article>
-          </div>
-        </SectionBlock>
 
         <SectionBlock id="stack" title="Tech Stack">
           <div className="stack-marquee w-full">

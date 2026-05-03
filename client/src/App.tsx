@@ -8,6 +8,7 @@ import { useReturnVisitor } from "./hooks/useReturnVisitor";
 import "@/index.css";
 
 const OnePagePortfolio = lazy(() => import("./Pages/OnePage/OnePagePortfolio"));
+const JtsPage = lazy(() => import("./Pages/Jts/JtsPage"));
 
 const AIChatSidebar = lazy(
  () => import("./Components/AIChatSidebar/AIChatSidebar"),
@@ -33,6 +34,7 @@ const App = () => {
  <Suspense fallback={<PageLoader />}>
  <Routes key={location.pathname} location={location}>
  <Route element={<OnePagePortfolio />} path="/" />
+ <Route element={<JtsPage />} path="/jts" />
  <Route element={<OnePagePortfolio />} path="*" />
  </Routes>
  </Suspense>

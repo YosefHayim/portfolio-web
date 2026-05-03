@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://josephsabag.dev";
 const DEFAULT_IMAGE = `${SITE_URL}/screenshots/portfolio-preview.png`;
-const SITE_NAME = "Josrade — Joseph Sabag";
+const SITE_NAME = "Joseph Sabag";
 const TWITTER_HANDLE = "@yosefhayim";
 
 type SEOProps = {
@@ -10,20 +10,23 @@ type SEOProps = {
  description?: string;
  image?: string;
  url?: string;
+ canonicalUrl?: string;
  type?: "website" | "article" | "profile";
  publishedTime?: string;
  modifiedTime?: string;
  author?: string;
  keywords?: string[];
  noindex?: boolean;
+ appendSiteName?: boolean;
  structuredData?: Record<string, unknown>;
 };
 
 export const SEO = ({
  title,
- description = "Josrade is the publisher account behind a suite of Chrome extensions and Cloudflare Worker APIs by Joseph Sabag, AI Software Engineer specializing in React, Node.js, TypeScript, and AI integrations.",
+ description = "Joseph Sabag - AI Software Engineer specializing in React, Node.js, TypeScript, and AI integrations. Building impactful software solutions.",
  image = DEFAULT_IMAGE,
  url,
+ canonicalUrl,
  type = "website",
  publishedTime,
  modifiedTime,
@@ -39,10 +42,15 @@ export const SEO = ({
  "Portfolio",
  ],
  noindex = false,
+ appendSiteName = true,
  structuredData,
 }: SEOProps) => {
- const pageTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | AI Software Engineer`;
- const pageUrl = url ? `${SITE_URL}${url}` : SITE_URL;
+ const pageTitle = title
+ ? appendSiteName
+ ? `${title} | ${SITE_NAME}`
+ : title
+ : `${SITE_NAME} | AI Software Engineer`;
+ const pageUrl = canonicalUrl ?? (url ? `${SITE_URL}${url}` : SITE_URL);
  const imageUrl = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
  const defaultStructuredData = {

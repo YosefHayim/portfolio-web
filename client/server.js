@@ -25,6 +25,14 @@ app.get('/promptqueue-terms', (req, res) => {
   res.sendFile(join(DIST, 'promptqueue-terms.html'));
 });
 
+// Serve static Audio Transcriber pages (for Chrome Web Store privacy review)
+app.get('/audio-transcriber/privacy', (req, res) => {
+  res.sendFile(join(DIST, 'audio-transcriber-privacy.html'));
+});
+app.get('/audio-transcriber-privacy', (req, res) => {
+  res.sendFile(join(DIST, 'audio-transcriber-privacy.html'));
+});
+
 // Serve static Sorqa pages (for Google OAuth verification)
 app.get('/sorqa', (req, res) => {
   res.sendFile(join(DIST, 'sorqa', 'index.html'));

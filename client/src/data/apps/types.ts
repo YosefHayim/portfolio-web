@@ -1,42 +1,34 @@
 import type { ReactNode } from "react";
 
 export const DEVELOPER_INFO = {
- name: "Yosef Hayim Sabag",
- email: "yosefisabag@gmail.com",
- website: "https://yosefhayimsabag.com",
+  name: "Yosef Hayim Sabag",
+  email: "yosefisabag@gmail.com",
+  website: "https://yosefhayimsabag.com",
 } as const;
 
-export type FeatureItem = {
- icon: ReactNode;
- title: string;
- description: string;
+export type FeatureCopy = {
+  title: string;
+  description: string;
 };
 
-export type AppConfig = {
- id: string;
- name: string;
- tagline: string;
- description: string;
- brandColor: string;
- logoBgColor: string;
- logoIcon: ReactNode;
- chromeStoreUrl?: string;
- features: FeatureItem[];
- privacyPolicy: {
- lastUpdated: string;
- intro: string;
- googleApiDisclosure: string;
- sections: {
- title: string;
- content: string;
- }[];
- };
- termsOfService: {
- lastUpdated: string;
- intro: string;
- sections: {
- title: string;
- content: string;
- }[];
- };
+export type AppMetadata = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  brandColor: string;
+  logoBgColor: string;
+  pagePath: string;
+  legalSlug?: string;
+  chromeStoreUrl?: string;
+  features: FeatureCopy[];
+};
+
+export type FeatureItem = FeatureCopy & {
+  icon: ReactNode;
+};
+
+export type AppConfig = Omit<AppMetadata, "features"> & {
+  logoIcon: ReactNode;
+  features: FeatureItem[];
 };

@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { logger } from "../config/logger.js";
+import { CoreHttpError } from "../core/requestValidation.js";
 
 const HTTP_INTERNAL_SERVER_ERROR = 500;
 
@@ -24,6 +25,14 @@ export const errorHandler = (
 	if (err instanceof AppError) {
 		logger.warn(`Operational error: ${err.message}`);
 		return res.status(err.statusCode).json({
+			success: false,
+			error: err.message,
+		});
+	}
+
+	if (err instanceof CoreHttpError) {
+		logger.warn(`Operational error: ${err.message}`);
+		return res.status(err.status).json({
 			success: false,
 			error: err.message,
 		});

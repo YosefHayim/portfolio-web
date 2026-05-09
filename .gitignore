@@ -2,6 +2,9 @@
 *.json
 *.jsonc
 *.md
+!AGENTS.md
+!CLAUDE.md
+!docs/agents/*.md
 !.gitignore
 !.github
 .dedup.json

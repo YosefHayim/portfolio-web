@@ -1,0 +1,31 @@
+# Domain Docs
+
+This is a single-context repo.
+
+## Before Exploring
+
+Read `CONTEXT.md` at the repo root before using engineering skills that depend on domain language, especially `improve-codebase-architecture`, `diagnose`, `tdd`, `to-issues`, `to-prd`, and `zoom-out`.
+
+If `docs/adr/` exists, read ADRs that touch the area being changed. If the directory does not exist, proceed silently.
+
+## Current Layout
+
+```text
+/
+├── CONTEXT.md
+├── docs/
+│   └── agents/
+└── client/
+└── server/
+└── worker/
+```
+
+## Vocabulary
+
+Use the domain terms from `CONTEXT.md` when naming issues, PRDs, refactor proposals, hypotheses, and tests.
+
+If a needed concept is missing from `CONTEXT.md`, treat that as a signal for `grill-with-docs` or a focused docs update rather than inventing parallel vocabulary.
+
+## ADR Conflicts
+
+If future work contradicts an ADR, call it out explicitly and explain why reopening the decision may be worth it.

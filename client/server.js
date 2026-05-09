@@ -1,63 +1,43 @@
-import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import express from "express";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import {
+  findExtensionLegalRedirect,
+  findStaticProductPage,
+  getStaticProductPageRoutes,
+} from "./productRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const DIST = join(__dirname, 'dist');
+const DIST = join(__dirname, "dist");
 
-app.use(express.static(DIST, { index: 'index.html', redirect: false }));
+app.use(express.static(DIST, { index: "index.html", redirect: false }));
 
-// Serve static PromptQueue pages (for Google OAuth verification)
-app.get('/prompt-queue', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'index.html'));
-});
-app.get('/prompt-queue/', (req, res) => {
-  res.sendFile(join(DIST, 'prompt-queue', 'index.html'));
-});
-app.get('/promptqueue-privacy', (req, res) => {
-  res.sendFile(join(DIST, 'promptqueue-privacy.html'));
-});
-app.get('/promptqueue-terms', (req, res) => {
-  res.sendFile(join(DIST, 'promptqueue-terms.html'));
+app.use((req, res, next) => {
+  const legalRedirectUrl = findExtensionLegalRedirect(req.path);
+  if (legalRedirectUrl) {
+    res.redirect(301, legalRedirectUrl);
+    return;
+  }
+  next();
 });
 
-// Serve static Audio Transcriber pages (for Chrome Web Store privacy review)
-app.get('/audio-transcriber/privacy', (req, res) => {
-  res.sendFile(join(DIST, 'audio-transcriber-privacy.html'));
-});
-app.get('/audio-transcriber-privacy', (req, res) => {
-  res.sendFile(join(DIST, 'audio-transcriber-privacy.html'));
-});
+app.get(getStaticProductPageRoutes(), (req, res, next) => {
+  const staticFile = findStaticProductPage(req.path);
+  if (!staticFile) {
+    next();
+    return;
+  }
 
-// Serve static Sorqa pages (for Google OAuth verification)
-app.get('/sorqa', (req, res) => {
-  res.sendFile(join(DIST, 'sorqa', 'index.html'));
-});
-app.get('/sorqa/', (req, res) => {
-  res.sendFile(join(DIST, 'sorqa', 'index.html'));
-});
-app.get('/sorqa-privacy', (req, res) => {
-  res.sendFile(join(DIST, 'sorqa-privacy.html'));
-});
-app.get('/sorqa-terms', (req, res) => {
-  res.sendFile(join(DIST, 'sorqa-terms.html'));
-});
-
-// Serve static Josrade OAuth verification page
-app.get('/jts', (req, res) => {
-  res.sendFile(join(DIST, 'jts', 'index.html'));
-});
-app.get('/jts/', (req, res) => {
-  res.sendFile(join(DIST, 'jts', 'index.html'));
+  res.sendFile(join(DIST, staticFile));
 });
 
 // SPA fallback - serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(join(DIST, 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(join(DIST, "index.html"));
 });
 
 app.listen(PORT, () => {

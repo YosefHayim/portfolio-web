@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
     tailwindcss(),
     // Gzip compression for production
     compression({
+      algorithms: ["gzip"],
       include: /\.(js|css|html|svg|json)$/,
       threshold: 1024, // Only compress files > 1KB
     }),

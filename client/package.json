@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "start": "node server.js",
     "preview": "vite preview",
+    "test": "node --test productRoutes.test.js",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,md,html,css}\" --write && biome format --write .",
     "lint": "biome check .",
     "prepare": "cd .. && husky client/.husky"

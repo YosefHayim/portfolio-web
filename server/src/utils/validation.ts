@@ -1,4 +1,4 @@
-import { z } from "zod";
+import type { z } from "zod";
 import { AppError } from "../middleware/errorHandler.js";
 
 export function parseOrThrow<T>(
